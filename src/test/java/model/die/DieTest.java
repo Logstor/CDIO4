@@ -1,6 +1,7 @@
 package model.die;
 
 import org.junit.Test;
+import model.cup.*;
 
 
 
