@@ -1,0 +1,46 @@
+﻿Parameter;cardTypes;cardText;moneyToTransfer;housePrice;hotelPrice;absFieldNo;relMoving
+Player;extraExpense;Oliepriserne er steget og De skal betale: kr 500 pr. hus og kr. 2000 pr. hotel;;500;2000;;
+Player;extraExpense;Ejendomsskatterne er steget. Ekstraudgifterne er: kr 800 pr. hus og kr. 2300 pr. hotel;;800;2300;;
+Player, evt Player[];moneyAll;Det er deres fødselsdag. Modtag af hver medspiller kr 200.;200;;;;
+Player, evt Player[];moneyAll;De skal holde familiefest og får et tilskud af hver medspiller på kr 500.;500;;;;
+Player, evt Player[];moneyAll;De har lagt penge ud for et sammenskudsgilde. Mærkværdigvis betaler alle straks. Modtag fra hver medspiller kr. 500.;500;;;;
+Player;matador_legat;"De modtager ""Matador-Legatet for værdigt trængende"" på kr 40.000. Ved værdig trængende forstås, at Deres formue, dvs. Deres kontante penge + skøder + bygninger, ikkeoverstiger kr 15.000.";40000;;;;
+Player;moneyBank;De har modtaget Deres tandlægeregning. Betal kr. 2.000.;-2000;;;;
+Player;moneyBank;De har købt 4 nye dæk til Deres vogn. Betal kr. 1.000.;-1000;;;;
+Player;moneyBank;Værdien af egen avl fra nyttehaven udgør kr 200, som De modtager af banken.;200;;;;
+Player;moneyBank;Modtag udbytte af Deres Aktier - kr. 1.000;1000;;;;
+Player;moneyBank;Grundet dyrtiden har De fået gageforhøjelse. Modtag kr 1.000.;1000;;;;
+Player;moneyBank;De har solgte nogle gamle møbler på auktion. Modtag kr 1.000 af banken.;1000;;;;
+Player;moneyBank;Betal kr 3.000 for reparation af Deres vogn.;-3000;;;;
+Player;moneyBank;Kommunen har eftergivet et kvartals skat. Hæv i banken kr. 3.000;3000;;;;
+Player;moneyBank;Deres præmieobligation er udtrukket. De modtager kr. 1.000 af banken.;1000;;;;
+Player;moneyBank;Betal kr. 200 for levering af 2 kasser øl.;-200;;;;
+Player;moneyBank;De har fået en parkeringsbøde. Betal kr. 200 i bøde.;-200;;;;
+Player;moneyBank;Betal kr. 3.000 for reparation af deres vogn.;-3000;;;;
+Player;moneyBank;Modtag udbytte af Deres Aktier - kr. 1.000;1000;;;;
+Player;moneyBank;De har vundet i Klasselotteriet. Modtag kr. 500.;500;;;;
+Player;moneyBank;De har været en tur i udlandet og haft for mange cigaretter med hjem. Betal told kr. 200;200;;;;
+Player;moneyBank;De har vundet i Klasselotteriet. Modtag kr. 500.;500;;;;
+Player;moneyBank;Deres præmieobligation er udtrukket. De modtager kr. 1.000 af banken.;1000;;;;
+Player;moneyBank;Betal Deres bilforsikring - kr. 1.000;-1000;;;;
+Player;moneyBank;Betal for vognvask og smøring kr. 300;-300;;;;
+Player;moneyBank;De modtager Deres aktieudbytte. Modtage kr. 1.000 af banken.;1000;;;;
+Player;moneyBank;De havde en række med elleve rigtige i tipning. Modtag kr. 1.000.;1000;;;;
+Player;moneyBank;"De har kørt frem for ""Fuldt stop"". Betal kr. 1.000 i bøde.";-1000;;;;
+Player;absMoving;Tag ind på Rådhuspladsen.;;;;40;
+Player;absMoving;"Ryk frem til ""START"".";;;;1;
+Player;absMoving;"Ryk frem til Vimmelskaftet. Hvis De passerer ""START"", indkassér da kr. 4.000";;;;33;
+Player;absMoving;"Ryk frem til Frederiksberg Allé. Hvis De passerer ""START"", indkassér da kr. 4.000";;;;12;
+Player;absMoving;"Tag med Mols-Linien. Flyt brikken frem, og hvis De passerer ""START"", indkassér da kr. 4.000";;;;16;
+Player;absMoving;"Ryk frem til Grønningen. Hvis De passerer ""START"", indkassér da kr. 4.000";;;;25;
+Player;absMoving;"Ryk frem til ""START"".";;;;1;
+Player;absMoving;"Ryk frem til Strandvejen. Hvis De passerer ""START"", indkassér da kr. 4.000";;;;20;
+Player;relMoving;Ryk tre felter tilbage.;;;;;-3
+Player;relMoving;Ryk tre felter tilbage.;;;;;-3
+Player;relMoving;Ryk tre felter frem.;;;;;3
+Player;toPrison;"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer ""START"", indkasserer De ikke kr. 4.000";;;;11;
+Player;toPrison;"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer ""START"", indkasserer De ikke kr. 4.000";;;;11;
+Player evt. model.board;nearestBoat;Ryk brikken frem til det nærmeste rederi og betal ejeren to gange den leje, han ellers er berettiget til. Hvis selskabet ikke ejes af nogen, kan De købe det er banken.;;;;;
+Player evt. model.board;nearestBoat;Ryk brikken frem til det nærmeste rederi og betal ejeren to gange den leje, han ellers er berettiget til. Hvis selskabet ikke ejes af nogen, kan De købe det er banken.;;;;;
+Player;outOfPrison;I anledning af kongens fødselsdag benådes De herved for fængsel. Dette kort kan opbevares, indtil De får brug for det, eller De kan sælge det.;;;;;
+Player;outOfPrison;I anledning af kongens fødselsdag benådes De herved for fængsel. Dette kort kan opbevares, indtil De får brug for det, eller De kan sælge det.;;;;;
