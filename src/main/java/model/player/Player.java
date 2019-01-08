@@ -1,0 +1,112 @@
+package model.player;
+
+/**
+ * @author Rasmus Sander Larsen
+ * @date 07-01-2019
+ */
+public class Player {
+
+    /*
+    -------------------------- Fields --------------------------
+     */
+
+    private Account account;
+    private String name;
+    private boolean hasLost = false;
+    private int BreweriesOwned = 0;
+    private int BoatsOwned = 0;
+    private boolean inPrison;
+    private int position;
+    
+    /*
+    ----------------------- Constructor -------------------------
+     */
+    
+    public Player (String name, int initialBalance, int startingPosition) {
+        this.name=name;
+        account = new Account(initialBalance);
+        position= startingPosition;
+    }
+    
+    /*
+    ------------------------ Properties -------------------------
+     */
+
+    // <editor-folder desc="Properties"
+
+    public boolean isHasLost() {
+        return hasLost;
+    }
+
+    public void setHasLost(boolean hasLost) {
+        this.hasLost = hasLost;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getBreweriesOwned() {
+        return BreweriesOwned;
+    }
+
+    public void setBreweriesOwned(int breweriesOwned) {
+        BreweriesOwned = breweriesOwned;
+    }
+
+    public int getBoatsOwned() {
+        return BoatsOwned;
+    }
+
+    public void setBoatsOwned(int boatsOwned) {
+        BoatsOwned = boatsOwned;
+    }
+
+    public boolean isInPrison() {
+        return inPrison;
+    }
+
+    public void setInPrison(boolean inPrison) {
+        this.inPrison = inPrison;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    // </editor-folder>
+    
+    /*
+    ---------------------- Public Methods -----------------------
+     */
+    
+    public void updateBalance (int amountToUpdateBalanceWith) {
+        account.updateBalance(amountToUpdateBalanceWith);
+        if (account.getBalance()<=0) {
+            hasLost=true;
+        }
+
+    }
+    
+    /*
+    ---------------------- Support Methods ----------------------
+     */
+
+
+}
