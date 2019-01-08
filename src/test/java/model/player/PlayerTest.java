@@ -122,7 +122,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void updateTotalProoertyValue() {
+    public void updateTotalPropertyValue() {
 
         Player player = new Player("jens");
         Property prop = new Property(1,"haven","Druk paladset have",2, Color.red);
@@ -132,7 +132,6 @@ public class PlayerTest {
         assertEquals(2, player.getTotalPropertyValue());
 
     }
-
 
     @Test
     public void setName() {
