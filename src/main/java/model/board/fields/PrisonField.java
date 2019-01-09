@@ -22,8 +22,8 @@ public class PrisonField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public PrisonField(int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
-        super(fieldNo,fieldType,fieldName,fieldCost,fieldColor);
+    public PrisonField(int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+        super(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
         forSale = false;
     }
     

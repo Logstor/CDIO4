@@ -28,10 +28,10 @@ public class PropertyField extends Field {
     ----------------------- Constructor -------------------------
      */
     
-    public PropertyField (int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor,
+    public PropertyField (int fieldNo, String fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor,
     int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent, int field3HouseRent,
     int field4HouseRent,int field5HouseRent) {
-        super(fieldNo, fieldType, fieldName, fieldCost, fieldColor);
+        super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
         forSale = true;
 

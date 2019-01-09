@@ -22,8 +22,8 @@ public class ActionField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public ActionField(int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
-        super(fieldNo,fieldType,fieldName,fieldCost,fieldColor);
+    public ActionField(int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+        super(fieldNo,fieldType,fieldName,fieldDescription, fieldCost,fieldColor);
         forSale=false;
     }
     
