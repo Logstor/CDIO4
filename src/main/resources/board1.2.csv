@@ -39,12 +39,18 @@ field37;37;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0
 field38;38;Property;Frederiksberggade;;7000;51:00:50;4000;700;3500;10000;22000;26000;30000
 field39;39;Action;Ekstra SKAT;;2000;199:234:70;0;0;0;0;0;0;0
 field40;40;Property;Rådhuspladsen;;8000;51:00:50;4000;1000;4000;12000;28000;34000;40000
-lineSplitter;,;,;;;;;;;;;;;
-ENG_index;2;2;;;;;;;;;;;
-DK_index;1;1;;;;;;;;;;;
-FieldNumber_Index;0;0;;;;;;;;;;;
-FieldType_Index;1;1;;;;;;;;;;;
-FieldName_Index;2;2;;;;;;;;;;;
-FieldRent_Index;3;3;;;;;;;;;;;
-FieldColor_Index;4;4;;;;;;;;;;;
-colorSplitter;:;:;;;;;;;;;;;
+lineSplitter;,;;;;;;;;;;;;
+FieldNumber_Index;0;;;;;;;;;;;;
+FieldType_Index;1;;;;;;;;;;;;
+FieldName_Index;2;;;;;;;;;;;;
+FieldDescription_Index;3;;;;;;;;;;;;
+FieldCost_Index;4;;;;;;;;;;;;
+FieldColor_Index;5;;;;;;;;;;;;
+FieldHousePrice_Index;6;;;;;;;;;;;;
+FieldRent_Index;7;;;;;;;;;;;;
+Field1HouseRent_Index;8;;;;;;;;;;;;
+Field2HouseRent_Index;9;;;;;;;;;;;;
+Field3HouseRent_Index;10;;;;;;;;;;;;
+Field4HouseRent_Index;11;;;;;;;;;;;;
+Field5HouseRent_Index;12;;;;;;;;;;;;
+colorSplitter;:;;;;;;;;;;;;
