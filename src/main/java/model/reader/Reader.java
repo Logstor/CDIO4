@@ -1,6 +1,9 @@
 package model.reader;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 /**
@@ -91,7 +94,8 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-            FileReader fileReader = new FileReader(Reader.class.getClassLoader().getResource(fileName).getFile());
+            Path path = Paths.get(getClass().getClassLoader().getResource(fileName).toURI());
+            FileReader fileReader = new FileReader(path.toFile());
             bufferedReader = new BufferedReader(fileReader);
             
             while ((line = bufferedReader.readLine()) != null) {
@@ -100,7 +104,7 @@ public class Reader {
                 hashMap.put(tempKeyAndValue[keyIndex],tempKeyAndValue[valueIndex]);
 
             }
-        } catch(FileNotFoundException e){
+        } catch(FileNotFoundException | URISyntaxException e){
             e.printStackTrace();
         } catch(IOException e){
             e.printStackTrace();
