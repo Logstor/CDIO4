@@ -57,15 +57,11 @@ public class PropertyField extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
-
+    @Override
     public String toString () {
         StringBuilder toStringBuilder = new StringBuilder();
 
-        toStringBuilder.append("Field No.: " +getFieldNo() + "\n");
-        toStringBuilder.append("Field Type: " + getFieldType() + "\n");
-        toStringBuilder.append("Field Name: " + getFieldName() + "\n");
-        toStringBuilder.append("Field Cost: " + getFieldCost() + "\n");
-        toStringBuilder.append("Field Color: " + getFieldColor() + "\n");
+        toStringBuilder.append(super.toString());
         toStringBuilder.append("Field House Price: " + fieldHousePrice + "\n");
         toStringBuilder.append("Field Rent: " + fieldRent + "\n");
         toStringBuilder.append("Field Rent incl. 1 house: " + field1HouseRent + "\n");

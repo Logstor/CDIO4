@@ -24,11 +24,11 @@ public class Reader {
      */
 
     public Reader(String fileName, String splitter) {
-        filePath=null;
         this.fileName = fileName;
         this.splitter = splitter;
     }
 
+    @Deprecated
     public Reader(String filePath,String fileName,String splitter) {
         this.filePath = filePath;
         this.fileName = fileName;
@@ -91,12 +91,9 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-            if (filePath == null) {
-                bufferedReader = new BufferedReader(new FileReader(fileName));
-            } else {
-                bufferedReader = new BufferedReader(new FileReader(filePath + fileName));
-            }
-
+            FileReader fileReader = new FileReader(getClass().getClassLoader().getResource(fileName).getPath().replaceAll("%20"," "));
+            bufferedReader = new BufferedReader(fileReader);
+            
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] tempKeyAndValue = line.split(splitter);
