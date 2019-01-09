@@ -19,11 +19,11 @@ public class Cup {
 
 	public Cup (int noOfDies, int sidesOnDies) {
 		// Initialize
-		dies = new Die[2];
+		dies = new Die[noOfDies];
 
 		// Fill the array with 2 dies
 		for( int i=0 ; i < dies.length ; i++) {
-			dies[i] = new Die();
+			dies[i] = new Die(sidesOnDies);
 		}
 	}
     

@@ -88,6 +88,7 @@ public class FieldAdder {
     private void addStartField (int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new StartField(fieldNo, fieldType, fieldName, fieldCost, fieldColor);
     }
+
     private void addPropertyField(int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor,
                                   int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent,
                                   int field3HouseRent, int field4HouseRent, int field5HouseRent) {
