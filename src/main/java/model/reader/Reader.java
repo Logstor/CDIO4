@@ -91,7 +91,7 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-            FileReader fileReader = new FileReader(getClass().getClassLoader().getResource(fileName).getFile());
+            FileReader fileReader = new FileReader(Reader.class.getClassLoader().getResource(fileName).getFile());
             bufferedReader = new BufferedReader(fileReader);
             
             while ((line = bufferedReader.readLine()) != null) {
