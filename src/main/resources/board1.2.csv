@@ -1,56 +1,57 @@
-﻿Key;FieldNumber;FieldType;FieldName;FieldDescription;FieldCost;FieldColorRGB;FieldHousePrice;FieldRent;FieldRent1House;FieldRent2House;FieldRent3House;FieldRent4House;FieldRent5House
-field1;1;Start;Start;;0;76:187:23;0;0;0;0;0;0;0
-field2;2;Property;Rødovrevej;;1200;115:194:251;1000;50;250;750;2250;4000;6000
-field3;3;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0
-field4;4;Property;Hvidovrevej;;1200;115:194:251;1000;50;250;750;2250;4000;6000
-field5;5;Action;Indkomstskat;;0;199:234:70;0;0;0;0;0;0;0
-field6;6;Boat;Helsingør-Helsingborg;;4000;0:142:204;0;0;0;0;0;0;0
-field7;7;Property;Roskildevej;;2000;239:130:13;1000;100;600;1800;5400;8000;11000
-field8;8;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0
-field9;9;Property;Valby Langgade;;2000;239:130:13;1000;100;600;1800;5400;8000;11000
-field10;10;Property;Allégade;;2400;239:130:13;1000;150;800;2000;6000;9000;12000
-field11;11;Prison;På Besøg;;0;00:00:00;0;0;0;0;0;0;0
-field12;12;Property;Frederiksberg Allé;;2800;199:234:70;2000;200;1000;3000;9000;12500;1500
-field13;13;Brewery;Squash;;3000;194:24:07;0;0;0;0;0;0;0
-field14;14;Property;Bülowsvej;;2800;199:234:70;2000;200;1000;3000;9000;12500;1500
-field15;15;Property;Gl. Kongevej;;3200;199:234:70;2000;250;1250;3750;10000;14000;18000
-field16;16;Boat;Molslinien;;4000;0:142:204;0;0;0;0;0;0;0
-field17;17;Property;Bernstorffsvej;;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
-field18;18;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0
-field19;19;Property;Hellerupvej;;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
-field20;20;Property;Strandvejen;;4000;60:62:63;2000;350;1600;4400;12000;16000;20000
-field21;21;Parking;Parkering;;0;00:00:00;0;0;0;0;0;0;0
-field22;22;Property;Trianglen;;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
-field23;23;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0
-field24;24;Property;Østerbrogade;;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
-field25;25;Property;Grønningen;;4400;255:36:00;3000;400;2000;6000;15000;18500;22000
-field26;26;Boat;Gedser-Rostok;;4000;0:142:204;0;0;0;0;0;0;0
-field27;27;Property;Bredgade;;5200;255:255:255;3000;450;2200;6600;16000;19500;23000
-field28;28;Property;Kgs. Nytorv;;5200;255:255:255;3000;450;2200;6600;16000;19500;23000
-field29;29;Brewery;Cola;;3000;194:24:07;0;0;0;0;0;0;0
-field30;30;Property;Østergade;;5600;255:255:255;3000;500;2400;7200;17000;20500;24000
-field31;31;Prison;De Fængsles;;0;00:00:00;0;0;0;0;0;0;0
-field32;32;Property;Amagertorv;;6000;252:226:5;4000;550;2600;7800;18000;22000;25000
-field33;33;Property;Vimmelskaftet;;6000;252:226:5;4000;550;2600;7800;18000;22000;25000
-field34;34;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0
-field35;35;Property;Nygade;;6400;252:226:5;4000;600;3000;9000;20000;24000;28000
-field36;36;Boat;Rødby-Puttgarden;;4000;0:142:204;0;0;0;0;0;0;0
-field37;37;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0
-field38;38;Property;Frederiksberggade;;7000;51:00:50;4000;700;3500;10000;22000;26000;30000
-field39;39;Action;Ekstra SKAT;;2000;199:234:70;0;0;0;0;0;0;0
-field40;40;Property;Rådhuspladsen;;8000;51:00:50;4000;1000;4000;12000;28000;34000;40000
+﻿Key;FieldNumber;FieldType;FieldName;FieldDescription;FieldCost;FieldColorRGB;FieldHousePrice;FieldRent;FieldRent1House;FieldRent2House;FieldRent3House;FieldRent4House;FieldRent5House,
+field1;1;Start;Start;Her starter spillet;0;76:187:23;0;0;0;0;0;0;0,
+field2;2;Property;Rødovrevej;Rødovrevej går gennem både Islev og Rødovre forbi Rødovre centrum hvor den til sidst ender ved Roskildevej.;1200;115:194:251;1000;50;250;750;2250;4000;6000,
+field3;3;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0,
+field4;4;Property;Hvidovrevej;Hvidovrevej er en sidevej til Roskilde der går gennem både Vigerslev og Hvidovre for at til sidst at slutte ved friheden.;1200;115:194:251;1000;50;250;750;2250;4000;6000,
+field5;5;Action;Indkomstskat;;0;199:234:70;0;0;0;0;0;0;0,
+field6;6;Boat;Helsingør-Helsingborg;;4000;0:142:204;0;0;0;0;0;0;0,
+field7;7;Property;Roskildevej;Roskildevej er en vej der starter ved Baldersbrønde og går hele vejen til Albertslund hvor den skifter navn til Hovedvejen.;2000;239:130:13;1000;100;600;1800;5400;8000;11000,
+field8;8;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0,
+field9;9;Property;Valby Langgade;;2000;239:130:13;1000;100;600;1800;5400;8000;11000,
+field10;10;Property;Allégade;;2400;239:130:13;1000;150;800;2000;6000;9000;12000,
+field11;11;Prison;På Besøg;;0;00:00:00;0;0;0;0;0;0;0,
+field12;12;Property;Frederiksberg Allé;;2800;199:234:70;2000;200;1000;3000;9000;12500;1500,
+field13;13;Brewery;Squash;;3000;194:24:07;0;0;0;0;0;0;0,
+field14;14;Property;Bülowsvej;;2800;199:234:70;2000;200;1000;3000;9000;12500;1500,
+field15;15;Property;Gl. Kongevej;;3200;199:234:70;2000;250;1250;3750;10000;14000;18000,
+field16;16;Boat;Molslinien;;4000;0:142:204;0;0;0;0;0;0;0,
+field17;17;Property;Bernstorffsvej;;3600;60:62:63;2000;300;1400;4000;11000;15000;19000,
+field18;18;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0,
+field19;19;Property;Hellerupvej;;3600;60:62:63;2000;300;1400;4000;11000;15000;19000,
+field20;20;Property;Strandvejen;;4000;60:62:63;2000;350;1600;4400;12000;16000;20000,
+field21;21;Parking;Parkering;;0;00:00:00;0;0;0;0;0;0;0,
+field22;22;Property;Trianglen;;4400;255:36:00;3000;350;1800;5000;14000;17500;21000,
+field23;23;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0,
+field24;24;Property;Østerbrogade;;4400;255:36:00;3000;350;1800;5000;14000;17500;21000,
+field25;25;Property;Grønningen;;4400;255:36:00;3000;400;2000;6000;15000;18500;22000,
+field26;26;Boat;Gedser-Rostok;;4000;0:142:204;0;0;0;0;0;0;0,
+field27;27;Property;Bredgade;;5200;255:255:255;3000;450;2200;6600;16000;19500;23000,
+field28;28;Property;Kgs. Nytorv;;5200;255:255:255;3000;450;2200;6600;16000;19500;23000,
+field29;29;Brewery;Cola;;3000;194:24:07;0;0;0;0;0;0;0,
+field30;30;Property;Østergade;;5600;255:255:255;3000;500;2400;7200;17000;20500;24000,
+field31;31;Prison;De Fængsles;;0;00:00:00;0;0;0;0;0;0;0,
+field32;32;Property;Amagertorv;Amagertorv er et torv i Indre By i København. Det strækker sig fra Højbro Plads til Vimmelskaftet og udgør en del af Strøget. Det har været gågade siden 1962. Udover at være en af Københavns centrale indkøbsgader har Amagertorv gennem de sidste år udviklet sig til at være samlingssted for en række store advokatfirmaer.;6000;252:226:5;4000;550;2600;7800;18000;22000;25000,
+field33;33;Property;Vimmelskaftet;Vimmelskaftet er en gade i Indre By i København. Den er en del af Strøget og ligger mellem Nygade og Amagertorv. Vimmelskaft er en gammel betegnelse for et borsving. Baggrunden for gadens navn er netop at denne gade der oprindeligt hed Købmannegade og senere Ty(d)skemannegade sammen med de to gader Klædeboderne og Skoboderne tilsammen dannede en figur der kunne ligne et borsving.;6000;252:226:5;4000;550;2600;7800;18000;22000;25000,
+field34;34;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0,
+field35;35;Property;Nygade;Nygade i København er en del af Strøget og går fra Nytorv i vest til Vimmelskaftet i øst. Den er strøgets korteste gade og er anlagt i 1685.;6400;252:226:5;4000;600;3000;9000;20000;24000;28000,
+field36;36;Boat;Rødby-Puttgarden;;4000;0:142:204;0;0;0;0;0;0;0,
+field37;37;ChanceCard;Prøv lykken;;0;00:00:00;0;0;0;0;0;0;0,
+field38;38;Property;Frederiksberggade;Frederiksberggade ligger i Indre By København. Frederiksberggade blev anlagt efter Københavns brand 1728 i stedet for de derved brændte stræder.;7000;51:00:50;4000;700;3500;10000;22000;26000;30000,
+field39;39;Action;Ekstra SKAT;;2000;199:234:70;0;0;0;0;0;0;0,
+field40;40;Property;Rådhuspladsen;Rådhuspladsen er i dag et af de mest befærdede steder i hovedstaden. Omkring 60000 biler passere dagligt Rådhuspladsen.;8000;51:00:50;4000;1000;4000;12000;28000;34000;40000,
 lineSplitter;,;;;;;;;;;;;;
-FieldNumber_Index;0;;;;;;;;;;;;
-FieldType_Index;1;;;;;;;;;;;;
-FieldName_Index;2;;;;;;;;;;;;
-FieldDescription_Index;3;;;;;;;;;;;;
-FieldCost_Index;4;;;;;;;;;;;;
-FieldColor_Index;5;;;;;;;;;;;;
-FieldHousePrice_Index;6;;;;;;;;;;;;
-FieldRent_Index;7;;;;;;;;;;;;
-Field1HouseRent_Index;8;;;;;;;;;;;;
-Field2HouseRent_Index;9;;;;;;;;;;;;
-Field3HouseRent_Index;10;;;;;;;;;;;;
-Field4HouseRent_Index;11;;;;;;;;;;;;
-Field5HouseRent_Index;12;;;;;;;;;;;;
-colorSplitter;:;;;;;;;;;;;;
+FieldNumber_Index;0;;;;;;;;;;;;,
+FieldType_Index;1;;;;;;;;;;;;,
+FieldName_Index;2;;;;;;;;;;;;,
+FieldDescription_Index;3;;;;;;;;;;;;,
+FieldCost_Index;4;;;;;;;;;;;;,
+FieldColor_Index;5;;;;;;;;;;;;,
+FieldHousePrice_Index;6;;;;;;;;;;;;,
+FieldRent_Index;7;;;;;;;;;;;;,
+Field1HouseRent_Index;8;;;;;;;;;;;;,
+Field2HouseRent_Index;9;;;;;;;;;;;;,
+Field3HouseRent_Index;10;;;;;;;;;;;;,
+Field4HouseRent_Index;11;;;;;;;;;;;;,
+Field5HouseRent_Index;12;;;;;;;;;;;;,
+colorSplitter;:;;;;;;;;;;;;,
+,
