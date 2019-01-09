@@ -16,6 +16,7 @@ public class Player {
     private int BreweriesOwned = 0;
     private int BoatsOwned = 0;
     private boolean inPrison;
+    private int totalPosition;
     private int position;
     private String token;
     
@@ -112,10 +113,18 @@ public class Player {
         }
 
     }
+
+    /**
+     * This method updates the total position and the boardPosition.
+     * @param moves antallet af felter der skal rykkes.
+     */
+    public void updatePosition (int moves) {
+        totalPosition += moves;
+        position = totalPosition % 40;
+    }
     
     /*
     ---------------------- Support Methods ----------------------
      */
-
 
 }
