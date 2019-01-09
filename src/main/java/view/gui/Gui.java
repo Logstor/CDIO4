@@ -266,7 +266,7 @@ public class Gui {
     public void setFieldOwner (Player player, Field theField) {
 
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
-        ((GUI_Street)fields[theField.getFieldNumber()]).setOwnerName(player.getName());
+        ((GUI_Street)fields[theField.getFieldNo()]).setOwnerName(player.getName());
 
     }
 
@@ -443,61 +443,46 @@ public class Gui {
         // Iterate through fields and create GUI_Field for each
         for ( int i=0 ; i < fields.length ; i++ ) {
 
-            if ( fields[i] instanceof Property ) {
+            if ( fields[i] instanceof PropertyField ) {
 
                 // Create new GUI_Street
-                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "Beløb: " + fields[i].getCost(),
-                        fields[i].getDescription(),
-                        Integer.toString(fields[i].getCost()), fields[i].getColor(), textColor);
+                GUI_Street ownable = new GUI_Street(fields[i].getFieldName(), "Beløb: " + fields[i].getFieldCost(),
+                        fields[i].getFieldDescription(),
+                        Integer.toString(fields[i].getFieldCost()), fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = ownable;
             }
 
-            else if ( fields[i] instanceof Chancefield ) {
+            else if ( fields[i] instanceof ChanceField ) {
 
                 // Create new Field
-                GUI_Chance chance = new GUI_Chance("?", fields[i].getTitle(), fields[i].getDescription(),
-                                                    fields[i].getColor(), textColor);
+                GUI_Chance chance = new GUI_Chance("?", fields[i].getFieldName(), fields[i].getFieldDescription(),
+                                                    fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = chance;
             }
 
-            else if ( fields[i] instanceof Prison ) {
+            else if ( fields[i] instanceof PrisonField ) {
 
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();
 
                 // Change the title of the field
                 jail.setSubText("Fængsel");
-                jail.setDescription(fields[i].getDescription());
+                jail.setDescription(fields[i].getFieldDescription());
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = jail;
 
             }
 
-            else if ( fields[i] instanceof Visiting ) {
+            else if ( fields[i] instanceof StartField ) {
 
                 // Create new Field
-                GUI_Refuge refuge = new GUI_Refuge();
-
-                // Change the title of the field
-                refuge.setTitle(fields[i].getTitle());
-                refuge.setDescription(fields[i].getDescription());
-                refuge.setSubText("Gratis");
-
-                // Put the GUI_Field into the newFields array
-                newFields[i] = refuge;
-
-            }
-
-            else if ( fields[i] instanceof model.board.fields.Start ) {
-
-                // Create new Field
-                GUI_Start start = new GUI_Start(fields[i].getTitle(), "", fields[i].getDescription(),
-                                                fields[i].getColor(), textColor);
+                GUI_Start start = new GUI_Start(fields[i].getFieldName(), "", fields[i].getFieldDescription(),
+                                                fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = start;

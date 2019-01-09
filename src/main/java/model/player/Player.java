@@ -17,6 +17,7 @@ public class Player {
     private int BoatsOwned = 0;
     private boolean inPrison;
     private int position;
+    private String token;
     
     /*
     ----------------------- Constructor -------------------------
@@ -88,6 +89,14 @@ public class Player {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     // </editor-folder>
