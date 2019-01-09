@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * @author Rasmus Sander Larsen
@@ -94,7 +95,7 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-            Path path = Paths.get(getClass().getClassLoader().getResource(fileName).toURI());
+            Path path = Paths.get(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).toURI());
             FileReader fileReader = new FileReader(path.toFile());
             bufferedReader = new BufferedReader(fileReader);
             
