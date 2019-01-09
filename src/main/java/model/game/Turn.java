@@ -2,9 +2,14 @@ package model.game;
 
 import model.board.Board;
 import model.board.Field;
+import model.board.FieldActionManager;
 import model.cup.Cup;
 import model.player.Player;
 
+/**
+ * @author Nikolaj Tscharn Wassmann
+ * @date 09-01-2019
+ */
 public class Turn {
 
     /*
@@ -12,6 +17,7 @@ public class Turn {
     */
 
     private Board playingBoard = new Board();
+    private FieldActionManager actionManager = new FieldActionManager();
 
     private Field turnField;
 
@@ -26,9 +32,8 @@ public class Turn {
     /*
     --------- Public Methods ----------
     */
-
-    public void turn (Player player, Cup cup, Card card, Controller controller){
-
+    //Controlleren og vores Chance kort skal også addes!!
+    public void turn (Player player, Cup cup){
 
 
 
@@ -38,4 +43,22 @@ public class Turn {
     /*
     --------- Support Methods ---------
      */
+
+    private void checkPrisonStat () {
+
+    }
+
+    private void raffle() {
+
+    }
+
+    private void movePlayer () {
+
+    }
+
+    private void fieldAction () {
+
+    }
+
+
 }
