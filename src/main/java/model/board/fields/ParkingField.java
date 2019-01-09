@@ -22,8 +22,8 @@ public class ParkingField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public ParkingField(int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
-        super(fieldNo, fieldType, fieldName, fieldCost, fieldColor);
+    public ParkingField(int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+        super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
         forSale = false;
     }
     
