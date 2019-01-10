@@ -429,7 +429,7 @@ public class Gui {
 
     //</editor-fold>
 
-    //<editor-fold desc="Field Creation"
+    //<editor-fold desc="Field Creation">
     /**
      * This method helps the constructor create an Array of GUI_Field's
      * @param fields An Array of type Field
@@ -443,6 +443,7 @@ public class Gui {
         // Iterate through fields and create GUI_Field for each
         for ( int i=0 ; i < fields.length ; i++ ) {
 
+            // Code for Instance of PropertyField
             if ( fields[i] instanceof PropertyField ) {
 
                 // Create new GUI_Street
@@ -454,6 +455,7 @@ public class Gui {
                 newFields[i] = street;
             }
 
+            // Code for Instance of ChancField
             else if ( fields[i] instanceof ChanceField ) {
 
                 // Create new Field
@@ -464,6 +466,7 @@ public class Gui {
                 newFields[i] = chance;
             }
 
+            // Code for Instance of PrisonField
             else if ( fields[i] instanceof PrisonField ) {
 
                 // Create new Field
@@ -478,6 +481,7 @@ public class Gui {
 
             }
 
+            // Code for Instance of BoatField
             else if ( fields[i] instanceof BoatField ) {
 
                 // Create new Field
@@ -501,6 +505,7 @@ public class Gui {
 
             }
 
+            // Code for Instance of BreweryField
             else if ( fields[i] instanceof BreweryField ) {
 
                 // Create new Field
@@ -517,6 +522,7 @@ public class Gui {
 
             }
 
+            // Code for Instance of TaxField
             else if ( fields[i] instanceof TaxField ) {
 
                 // Create new Field
@@ -534,6 +540,7 @@ public class Gui {
 
             }
 
+            // Code for Instance of ParkingField
             else if ( fields[i] instanceof ParkingField ) {
 
                 // Create new Field
@@ -550,7 +557,7 @@ public class Gui {
 
             }
 
-
+            // Code for Instance of StartField
             else if ( fields[i] instanceof StartField ) {
 
                 // Create new Field
