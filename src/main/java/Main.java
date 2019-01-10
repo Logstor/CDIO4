@@ -6,7 +6,6 @@ import model.chancecard.DeckManager;
 import model.reader.Reader;
 
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 /**
  * @author Alfred Röttger Rydahl
@@ -18,7 +17,7 @@ public class Main {
 
 		HashMap<String,String> boardMap = new HashMap<>();
 
-		Reader boardReader = new Reader("board1.45.csv", ";");
+		Reader boardReader = new Reader( "board1.4_Packed.csv", ";");
 
 		boardReader.readFileIntoHashMap(boardMap);
 

@@ -1,11 +1,10 @@
 package model.reader;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.Objects;
+
+
+
 
 /**
  * @author Rasmus Sander Larsen
@@ -95,12 +94,18 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
+            /*
+
             if (filePath == null) {
                 bufferedReader = new BufferedReader(new FileReader(fileName));
             } else {
                 bufferedReader = new BufferedReader(new FileReader(filePath + fileName));
-            }
-            
+            } */
+
+            filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath();
+
+            bufferedReader = new BufferedReader(new FileReader(filePath));
+
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] tempKeyAndValue = line.split(splitter);
