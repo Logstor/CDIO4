@@ -86,7 +86,7 @@ public class Gui {
     //</editor-fold>
 
     //<editor-fold desc="TextColor"
-    public Color getTextColor() {
+    public Color getTextColor(Color color) {
         return textColor;
     }
 

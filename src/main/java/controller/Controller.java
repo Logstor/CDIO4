@@ -1,5 +1,6 @@
 package controller;
 
+import gui_tests.PlayerTest;
 import model.board.Field;
 import model.cup.Cup;
 import model.player.Player;
@@ -26,7 +27,7 @@ public class Controller {
     --------- Constructors ---------------
      */
 
-    public Controller (Field[] fields){
+    public Controller(Field[] fields) {
 
         //Creates the Graphic User Interface using the Field array
         gui = new Gui(fields);
@@ -37,81 +38,93 @@ public class Controller {
     --------- Public Methods ----------
     */
 
-    public void setOwner (Player player, Field field){
+    public void setOwner(Player player, Field field) {
 
         gui.setFieldOwner(player, field);
     }
 
-    public void addPlayer (Player player){
+    public void addPlayer(Player player) {
 
         gui.addPlayer(player);
 
     }
 
-    public void displayCCard () {
+    public void displayCCard() {
 
         gui.displayChanceCard();
     }
 
+    public void setCCard(String cardtext) {
 
-    public void getUserButtonPressed (String string, String button1, String button2){
+        gui.setChanceCard(cardtext);
+    }
+
+
+    public void getUserButtonPressed(String message, String button1, String button2) {
 
         //Display a message to the user and awaits response
-        gui.getUserChoice(string, button1, button2);
+        gui.getUserChoice(message, button1, button2);
     }
 
-    public void getUserString (String string){
+    public void getUserString(String message) {
 
         //Display message to the user
-        gui.getUserString(string);
+        gui.getUserString(message);
     }
 
-    public void getBGColor (Color color){
+    public void getBGColor(Color color) {
 
         gui.getBackgroundColor(color);
     }
 
-    public void getUserInteger (String string){
+    public void getUserInteger(String message, int min, int max) {
 
         //Display a message and awaits integer response
-        gui.getUserInteger(string);
+        gui.getUserInteger(message, min, max);
     }
 
-    public void movePlayer (Player player, int move){
+    public void movePlayer(Player player, int move) {
 
         gui.movePlayer(player, move);
     }
 
-    public void WinnerMode () throws InterruptedException {
+    public void WinnerMode() throws InterruptedException {
 
         gui.partyMode();
     }
 
+    public void updateBalance(Player player, int balance) {
 
-    public void setTextColor (Color Tcolor){
+        gui.updatePlayerBalance(player, balance);
+    }
+
+    public void showMessage(String message) {
+
+        gui.showMessage(message);
+    }
+
+    public void setDie(int value) {
+
+        gui.setDie(value);
+    }
+
+    public void getTextColor(Color color) {
+
+        gui.getTextColor(color);
+    }
+
+
+    public void setTextColor(Color Tcolor) {
 
         gui.setTextColor(Tcolor);
 
     }
 
-    public void setBGColor (Color BGcolor){
+    public void setBGColor(Color BGcolor) {
 
         gui.setBackgroundColor(BGcolor);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
