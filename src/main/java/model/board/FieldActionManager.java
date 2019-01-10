@@ -1,5 +1,7 @@
 package model.board;
 
+import controller.Controller;
+import model.player.Account;
 import model.player.Player;
 
 /**
@@ -25,8 +27,16 @@ public class FieldActionManager {
     --------- Support Methods ---------
      */
 
-    private void actionFieldAction(Player player, int position){
+    private void taxFieldAction(Player player, Account account, Controller controller){
 
+        controller.showMessage(player + "Du er landet på et skattefelt");
+        controller.showMessage("Du skal betale 4000 i skat");
+        if(account.getBalance()>4000) {
+            controller.updateBalance(player, -4000);
+        }
+        else if(account.getBalance()<4000){
+
+        }
     }
 
     private void boatFieldAction(Player player, int position){
@@ -41,11 +51,19 @@ public class FieldActionManager {
 
     }
 
-    private void parkingFieldAction (Player player, int position){
+    private void parkingFieldAction (Player player, Controller controller){
 
+        controller.showMessage(player + "Du er landet på Gratis Parkering");
+        controller.showMessage("Her må du parkere gratis");
     }
 
-    private void prisonFieldAction (Player player, int position){
+    public void prisonFieldAction (Player player, Controller controller){
+
+        if(player.isInPrison()){
+            controller.getUserButton1("Du sidder i fængsel og skal betale 1000" + player.getName(), "Betal 1000");
+            controller.updateBalance(player,-1000);
+            player.setInPrison(false);
+        }
 
     }
 
@@ -54,7 +72,12 @@ public class FieldActionManager {
     }
 
 
-    private void startField (Player player, int position){
+    private void startField (Player player, Controller controller){
+
+        //Hvis vi antager at startfeltet er 0 i Field Arrayet
+        if(player.getPosition()==0){
+            controller.updateBalance(player, +4000);
+        }
 
     }
 

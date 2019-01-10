@@ -60,10 +60,15 @@ public class Controller {
     }
 
 
-    public void getUserButtonPressed(String message, String button1, String button2) {
+    public void getUserButton2(String message, String button1, String button2) {
 
         //Display a message to the user and awaits response
         gui.getUserChoice(message, button1, button2);
+    }
+
+    public void getUserButton1 (String message, String button){
+
+        gui.getUserChoice(message, button);
     }
 
     public void getUserString(String message) {

@@ -1,5 +1,6 @@
 package model.game;
 
+import controller.Controller;
 import model.board.Board;
 import model.board.Field;
 import model.board.FieldActionManager;
@@ -45,6 +46,10 @@ public class Turn {
      */
 
     private void checkPrisonStat () {
+
+    }
+
+    private void setPrison (){
 
     }
 
