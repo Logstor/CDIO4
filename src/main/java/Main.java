@@ -34,7 +34,8 @@ public class Main {
 
 		System.out.println("Hello World");
 		String filePath;
-		filePath = ClassLoader.getSystemClassLoader().getResource("chanceCard.csv").getFile();
+		filePath = ClassLoader.getSystemClassLoader().getResource("chanceCard.csv").getFile().
+				replaceAll("/","\\");
 	System.out.println(filePath);
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 		HashMap<String,String> chanceCardMap = new HashMap<>();
