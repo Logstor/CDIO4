@@ -6,6 +6,7 @@ import model.chancecard.DeckManager;
 import model.reader.Reader;
 
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 /**
  * @author Alfred Röttger Rydahl
@@ -34,9 +35,12 @@ public class Main {
 
 		System.out.println("Hello World");
 		String filePath;
-		filePath = ClassLoader.getSystemClassLoader().getResource("chanceCard.csv").getFile().
-				replaceAll("/","\\");
+		filePath = ClassLoader.getSystemClassLoader().getResource("chanceCard.csv").getFile();
+		System.out.println("filePath UDEN ændringer");
 	System.out.println(filePath);
+		System.out.println("filePath MED ændringer");
+		System.out.println(filePath.replaceFirst("/","").replace("/","\\").replaceFirst("/",""));
+
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 		HashMap<String,String> chanceCardMap = new HashMap<>();
 		Reader chanceCardReader = new Reader("src\\main\\resources\\","chanceCard_Packed.csv", ";");
