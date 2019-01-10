@@ -4,6 +4,7 @@ import model.board.Field;
 import model.chancecard.Deck;
 import model.chancecard.DeckManager;
 import model.reader.Reader;
+import view.gui.Gui;
 
 import java.util.HashMap;
 
@@ -44,6 +45,8 @@ public class Main {
 		deckManager.setupBeck(chanceCardMap,chanceCardDeck);
 
 		System.out.println(chanceCardDeck.getChanceCardDeck().get(3).toString());
+
+		Gui gui = new Gui(playingBoard.getBoard());
 
 	}
 }
