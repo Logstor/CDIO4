@@ -95,9 +95,11 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-            Path path = Paths.get(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).toURI());
-            FileReader fileReader = new FileReader(path.toFile());
-            bufferedReader = new BufferedReader(fileReader);
+            if (filePath == null) {
+                bufferedReader = new BufferedReader(new FileReader(fileName));
+            } else {
+                bufferedReader = new BufferedReader(new FileReader(filePath + fileName));
+            }
             
             while ((line = bufferedReader.readLine()) != null) {
 
@@ -105,7 +107,7 @@ public class Reader {
                 hashMap.put(tempKeyAndValue[keyIndex],tempKeyAndValue[valueIndex]);
 
             }
-        } catch(FileNotFoundException | URISyntaxException e){
+        } catch(FileNotFoundException e){
             e.printStackTrace();
         } catch(IOException e){
             e.printStackTrace();
