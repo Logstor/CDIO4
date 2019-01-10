@@ -39,7 +39,7 @@ public class Main {
 		System.out.println("filePath UDEN ændringer");
 	System.out.println(filePath);
 		System.out.println("filePath MED ændringer");
-		System.out.println(filePath.replaceFirst("/","").replace("/","\\").replaceFirst("/",""));
+		System.out.println(filePath.replaceFirst("/","").replace("/","\\"));
 
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 		HashMap<String,String> chanceCardMap = new HashMap<>();
