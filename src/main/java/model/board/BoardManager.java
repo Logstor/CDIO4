@@ -21,6 +21,7 @@ public class BoardManager {
     private int fieldNumber_Index;
     private int fieldType_Index;
     private int fieldName_Index;
+    private int fieldDescription_Index;
     private int fieldCost_Index;
     private int fieldColor_Index;
     private int fieldHousePrice_Index;
@@ -193,6 +194,7 @@ public class BoardManager {
         int tempFieldNo;
         String tempFieldType;
         String tempFieldName;
+        String tempFieldDescription;
         int tempFieldCost;
         int tempRent;
         int tempHousePrice;
@@ -214,6 +216,7 @@ public class BoardManager {
             tempFieldNo = Integer.parseInt(fieldInfo[fieldNumber_Index]);
             tempFieldType = fieldInfo[fieldType_Index];
             tempFieldName = fieldInfo[fieldName_Index];
+            tempFieldDescription = fieldInfo[fieldDescription_Index];
             tempFieldCost = Integer.parseInt(fieldInfo[fieldCost_Index]);
             if (tempFieldType.equals("Property")) {
                 tempRent = Integer.parseInt(fieldInfo[fieldRent_Index]);
@@ -241,7 +244,7 @@ public class BoardManager {
                 int tempColorB = Integer.parseInt(RGB_StringArray[2]);
                 tempFieldColor = new Color(tempColorR, tempColorG, tempColorB);
 
-            fieldAdder.addFieldFromFieldType(tempFieldNo,tempFieldType,tempFieldName,tempFieldCost,
+            fieldAdder.addFieldFromFieldType(tempFieldNo,tempFieldType,tempFieldName,tempFieldDescription,tempFieldCost,
                     tempFieldColor,tempRent,tempHousePrice,temp1HouseRent,temp2HouseRent,temp3HouseRent,
                     temp4HouseRent,temp5HouseRent);
         }
@@ -265,6 +268,7 @@ public class BoardManager {
         fieldNumber_Index = Integer.parseInt(hashMapWithBoardInfo.get("FieldNumber_Index"));
         fieldType_Index = Integer.parseInt(hashMapWithBoardInfo.get("FieldType_Index"));
         fieldName_Index = Integer.parseInt(hashMapWithBoardInfo.get("FieldName_Index"));
+        fieldDescription_Index = Integer.parseInt(hashMapWithBoardInfo.get("FieldDescription_Index"));
         fieldCost_Index = Integer.parseInt(hashMapWithBoardInfo.get("FieldCost_Index"));
         fieldColor_Index = Integer.parseInt(hashMapWithBoardInfo.get("FieldColor_Index"));
         fieldHousePrice_Index = Integer.parseInt(hashMapWithBoardInfo.get("FieldHousePrice_Index"));

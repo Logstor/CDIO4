@@ -266,7 +266,7 @@ public class Gui {
     public void setFieldOwner (Player player, Field theField) {
 
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
-        ((GUI_Street)fields[theField.getFieldNumber()]).setOwnerName(player.getName());
+        ((GUI_Street)fields[theField.getFieldNo()]).setOwnerName(player.getName());
 
     }
 
@@ -443,61 +443,119 @@ public class Gui {
         // Iterate through fields and create GUI_Field for each
         for ( int i=0 ; i < fields.length ; i++ ) {
 
-            if ( fields[i] instanceof Property ) {
+            if ( fields[i] instanceof PropertyField ) {
 
                 // Create new GUI_Street
-                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "Beløb: " + fields[i].getCost(),
-                        fields[i].getDescription(),
-                        Integer.toString(fields[i].getCost()), fields[i].getColor(), textColor);
+                GUI_Street street = new GUI_Street(fields[i].getFieldName(), "Beløb: " + fields[i].getFieldCost(),
+                        fields[i].getFieldDescription(),
+                        Integer.toString(fields[i].getFieldCost()), fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
-                newFields[i] = ownable;
+                newFields[i] = street;
             }
 
-            else if ( fields[i] instanceof Chancefield ) {
+            else if ( fields[i] instanceof ChanceField ) {
 
                 // Create new Field
-                GUI_Chance chance = new GUI_Chance("?", fields[i].getTitle(), fields[i].getDescription(),
-                                                    fields[i].getColor(), textColor);
+                GUI_Chance chance = new GUI_Chance("?", fields[i].getFieldName(), fields[i].getFieldDescription(),
+                                                    fields[i].getFieldColor(), Color.white);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = chance;
             }
 
-            else if ( fields[i] instanceof Prison ) {
+            else if ( fields[i] instanceof PrisonField ) {
 
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();
 
                 // Change the title of the field
                 jail.setSubText("Fængsel");
-                jail.setDescription(fields[i].getDescription());
+                jail.setDescription(fields[i].getFieldDescription());
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = jail;
 
             }
 
-            else if ( fields[i] instanceof Visiting ) {
+            else if ( fields[i] instanceof BoatField ) {
 
                 // Create new Field
-                GUI_Refuge refuge = new GUI_Refuge();
+                GUI_Shipping boat = new GUI_Shipping();
 
                 // Change the title of the field
-                refuge.setTitle(fields[i].getTitle());
-                refuge.setDescription(fields[i].getDescription());
-                refuge.setSubText("Gratis");
+                boat.setTitle(fields[i].getFieldName());
+                boat.setSubText("Færge");
+                boat.setDescription(fields[i].getFieldDescription());
+                boat.setRent(Integer.toString(fields[i].getFieldCost()));
+
+                //TODO: Er der for meget med forskellige farver til Molslinien og de andre færger?
+                if (i==15) {
+                    boat.setBackGroundColor(new Color(237, 41, 57));
+                } else {
+                    boat.setBackGroundColor(fields[i].getFieldColor());
+                }
 
                 // Put the GUI_Field into the newFields array
-                newFields[i] = refuge;
+                newFields[i] = boat;
 
             }
 
-            else if ( fields[i] instanceof model.board.fields.Start ) {
+            else if ( fields[i] instanceof BreweryField ) {
 
                 // Create new Field
-                GUI_Start start = new GUI_Start(fields[i].getTitle(), "", fields[i].getDescription(),
-                                                fields[i].getColor(), textColor);
+                GUI_Brewery brewery = new GUI_Brewery();
+
+                // Change the title of the field
+                brewery.setTitle(fields[i].getFieldName());
+                brewery.setSubText("Bryggeri");
+                brewery.setDescription(fields[i].getFieldDescription());
+                brewery.setRent(Integer.toString(fields[i].getFieldCost()));
+
+                // Put the GUI_Field into the newFields array
+                newFields[i] = brewery;
+
+            }
+
+            else if ( fields[i] instanceof TaxField ) {
+
+                // Create new Field
+                GUI_Tax tax = new GUI_Tax();
+
+                // Change the title of the field
+                tax.setTitle(fields[i].getFieldName());
+                tax.setSubText("Ekstra SKAT");
+                tax.setDescription(fields[i].getFieldDescription());
+                tax.setBackGroundColor(fields[i].getFieldColor());
+
+
+                // Put the GUI_Field into the newFields array
+                newFields[i] = tax;
+
+            }
+
+            else if ( fields[i] instanceof ParkingField ) {
+
+                // Create new Field
+                GUI_Refuge parking = new GUI_Refuge();
+
+                // Change the title of the field
+                parking.setTitle(fields[i].getFieldName());
+                parking.setSubText("Parkering");
+                parking.setDescription(fields[i].getFieldDescription());
+
+
+                // Put the GUI_Field into the newFields array
+                newFields[i] = parking;
+
+            }
+
+
+            else if ( fields[i] instanceof StartField ) {
+
+                // Create new Field
+                GUI_Start start = new GUI_Start(fields[i].getFieldName(), "", fields[i].getFieldDescription(),
+                                                fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = start;

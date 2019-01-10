@@ -28,10 +28,10 @@ public class PropertyField extends Field {
     ----------------------- Constructor -------------------------
      */
     
-    public PropertyField (int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor,
+    public PropertyField (int fieldNo, String fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor,
     int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent, int field3HouseRent,
     int field4HouseRent,int field5HouseRent) {
-        super(fieldNo, fieldType, fieldName, fieldCost, fieldColor);
+        super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
         forSale = true;
 
@@ -57,15 +57,11 @@ public class PropertyField extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
-
+    @Override
     public String toString () {
         StringBuilder toStringBuilder = new StringBuilder();
 
-        toStringBuilder.append("Field No.: " +getFieldNo() + "\n");
-        toStringBuilder.append("Field Type: " + getFieldType() + "\n");
-        toStringBuilder.append("Field Name: " + getFieldName() + "\n");
-        toStringBuilder.append("Field Cost: " + getFieldCost() + "\n");
-        toStringBuilder.append("Field Color: " + getFieldColor() + "\n");
+        toStringBuilder.append(super.toString());
         toStringBuilder.append("Field House Price: " + fieldHousePrice + "\n");
         toStringBuilder.append("Field Rent: " + fieldRent + "\n");
         toStringBuilder.append("Field Rent incl. 1 house: " + field1HouseRent + "\n");

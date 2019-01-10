@@ -21,6 +21,7 @@ public abstract class Field {
     protected int fieldCost;
     protected Color fieldColor;
     protected String actionText;
+    protected String fieldDescription;
     protected Player owner;
     protected boolean forSale;
 
@@ -29,11 +30,12 @@ public abstract class Field {
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
+    protected Field (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
 
         this.fieldNo=fieldNo;
         this.fieldType=fieldType;
         this.fieldName = fieldName;
+        this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
         owner=null;
@@ -103,19 +105,36 @@ public abstract class Field {
         this.owner = owner;
     }
 
+    public String getFieldDescription() {
+        return fieldDescription;
+    }
+
+    public void setFieldDescription(String fieldDescription) {
+        this.fieldDescription = fieldDescription;
+    }
+
+    public boolean isForSale() {
+        return forSale;
+    }
+
+    public void setForSale(boolean forSale) {
+        this.forSale = forSale;
+    }
 
     // </editor-folder>
     
     /*
     ---------------------- Public Methods -----------------------
      */
-
+    @Override
     public String toString () {
         StringBuilder toStringBuilder = new StringBuilder();
 
+        toStringBuilder.append("~~~~~~~~~~~~ Field Info ~~~~~~~~~~~~\n");
         toStringBuilder.append("Field No.: " +fieldNo + "\n");
         toStringBuilder.append("Field Type: " + fieldType + "\n");
         toStringBuilder.append("Field Name: " + fieldName + "\n");
+        toStringBuilder.append("Field Description: " + fieldDescription + "\n");
         toStringBuilder.append("Field Cost: " + fieldCost + "\n");
         toStringBuilder.append("Field Color: " + fieldColor + "\n");
 

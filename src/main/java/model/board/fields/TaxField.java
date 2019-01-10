@@ -10,7 +10,7 @@ import java.awt.*;
  * @author Rasmus Sander Larsen
  * @date 07-01-2019
  */
-public class ActionField extends Field {
+public class TaxField extends Field {
 
     /*
     -------------------------- Fields --------------------------
@@ -22,8 +22,8 @@ public class ActionField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public ActionField(int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
-        super(fieldNo,fieldType,fieldName,fieldCost,fieldColor);
+    public TaxField(int fieldNo, String fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
+        super(fieldNo,fieldType,fieldName,fieldDescription, fieldCost,fieldColor);
         forSale=false;
     }
     
