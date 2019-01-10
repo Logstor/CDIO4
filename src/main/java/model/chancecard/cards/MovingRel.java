@@ -45,7 +45,17 @@ public class MovingRel extends ChanceCard {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
+
+    public String toString () {
+        StringBuilder toStringBuilder = new StringBuilder();
+
+        toStringBuilder.append(super.toString());
+        toStringBuilder.append("ChanceCard Number Of Fields to be moved: " + relMovement);
+
+        return toStringBuilder.toString();
+
+    }
+
     public void cardAction (Player player) {
         player.updatePosition(relMovement);
     }

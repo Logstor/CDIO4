@@ -130,6 +130,7 @@ public abstract class Field {
     public String toString () {
         StringBuilder toStringBuilder = new StringBuilder();
 
+        toStringBuilder.append("~~~~~~~~~~~~ Field Info ~~~~~~~~~~~~\n");
         toStringBuilder.append("Field No.: " +fieldNo + "\n");
         toStringBuilder.append("Field Type: " + fieldType + "\n");
         toStringBuilder.append("Field Name: " + fieldName + "\n");

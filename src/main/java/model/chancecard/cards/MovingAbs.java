@@ -45,7 +45,18 @@ public class MovingAbs extends ChanceCard {
     ---------------------- Public Methods -----------------------
      */
 
-    public void cardAction(Player player) {
+    public String toString () {
+        StringBuilder toStringBuilder = new StringBuilder();
+
+        toStringBuilder.append(super.toString());
+        toStringBuilder.append("ChanceCard Moving to FieldNo: " + absFieldNo);
+
+        return toStringBuilder.toString();
+
+    }
+
+
+    public void cardAction (Player player) {
 
         int prePosition = player.getPosition();
         int finalPositionUpdate;
