@@ -1,6 +1,7 @@
 package controller;
 
 import model.board.Field;
+import model.cup.Cup;
 import model.player.Player;
 import view.gui.Gui;
 
@@ -52,10 +53,38 @@ public class Controller {
         gui.displayChanceCard();
     }
 
+
     public void getUserButtonPressed (String string, String button1, String button2){
 
         //Display a message to the user and awaits response
         gui.getUserChoice(string, button1, button2);
+    }
+
+    public void getUserString (String string){
+
+        //Display message to the user
+        gui.getUserString(string);
+    }
+
+    public void getBGColor (Color color){
+
+        gui.getBackgroundColor(color);
+    }
+
+    public void getUserInteger (String string){
+
+        //Display a message and awaits integer response
+        gui.getUserInteger(string);
+    }
+
+    public void movePlayer (Player player, int move){
+
+        gui.movePlayer(player, move);
+    }
+
+    public void WinnerMode () throws InterruptedException {
+
+        gui.partyMode();
     }
 
 

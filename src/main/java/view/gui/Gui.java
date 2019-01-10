@@ -76,7 +76,7 @@ public class Gui {
      */
 
     //<editor-fold desc="BackgroundColor"
-    public Color getBackgroundColor() {
+    public Color getBackgroundColor(Color color) {
         return backgroundColor;
     }
 
