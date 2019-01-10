@@ -12,18 +12,18 @@ public abstract class ChanceCard {
     -------------------------- Fields --------------------------
      */
 
-    protected String title;
-    protected String description;
     protected String cardType;
+    protected String cardText;
+
     
     /*
     ----------------------- Constructor -------------------------
      */
 
-    protected ChanceCard (String cardType, String title) {
+    protected ChanceCard (String cardType, String cardText) {
 
         this.cardType=cardType;
-        this.title = title;
+        this.cardText = cardText;
 
     }
     
@@ -34,13 +34,40 @@ public abstract class ChanceCard {
     // <editor-folder desc="Properties"
 
 
+    public String getCardText() {
+        return cardText;
+    }
+
+    public void setCardText(String cardText) {
+        this.cardText = cardText;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
     // </editor-folder>
     
     /*
     ---------------------- Public Methods -----------------------
      */
 
-    public abstract void cardAction(Player player);
+    public String toString () {
+        StringBuilder toStringBuilder = new StringBuilder();
+
+        toStringBuilder.append("~~~~~~~~~~~~ ChanceCard Info ~~~~~~~~~~~~\n");
+        toStringBuilder.append("ChanceCard Type: " + cardType + "\n");
+        toStringBuilder.append("ChanceCard Text: " + cardText + "\n");
+
+        return toStringBuilder.toString();
+
+    }
+
+    protected abstract void cardAction(Player player);
     
     /*
     ---------------------- Support Methods ----------------------

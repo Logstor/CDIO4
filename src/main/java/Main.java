@@ -4,6 +4,7 @@ import model.board.Field;
 import model.chancecard.Deck;
 import model.chancecard.DeckManager;
 import model.reader.Reader;
+import view.gui.Gui;
 
 import java.util.HashMap;
 
@@ -17,7 +18,7 @@ public class Main {
 
 		HashMap<String,String> boardMap = new HashMap<>();
 
-		Reader boardReader = new Reader("board1.3.csv", ";");
+		Reader boardReader = new Reader( "board1.4_Packed.csv", ";");
 
 		boardReader.readFileIntoHashMap(boardMap);
 
@@ -36,13 +37,16 @@ public class Main {
 
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 		HashMap<String,String> chanceCardMap = new HashMap<>();
-		Reader chanceCardReader = new Reader("\\src\\main\\resources","chanceCard_Packed.csv", ";");
+		Reader chanceCardReader = new Reader("chanceCard_Packed.csv", ";");
 		chanceCardReader.readFileIntoHashMap(chanceCardMap);
 
 		Deck chanceCardDeck = new Deck();
 		DeckManager deckManager = new DeckManager();
 		deckManager.setupBeck(chanceCardMap,chanceCardDeck);
 
+		System.out.println(chanceCardDeck.getChanceCardDeck().get(3).toString());
+
+		Gui gui = new Gui(playingBoard.getBoard());
 
 	}
 }

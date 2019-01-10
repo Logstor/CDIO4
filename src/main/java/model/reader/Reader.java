@@ -3,6 +3,9 @@ package model.reader;
 import java.io.*;
 import java.util.HashMap;
 
+
+
+
 /**
  * @author Rasmus Sander Larsen
  * @date 07-01-2019
@@ -91,9 +94,18 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-            FileReader fileReader = new FileReader(getClass().getClassLoader().getResource(fileName).getPath().replaceAll("%20"," "));
-            bufferedReader = new BufferedReader(fileReader);
-            
+            /*
+
+            if (filePath == null) {
+                bufferedReader = new BufferedReader(new FileReader(fileName));
+            } else {
+                bufferedReader = new BufferedReader(new FileReader(filePath + fileName));
+            } */
+
+            filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath();
+
+            bufferedReader = new BufferedReader(new FileReader(filePath));
+
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] tempKeyAndValue = line.split(splitter);

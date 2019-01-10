@@ -45,7 +45,17 @@ public class MoneyBank extends ChanceCard {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
+
+    public String toString () {
+        StringBuilder toStringBuilder = new StringBuilder();
+
+        toStringBuilder.append(super.toString());
+        toStringBuilder.append("ChanceCard MoneyToTransfer: " + moneyToTransfer);
+
+        return toStringBuilder.toString();
+    }
+
+
     public void cardAction (Player player) {
 
         player.updateBalance(moneyToTransfer);

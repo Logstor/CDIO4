@@ -51,8 +51,8 @@ public class FieldAdder {
                 addStartField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
-            case "Action":
-                addActionField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
+            case "Tax":
+                addTaxField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
             case "Boat":
@@ -98,8 +98,8 @@ public class FieldAdder {
                 field4HouseRent, field5HouseRent);
     }
 
-    private void addActionField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
-        tempArrayOfFields[fieldIndexCounter] = new ActionField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
+    private void addTaxField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+        tempArrayOfFields[fieldIndexCounter] = new TaxField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
     private void addBoatField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {

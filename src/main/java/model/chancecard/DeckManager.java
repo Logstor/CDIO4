@@ -78,7 +78,7 @@ public class DeckManager {
 
         for (int i = 1; i<=noOfCardsInDeck;i++) {
 
-            String line = deckInfoMap.get("field" + i);
+            String line = deckInfoMap.get("card" + i);
             String[] chanceCardInfo = line.split(lineSplitter);
 
             tempCardTypes = chanceCardInfo[cardTypes_Index];
