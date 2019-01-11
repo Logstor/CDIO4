@@ -16,12 +16,33 @@ public class Cup {
     /*
     ----------------------- Constructor -------------------------
      */
-
-	public Cup (int noOfDies, int sidesOnDies) {
+	
+	/**
+	 * Default constructor which sets two dies which six sides each.
+	 */
+	public Cup ()
+	{
+		// Initialize Die array
+		dies = new Die[2];
+		
+		// Fill the array with 2 dies with 6 sides
+		for( int i=0 ; i < dies.length ; i++) {
+			dies[i] = new Die(6);
+		}
+	}
+	
+	/**
+	 * Alternative constructor. Puts the specified amount of dies in the Cup
+	 * with the specified amount of sides.
+	 * @param noOfDies Amount of dies the Cup shall hold.
+	 * @param sidesOnDies Amount of sides each Die will have.
+	 */
+	public Cup (int noOfDies, int sidesOnDies)
+	{
 		// Initialize
 		dies = new Die[noOfDies];
 
-		// Fill the array with 2 dies
+		// Fill the array with noOfDies dies
 		for( int i=0 ; i < dies.length ; i++) {
 			dies[i] = new Die(sidesOnDies);
 		}
