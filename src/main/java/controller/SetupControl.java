@@ -11,7 +11,11 @@ public class SetupControl {
      */    
     /*
     ------------------------ Constructors ------------------------
-     */    
+     */
+    public SetupControl ()
+	{
+	
+	}
     /*
     ------------------------- Properties -------------------------
      */    
