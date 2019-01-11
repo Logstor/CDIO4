@@ -19,6 +19,7 @@ public class SetupControl {
     --------------------------- Fields ---------------------------
      */
 	private Gui gui;
+	private GuiController guiController;
 	private Player[] players;
 	private Cup cup;
 	private Board board;
@@ -30,15 +31,17 @@ public class SetupControl {
 	 * Primary constructor for the setup control. This takes references to all the game parameters, which
 	 * memory can be altered to be able to start the game.
 	 * @param gui A reference to the Gui object.
+	 * @param guiController A reference to the GuiController object, that communicates with the Gui.
 	 * @param players A reference to the array of players.
 	 * @param cup A reference to the Cup holding the dices.
 	 * @param board A reference to the board.
 	 */
-	public SetupControl(Gui gui, Player[] players, Cup cup, Board board) {
+	public SetupControl(Gui gui, GuiController guiController, Player[] players, Cup cup, Board board) {
 		this.players = players;
 		this.cup = cup;
 		this.board = board;
 		this.gui = gui;
+		this.guiController = guiController;
 	}
 	
 	/*
@@ -46,18 +49,27 @@ public class SetupControl {
 	*/
     public void setShitUp()
 	{
-		//region BoardSetup
+		//region Board Setup
+		
 		boardSetup();
+		
 		//endregion
 		
-		//region SetupPlayers
+		//region Start GuiController
+		
+		guiController = new GuiController(gui);
+		
+		//endregion
+		
+		//region Setup Players
 		
 		playerSetup();
 		
 		//endregion
 		
-		//region SetupCup
+		//region Setup Cup
 		
+		cup = new Cup();
 		
 		//endregion
 	}

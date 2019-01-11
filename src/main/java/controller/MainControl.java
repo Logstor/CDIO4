@@ -15,18 +15,16 @@ public class MainControl {
     --------------------------- Fields ---------------------------
      */
     private Gui gui;
+    private GuiController guiController;
     private Board board;
     private Player[] players;
     private Cup cup;
-    
     /*
     ------------------------ Constructors ------------------------
      */
-    public MainControl ()
-	{ }
-    /*
-    ------------------------- Properties -------------------------
-     */    
+    
+    public MainControl () { }
+    
     /*
     ----------------------- Public Methods -----------------------
      */
@@ -56,7 +54,7 @@ public class MainControl {
 	 */
 	private void setup ()
 	{
-		SetupControl setupControl = new SetupControl(gui, players, cup, board);
+		SetupControl setupControl = new SetupControl(gui, guiController, players, cup, board);
 		
 		// Creating the board with all Fields
 		setupControl.setShitUp();

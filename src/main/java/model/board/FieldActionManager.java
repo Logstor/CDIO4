@@ -1,6 +1,6 @@
 package model.board;
 
-import controller.Controller;
+import controller.GuiController;
 import model.player.Account;
 import model.player.Player;
 
@@ -27,12 +27,12 @@ public class FieldActionManager {
     --------- Support Methods ---------
      */
 
-    private void taxFieldAction(Player player, Account account, Controller controller){
+    private void taxFieldAction(Player player, Account account, GuiController guiController){
 
-        controller.showMessage(player + "Du er landet på et skattefelt");
-        controller.showMessage("Du skal betale 4000 i skat");
+        guiController.showMessage(player + "Du er landet på et skattefelt");
+        guiController.showMessage("Du skal betale 4000 i skat");
         if(account.getBalance()>4000) {
-            controller.updateBalance(player, -4000);
+            guiController.updateBalance(player, -4000);
         }
         else if(account.getBalance()<4000){
 
@@ -51,17 +51,17 @@ public class FieldActionManager {
 
     }
 
-    private void parkingFieldAction (Player player, Controller controller){
+    private void parkingFieldAction (Player player, GuiController guiController){
 
-        controller.showMessage(player + "Du er landet på Gratis Parkering");
-        controller.showMessage("Her må du parkere gratis");
+        guiController.showMessage(player + "Du er landet på Gratis Parkering");
+        guiController.showMessage("Her må du parkere gratis");
     }
 
-    public void prisonFieldAction (Player player, Controller controller){
+    public void prisonFieldAction (Player player, GuiController guiController){
 
         if(player.isInPrison()){
-            controller.getUserButton1("Du sidder i fængsel og skal betale 1000" + player.getName(), "Betal 1000");
-            controller.updateBalance(player,-1000);
+            guiController.getUserButton1("Du sidder i fængsel og skal betale 1000" + player.getName(), "Betal 1000");
+            guiController.updateBalance(player,-1000);
             player.setInPrison(false);
         }
 
@@ -72,11 +72,11 @@ public class FieldActionManager {
     }
 
 
-    private void startField (Player player, Controller controller){
+    private void startField (Player player, GuiController guiController){
 
         //Hvis vi antager at startfeltet er 0 i Field Arrayet
         if(player.getPosition()==0){
-            controller.updateBalance(player, +4000);
+            guiController.updateBalance(player, +4000);
         }
 
     }

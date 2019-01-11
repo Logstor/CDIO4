@@ -1,6 +1,5 @@
 package model.game;
 
-import controller.Controller;
 import model.board.Board;
 import model.board.Field;
 import model.board.FieldActionManager;
