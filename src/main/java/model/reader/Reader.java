@@ -129,7 +129,7 @@ public class Reader {
     ---------------------- Support Methods ----------------------
      */
 
-    public void infoArrayIntoHashMap (HashMap<String, String> hashMapToLoadWithInfo, String[] stringInfoArray) {
+    private void infoArrayIntoHashMap (HashMap<String, String> hashMapToLoadWithInfo, String[] stringInfoArray) {
 
         int noOfInformationFieldsInArray = stringInfoArray.length;
 
