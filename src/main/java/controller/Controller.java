@@ -47,6 +47,7 @@ public class Controller {
 
         gui.addPlayer(player);
 
+
     }
 
     public void displayCCard() {

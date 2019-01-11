@@ -21,6 +21,7 @@ public class Main {
 		Reader boardReader = new Reader( "board1.4_Packed.csv", ";");
 
 		boardReader.readFileIntoHashMap(boardMap);
+		System.out.println(boardReader.getFilePath());
 
 		System.out.println(boardMap.get("field1"));
 
