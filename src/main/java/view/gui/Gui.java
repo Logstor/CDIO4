@@ -429,7 +429,7 @@ public class Gui {
 
     //</editor-fold>
 
-    //<editor-fold desc="Field Creation"
+    //<editor-fold desc="Field Creation">
     /**
      * This method helps the constructor create an Array of GUI_Field's
      * @param fields An Array of type Field
@@ -443,6 +443,8 @@ public class Gui {
         // Iterate through fields and create GUI_Field for each
         for ( int i=0 ; i < fields.length ; i++ ) {
 
+            // Code for Instance of PropertyField
+
             if ( fields[i] instanceof PropertyField ) {
 
                 // Create new GUI_Street
@@ -454,6 +456,8 @@ public class Gui {
                 newFields[i] = street;
             }
 
+            // Code for Instance of ChancField
+
             else if ( fields[i] instanceof ChanceField ) {
 
                 // Create new Field
@@ -463,6 +467,8 @@ public class Gui {
                 // Put the GUI_Field into the newFields array
                 newFields[i] = chance;
             }
+
+            // Code for Instance of PrisonField
 
             else if ( fields[i] instanceof PrisonField ) {
 
@@ -477,6 +483,8 @@ public class Gui {
                 newFields[i] = jail;
 
             }
+
+            // Code for Instance of BoatField
 
             else if ( fields[i] instanceof BoatField ) {
 
@@ -501,6 +509,8 @@ public class Gui {
 
             }
 
+            // Code for Instance of BreweryField
+  
             else if ( fields[i] instanceof BreweryField ) {
 
                 // Create new Field
@@ -516,6 +526,8 @@ public class Gui {
                 newFields[i] = brewery;
 
             }
+
+            // Code for Instance of TaxField
 
             else if ( fields[i] instanceof TaxField ) {
 
@@ -534,6 +546,8 @@ public class Gui {
 
             }
 
+            // Code for Instance of ParkingField
+
             else if ( fields[i] instanceof ParkingField ) {
 
                 // Create new Field
@@ -549,7 +563,8 @@ public class Gui {
                 newFields[i] = parking;
 
             }
-
+          
+            // Code for Instance of StartField
 
             else if ( fields[i] instanceof StartField ) {
 
