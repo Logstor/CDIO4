@@ -123,8 +123,8 @@ public class SetupControl {
 		// Welcoming the players
 		introduction();
 		
-		// Ask how many players who wants to play
-		int playerCount = guiController.getUserInteger(map.get("GetPlayers"), 3, 6);
+		// Ask how many players who wants to play and Initialize Player[]
+		players = new Player[guiController.getUserInteger(map.get("GetPlayers"), 3, 6)];
 	}
 	
 	/**
