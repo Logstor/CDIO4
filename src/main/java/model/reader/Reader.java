@@ -118,30 +118,6 @@ public class Reader {
         } catch(IOException e){
             e.printStackTrace();
         }
-
-    }
-    
-    public void readMessageFile(HashMap<String, String> map)
-    {
-        // Get the relative path to the file
-        filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath().
-                replace("%20", " ");
-    
-        try {
-            // Initialize the BufferedReader
-            bufferedReader = new BufferedReader(new FileReader(filePath));
-        
-            while((line = bufferedReader.readLine()) != null)
-            {
-                String[] temp = line.split(splitter);
-                map.put(temp[0], temp[1]);
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("BufferedReader failure");
-            System.exit(-1);
-        }
     }
     /*
     ---------------------- Support Methods ----------------------

@@ -18,6 +18,8 @@ public class SetupControl {
 	/*
     --------------------------- Fields ---------------------------
      */
+	
+	//region Fields
 	private Gui gui;
 	private GuiController guiController;
 	private Player[] players;
@@ -25,6 +27,8 @@ public class SetupControl {
 	private Board board;
 	
 	private HashMap<String, String> map;
+	//endregion
+	
     /*
     ------------------------ Constructors ------------------------
      */
@@ -39,7 +43,8 @@ public class SetupControl {
 	 * @param board A reference to the board.
 	 */
 	public SetupControl(Gui gui, GuiController guiController, Player[] players, Cup cup,
-						Board board, HashMap<String, String> map) {
+						Board board, HashMap<String, String> map)
+	{
 		this.players = players;
 		this.cup = cup;
 		this.board = board;
@@ -88,6 +93,14 @@ public class SetupControl {
      */
 	
 	/**
+	 * This method prints welcoming messages to the player(s)
+	 */
+	private void introduction()
+	{
+		guiController.showMessage(map.get("Welcome"));
+	}
+	
+	/**
 	 * This method is loading all messages into the HashMap
 	 */
 	private void messageLoad()
@@ -99,13 +112,19 @@ public class SetupControl {
 		Reader reader = new Reader("messages1,0.csv",",");
 		
 		// Load all messages into the HashMap
-		reader.readMessageFile(map);
+		reader.readFileIntoHashMap(map);
 	}
-    
-    private void playerSetup()
+	
+	/**
+	 *
+	 */
+	private void playerSetup()
 	{
+		// Welcoming the players
+		introduction();
+		
 		// Ask how many players who wants to play
-		guiController.getUserInteger(map.get("Welcome"), 3, 6);
+		int playerCount = guiController.getUserInteger(map.get("GetPlayers"), 3, 6);
 	}
 	
 	/**
