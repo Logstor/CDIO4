@@ -110,7 +110,10 @@ public class Reader {
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] tempKeyAndValue = line.split(splitter);
-                hashMap.put(tempKeyAndValue[keyIndex],tempKeyAndValue[valueIndex]);
+
+                infoArrayIntoHashMap(hashMap,tempKeyAndValue);
+
+                //hashMap.put(tempKeyAndValue[keyIndex],tempKeyAndValue[valueIndex]);
 
             }
         } catch(FileNotFoundException e){
@@ -126,5 +129,18 @@ public class Reader {
     ---------------------- Support Methods ----------------------
      */
 
+    public void infoArrayIntoHashMap (HashMap<String, String> hashMapToLoadWithInfo, String[] stringInfoArray) {
+
+        int noOfInformationFieldsInArray = stringInfoArray.length;
+
+        StringBuilder builderForAllInfo = new StringBuilder();
+
+        for (int i =1 ; i <= noOfInformationFieldsInArray-1; i++) {
+            builderForAllInfo.append(stringInfoArray[i]);
+            builderForAllInfo.append(";");
+        }
+
+        hashMapToLoadWithInfo.put(stringInfoArray[0],builderForAllInfo.toString());
+    }
 
 }

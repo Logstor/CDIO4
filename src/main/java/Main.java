@@ -14,40 +14,24 @@ import java.util.HashMap;
 
 public class Main {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		HashMap<String,String> boardMap = new HashMap<>();
+        HashMap<String, String> boardMap = new HashMap<>();
 
-		Reader boardReader = new Reader( "board1.4_Packed.csv", ";");
+        Reader boardReader = new Reader("board1.4.csv", ";");
 
-		boardReader.readFileIntoHashMap(boardMap);
-		System.out.println(boardReader.getFilePath());
+        boardReader.readFileIntoHashMap(boardMap);
+        System.out.println(boardReader.getFilePath());
 
-		System.out.println(boardMap.get("field1"));
+        System.out.println(boardMap.get("field1"));
 
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 
-		Board playingBoard = new Board();
-		BoardManager boardManager = new BoardManager();
-		boardManager.setupBoard(boardMap,playingBoard);
+        Board playingBoard = new Board();
+        BoardManager boardManager = new BoardManager();
+        boardManager.setupBoard(boardMap, playingBoard);
 
-		Field tempField = playingBoard.getBoard()[3];
-		System.out.println(tempField);
-
-		System.out.println("Hello World");
-
-		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-		HashMap<String,String> chanceCardMap = new HashMap<>();
-		Reader chanceCardReader = new Reader("chanceCard_Packed.csv", ";");
-		chanceCardReader.readFileIntoHashMap(chanceCardMap);
-
-		Deck chanceCardDeck = new Deck();
-		DeckManager deckManager = new DeckManager();
-		deckManager.setupBeck(chanceCardMap,chanceCardDeck);
-
-		System.out.println(chanceCardDeck.getChanceCardDeck().get(3).toString());
-
-		Gui gui = new Gui(playingBoard.getBoard());
-		
-	}
+        Field tempField = playingBoard.getBoard()[3];
+        System.out.println(tempField);
+    }
 }
