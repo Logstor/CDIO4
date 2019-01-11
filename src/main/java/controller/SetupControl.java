@@ -46,22 +46,44 @@ public class SetupControl {
 	*/
     public void setShitUp()
 	{
-		
 		//region BoardSetup
-		HashMap<String, String> boardMap = new HashMap<>(40);
-		Reader reader = new Reader("board1.4_Packed.csv", ";");
+		boardSetup();
+		//endregion
 		
-		reader.readFileIntoHashMap(boardMap);
+		//region SetupPlayers
 		
-		BoardManager boardManager = new BoardManager();
+		playerSetup();
 		
-		board = new Board();
-		boardManager.setupBoard(boardMap, board);
-		
-		gui = new Gui(board.getBoard());
 		//endregion
 	}
     /*
     ----------------------- Support Methods ----------------------
      */
+    private void playerSetup()
+	{
+	
+	}
+	
+	/**
+	 * This method takes care of setting the board and the Gui.
+	 */
+	private void boardSetup()
+	{
+		// HashMap to hold all the board info
+		HashMap<String, String> boardMap = new HashMap<>(40);
+		
+		// Read all the information in the board CSV to the HashMap
+		Reader reader = new Reader("board1.4_Packed.csv", ";");
+		reader.readFileIntoHashMap(boardMap);
+		
+		// Initialize the board
+		board = new Board();
+		
+		// Create BoardManager and make it set the board with the information contained in the HashMap
+		BoardManager boardManager = new BoardManager();
+		boardManager.setupBoard(boardMap, board);
+		
+		// Initialize and display the Gui
+		gui = new Gui(board.getBoard());
+	}
 }
