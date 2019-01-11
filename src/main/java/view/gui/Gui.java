@@ -76,7 +76,7 @@ public class Gui {
      */
 
     //<editor-fold desc="BackgroundColor"
-    public Color getBackgroundColor() {
+    public Color getBackgroundColor(Color color) {
         return backgroundColor;
     }
 
@@ -86,7 +86,7 @@ public class Gui {
     //</editor-fold>
 
     //<editor-fold desc="TextColor"
-    public Color getTextColor() {
+    public Color getTextColor(Color color) {
         return textColor;
     }
 
@@ -444,6 +444,7 @@ public class Gui {
         for ( int i=0 ; i < fields.length ; i++ ) {
 
             // Code for Instance of PropertyField
+
             if ( fields[i] instanceof PropertyField ) {
 
                 // Create new GUI_Street
@@ -456,6 +457,7 @@ public class Gui {
             }
 
             // Code for Instance of ChancField
+
             else if ( fields[i] instanceof ChanceField ) {
 
                 // Create new Field
@@ -467,6 +469,7 @@ public class Gui {
             }
 
             // Code for Instance of PrisonField
+
             else if ( fields[i] instanceof PrisonField ) {
 
                 // Create new Field
@@ -482,6 +485,7 @@ public class Gui {
             }
 
             // Code for Instance of BoatField
+
             else if ( fields[i] instanceof BoatField ) {
 
                 // Create new Field
@@ -506,6 +510,7 @@ public class Gui {
             }
 
             // Code for Instance of BreweryField
+  
             else if ( fields[i] instanceof BreweryField ) {
 
                 // Create new Field
@@ -523,6 +528,7 @@ public class Gui {
             }
 
             // Code for Instance of TaxField
+
             else if ( fields[i] instanceof TaxField ) {
 
                 // Create new Field
@@ -541,6 +547,7 @@ public class Gui {
             }
 
             // Code for Instance of ParkingField
+
             else if ( fields[i] instanceof ParkingField ) {
 
                 // Create new Field
@@ -556,8 +563,9 @@ public class Gui {
                 newFields[i] = parking;
 
             }
-
+          
             // Code for Instance of StartField
+
             else if ( fields[i] instanceof StartField ) {
 
                 // Create new Field
