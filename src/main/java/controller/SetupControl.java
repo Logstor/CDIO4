@@ -23,6 +23,8 @@ public class SetupControl {
 	private Player[] players;
 	private Cup cup;
 	private Board board;
+	
+	private HashMap<String, String> map;
     /*
     ------------------------ Constructors ------------------------
      */
@@ -36,12 +38,14 @@ public class SetupControl {
 	 * @param cup A reference to the Cup holding the dices.
 	 * @param board A reference to the board.
 	 */
-	public SetupControl(Gui gui, GuiController guiController, Player[] players, Cup cup, Board board) {
+	public SetupControl(Gui gui, GuiController guiController, Player[] players, Cup cup,
+						Board board, HashMap<String, String> map) {
 		this.players = players;
 		this.cup = cup;
 		this.board = board;
 		this.gui = gui;
 		this.guiController = guiController;
+		this.map = map;
 	}
 	
 	/*
@@ -49,6 +53,12 @@ public class SetupControl {
 	*/
     public void setShitUp()
 	{
+		//region Load Messages
+		
+		messageLoad();
+		
+		//endregion
+		
 		//region Board Setup
 		
 		boardSetup();
@@ -76,9 +86,26 @@ public class SetupControl {
     /*
     ----------------------- Support Methods ----------------------
      */
+	
+	/**
+	 * This method is loading all messages into the HashMap
+	 */
+	private void messageLoad()
+	{
+		// Initialize the HashMap
+		map = new HashMap<>();
+		
+		// Create Reader object
+		Reader reader = new Reader("messages1,0.csv",",");
+		
+		// Load all messages into the HashMap
+		reader.readMessageFile(map);
+	}
+    
     private void playerSetup()
 	{
-	
+		// Ask how many players who wants to play
+		guiController.getUserInteger(map.get("Welcome"), 3, 6);
 	}
 	
 	/**
