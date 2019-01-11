@@ -81,10 +81,10 @@ public class GuiController {
         gui.getBackgroundColor(color);
     }
 
-    public void getUserInteger(String message, int min, int max) {
+    public int getUserInteger(String message, int min, int max) {
 
         //Display a message and awaits integer response
-        gui.getUserInteger(message, min, max);
+        return gui.getUserInteger(message, min, max);
     }
 
     public void movePlayer(Player player, int move) {
