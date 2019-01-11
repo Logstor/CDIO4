@@ -37,9 +37,15 @@ public class MainControl {
 	 */
 	public int launch ()
 	{
-		// Set the game up, and display
-		setup();
-		return 0;
+		try {
+			// Set the game up, and display
+			setup();
+			return 0;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
     /*
     ----------------------- Support Methods ----------------------
@@ -50,10 +56,10 @@ public class MainControl {
 	 */
 	private void setup ()
 	{
-		SetupControl setupControl = new SetupControl(players, cup, board);
+		SetupControl setupControl = new SetupControl(gui, players, cup, board);
 		
 		// Creating the board with all Fields
-		gui = setupControl.setShitUp();
+		setupControl.setShitUp();
 		
 		
 	}
