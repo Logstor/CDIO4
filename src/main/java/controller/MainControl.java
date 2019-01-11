@@ -33,7 +33,7 @@ public class MainControl {
 	
 	/**
 	 * This method starts the game.
-	 * @return Returns non-zero if an unexpected shutdown happends.
+	 * @return Returns non-zero if an unexpected shutdown happens.
 	 */
 	public int launch ()
 	{

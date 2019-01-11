@@ -55,6 +55,11 @@ public class SetupControl {
 		playerSetup();
 		
 		//endregion
+		
+		//region SetupCup
+		
+		
+		//endregion
 	}
     /*
     ----------------------- Support Methods ----------------------
