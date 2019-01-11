@@ -47,6 +47,6 @@ public class Main {
 		System.out.println(chanceCardDeck.getChanceCardDeck().get(3).toString());
 
 		Gui gui = new Gui(playingBoard.getBoard());
-
+		
 	}
 }

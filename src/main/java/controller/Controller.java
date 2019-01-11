@@ -54,11 +54,10 @@ public class Controller {
         gui.displayChanceCard();
     }
 
-    public void setCCard(String cardtext) {
+    public void setCCard(String cardText) {
 
-        gui.setChanceCard(cardtext);
+        gui.setChanceCard(cardText);
     }
-
 
     public void getUserButton2(String message, String button1, String button2) {
 
