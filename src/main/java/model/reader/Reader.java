@@ -102,7 +102,8 @@ public class Reader {
                 bufferedReader = new BufferedReader(new FileReader(filePath + fileName));
             } */
 
-            filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath();
+            filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath().
+                    replace("%20", " ");
 
             bufferedReader = new BufferedReader(new FileReader(filePath));
 
