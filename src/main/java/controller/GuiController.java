@@ -13,7 +13,7 @@ import java.awt.*;
  * @date 10-01-2019
  */
 
-public class Controller {
+public class GuiController {
 
 
     /*
@@ -27,10 +27,10 @@ public class Controller {
     --------- Constructors ---------------
      */
 
-    public Controller(Field[] fields) {
-
-        //Creates the Graphic User Interface using the Field array
-        gui = new Gui(fields);
+    public GuiController(Gui gui)
+    {
+        // Give same reference
+        this.gui = gui;
     }
 
 
@@ -46,7 +46,6 @@ public class Controller {
     public void addPlayer(Player player) {
 
         gui.addPlayer(player);
-
 
     }
 

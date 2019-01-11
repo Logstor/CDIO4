@@ -19,9 +19,12 @@ public class SetupControl {
     --------------------------- Fields ---------------------------
      */
 	private Gui gui;
+	private GuiController guiController;
 	private Player[] players;
 	private Cup cup;
 	private Board board;
+	
+	private HashMap<String, String> map;
     /*
     ------------------------ Constructors ------------------------
      */
@@ -30,15 +33,19 @@ public class SetupControl {
 	 * Primary constructor for the setup control. This takes references to all the game parameters, which
 	 * memory can be altered to be able to start the game.
 	 * @param gui A reference to the Gui object.
+	 * @param guiController A reference to the GuiController object, that communicates with the Gui.
 	 * @param players A reference to the array of players.
 	 * @param cup A reference to the Cup holding the dices.
 	 * @param board A reference to the board.
 	 */
-	public SetupControl(Gui gui, Player[] players, Cup cup, Board board) {
+	public SetupControl(Gui gui, GuiController guiController, Player[] players, Cup cup,
+						Board board, HashMap<String, String> map) {
 		this.players = players;
 		this.cup = cup;
 		this.board = board;
 		this.gui = gui;
+		this.guiController = guiController;
+		this.map = map;
 	}
 	
 	/*
@@ -46,27 +53,59 @@ public class SetupControl {
 	*/
     public void setShitUp()
 	{
-		//region BoardSetup
-		boardSetup();
+		//region Load Messages
+		
+		messageLoad();
+		
 		//endregion
 		
-		//region SetupPlayers
+		//region Board Setup
+		
+		boardSetup();
+		
+		//endregion
+		
+		//region Start GuiController
+		
+		guiController = new GuiController(gui);
+		
+		//endregion
+		
+		//region Setup Players
 		
 		playerSetup();
 		
 		//endregion
 		
-		//region SetupCup
+		//region Setup Cup
 		
+		cup = new Cup();
 		
 		//endregion
 	}
     /*
     ----------------------- Support Methods ----------------------
      */
+	
+	/**
+	 * This method is loading all messages into the HashMap
+	 */
+	private void messageLoad()
+	{
+		// Initialize the HashMap
+		map = new HashMap<>();
+		
+		// Create Reader object
+		Reader reader = new Reader("messages1,0.csv",",");
+		
+		// Load all messages into the HashMap
+		reader.readMessageFile(map);
+	}
+    
     private void playerSetup()
 	{
-	
+		// Ask how many players who wants to play
+		guiController.getUserInteger(map.get("Welcome"), 3, 6);
 	}
 	
 	/**
