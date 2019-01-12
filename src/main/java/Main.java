@@ -46,5 +46,6 @@ public class Main {
         deckManager.setupBeck(chanceCardMap,chanceCardDeck);
 
         System.out.println(chanceCardDeck.getChanceCardDeck().get(3).toString());
+        Gui gui = new Gui(playingBoard.getBoard());
     }
 }
