@@ -17,9 +17,9 @@ field15;15;Property;Gl. Kongevej;Gammel Kongevej er en vej der strækker sig fra
 field16;16;Boat;Molslinien;Molslinjen driver færgefart på Kattegat mellem Sjælland og Jylland med Ebeltoft-Odden ruten og Aarhus-Odden ruten, samt i Østersøen mellem Ystad og Rønne, Rønne og Sassnitz. Dette firma blev stiftet i 1963;4000;237:41:57;0;0;0;0;0;0;0
 field17;17;Property;Bernstorffsvej;Bernstorffsvej er en vej i Gentofte Kommune, der løber fra Lyngbyvej og slutter i Femvejen;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
 field18;18;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
-field19;19;Property;Hellerupvej;HER MANGLER TEKST;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
+field19;19;Property;Hellerupvej;Hellerupvej er en af de ældste veje der går gennem Hellerup. Tilbage i midten af 1800-tallet var det kun Jøgersborg Allé, Hellerupvej og Tranegårdsvej.;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
 field20;20;Property;Strandvejen;Strandvejen er en af de dyreste steder i hele Danmark, der strækker sig 38km.;4000;60:62:63;2000;350;1600;4400;12000;16000;20000
-field21;21;Parking;Parkering;Gratis parkering;0;00:00:00;0;0;0;0;0;0;0
+field21;21;Parking;Parkering;Gratis Parkering;0;00:00:00;0;0;0;0;0;0;0
 field22;22;Property;Trianglen;HER MAGLER TEKST;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
 field23;23;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
 field24;24;Property;Østerbrogade;HER MAGLER TEKST;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
