@@ -1,9 +1,13 @@
 package model.game;
 
+import controller.GuiController;
+import controller.MainControl;
 import model.board.Board;
 import model.board.Field;
 import model.board.FieldActionManager;
+import model.chancecard.Deck;
 import model.cup.Cup;
+import model.cup.Die;
 import model.player.Player;
 
 /**
@@ -33,7 +37,8 @@ public class Turn {
     --------- Public Methods ----------
     */
     //Controlleren og vores Chance kort skal også addes!!
-    public void turn (Player player, Cup cup){
+    public void turn (Player player, Cup cup, GuiController controller, Deck deck){
+
 
 
 
@@ -52,7 +57,15 @@ public class Turn {
 
     }
 
-    private void raffle() {
+    private void raffle(Player player, Cup cup, GuiController controller) {
+
+        if(!player.isHasLost()){
+
+            controller.showMessage("Tryk for at slå med terningerne");
+
+            cup.cupRoll();
+            rollValue= cup.getCupValue();
+        }
 
     }
 
