@@ -10,6 +10,8 @@ import model.cup.Cup;
 import model.cup.Die;
 import model.player.Player;
 
+import javax.naming.ldap.Control;
+
 /**
  * @author Nikolaj Tscharn Wassmann
  * @date 09-01-2019
@@ -58,6 +60,7 @@ public class Turn {
     }
 
     private void raffle(Player player, Cup cup, GuiController controller) {
+        //Raffles the cup, but firstly it checks if player has lost
 
         if(!player.isHasLost()){
 
@@ -69,7 +72,34 @@ public class Turn {
 
     }
 
-    private void movePlayer () {
+    private void rafflePrint(Player player, GuiController controller){
+        //Check if player.isHasLost = true, if so the player has lost and the method wont run
+
+        if(!player.isHasLost()){
+
+
+            // Sets the current position before they roll dice
+            int position = player.getPosition();
+
+            //GUI prints the message
+            controller.showMessage("Du slog" + rollValue);
+
+            //Updates the GUI position with faceValue of the dices
+            player.updatePosition(rollValue);
+
+            //Assigns the new position to the integer turnPos
+            turnPos = player.getPosition();
+
+            //Moves the player
+            movePlayer(player, controller, position, turnPos);
+
+
+
+        }
+
+    }
+
+    private void movePlayer (Player player, GuiController controller, int position, int newPositon) {
 
     }
 
