@@ -18,7 +18,7 @@ public class Main {
 
         HashMap<String, String> boardMap = new HashMap<>();
 
-        Reader boardReader = new Reader("board1.4.csv", ";");
+        Reader boardReader = new Reader("board1.2_Desc.csv", ";");
 
         boardReader.readFileIntoHashMap(boardMap);
         System.out.println(boardReader.getFilePath());
@@ -33,5 +33,18 @@ public class Main {
 
         Field tempField = playingBoard.getBoard()[3];
         System.out.println(tempField);
+
+        System.out.println("Hello World");
+
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        HashMap<String,String> chanceCardMap = new HashMap<>();
+        Reader chanceCardReader = new Reader("chanceCard.csv", ";");
+        chanceCardReader.readFileIntoHashMap(chanceCardMap);
+
+        Deck chanceCardDeck = new Deck();
+        DeckManager deckManager = new DeckManager();
+        deckManager.setupBeck(chanceCardMap,chanceCardDeck);
+
+        System.out.println(chanceCardDeck.getChanceCardDeck().get(3).toString());
     }
 }

@@ -124,7 +124,6 @@ public class Reader {
 
     }
 
-
     /*
     ---------------------- Support Methods ----------------------
      */
@@ -137,7 +136,9 @@ public class Reader {
 
         for (int i =1 ; i <= noOfInformationFieldsInArray-1; i++) {
             builderForAllInfo.append(stringInfoArray[i]);
-            builderForAllInfo.append(";");
+            if (i != noOfInformationFieldsInArray-1) {
+                builderForAllInfo.append(";");
+            }
         }
 
         hashMapToLoadWithInfo.put(stringInfoArray[0],builderForAllInfo.toString());
