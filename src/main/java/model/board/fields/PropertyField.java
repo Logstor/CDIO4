@@ -16,13 +16,13 @@ public class PropertyField extends Field {
     -------------------------- Fields --------------------------
      */
 
-    protected int fieldHousePrice;
-    protected int fieldRent;
-    protected int field1HouseRent;
-    protected int field2HouseRent;
-    protected int field3HouseRent;
-    protected int field4HouseRent;
-    protected int field5HouseRent;
+    private int fieldHousePrice;
+    private int fieldRent;
+    private int field1HouseRent;
+    private int field2HouseRent;
+    private int field3HouseRent;
+    private int field4HouseRent;
+    private int field5HouseRent;
     
     /*
     ----------------------- Constructor -------------------------
@@ -75,13 +75,13 @@ public class PropertyField extends Field {
 
     public void fieldAction (Player player) {
 
-        if (owner==null) {
+        if (fieldOwner ==null) {
             actionText = "Ejendommen du er landet på er til salg og kan købes for " + getFieldCost() + "?";
             player.updateBalance(getFieldCost());
         } else {
-            actionText = "Ejendommen er ejet af " + getOwner() + " og du skal betale " + fieldRent + "for at dit ophold.";
+            actionText = "Ejendommen er ejet af " + getFieldOwner() + " og du skal betale " + fieldRent + "for at dit ophold.";
             player.updateBalance(-fieldRent);
-            owner.updateBalance(fieldRent);
+            fieldOwner.updateBalance(fieldRent);
         }
 
     }

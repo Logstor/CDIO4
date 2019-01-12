@@ -3,13 +3,11 @@ package model.reader;
 import java.io.*;
 import java.util.HashMap;
 
-
-
-
 /**
  * @author Rasmus Sander Larsen
  * @date 07-01-2019
  */
+
 public class Reader {
 
     /*
@@ -20,20 +18,12 @@ public class Reader {
     private String splitter;
     private String line;
     private BufferedReader bufferedReader;
-    private int keyIndex = 0, valueIndex = 1;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
     public Reader(String fileName, String splitter) {
-        this.fileName = fileName;
-        this.splitter = splitter;
-    }
-
-    @Deprecated
-    public Reader(String filePath,String fileName,String splitter) {
-        this.filePath = filePath;
         this.fileName = fileName;
         this.splitter = splitter;
     }
@@ -50,6 +40,14 @@ public class Reader {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public String getSplitter() {
@@ -76,31 +74,26 @@ public class Reader {
         this.bufferedReader = bufferedReader;
     }
 
-    public int getValueIndex() {
-        return valueIndex;
-    }
-
-    public void setValueIndex(int valueIndex) {
-        this.valueIndex = valueIndex;
-    }
-
-
     // </editor-folder>
 
     /*
     ---------------------- Public Methods -----------------------
      */
 
+    /**
+     * This method reads through every line of the information file of the Reader
+     * and saves the information in the HashMap.
+     * @param hashMap HashMap where all the information from the file is saved.
+     */
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-            /*
 
-            if (filePath == null) {
-                bufferedReader = new BufferedReader(new FileReader(fileName));
-            } else {
-                bufferedReader = new BufferedReader(new FileReader(filePath + fileName));
-            } */
+            // BESKED FRA CHRISTIAN:
+            // måske hvis i ikke bruger systemclassloader men getClass().getClassloader() istedet
+
+            // Prøv Nedenstående WassMann:
+            // filePath = getClass().getClassLoader().getResource(fileName).getPath();
 
             filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath().
                     replace("%20", " ");
@@ -112,8 +105,6 @@ public class Reader {
                 String[] tempKeyAndValue = line.split(splitter);
 
                 infoArrayIntoHashMap(hashMap,tempKeyAndValue);
-
-                //hashMap.put(tempKeyAndValue[keyIndex],tempKeyAndValue[valueIndex]);
 
             }
         } catch(FileNotFoundException e){
@@ -128,20 +119,26 @@ public class Reader {
     ---------------------- Support Methods ----------------------
      */
 
-    private void infoArrayIntoHashMap (HashMap<String, String> hashMapToLoadWithInfo, String[] stringInfoArray) {
+    /**
+     * Runs through all the information i the String[] and adds it to a single Line (StringBuilder).
+     * Every information is separated by ";" and added at the Value position in the HashMap.
+     * @param hashMapToLoadWithInfo HashMap that the information is loaded into.
+     * @param stringInfoArray Array of Strings that holds the information on the specified field.
+     */
 
-        int noOfInformationFieldsInArray = stringInfoArray.length;
+    private void infoArrayIntoHashMap (HashMap<String, String> hashMapToLoadWithInfo, String[] stringInfoArray) {
+        int noOfInformationFieldsInArray = stringInfoArray.length-1;
 
         StringBuilder builderForAllInfo = new StringBuilder();
-
-        for (int i =1 ; i <= noOfInformationFieldsInArray-1; i++) {
+        for (int i =1 ; i <= noOfInformationFieldsInArray; i++) {
             builderForAllInfo.append(stringInfoArray[i]);
-            if (i != noOfInformationFieldsInArray-1) {
+
+            // Makes sure not to add an ";" after the last information is added to the StringBuilder.
+            // Causes problems then the splitting the last value of the valueString  from the HashMap.
+            if (i != noOfInformationFieldsInArray) {
                 builderForAllInfo.append(";");
             }
         }
-
         hashMapToLoadWithInfo.put(stringInfoArray[0],builderForAllInfo.toString());
     }
-
 }

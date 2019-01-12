@@ -258,7 +258,7 @@ public class Gui {
     //<editor-fold desc="Field Methods"
 
     /**
-     * This method changes the owner of the given field
+     * This method changes the fieldOwner of the given field
      * to the given Player.
      * @param player The player which shall own the field
      * @param theField The field in focus

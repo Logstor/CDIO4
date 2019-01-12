@@ -101,6 +101,11 @@ public class BoardManager {
         }
     }
 
+    /**
+     * This method loads only the fieldInformation into a HashMap.
+     * @param hashMapWithBoardInfo
+     * @param board
+     */
     private void setupBoardInfoMap (HashMap<String,String > hashMapWithBoardInfo, Board board) {
         for (int i = 1; i <=board.getNUMBEROFFIELDS(); i++) {
             boardInfoMap.put("field"+i,hashMapWithBoardInfo.get("field"+i));
@@ -108,8 +113,10 @@ public class BoardManager {
 
     }
 
+
     /**
-     *This Method loads the Index numbers for all the variables of a field.
+     * This Method loads the Index numbers for all the variables in the csv-file
+     * @param hashMapWithBoardInfo HashMap to load Index information from.
      */
     private void setupIndexVariables (HashMap<String ,String > hashMapWithBoardInfo) {
         colorSplitter = hashMapWithBoardInfo.get("colorSplitter");
