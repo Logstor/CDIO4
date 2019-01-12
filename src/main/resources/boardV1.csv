@@ -4,22 +4,22 @@ field2;2;Property;Rødovrevej;Rødovrevej går gennem både Islev og Rødovre fo
 field3;3;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
 field4;4;Property;Hvidovrevej;Hvidovrevej er en sidevej til Roskilde der går gennem både Vigerslev og Hvidovre for at til sidst at slutte ved friheden.;1200;115:194:251;1000;50;250;750;2250;4000;6000
 field5;5;Tax;Indkomstskat;Her skal du betale en skat af din indkomst;0;199:234:70;0;0;0;0;0;0;0
-field6;6;Boat;Helsingør-Helsingborg;HER MAGLER TEKST;4000;0:142:204;0;0;0;0;0;0;0
+field6;6;Boat;Helsingør-Helsingborg;Har du lyst til at tage en tur til Sverige, så er det denne færge du skal tage;4000;0:142:204;0;0;0;0;0;0;0
 field7;7;Property;Roskildevej;Roskildevej er en vej der starter ved Baldersbrønde og går hele vejen til Albertslund hvor den skifter navn til Hovedvejen.;2000;239:130:13;1000;100;600;1800;5400;8000;11000
 field8;8;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
-field9;9;Property;Valby Langgade;HER MAGLER TEKST;2000;239:130:13;1000;100;600;1800;5400;8000;11000
-field10;10;Property;Allégade;HER MAGLER TEKST;2400;239:130:13;1000;150;800;2000;6000;9000;12000
-field11;11;Prison;På Besøg;HER MAGLER TEKST;0;00:00:00;0;0;0;0;0;0;0
-field12;12;Property;Frederiksberg Allé;HER MAGLER TEKST;2800;199:234:70;2000;200;1000;3000;9000;12500;1500
-field13;13;Brewery;Squash;HER MAGLER TEKST;3000;194:24:07;0;0;0;0;0;0;0
-field14;14;Property;Bülowsvej;HER MAGLER TEKST;2800;199:234:70;2000;200;1000;3000;9000;12500;1500
-field15;15;Property;Gl. Kongevej;HER MAGLER TEKST;3200;199:234:70;2000;250;1250;3750;10000;14000;18000
-field16;16;Boat;Molslinien;HER MAGLER TEKST;4000;237:41:57;0;0;0;0;0;0;0
-field17;17;Property;Bernstorffsvej;HER MAGLER TEKST;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
+field9;9;Property;Valby Langgade;En langgade der ligger i Valby. I gamle dage kørte der sporvogne langs denne gade;2000;239:130:13;1000;100;600;1800;5400;8000;11000
+field10;10;Property;Allégade;Den ældste gade på Frederiksberg og afgrænser Frederiksberg Have;2400;239:130:13;1000;150;800;2000;6000;9000;12000
+field11;11;Prison;På Besøg;Du er på besøg i fængsel;0;00:00:00;0;0;0;0;0;0;0
+field12;12;Property;Frederiksberg Allé;Frederiksberg Allé er en allé på Frederiksberg, som løber syd for Gammel Kongevej mellem Vesterbro og Frederiksberg Have.;2800;199:234:70;2000;200;1000;3000;9000;12500;1500
+field13;13;Brewery;Squash;En meget populær sodavand produceret af Carlsberg, der ligger i Valby;3000;194:24:07;0;0;0;0;0;0;0
+field14;14;Property;Bülowsvej;Bülowsvej er en gade på Frederiksberg i København, der går fra Gammel Kongevej i forlængelse af Madvigs Allé til Åboulevard i forlængelse af Brohusgade.;2800;199:234:70;2000;200;1000;3000;9000;12500;1500
+field15;15;Property;Gl. Kongevej;Gammel Kongevej er en vej der strækker sig fra Frederiksberg Rådhus og Falkoner Allé til centrum af København. Denne vej er kendt som hovedgaden i Frederiksberg;3200;199:234:70;2000;250;1250;3750;10000;14000;18000
+field16;16;Boat;Molslinien;Molslinjen driver færgefart på Kattegat mellem Sjælland og Jylland med Ebeltoft-Odden ruten og Aarhus-Odden ruten, samt i Østersøen mellem Ystad og Rønne, Rønne og Sassnitz. Dette firma blev stiftet i 1963;4000;237:41:57;0;0;0;0;0;0;0
+field17;17;Property;Bernstorffsvej;Bernstorffsvej er en vej i Gentofte Kommune, der løber fra Lyngbyvej og slutter i Femvejen;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
 field18;18;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
-field19;19;Property;Hellerupvej;HER MAGLER TEKST;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
-field20;20;Property;Strandvejen;HER MAGLER TEKST;4000;60:62:63;2000;350;1600;4400;12000;16000;20000
-field21;21;Parking;Parkering;HER MAGLER TEKST;0;00:00:00;0;0;0;0;0;0;0
+field19;19;Property;Hellerupvej;HER MANGLER TEKST;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
+field20;20;Property;Strandvejen;Strandvejen er en af de dyreste steder i hele Danmark, der strækker sig 38km.;4000;60:62:63;2000;350;1600;4400;12000;16000;20000
+field21;21;Parking;Parkering;Gratis parkering;0;00:00:00;0;0;0;0;0;0;0
 field22;22;Property;Trianglen;HER MAGLER TEKST;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
 field23;23;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
 field24;24;Property;Østerbrogade;HER MAGLER TEKST;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
