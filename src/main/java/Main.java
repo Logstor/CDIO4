@@ -17,9 +17,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MainControl controller = new MainControl();
-        controller.letsFuckingGo();
-
         HashMap<String, String> boardMap = new HashMap<>();
 
         Reader boardReader = new Reader("boardV1.csv", ";");
