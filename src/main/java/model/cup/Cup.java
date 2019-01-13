@@ -75,8 +75,28 @@ public class Cup {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
-    
+
+	/**
+	 * This method rolls every model.die in the cup
+	 * @return Returns the total value of the facevalues in the cup
+	 */
+	public int cupRoll () {
+
+		int cupValue = 0;
+		// Iterate through all dies and roll
+		for (Die die : dies) {
+			// Roll the current model.die
+			die.roll();
+
+			// Update cupValue
+			cupValue += die.getFaceValue();
+
+		}
+
+		// Update this.cupValue and return it
+		this.cupValue = cupValue;
+		return cupValue;
+	}
     
     /*
     ---------------------- Support Methods ----------------------

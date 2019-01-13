@@ -44,6 +44,7 @@ public class MainControl {
 	 */
 	public int letsFuckingGo()
 	{
+
 		try
 		{
 			// Set the game up, and display
@@ -75,7 +76,5 @@ public class MainControl {
 		guiController = new GuiController(gui);
 		
 		players = setupControl.playerSetup(guiController, messageMap);
-		
-		
 	}
 }

@@ -70,10 +70,12 @@ public class GuiController {
         gui.getUserChoice(message, button);
     }
 
+
     public String getUserString(String message) {
 
         //Display message to the user
         return gui.getUserString(message);
+
     }
 
     public void getBGColor(Color color) {
