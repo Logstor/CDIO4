@@ -99,8 +99,6 @@ public class Gui {
     ---------------------------- Public Methods --------------------------------
      */
 
-
-
     /**
      * Shows a message to the players
      * @param message The message to show as String
@@ -472,7 +470,7 @@ public class Gui {
                 newFields[i] = street;
             }
 
-            // Code for Instance of ChancField
+            // Code for Instance of ChanceCardField
 
             else if ( fields[i] instanceof ChanceField ) {
 
@@ -492,7 +490,11 @@ public class Gui {
                 GUI_Jail jail = new GUI_Jail();
 
                 // Change the title of the field
-                jail.setSubText("Fængsel");
+                if (fields[i].getFieldNo()==11) {
+                    jail.setSubText("På Besøg");
+                } else {
+                    jail.setSubText("Fængsel");
+                }
                 jail.setDescription(fields[i].getFieldDescription());
 
                 // Put the GUI_Field into the newFields array
@@ -514,11 +516,7 @@ public class Gui {
                 boat.setRent(Integer.toString(fields[i].getFieldCost()));
 
                 //TODO: Er der for meget med forskellige farver til Molslinien og de andre færger?
-                if (i==15) {
-                    boat.setBackGroundColor(new Color(237, 41, 57));
-                } else {
-                    boat.setBackGroundColor(fields[i].getFieldColor());
-                }
+                boat.setBackGroundColor(fields[i].getFieldColor());
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = boat;
@@ -556,7 +554,6 @@ public class Gui {
                 tax.setDescription(fields[i].getFieldDescription());
                 tax.setBackGroundColor(fields[i].getFieldColor());
 
-
                 // Put the GUI_Field into the newFields array
                 newFields[i] = tax;
 
@@ -573,7 +570,7 @@ public class Gui {
                 parking.setTitle(fields[i].getFieldName());
                 parking.setSubText("Parkering");
                 parking.setDescription(fields[i].getFieldDescription());
-
+                parking.setBackGroundColor(fields[i].getFieldColor());
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = parking;
