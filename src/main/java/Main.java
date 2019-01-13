@@ -1,3 +1,4 @@
+import controller.MainControl;
 import model.board.Board;
 import model.board.BoardManager;
 import model.board.Field;
@@ -15,6 +16,9 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
+
+        MainControl controller = new MainControl();
+        controller.letsFuckingGo();
 
         HashMap<String, String> boardMap = new HashMap<>();
 
