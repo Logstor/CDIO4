@@ -1,5 +1,6 @@
 package model.game;
 
+
 import controller.GuiController;
 import controller.MainControl;
 import model.board.Board;
@@ -9,8 +10,6 @@ import model.chancecard.Deck;
 import model.cup.Cup;
 import model.cup.Die;
 import model.player.Player;
-
-import javax.naming.ldap.Control;
 
 /**
  * @author Nikolaj Tscharn Wassmann

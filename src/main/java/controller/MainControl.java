@@ -27,7 +27,12 @@ public class MainControl {
     ------------------------ Constructors ------------------------
      */
     
-    public MainControl () { }
+    public MainControl ()
+	{
+		board = new Board();
+    	messageMap = new HashMap<>();
+    	cup = new Cup();
+	}
     
     /*
     ----------------------- Public Methods -----------------------
@@ -39,12 +44,15 @@ public class MainControl {
 	 */
 	public int letsFuckingGo()
 	{
-		try {
+
+		try
+		{
 			// Set the game up, and display
 			setup();
 			return 0;
 		}
-		catch (Exception e) {
+		catch (Exception e)
+		{
 			e.printStackTrace();
 			return -1;
 		}
@@ -58,10 +66,15 @@ public class MainControl {
 	 */
 	private void setup ()
 	{
-		SetupControl setupControl = new SetupControl(gui, guiController, players, cup, board, messageMap);
+		// Instantiate everything
 		
 		// Creating the board with all Fields
-		setupControl.setShitUp();
+		SetupControl setupControl = new SetupControl();
+		setupControl.boardCreator(board);
+		setupControl.messageMapCreator(messageMap);
+		gui = new Gui(board.getBoard());
+		guiController = new GuiController(gui);
 		
+		players = setupControl.playerSetup(guiController, messageMap);
 	}
 }
