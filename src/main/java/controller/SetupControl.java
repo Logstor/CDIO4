@@ -109,7 +109,7 @@ public class SetupControl {
 		map = new HashMap<>();
 		
 		// Create Reader object
-		Reader reader = new Reader("messages1,0.csv",",");
+		Reader reader = new Reader("messages1.0.csv",";");
 		
 		// Load all messages into the HashMap
 		reader.readFileIntoHashMap(map);
@@ -136,7 +136,7 @@ public class SetupControl {
 		HashMap<String, String> boardMap = new HashMap<>(40);
 		
 		// Read all the information in the board CSV to the HashMap
-		Reader reader = new Reader("board1.4_Packed.csv", ";");
+		Reader reader = new Reader("boardV1.csv", ";");
 		reader.readFileIntoHashMap(boardMap);
 		
 		// Initialize the board
