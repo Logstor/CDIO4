@@ -15,11 +15,11 @@ field13;13;Brewery;Squash;En meget populær sodavand produceret af Carlsberg, de
 field14;14;Property;Bülowsvej;Bülowsvej er en gade på Frederiksberg i København, der går fra Gammel Kongevej i forlængelse af Madvigs Allé til Åboulevard i forlængelse af Brohusgade.;2800;199:234:70;2000;200;1000;3000;9000;12500;1500
 field15;15;Property;Gl. Kongevej;Gammel Kongevej er en vej der strækker sig fra Frederiksberg Rådhus og Falkoner Allé til centrum af København. Denne vej er kendt som hovedgaden i Frederiksberg;3200;199:234:70;2000;250;1250;3750;10000;14000;18000
 field16;16;Boat;Molslinien;Molslinjen driver færgefart på Kattegat mellem Sjælland og Jylland med Ebeltoft-Odden ruten og Aarhus-Odden ruten, samt i Østersøen mellem Ystad og Rønne, Rønne og Sassnitz. Dette firma blev stiftet i 1963;4000;237:41:57;0;0;0;0;0;0;0
-field17;17;Property;Bernstorffsvej;Bernstorffsvej er en vej i Gentofte Kommune, der løber fra Lyngbyvej og slutter i Femvejen;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
+field17;17;Property;Bernstorffsvej;Bernstorffsvej er en vej i Gentofte Kommune, der løber fra Lyngbyvej og slutter i Femvejen;3600;119:123:126;2000;300;1400;4000;11000;15000;19000
 field18;18;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
-field19;19;Property;Hellerupvej;Hellerupvej er en af de ældste veje der går gennem Hellerup. Tilbage i midten af 1800-tallet var det kun Jøgersborg Allé, Hellerupvej og Tranegårdsvej.;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
-field20;20;Property;Strandvejen;Strandvejen er en af de dyreste steder i hele Danmark, der strækker sig 38km.;4000;60:62:63;2000;350;1600;4400;12000;16000;20000
-field21;21;Parking;Parkering;Gratis Parkering;0;00:00:00;0;0;0;0;0;0;0
+field19;19;Property;Hellerupvej;Hellerupvej er en af de ældste veje der går gennem Hellerup. Tilbage i midten af 1800-tallet var det kun Jøgersborg Allé, Hellerupvej og Tranegårdsvej.;3600;119:123:126;2000;300;1400;4000;11000;15000;19000
+field20;20;Property;Strandvejen;Strandvejen er en af de dyreste steder i hele Danmark, der strækker sig 38km.;4000;119:123:126;2000;350;1600;4400;12000;16000;20000
+field21;21;Parking;Parkering;Gratis Parkering;0;255:255:255;0;0;0;0;0;0;0
 field22;22;Property;Trianglen;Trianglen er navngivet efter en plads i Østerbro i København der har en trekantede form. Tilbage i det 19. århundrede var denne plads en holdeplads for kapervogne/hestevogne, der kørte ud til Dyrehaven ;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
 field23;23;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
 field24;24;Property;Østerbrogade;Østerbrogade blev anlagt tilbage i 1647, hvor gaden oprindelig hed Østerbro eller Østerstenbro;4400;255:36:00;3000;350;1800;5000;14000;17500;21000

@@ -5,6 +5,7 @@ import model.cup.Cup;
 import model.player.Player;
 import view.gui.Gui;
 
+import java.awt.*;
 import java.util.HashMap;
 
 /**
@@ -76,5 +77,7 @@ public class MainControl {
 		guiController = new GuiController(gui);
 		
 		players = setupControl.playerSetup(guiController, messageMap);
+		setupControl.createGUIPlayers(guiController,players);
+		guiController.showMessage(messageMap.get("GetReady"));
 	}
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import gui_fields.GUI_Player;
 import gui_tests.PlayerTest;
 import model.board.Field;
 import model.cup.Cup;
@@ -7,6 +8,7 @@ import model.player.Player;
 import view.gui.Gui;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @author Nikolaj Tscharn Wassmann
@@ -37,6 +39,22 @@ public class GuiController {
     /*
     --------- Public Methods ----------
     */
+
+
+    /**
+     * Shows a message and a dropdown menu, and returns the
+     * choosen String.
+     * @param message The information to the user
+     * @param options The available options as ArrayList<String></String>
+     * @return the choosen String as String
+     */
+    public String getUserChoice (String message, ArrayList<String> options) {
+
+        String[] optionList = options.toArray( new String [options.size()]);
+
+        // Return the String
+        return gui.getUserChoice(message, optionList);
+    }
 
     public void setOwner(Player player, Field field) {
 

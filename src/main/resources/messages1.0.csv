@@ -1,3 +1,13 @@
 ﻿TYPE;MESSAGE
+CarColor1;Sort
+CarColor2;Hvid
+CarColor3;Rød
+CarColor4;Grøn
+CarColor5;Gul
+CarColor6;Blå
 Welcome;Velkommen til spillet Matador!
 GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
+NamePlayer;Indtast navnet på spiller
+PickColorForToken;Vælg en farve til din spillerbrik:
+TokenSelected;Du valgt
+GetReady;Så er alle vist på plads og spillet kan endelig begynder !

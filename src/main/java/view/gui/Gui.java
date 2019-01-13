@@ -95,6 +95,16 @@ public class Gui {
     }
     //</editor-fold>
 
+    public ArrayList<GUI_Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<GUI_Player> players) {
+        this.players = players;
+    }
+
+
+
     /*
     ---------------------------- Public Methods --------------------------------
      */
@@ -241,6 +251,18 @@ public class Gui {
     }
 
     /**
+     * This method adds an Array of players to the game.
+     * @param players An Player[]
+     */
+    public void addPlayers (Player[] players ) {
+
+        // Iterate over the players list and add the player
+        for ( Player player : players ) {
+            addPlayer(player);
+        }
+    }
+
+    /**
      * This method adds a new Player to the game.
      * @param player The Player to add
      */
@@ -346,12 +368,13 @@ public class Gui {
         GUI_Player newPlayer;
 
         // Create the player with the correct Car type
-        switch (player.getToken()) {
+        switch (player.getToken().getCarType()) {
 
             case "Bil":
                 newPlayer = new GUI_Player( player.getName(),
                         player.getAccount().getBalance(),
-                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED));
+                        new GUI_Car(player.getToken().getCarColor(), player.getToken().getPatternColor(),
+                                GUI_Car.Type.CAR, GUI_Car.Pattern.getPatternFromString(player.getToken().getCarPattern())));
                 break;
 
             case "Racerbil":
@@ -383,6 +406,7 @@ public class Gui {
                         new GUI_Car(Color.YELLOW, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA));
                 break;
         }
+
 
         // Return the newly created GUI_Player
         return newPlayer;
@@ -456,7 +480,7 @@ public class Gui {
                 newFields[i] = street;
             }
 
-            // Code for Instance of ChancField
+            // Code for Instance of ChanceCardField
 
             else if ( fields[i] instanceof ChanceField ) {
 
@@ -476,7 +500,11 @@ public class Gui {
                 GUI_Jail jail = new GUI_Jail();
 
                 // Change the title of the field
-                jail.setSubText("Fængsel");
+                if (fields[i].getFieldNo()==11) {
+                    jail.setSubText("På Besøg");
+                } else {
+                    jail.setSubText("Fængsel");
+                }
                 jail.setDescription(fields[i].getFieldDescription());
 
                 // Put the GUI_Field into the newFields array
@@ -498,11 +526,7 @@ public class Gui {
                 boat.setRent(Integer.toString(fields[i].getFieldCost()));
 
                 //TODO: Er der for meget med forskellige farver til Molslinien og de andre færger?
-                if (i==15) {
-                    boat.setBackGroundColor(new Color(237, 41, 57));
-                } else {
-                    boat.setBackGroundColor(fields[i].getFieldColor());
-                }
+                boat.setBackGroundColor(fields[i].getFieldColor());
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = boat;
@@ -540,7 +564,6 @@ public class Gui {
                 tax.setDescription(fields[i].getFieldDescription());
                 tax.setBackGroundColor(fields[i].getFieldColor());
 
-
                 // Put the GUI_Field into the newFields array
                 newFields[i] = tax;
 
@@ -557,7 +580,7 @@ public class Gui {
                 parking.setTitle(fields[i].getFieldName());
                 parking.setSubText("Parkering");
                 parking.setDescription(fields[i].getFieldDescription());
-
+                parking.setBackGroundColor(fields[i].getFieldColor());
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = parking;
@@ -581,4 +604,5 @@ public class Gui {
         return newFields;
     }
     //</editor-fold>
+
 }
