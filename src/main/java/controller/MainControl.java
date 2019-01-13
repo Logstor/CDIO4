@@ -76,5 +76,6 @@ public class MainControl {
 		guiController = new GuiController(gui);
 		
 		players = setupControl.playerSetup(guiController, messageMap);
+		setupControl.createGUIPlayers(guiController,players);
 	}
 }

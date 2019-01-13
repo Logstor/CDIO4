@@ -20,6 +20,10 @@ public class SetupControl {
     --------------------------- Fields ---------------------------
      */
     private HashMap<String, String> boardInfo;
+    private final int STARTINGMONEY = 30000;
+    private final int STARTINGPOSITION = 0;
+
+
     /*
     ------------------------ Constructors ------------------------
      */
@@ -56,32 +60,36 @@ public class SetupControl {
 		// Ask how many players who wants to play and Initialize Player[]
 		Player[] players = new Player[guiController.getUserInteger(messageMap.get("GetPlayers"), 3, 6)];
 
-		// Color[] tokenColors = new Color[6];
-		// tokenColors[0] = Color.BLACK; tokenColors[1] = Color.WHITE; tokenColors[2] = Color.RED;
-		// tokenColors[3] = Color.GREEN; tokenColors[4] = Color.YELLOW; tokenColors[5] = Color.BLUE;
-
 		ArrayList<String> tokenColorsString = new ArrayList<>();
-		tokenColorsString.add("Sort"); tokenColorsString.add("Hvid"); tokenColorsString.add("Rød");
-		tokenColorsString.add("Grøn"); tokenColorsString.add("Gul"); tokenColorsString.add("Blå");
+		tokenColorsString.add(messageMap.get("CarColor1")); tokenColorsString.add(messageMap.get("CarColor2"));
+		tokenColorsString.add(messageMap.get("CarColor3")); tokenColorsString.add(messageMap.get("CarColor4"));
+		tokenColorsString.add(messageMap.get("CarColor5")); tokenColorsString.add(messageMap.get("CarColor6"));
 
 		for (int i = 0; i < players.length; i++) {
 		String name = guiController.getUserString(messageMap.get("NamePlayer") + " " + Integer.toString(i+1));
 
-			String chosenTokenColor = guiController.getUserChoice("Vælg en farve til din spillerbrik:", tokenColorsString);
+			String chosenTokenColor = guiController.getUserChoice(messageMap.get("PickColorForToken") + " ", tokenColorsString);
 			for (int j = 0; j < tokenColorsString.size(); j++) {
 				if (tokenColorsString.get(j).equals(chosenTokenColor)) {
 					tokenColorsString.remove(j);
 				}
 			}
+
 			Color tokenColor = stringToColorSwitch(chosenTokenColor);
 
-			Player player = new Player(name, tokenColor, 30000, 0);
+			Player player = new Player(name, tokenColor, STARTINGMONEY, STARTINGPOSITION);
 			players[i]=(player);
-			guiController.showMessage(messageMap.get("TokenSelected") + " " + chosenTokenColor.toLowerCase());
+			guiController.showMessage(messageMap.get("TokenSelected") + " " + chosenTokenColor.toLowerCase() + ".");
 		}
 
 		return players;
 	}
+
+	public void createGUIPlayers (GuiController guiController, Player[] Players) {
+        for (Player p : Players) {
+            guiController.addPlayer(p);
+        }
+    }
     
     /*
     ----------------------- Support Methods ----------------------

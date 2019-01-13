@@ -29,7 +29,7 @@ public class Player {
     public Player (String name, Color color, int initialBalance, int startingPosition) {
         this.name=name;
         account = new Account(initialBalance);
-        position= startingPosition;
+        totalPosition= startingPosition;
         token = new Token(color);
     }
     
@@ -122,7 +122,6 @@ public class Player {
         if (account.getBalance()<=0) {
             hasLost=true;
         }
-
     }
 
     /**

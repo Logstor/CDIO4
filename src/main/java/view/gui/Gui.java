@@ -243,6 +243,18 @@ public class Gui {
     }
 
     /**
+     * This method adds an Array of players to the game.
+     * @param players An Player[]
+     */
+    public void addPlayers (Player[] players ) {
+
+        // Iterate over the players list and add the player
+        for ( Player player : players ) {
+            addPlayer(player);
+        }
+    }
+
+    /**
      * This method adds a new Player to the game.
      * @param player The Player to add
      */

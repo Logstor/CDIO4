@@ -26,7 +26,7 @@ public class Token {
      */
 
     public Token (Color carColor) {
-        carType = "CAR";
+        carType = "Bil";
         carPattern = "FILL";
         this.carColor = carColor;
         patternColor = carColor;
