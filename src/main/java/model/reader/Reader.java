@@ -88,16 +88,8 @@ public class Reader {
     public void readFileIntoHashMap(HashMap<String,String> hashMap) {
 
         try {
-
-            // BESKED FRA CHRISTIAN:
-            // måske hvis i ikke bruger systemclassloader men getClass().getClassloader() istedet
-
-            // Prøv Nedenstående WassMann:
-            //filePath = getClass().getClassLoader().getResource(fileName).getPath();
-
             // Nedenstående er den gamle filePath
-            filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath().
-                  replace("%20", " ");
+            filePath = getClass().getClassLoader().getResource(fileName).getPath();
 
             bufferedReader = new BufferedReader(new FileReader(filePath));
 
