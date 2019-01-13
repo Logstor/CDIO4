@@ -22,9 +22,8 @@ public abstract class Field {
     protected Color fieldColor;
     protected String actionText;
     protected String fieldDescription;
-    protected Player owner;
+    protected Player fieldOwner;
     protected boolean forSale;
-
     
     /*
     ----------------------- Constructor -------------------------
@@ -38,10 +37,8 @@ public abstract class Field {
         this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
-        owner=null;
-
+        fieldOwner =null;
     }
-    
     
     /*
     ------------------------ Properties -------------------------
@@ -97,12 +94,12 @@ public abstract class Field {
         this.actionText = actionText;
     }
 
-    public Player getOwner() {
-        return owner;
+    public Player getFieldOwner() {
+        return fieldOwner;
     }
 
-    public void setOwner(Player owner) {
-        this.owner = owner;
+    public void setFieldOwner(Player fieldOwner) {
+        this.fieldOwner = fieldOwner;
     }
 
     public String getFieldDescription() {
@@ -126,6 +123,7 @@ public abstract class Field {
     /*
     ---------------------- Public Methods -----------------------
      */
+
     @Override
     public String toString () {
         StringBuilder toStringBuilder = new StringBuilder();
@@ -145,10 +143,8 @@ public abstract class Field {
 
     protected abstract void fieldAction (Player player, Cup cup);
 
-    
     /*
     ---------------------- Support Methods ----------------------
      */
-
 
 }
