@@ -95,6 +95,16 @@ public class Gui {
     }
     //</editor-fold>
 
+    public ArrayList<GUI_Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<GUI_Player> players) {
+        this.players = players;
+    }
+
+
+
     /*
     ---------------------------- Public Methods --------------------------------
      */
