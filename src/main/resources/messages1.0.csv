@@ -11,3 +11,4 @@ NamePlayer;Indtast navnet på spiller
 PickColorForToken;Vælg en farve til din spillerbrik:
 TokenSelected;Du valgt
 GetReady;Så er alle vist på plads og spillet kan endelig begynder !
+PressToRoll;Tryk for at slå med terningerne..
