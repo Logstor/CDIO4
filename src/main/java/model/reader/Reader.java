@@ -93,11 +93,11 @@ public class Reader {
             // måske hvis i ikke bruger systemclassloader men getClass().getClassloader() istedet
 
             // Prøv Nedenstående WassMann:
-            filePath = getClass().getClassLoader().getResource(fileName).getPath();
+            //filePath = getClass().getClassLoader().getResource(fileName).getPath();
 
             // Nedenstående er den gamle filePath
-            //filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath().
-            //       replace("%20", " ");
+            filePath = ClassLoader.getSystemClassLoader().getResource(fileName).getPath().
+                  replace("%20", " ");
 
             bufferedReader = new BufferedReader(new FileReader(filePath));
 
