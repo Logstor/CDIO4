@@ -1,5 +1,7 @@
 package model.player;
 
+import java.awt.*;
+
 /**
  * @author Rasmus Sander Larsen
  * @date 07-01-2019
@@ -18,16 +20,17 @@ public class Player {
     private boolean inPrison;
     private int totalPosition;
     private int position;
-    private String token;
+    private Token token;
     
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public Player (String name, int initialBalance, int startingPosition) {
+    public Player (String name, Color color, int initialBalance, int startingPosition) {
         this.name=name;
         account = new Account(initialBalance);
         position= startingPosition;
+        token = new Token(color);
     }
     
     /*
@@ -92,15 +95,23 @@ public class Player {
         this.position = position;
     }
 
-    public String getToken() {
+    public int getTotalPosition() {
+        return totalPosition;
+    }
+
+    public void setTotalPosition(int totalPosition) {
+        this.totalPosition = totalPosition;
+    }
+
+    public Token getToken() {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(Token token) {
         this.token = token;
     }
 
-    // </editor-folder>
+// </editor-folder>
     
     /*
     ---------------------- Public Methods -----------------------

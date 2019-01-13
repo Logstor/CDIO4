@@ -1,3 +1,4 @@
 ﻿TYPE;MESSAGE
 Welcome;Velkommen til spillet Matador!
 GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
+NamePlayer;Indtast navn på spiller

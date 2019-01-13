@@ -99,6 +99,8 @@ public class Gui {
     ---------------------------- Public Methods --------------------------------
      */
 
+
+
     /**
      * Shows a message to the players
      * @param message The message to show as String
@@ -346,12 +348,13 @@ public class Gui {
         GUI_Player newPlayer;
 
         // Create the player with the correct Car type
-        switch (player.getToken()) {
+        switch (player.getToken().getCarType()) {
 
             case "Bil":
                 newPlayer = new GUI_Player( player.getName(),
                         player.getAccount().getBalance(),
-                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED));
+                        new GUI_Car(player.getToken().getCarColor(), player.getToken().getPatternColor(),
+                                GUI_Car.Type.CAR, GUI_Car.Pattern.getPatternFromString(player.getToken().getCarPattern())));
                 break;
 
             case "Racerbil":
@@ -383,6 +386,7 @@ public class Gui {
                         new GUI_Car(Color.YELLOW, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA));
                 break;
         }
+
 
         // Return the newly created GUI_Player
         return newPlayer;
