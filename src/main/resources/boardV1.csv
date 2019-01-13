@@ -20,24 +20,24 @@ field18;18;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?
 field19;19;Property;Hellerupvej;Hellerupvej er en af de ældste veje der går gennem Hellerup. Tilbage i midten af 1800-tallet var det kun Jøgersborg Allé, Hellerupvej og Tranegårdsvej.;3600;60:62:63;2000;300;1400;4000;11000;15000;19000
 field20;20;Property;Strandvejen;Strandvejen er en af de dyreste steder i hele Danmark, der strækker sig 38km.;4000;60:62:63;2000;350;1600;4400;12000;16000;20000
 field21;21;Parking;Parkering;Gratis Parkering;0;00:00:00;0;0;0;0;0;0;0
-field22;22;Property;Trianglen;HER MAGLER TEKST;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
+field22;22;Property;Trianglen;Trianglen er navngivet efter en plads i Østerbro i København der har en trekantede form. Tilbage i det 19. århundrede var denne plads en holdeplads for kapervogne/hestevogne, der kørte ud til Dyrehaven ;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
 field23;23;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
-field24;24;Property;Østerbrogade;HER MAGLER TEKST;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
-field25;25;Property;Grønningen;HER MAGLER TEKST;4400;255:36:00;3000;400;2000;6000;15000;18500;22000
-field26;26;Boat;Gedser-Rostok;HER MAGLER TEKST;4000;0:142:204;0;0;0;0;0;0;0
-field27;27;Property;Bredgade;HER MAGLER TEKST;5200;255:255:255;3000;450;2200;6600;16000;19500;23000
-field28;28;Property;Kgs. Nytorv;HER MAGLER TEKST;5200;255:255:255;3000;450;2200;6600;16000;19500;23000
-field29;29;Brewery;Cola;HER MAGLER TEKST;3000;194:24:07;0;0;0;0;0;0;0
-field30;30;Property;Østergade;HER MAGLER TEKST;5600;255:255:255;3000;500;2400;7200;17000;20500;24000
-field31;31;Prison;De Fængsles;HER MAGLER TEKST;0;00:00:00;0;0;0;0;0;0;0
+field24;24;Property;Østerbrogade;Østerbrogade blev anlagt tilbage i 1647, hvor gaden oprindelig hed Østerbro eller Østerstenbro;4400;255:36:00;3000;350;1800;5000;14000;17500;21000
+field25;25;Property;Grønningen;Grønningen forbinder Bredgade og Oslo Plads og er blevet anlagt tilbage i 1905. Denne gade var med i mange arkitektkonkurrencer om hvordan den præcis skulle bygges før den blev anlagt.;4400;255:36:00;3000;400;2000;6000;15000;18500;22000
+field26;26;Boat;Gedser-Rostok;Hvis du skal fra København til Berlin i bil på hurtigst muligvis, så skal du tage færgen Gedser-Rostock ;4000;0:142:204;0;0;0;0;0;0;0
+field27;27;Property;Bredgade;Bredgade er hovedfærdselsåren i Frederiksstaden og udfolder sig cirka en kilometer fra Kongens Nytorv. I gamle dage var gaden en middelalderlig fægyde;5200;255:255:255;3000;450;2200;6600;16000;19500;23000
+field28;28;Property;Kgs. Nytorv;Kongens Nytorv blev grundlagt af Christian 5. i 1670. På Kongens Nytorv findes der bl.a. Det Kongelige Teater og Magasin du Nord.;5200;255:255:255;3000;450;2200;6600;16000;19500;23000
+field29;29;Brewery;Cola;Den mest populære sodavand i hele verden. Den blev for første gang produceret i 1886 af apotekeren Dr. John Pemperton, da han forsøgte at finde en kur for hovedpine.;3000;194:24:07;0;0;0;0;0;0;0
+field30;30;Property;Østergade;Østergade, bedre kendt som den første del af Strøget, er en meget populær handelsgade og gågade. Østergade blev grundlagt i 1962 og har siden været en af de mest centrale gader i hele København.;5600;255:255:255;3000;500;2400;7200;17000;20500;24000
+field31;31;Prison;De Fængsles;Ved at lande på dette felt bliver du smidt i fængsel;0;00:00:00;0;0;0;0;0;0;0
 field32;32;Property;Amagertorv;Amagertorv er et torv i Indre By i København. Det strækker sig fra Højbro Plads til Vimmelskaftet og udgør en del af Strøget. Det har været gågade siden 1962. Udover at være en af Københavns centrale indkøbsgader har Amagertorv gennem de sidste år udviklet sig til at være samlingssted for en række store advokatfirmaer.;6000;252:226:5;4000;550;2600;7800;18000;22000;25000
 field33;33;Property;Vimmelskaftet;Vimmelskaftet er en gade i Indre By i København. Den er en del af Strøget og ligger mellem Nygade og Amagertorv. Vimmelskaft er en gammel betegnelse for et borsving. Baggrunden for gadens navn er netop at denne gade der oprindeligt hed Købmannegade og senere Ty(d)skemannegade sammen med de to gader Klædeboderne og Skoboderne tilsammen dannede en figur der kunne ligne et borsving.;6000;252:226:5;4000;550;2600;7800;18000;22000;25000
 field34;34;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
 field35;35;Property;Nygade;Nygade i København er en del af Strøget og går fra Nytorv i vest til Vimmelskaftet i øst. Den er strøgets korteste gade og er anlagt i 1685.;6400;252:226:5;4000;600;3000;9000;20000;24000;28000
-field36;36;Boat;Rødby-Puttgarden;HER MAGLER TEKST;4000;0:142:204;0;0;0;0;0;0;0
+field36;36;Boat;Rødby-Puttgarden;Skal du et smuttur til Tyskland fra Lolland og købe stort ind, så er det Rødby-Puttgarden du skal med;4000;0:142:204;0;0;0;0;0;0;0
 field37;37;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
 field38;38;Property;Frederiksberggade;Frederiksberggade ligger i Indre By København. Frederiksberggade blev anlagt efter Københavns brand 1728 i stedet for de derved brændte stræder.;7000;141:69:133;4000;700;3500;10000;22000;26000;30000
-field39;39;Tax;Ekstra SKAT;HER MAGLER TEKST;2000;199:234:70;0;0;0;0;0;0;0
+field39;39;Tax;Ekstra SKAT;Her skal du betale ekstra skat;2000;199:234:70;0;0;0;0;0;0;0
 field40;40;Property;Rådhuspladsen;Rådhuspladsen er i dag et af de mest befærdede steder i hovedstaden. Omkring 60000 biler passere dagligt Rådhuspladsen.;8000;141:69:133;4000;1000;4000;12000;28000;34000;40000
 FieldNumber_Index;0;;;;;;;;;;;;
 FieldType_Index;1;;;;;;;;;;;;
