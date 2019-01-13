@@ -1,5 +1,6 @@
 package controller;
 
+import gui_fields.GUI_Player;
 import gui_tests.PlayerTest;
 import model.board.Field;
 import model.cup.Cup;
