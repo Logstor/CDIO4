@@ -25,6 +25,7 @@ public class MainControl {
     private Deck deck;
     
     private HashMap<String, String> messageMap;
+
     /*
     ------------------------ Constructors ------------------------
      */
