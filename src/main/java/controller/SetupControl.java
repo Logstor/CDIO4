@@ -61,26 +61,25 @@ public class SetupControl {
 		// tokenColors[3] = Color.GREEN; tokenColors[4] = Color.YELLOW; tokenColors[5] = Color.BLUE;
 
 		ArrayList<String> tokenColorsString = new ArrayList<>();
-		tokenColorsString.add("BLACK"); tokenColorsString.add("WHITE"); tokenColorsString.add("RED");
-		tokenColorsString.add("GREEN"); tokenColorsString.add("YELLOW"); tokenColorsString.add("BLUE");
+		tokenColorsString.add("Sort"); tokenColorsString.add("Hvid"); tokenColorsString.add("Rød");
+		tokenColorsString.add("Grøn"); tokenColorsString.add("Gul"); tokenColorsString.add("Blå");
 
 		for (int i = 0; i < players.length; i++) {
 		String name = guiController.getUserString(messageMap.get("NamePlayer") + " " + Integer.toString(i+1));
 
-			String chosenToken = guiController.getUserChoice("Vælg en farve til din spillerbrik:", tokenColorsString);
+			String chosenTokenColor = guiController.getUserChoice("Vælg en farve til din spillerbrik:", tokenColorsString);
 			for (int j = 0; j < tokenColorsString.size(); j++) {
-				if (tokenColorsString.get(j).equals(chosenToken)) {
+				if (tokenColorsString.get(j).equals(chosenTokenColor)) {
 					tokenColorsString.remove(j);
 				}
 			}
+			Color tokenColor = stringToColorSwitch(chosenTokenColor);
 
-			Player player = new Player(name, chosenToken, 30000, 0);
+			Player player = new Player(name, tokenColor, 30000, 0);
 			players[i]=(player);
-			guiController.showMessage(messageMap.get("TokenSelected") + chosenToken);
+			guiController.showMessage(messageMap.get("TokenSelected") + " " + chosenTokenColor.toLowerCase());
 		}
 
-		
-		
 		return players;
 	}
     
@@ -91,5 +90,34 @@ public class SetupControl {
 	{
 		Reader reader = new Reader("boardV1.csv", ";");
 		reader.readFileIntoHashMap(boardInfo);
+	}
+
+	private Color stringToColorSwitch (String colorString) {
+    	Color colorFromString;
+
+    	switch (colorString) {
+			case "Sort":
+				colorFromString = Color.BLACK;
+				break;
+			case "Hvid":
+				colorFromString = Color.WHITE;
+				break;
+			case "Rød":
+				colorFromString = Color.RED;
+				break;
+			case "Grøn":
+				colorFromString = Color.GREEN;
+				break;
+			case "Gul":
+				colorFromString = Color.YELLOW;
+				break;
+			case "Blå":
+				colorFromString = Color.BLUE;
+				break;
+			default:
+				colorFromString = Color.PINK;
+				break;
+		}
+    	return colorFromString;
 	}
 }
