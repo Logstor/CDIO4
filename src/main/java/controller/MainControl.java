@@ -1,11 +1,11 @@
 package controller;
 
 import model.board.Board;
+import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
 import view.gui.Gui;
 
-import java.awt.*;
 import java.util.HashMap;
 
 /**
@@ -22,6 +22,7 @@ public class MainControl {
     private Board board;
     private Player[] players;
     private Cup cup;
+    private Deck deck;
     
     private HashMap<String, String> messageMap;
     /*
@@ -31,6 +32,7 @@ public class MainControl {
     public MainControl ()
 	{
 		board = new Board();
+		deck = new Deck();
     	messageMap = new HashMap<>();
     	cup = new Cup();
 	}
@@ -72,6 +74,7 @@ public class MainControl {
 		// Creating the board with all Fields
 		SetupControl setupControl = new SetupControl();
 		setupControl.boardCreator(board);
+		setupControl.deckCreator(deck);
 		setupControl.messageMapCreator(messageMap);
 		gui = new Gui(board.getBoard());
 		guiController = new GuiController(gui);

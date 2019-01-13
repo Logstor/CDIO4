@@ -2,6 +2,8 @@ package controller;
 
 import model.board.Board;
 import model.board.BoardManager;
+import model.chancecard.Deck;
+import model.chancecard.DeckManager;
 import model.player.Player;
 import model.reader.Reader;
 import view.gui.Gui;
@@ -20,6 +22,7 @@ public class SetupControl {
     --------------------------- Fields ---------------------------
      */
     private HashMap<String, String> boardInfo;
+    private HashMap<String,String> chanceCardInfo;
     private final int STARTINGMONEY = 30000;
     private final int STARTINGPOSITION = 0;
 
@@ -30,6 +33,7 @@ public class SetupControl {
     public SetupControl()
 	{
 		boardInfo = new HashMap<>();
+		chanceCardInfo = new HashMap<>();
 	}
     /*
     ------------------------- Properties -------------------------
@@ -90,6 +94,14 @@ public class SetupControl {
             guiController.addPlayer(p);
         }
     }
+
+    public void deckCreator (Deck deck) {
+    	loadChanceCardInfo();
+
+		DeckManager deckManager = new DeckManager();
+		deckManager.setupBeck(chanceCardInfo,deck);
+
+	}
     
     /*
     ----------------------- Support Methods ----------------------
@@ -98,6 +110,11 @@ public class SetupControl {
 	{
 		Reader reader = new Reader("boardV1.csv", ";");
 		reader.readFileIntoHashMap(boardInfo);
+	}
+
+	private void loadChanceCardInfo() {
+    	Reader reader = new Reader("chanceCardV1.csv", ";");
+    	reader.readFileIntoHashMap(chanceCardInfo);
 	}
 
 	private Color stringToColorSwitch (String colorString) {
