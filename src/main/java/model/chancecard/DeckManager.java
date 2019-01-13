@@ -14,7 +14,6 @@ public class DeckManager {
     -------------------------- Fields --------------------------
      */
 
-    private String lineSplitter;
     private int noOfCardsInDeck;
 
     private int cardTypes_Index;
@@ -26,7 +25,6 @@ public class DeckManager {
     private int relMoving_Index;
 
     private HashMap<String, String> deckInfoMap;
-
     
     /*
     ----------------------- Constructor -------------------------
@@ -35,8 +33,7 @@ public class DeckManager {
     public DeckManager() {
         deckInfoMap = new HashMap<>();
     }
-    
-    
+
     /*
     ------------------------ Properties -------------------------
      */
@@ -66,28 +63,20 @@ public class DeckManager {
 
     private void deckInfoMapIntoDeck (Deck deck) {
 
-        String tempCardTypes;
-        String tempCardText;
-        int tempMoneyToTransfer;
-        int tempTaxHousePrice;
-        int tempTaxHotelPrice;
-        int tempAbsFieldNo;
-        int tempRelMoving;
-
         ChanceCardAdder chanceCardAdder = new ChanceCardAdder(deck.getChanceCardDeck());
 
         for (int i = 1; i<=noOfCardsInDeck;i++) {
 
             String line = deckInfoMap.get("card" + i);
-            String[] chanceCardInfo = line.split(lineSplitter);
+            String[] chanceCardInfo = line.split(";");
 
-            tempCardTypes = chanceCardInfo[cardTypes_Index];
-            tempCardText = chanceCardInfo[cardText_Index];
-            tempMoneyToTransfer = Integer.parseInt(chanceCardInfo[moneyToTransfer_Index]);
-            tempTaxHousePrice = Integer.parseInt(chanceCardInfo[taxHousePrice_Index]);
-            tempTaxHotelPrice = Integer.parseInt(chanceCardInfo[taxHotelPrice_Index]);
-            tempAbsFieldNo = Integer.parseInt(chanceCardInfo[absFieldNo_Index]);
-            tempRelMoving = Integer.parseInt(chanceCardInfo[relMoving_Index]);
+            String tempCardTypes = chanceCardInfo[cardTypes_Index];
+            String tempCardText = chanceCardInfo[cardText_Index];
+            int tempMoneyToTransfer = Integer.parseInt(chanceCardInfo[moneyToTransfer_Index]);
+            int tempTaxHousePrice = Integer.parseInt(chanceCardInfo[taxHousePrice_Index]);
+            int tempTaxHotelPrice = Integer.parseInt(chanceCardInfo[taxHotelPrice_Index]);
+            int tempAbsFieldNo = Integer.parseInt(chanceCardInfo[absFieldNo_Index]);
+            int tempRelMoving = Integer.parseInt(chanceCardInfo[relMoving_Index]);
 
             chanceCardAdder.addChanceCardFromCardType(tempCardTypes,tempCardText,tempMoneyToTransfer,tempTaxHousePrice,
                     tempTaxHotelPrice,tempAbsFieldNo,tempRelMoving);
@@ -103,7 +92,6 @@ public class DeckManager {
 
     private void setupInformationVariables (HashMap<String,String> hashMapWithDeckInfo) {
 
-        lineSplitter = hashMapWithDeckInfo.get("lineSplitter");
         noOfCardsInDeck = Integer.parseInt(hashMapWithDeckInfo.get("noOfCardsInDeck"));
 
         cardTypes_Index = Integer.parseInt(hashMapWithDeckInfo.get("CardTypes_Index"));
