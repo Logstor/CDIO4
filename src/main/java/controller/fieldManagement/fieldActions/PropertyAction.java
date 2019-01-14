@@ -1,7 +1,9 @@
-package controller.fieldManagement;
+package controller.fieldManagement.fieldActions;
 
 import controller.GuiController;
+import controller.fieldManagement.FieldAction;
 import model.board.Field;
+import model.board.fields.PropertyField;
 import model.player.Player;
 
 import java.util.HashMap;
@@ -9,24 +11,21 @@ import java.util.HashMap;
 /**
  * @author Alfred Röttger Rydahl
  */
-public abstract class FieldAction {
+public class PropertyAction extends FieldAction {
 
 	/*
     ---------------------------------- Fields ----------------------------------
      */
 
-	protected GuiController guiController;
-	protected Player player;
-	protected HashMap<String, String> messageMap;
+	private PropertyField field;
     
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public FieldAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
-		this.guiController = guiController;
-		this.player = player;
-		this.messageMap = messageMap;
+	public PropertyAction(GuiController guiController, Player player, HashMap<String, String> messageMap, PropertyField field) {
+		super(guiController, player, messageMap);
+		this.field = field;
 	}
 
 	/*
@@ -37,8 +36,11 @@ public abstract class FieldAction {
     ---------------------------- Public Methods --------------------------------
      */
 
-    public abstract void action ();
-    
+	@Override
+	public void action() {
+
+	}
+
     /*
     ----------------------------- Support Methods ------------------------------
      */

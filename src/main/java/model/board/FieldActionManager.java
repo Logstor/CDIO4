@@ -37,22 +37,22 @@ public class FieldActionManager {
 
         switch(field.getFieldType())
         {
-            case "Property":
+            case Property:
                 propertyFieldAction(player, (PropertyField)field, guiController, messageMap);
                 break;
-            case "Start":
+            case Start:
                 break;
-            case "ChanceCard":
+            case ChanceCard:
                 break;
-            case "Tax":
+            case Tax:
                 break;
-            case "Prison":
+            case Prison:
                 break;
-            case "Boat":
+            case Boat:
                 break;
-            case "Parking":
+            case Parking:
                 break;
-            case "Brewery":
+            case Brewery:
                 break;
         }
 
