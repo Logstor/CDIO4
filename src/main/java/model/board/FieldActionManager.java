@@ -6,7 +6,6 @@ import model.cup.Cup;
 import model.player.Account;
 import model.player.Player;
 
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.HashMap;
 
 /**
@@ -128,7 +127,7 @@ public class FieldActionManager {
 
         int rentFromNoOfHouses;
 
-        switch (currentField.getNoOfHouseOnPropery()) {
+        switch (currentField.getNoOfHousesOnProperty()) {
             case 0:
                 rentFromNoOfHouses = currentField.getFieldRent();
                 break;

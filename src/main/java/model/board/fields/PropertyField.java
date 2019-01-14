@@ -17,7 +17,7 @@ public class PropertyField extends Field {
      */
 
     private int fieldHousePrice;
-    private int noOfHouseOnPropery = 0;
+    private int noOfHousesOnProperty = 0;
     private int fieldRent;
     private int field1HouseRent;
     private int field2HouseRent;
@@ -108,12 +108,12 @@ public class PropertyField extends Field {
         this.field5HouseRent = field5HouseRent;
     }
 
-    public int getNoOfHouseOnPropery() {
-        return noOfHouseOnPropery;
+    public int getNoOfHousesOnProperty() {
+        return noOfHousesOnProperty;
     }
 
-    public void setNoOfHouseOnPropery(int noOfHouseOnPropery) {
-        this.noOfHouseOnPropery = noOfHouseOnPropery;
+    public void setNoOfHousesOnProperty(int noOfHousesOnProperty) {
+        this.noOfHousesOnProperty = noOfHousesOnProperty;
     }
 
     // </editor-folder>
