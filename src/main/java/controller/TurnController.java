@@ -100,10 +100,10 @@ public class TurnController {
     }
 
     //om playeren skal ha penge skal checkes INDEN han bliver flyttet.
-    private void passingStart(Player player, Cup cup) {
-        int i = ((player.getPosition())+(cup.getCupValue()));
-        if (i>39) {
+    private void passingStart(Player player, GuiController guiController) {
+        if (postTotalPosition<preTotalPosition) {
             player.getAccount().updateBalance(4000);
+            guiController.showMessage("You passed start and gain 4000");
         }
     }
 
