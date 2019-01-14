@@ -1,6 +1,7 @@
 package controller;
 
 import model.board.Board;
+import model.board.FieldActionManager;
 import model.cup.Cup;
 import model.cup.Die;
 import model.game.Turn;
@@ -18,7 +19,7 @@ public class TurnController {
     /*
     -------------------------- Fields --------------------------
      */
-    
+    private FieldActionManager fieldActionManager;
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
     
@@ -26,8 +27,9 @@ public class TurnController {
     ----------------------- Constructor -------------------------
      */
     
-    public TurnController () {
-
+    public TurnController ()
+    {
+        fieldActionManager = new FieldActionManager();
     }
     
     /*

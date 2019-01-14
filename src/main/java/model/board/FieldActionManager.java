@@ -91,6 +91,7 @@ public class FieldActionManager {
         //region Pay Rent
         else
         {
+            guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", property.getFieldOwner().getName()));
             // Update both players balance
             property.getFieldOwner().updateBalance(property.getFieldRent());
             player.updateBalance(property.getFieldRent());
