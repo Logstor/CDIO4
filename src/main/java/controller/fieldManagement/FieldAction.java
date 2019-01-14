@@ -3,7 +3,7 @@ package controller.fieldManagement;
 /**
  * @author Alfred Röttger Rydahl
  */
-public class FieldController {
+public abstract class FieldAction {
 
 	/*
     ---------------------------------- Fields ----------------------------------
