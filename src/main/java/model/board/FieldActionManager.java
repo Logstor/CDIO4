@@ -1,8 +1,11 @@
 package model.board;
 
 import controller.GuiController;
+import model.board.fields.PropertyField;
 import model.player.Account;
 import model.player.Player;
+
+import java.util.HashMap;
 
 /**
  * @author Nikolaj Tscharn Wassmann
@@ -67,8 +70,32 @@ public class FieldActionManager {
 
     }
 
-    private void propertyFieldAction (Player player, int position){
+    /**
+     *
+     * @param player
+     * @param property
+     * @param position
+     * @param guiController
+     * @param messageMap
+     */
+    private void propertyFieldAction (Player player, PropertyField property, int position, GuiController guiController,
+                                      HashMap<String, String> messageMap)
+    {
+        //region Buying Sequence
+        if (property.getFieldOwner() == null)
+        {
 
+        }
+        //endregion
+
+        //region Pay Rent
+        else
+        {
+            // Update both players balance
+            property.getFieldOwner().updateBalance(property.getFieldRent());
+            player.updateBalance(property.getFieldRent());
+        }
+        //endregion
     }
 
 

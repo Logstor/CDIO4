@@ -49,10 +49,37 @@ public class PropertyField extends Field {
     ------------------------ Properties -------------------------
      */
 
-    // <editor-folder desc="Properties"
+    //region Properties
 
+    public int getFieldHousePrice() {
+        return fieldHousePrice;
+    }
 
-    // </editor-folder>
+    public int getFieldRent() {
+        return fieldRent;
+    }
+
+    public int getField1HouseRent() {
+        return field1HouseRent;
+    }
+
+    public int getField2HouseRent() {
+        return field2HouseRent;
+    }
+
+    public int getField3HouseRent() {
+        return field3HouseRent;
+    }
+
+    public int getField4HouseRent() {
+        return field4HouseRent;
+    }
+
+    public int getField5HouseRent() {
+        return field5HouseRent;
+    }
+
+    //endregion
     
     /*
     ---------------------- Public Methods -----------------------
