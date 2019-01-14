@@ -42,7 +42,7 @@ public class StartField extends Field {
      */
     
     public void fieldAction (Player player) {
-        actionText="Du passer start og modtager 4000 kr.";
+        actionText="Du er landet på start og modtager 4000 kr.";
     }
     public void fieldAction (Player player, Cup cup) {}
     

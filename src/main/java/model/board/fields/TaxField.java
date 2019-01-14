@@ -41,7 +41,6 @@ public class TaxField extends Field {
      */
     
     public void fieldAction (Player player) {
-        player.getAccount().updateBalance(-4000);
 
     }
 
