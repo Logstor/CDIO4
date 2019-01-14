@@ -4,6 +4,8 @@ import controller.GuiController;
 import model.player.Account;
 import model.player.Player;
 
+import java.util.HashMap;
+
 /**
  * @author Nikolaj Tscharn Wassmann
  * @date 09-01-2019
@@ -16,6 +18,7 @@ public class FieldActionManager {
     */
 
     private Field field;
+
 
 
 
@@ -43,9 +46,37 @@ public class FieldActionManager {
         }
     }
 
-    private void boatFieldAction(Player player, GuiController guiController){
+    private void boatFieldAction(Player player, GuiController guiController, HashMap <String, String> messageMap, Field field){
 
+        if(field.getFieldNo() == 6 || field.getFieldNo()==16 || field.getFieldNo()== 26 || field.getFieldNo()==36) {
+            if (field.getFieldOwner() == null) {
+                guiController.showMessage(messageMap.get("BoatMessage"));
+                guiController.getUserButton2("Vil du købe dette felt for: " + field.getFieldCost(), "Ja", "Nej");
+                if (true) {
+                    player.updateBalance(field.getFieldCost());
+                    player.setBoatsOwned(+1);
+                }
+            }
+            if(field.getFieldOwner() != null){
+                switch(player.getBoatsOwned()){
+                    case 1: player.updateBalance(-500);
+                    guiController.showMessage(field.getFieldOwner() + messageMap.get("BoatsOwned1"));
+                    field.getFieldOwner().updateBalance(+500);
 
+                    case 2: player.updateBalance(-1000);
+                    guiController.showMessage(messageMap.get("BoatsOwned2"));
+                    field.getFieldOwner().updateBalance(+1000);
+
+                    case 3: player.updateBalance(-2000);
+                    guiController.showMessage(messageMap.get("BoatsOwned3"));
+                    field.getFieldOwner().updateBalance(+2000);
+
+                    case 4: player.updateBalance(-4000);
+                    guiController.showMessage(messageMap.get("BoatsOwned4"));
+                    field.getFieldOwner().updateBalance(+4000);
+                }
+            }
+        }
 
     }
 
