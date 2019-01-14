@@ -93,7 +93,8 @@ Aint in use
 
     @Test
     public void getPosition() {
-        Player player = new Player("Test", Color.blue, 3000,5);
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.updatePosition(5);
         assertEquals(player.getPosition(),5);
     }
 
