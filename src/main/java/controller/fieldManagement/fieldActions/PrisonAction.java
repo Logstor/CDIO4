@@ -20,7 +20,7 @@ public class PrisonAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public PrisonAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
+	public PrisonAction(Player player, HashMap<String, String> messageMap,GuiController guiController) {
 		super(player,messageMap,guiController);
 	}
 

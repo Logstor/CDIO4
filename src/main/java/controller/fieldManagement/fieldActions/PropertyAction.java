@@ -23,7 +23,7 @@ public class PropertyAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public PropertyAction(GuiController guiController, Player player, HashMap<String, String> messageMap, PropertyField field) {
+	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController) {
 		super(player,messageMap,guiController);
 		this.field = field;
 	}
