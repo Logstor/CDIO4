@@ -22,6 +22,7 @@ public class TurnController {
     private FieldActionManager fieldActionManager;
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
+    private int prePosition, postPosition;
     
     /*
     ----------------------- Constructor -------------------------
@@ -54,7 +55,6 @@ public class TurnController {
 
 		fieldActionManager.fieldAction(player, board.getBoard()[player.getPosition()], guiController, messageMap);
 	}
-
 
     /*
     ---------------------- Support Methods ----------------------
@@ -89,7 +89,6 @@ public class TurnController {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
             for (int i = 0; i<=finalPosition; i++) {
                 try {

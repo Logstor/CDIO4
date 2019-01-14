@@ -8,6 +8,7 @@ import model.player.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Alfred Röttger Rydahl
@@ -131,7 +132,8 @@ public class Gui {
     }
 
     public void setDice (int die1Value, int die2Value) {
-        gui.setDice(die1Value,1,die2Value,1);
+        Random generator = new Random();
+        gui.setDice(die1Value, generator.nextInt(90),die2Value,generator.nextInt(90));
     }
 
     //<editor-fold desc="Chancecard Methods">
