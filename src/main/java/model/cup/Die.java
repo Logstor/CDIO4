@@ -76,7 +76,10 @@ public class Die {
 
         faceValue = generator.nextInt(sides)+1; // Random number om model.die with DIESIDES
     }
-    
+
+    public int toInteger () {
+        return faceValue;
+    }
     /*
     ---------------------- Support Methods ----------------------
      */

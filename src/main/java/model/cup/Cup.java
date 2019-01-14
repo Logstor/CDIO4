@@ -70,6 +70,8 @@ public class Cup {
 	public void setDies(Die[] dies) { this.dies = dies; }
 
 
+
+
 	// </editor-folder>
     
     /*

@@ -130,6 +130,10 @@ public class Gui {
         gui.setDie(faceValue);
     }
 
+    public void setDice (int die1Value, int die2Value) {
+        gui.setDice(die1Value,1,die2Value,1);
+    }
+
     //<editor-fold desc="Chancecard Methods">
 
     /**

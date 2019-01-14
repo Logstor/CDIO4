@@ -131,6 +131,9 @@ public class GuiController {
 
         gui.setDie(value);
     }
+    public void showDice (int die1Value, int die2Value) {
+        gui.setDice(die1Value,die2Value);
+    }
 
     public void getTextColor(Color color) {
 
