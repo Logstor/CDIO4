@@ -77,10 +77,13 @@ public class GuiController {
         gui.setChanceCard(cardText);
     }
 
-    public void getUserButton2(String message, String button1, String button2) {
+    public String getUserButton2(String message, String button1, String button2) {
 
+        String choosen;
         //Display a message to the user and awaits response
-        gui.getUserChoice(message, button1, button2);
+        choosen=gui.getUserChoice(message, button1, button2);
+
+        return choosen;
     }
 
     public void getUserButton1 (String message, String button){

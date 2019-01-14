@@ -20,7 +20,7 @@ public class ParkingAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public ParkingAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
+	public ParkingAction(Player player, HashMap<String, String> messageMap, GuiController guiController) {
 		super(player,messageMap,guiController);
 	}
 

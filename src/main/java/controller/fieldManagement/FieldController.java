@@ -1,8 +1,10 @@
 package controller.fieldManagement;
 
 import controller.GuiController;
+import controller.fieldManagement.fieldActions.BoatAction;
 import controller.fieldManagement.fieldActions.TaxAction;
 import model.board.Field;
+import model.board.fields.BoatField;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
@@ -18,6 +20,7 @@ public class FieldController {
      */
 	private Field currentField;
 	private TaxAction taxAction;
+	private BoatAction boatAction;
     
     /*
     ------------------------------ Constructors --------------------------------
@@ -27,6 +30,7 @@ public class FieldController {
         this.currentField = currentField;
 
         taxAction = new TaxAction(player,messageMap,guiController,currentField);
+        boatAction = new BoatAction(player,messageMap,guiController,currentField);
 
     }
 
@@ -34,8 +38,8 @@ public class FieldController {
     ------------------------------ Properties ----------------------------------
      */
 
-    public void doFieldAction(Player player, Field field, GuiController guiController,
-                            HashMap<String, String> messageMap) {
+    public void doFieldActionByFieldType(Field field) {
+
         //region Find Field Type
 
         switch (field.getFieldType()) {
@@ -51,6 +55,7 @@ public class FieldController {
             case Prison:
                 break;
             case Boat:
+                boatAction.action();
                 break;
             case Parking:
                 break;

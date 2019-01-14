@@ -20,7 +20,7 @@ public class StartAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public StartAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
+	public StartAction(Player player, HashMap<String, String> messageMap,GuiController guiController) {
 		super(player,messageMap,guiController);
 	}
 
