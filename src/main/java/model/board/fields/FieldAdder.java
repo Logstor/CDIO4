@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
 
 import java.awt.*;
 
@@ -38,9 +39,9 @@ public class FieldAdder {
     ---------------------- Public Methods -----------------------
      */
     
-    public void addFieldFromFieldType (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor,
+    public void addFieldFromFieldType (int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor,
                                        int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent, int field3HouseRent,
-                                       int field4HouseRent,int field5HouseRent) {
+                                       int field4HouseRent, int field5HouseRent) {
 
         switch (fieldType) {
             case Property:
@@ -85,11 +86,11 @@ public class FieldAdder {
     ---------------------- Support Methods ----------------------
      */
 
-    private void addStartField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addStartField (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new StartField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addPropertyField(int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor,
+    private void addPropertyField(int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor,
                                   int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent,
                                   int field3HouseRent, int field4HouseRent, int field5HouseRent) {
 
@@ -98,27 +99,27 @@ public class FieldAdder {
                 field4HouseRent, field5HouseRent);
     }
 
-    private void addTaxField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addTaxField (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new TaxField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addBoatField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addBoatField (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new BoatField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addBreweryField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addBreweryField (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new BreweryField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addChanceField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addChanceField (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new ChanceField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addParkingField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addParkingField (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new ParkingField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addPrisonField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addPrisonField (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new PrisonField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
