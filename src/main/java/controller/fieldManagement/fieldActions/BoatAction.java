@@ -20,10 +20,11 @@ public class BoatAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public BoatAction(GuiController guiController, Player player, Field field, HashMap<String, String> messageMap) {
-		super(guiController, player, field, messageMap);
+	public BoatAction(GuiController guiController, Player player) {
+		super(guiController, player);
 	}
-    /*
+
+	/*
     ------------------------------ Properties ----------------------------------
      */
 

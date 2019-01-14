@@ -20,10 +20,11 @@ public class TaxAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public TaxAction(GuiController guiController, Player player, Field field, HashMap<String, String> messageMap) {
-		super(guiController, player, field, messageMap);
+	public TaxAction(GuiController guiController, Player player) {
+		super(guiController, player);
 	}
-    /*
+
+	/*
     ------------------------------ Properties ----------------------------------
      */
     

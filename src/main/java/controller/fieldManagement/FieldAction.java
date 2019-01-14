@@ -17,19 +17,14 @@ public abstract class FieldAction {
 
 	protected GuiController guiController;
 	protected Player player;
-	protected Field field;
-	protected HashMap<String, String> messageMap;
     
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public FieldAction(GuiController guiController, Player player, Field field, HashMap<String, String> messageMap)
-	{
+	public FieldAction(GuiController guiController, Player player) {
 		this.guiController = guiController;
 		this.player = player;
-		this.field = field;
-		this.messageMap = messageMap;
 	}
 
     /*

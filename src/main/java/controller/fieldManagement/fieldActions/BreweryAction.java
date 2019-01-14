@@ -20,8 +20,8 @@ public class BreweryAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public BreweryAction(GuiController guiController, Player player, Field field, HashMap<String, String> messageMap) {
-		super(guiController, player, field, messageMap);
+	public BreweryAction(GuiController guiController, Player player) {
+		super(guiController, player);
 	}
 
     /*
