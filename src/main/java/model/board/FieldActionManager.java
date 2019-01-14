@@ -1,6 +1,8 @@
 package model.board;
 
 import controller.GuiController;
+import model.board.fields.PropertyField;
+import model.cup.Cup;
 import model.chancecard.Deck;
 import model.player.Account;
 import model.player.Player;
@@ -28,7 +30,34 @@ public class FieldActionManager {
     --------- Public Methods ----------
     */
 
+    public void fieldAction(Player player, Field field, GuiController guiController,
+                            HashMap<String, String> messageMap)
+    {
+        //region Find Field Type
 
+        switch(field.getFieldType())
+        {
+            case "Property":
+                propertyFieldAction(player, (PropertyField)field, guiController, messageMap);
+                break;
+            case "Start":
+                break;
+            case "ChanceCard":
+                break;
+            case "Tax":
+                break;
+            case "Prison":
+                break;
+            case "Boat":
+                break;
+            case "Parking":
+                break;
+            case "Brewery":
+                break;
+        }
+
+        //endregion
+    }
 
     /*
     --------- Support Methods ---------
@@ -106,13 +135,21 @@ public class FieldActionManager {
 
     }
 
+    private void breweryFieldAction(Player player, Field currentField, Cup cup, GuiController guiController,
+                                    HashMap<String,String> messageMap){
+        if (currentField.getFieldOwner() == null) {
+            buyField(player,currentField,guiController);
+        } else{
+            int rentFromCupValue = rentFromCupValue(player, cup);
+            payManuelRent(player,rentFromCupValue,currentField,guiController,messageMap);
+        }
+
     /**
      *
      * @param player Player
      * @param guiController GuiController
      * @param deck Deck
      */
-
     private void chanceFieldAction (Player player, GuiController guiController, Deck deck) {
 
         guiController.displayCCard();
@@ -138,8 +175,36 @@ public class FieldActionManager {
         }
     }
 
-    private void propertyFieldAction (Player player, GuiController guiController){
+    /**
+     *
+     * @param player
+     * @param property
+     * @param guiController
+     * @param messageMap
+     */
+    private void propertyFieldAction (Player player, PropertyField property, GuiController guiController,
+                                      HashMap<String, String> messageMap)
+    {
+        //region Buying Sequence
+        if (property.getFieldOwner() == null)
+        {
+            buyField(player, property, guiController);
+        }
+        //endregion
 
+        //region Pay Rent
+        else
+        {
+            guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", property.getFieldOwner().getName()));
+
+            // Update both players balance
+            property.getFieldOwner().updateBalance(property.getFieldRent());
+            guiController.updateBalance(property.getFieldOwner(), property.getFieldOwner().getAccount().getBalance());
+
+            player.updateBalance(-property.getFieldRent());
+            guiController.updateBalance(player, player.getAccount().getBalance());
+        }
+        //endregion
     }
 
 
@@ -151,4 +216,83 @@ public class FieldActionManager {
 
     }
 
+    private void buyField (Player player, Field currentField, GuiController guiController) {
+
+        currentField.setFieldOwner(player);
+        player.updateBalance(-currentField.fieldCost);
+        guiController.setOwner(player,currentField);
+
+    }
+
+    private void payManuelRent (Player player, int manuelRent, Field currentField, GuiController guiController,
+                                HashMap<String,String> messageMap) {
+
+        player.updateBalance(-manuelRent);
+        currentField.getFieldOwner().updateBalance(manuelRent);
+        guiController.showMessage(messageMap.get("PayRentTo") + " " +currentField.getFieldOwner().getName() + ".\n" +
+                messageMap.get("RentIs")+ " " + manuelRent);
+    }
+
+    private void payPropertyRent (Player player, PropertyField currentField, GuiController guiController,
+                          HashMap<String,String> messageMap) {
+
+        int rentFromNoOfHouses = rentFromNoOfHouses(currentField);
+
+        player.updateBalance(-rentFromNoOfHouses);
+        currentField.getFieldOwner().updateBalance(rentFromNoOfHouses);
+        guiController.showMessage(messageMap.get("PayRentTo") + " " +currentField.getFieldOwner().getName() + ".\n" +
+                messageMap.get("RentIs") + rentFromNoOfHouses);
+    }
+
+    /**
+     * Finds the right rent from the number of houses on the PropertyField.
+     * @param currentField PropertyField:
+     * @return Int: Correct rent.
+     */
+    private int rentFromNoOfHouses (PropertyField currentField) {
+
+        int rentFromNoOfHouses;
+
+        switch (currentField.getNoOfHousesOnProperty()) {
+            case 0:
+                rentFromNoOfHouses = currentField.getFieldRent();
+                break;
+            case 1:
+                rentFromNoOfHouses = currentField.getField1HouseRent();
+                break;
+            case 2:
+                rentFromNoOfHouses = currentField.getField2HouseRent();
+                break;
+            case 3:
+                rentFromNoOfHouses = currentField.getField3HouseRent();
+                break;
+            case 4:
+                rentFromNoOfHouses = currentField.getField4HouseRent();
+                break;
+            case 5:
+                rentFromNoOfHouses = currentField.getField5HouseRent();
+                break;
+            default:
+                rentFromNoOfHouses = 0;
+                break;
+
+        }
+        return rentFromNoOfHouses;
+    }
+
+    private int rentFromCupValue (Player player, Cup cup) {
+        int rentFromCupValue;
+        switch (player.getBreweriesOwned()) {
+            case 1:
+                rentFromCupValue = 100*cup.getCupValue();
+                break;
+            case 2:
+                rentFromCupValue = 200*cup.getCupValue();
+                break;
+            default:
+                rentFromCupValue = 0;
+                break;
+        }
+        return rentFromCupValue;
+    }
 }

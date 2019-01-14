@@ -96,7 +96,6 @@ public class MainControl {
 
 	private void turn (Player player) {
 	    TurnController turnController = new TurnController();
-	    turnController.raffleCup(player, guiController,messageMap,cup);
-	    turnController.moveRaffle(player,board,guiController,messageMap);
+	    turnController.playTurn(player, guiController, messageMap, board, cup);
     }
 }

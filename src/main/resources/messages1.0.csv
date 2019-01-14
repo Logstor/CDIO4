@@ -14,6 +14,7 @@ GetReady;Så er alle vist på plads og spillet kan endelig begynde !
 YourTurn;Så er det din tur
 PressToRoll;Tryk for at slå med terningerne..
 YouRolled;Du slog
+PropertyFirst;Du er landet på %name's ejendom.
 BoatMessage; Du er landet på et bådfelt. For hvert bådfelt du ejer vil huslejen bliver fordoblet.
 BoatsOwned1; Ejer et båd felt og derfor skal du betale 500
 BoatsOwned2; Ejer to båd felter og derfor skal du betale 1000

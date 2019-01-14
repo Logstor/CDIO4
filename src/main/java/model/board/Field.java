@@ -37,7 +37,7 @@ public abstract class Field {
         this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
-        fieldOwner =null;
+        fieldOwner = new Player("s", Color.BLACK, 30000,0);
     }
     
     /*

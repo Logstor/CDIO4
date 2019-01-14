@@ -8,6 +8,7 @@ import model.player.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Alfred Röttger Rydahl
@@ -131,7 +132,8 @@ public class Gui {
     }
 
     public void setDice (int die1Value, int die2Value) {
-        gui.setDice(die1Value,1,die2Value,1);
+        Random generator = new Random();
+        gui.setDice(die1Value, generator.nextInt(90),die2Value,generator.nextInt(90));
     }
 
     //<editor-fold desc="Chancecard Methods">
@@ -292,8 +294,7 @@ public class Gui {
     public void setFieldOwner (Player player, Field theField) {
 
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
-        ((GUI_Street)fields[theField.getFieldNo()]).setOwnerName(player.getName());
-
+        ((GUI_Street)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
     }
 
     /**
