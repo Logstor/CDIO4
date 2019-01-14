@@ -20,8 +20,8 @@ public class ChanceAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public ChanceAction(GuiController guiController, Player player) {
-		super(guiController, player);
+	public ChanceAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
+		super(guiController, player, messageMap);
 	}
 
 	/*

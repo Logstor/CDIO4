@@ -18,18 +18,14 @@ public class PropertyAction extends FieldAction {
      */
 
 	private PropertyField field;
-	private HashMap<String, String> messageMap;
     
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public PropertyAction(GuiController guiController, Player player, PropertyField field,
-						  HashMap<String, String> messageMap)
-	{
-		super(guiController, player);
+	public PropertyAction(GuiController guiController, Player player, HashMap<String, String> messageMap, PropertyField field) {
+		super(guiController, player, messageMap);
 		this.field = field;
-		this.messageMap = messageMap;
 	}
 
 	/*
