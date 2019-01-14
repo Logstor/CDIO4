@@ -1,6 +1,7 @@
 package model.board;
 
 import controller.GuiController;
+import model.chancecard.Deck;
 import model.player.Account;
 import model.player.Player;
 
@@ -56,52 +57,65 @@ public class FieldActionManager {
      */
     private void boatFieldAction(Player player, GuiController guiController, HashMap <String, String> messageMap, Field field){
 
-        // If a player lands on either of the boat fields, runs the code:
-        if(field.getFieldNo() == 6 || field.getFieldNo()==16 || field.getFieldNo()== 26 || field.getFieldNo()==36) {
-            //region Check if the boatField has a owner, if false:
-            if (field.getFieldOwner() == null) {
-                guiController.showMessage(messageMap.get("BoatMessage"));
-                guiController.getUserButton2("Vil du købe dette felt for: " + field.getFieldCost(), "Ja", "Nej");
+        //region Check if the boatField has a owner, if false:
+        if (field.getFieldOwner() == null) {
+            guiController.showMessage(messageMap.get("BoatMessage"));
+            guiController.getUserButton2("Vil du købe dette felt for: " + field.getFieldCost(), "Ja", "Nej");
 
-                // If the player wants to purchase a boatField
-                if (true) {
-                    player.updateBalance(field.getFieldCost());
-                    player.setBoatsOwned(+1);
-                }
+            // If the player wants to purchase a boatField
+            if (true) {
+                player.updateBalance(field.getFieldCost());
+                player.setBoatsOwned(+1);
             }
-            //endregion
+        }
+        //endregion
 
-            //region if the there is a owner to the boat field:
-            if(field.getFieldOwner() != null){
-                // runs the different cases if the player owns 1,2,3, or 4 boats:
-                switch(player.getBoatsOwned()){
-                    case 1: player.updateBalance(-500);
+        //region if the there is a owner to the boat field:
+        if (field.getFieldOwner() != null) {
+            // runs the different cases if the player owns 1,2,3, or 4 boats:
+            switch (player.getBoatsOwned()) {
+                case 1:
+                    player.updateBalance(-500);
                     guiController.showMessage(field.getFieldOwner() + messageMap.get("BoatsOwned1"));
                     field.getFieldOwner().updateBalance(+500);
+                    break;
 
-                    case 2: player.updateBalance(-1000);
+                case 2:
+                    player.updateBalance(-1000);
                     guiController.showMessage(messageMap.get("BoatsOwned2"));
                     field.getFieldOwner().updateBalance(+1000);
+                    break;
 
-                    case 3: player.updateBalance(-2000);
+                case 3:
+                    player.updateBalance(-2000);
                     guiController.showMessage(messageMap.get("BoatsOwned3"));
                     field.getFieldOwner().updateBalance(+2000);
+                    break;
 
-                    case 4: player.updateBalance(-4000);
+                case 4:
+                    player.updateBalance(-4000);
                     guiController.showMessage(messageMap.get("BoatsOwned4"));
                     field.getFieldOwner().updateBalance(+4000);
-                }
+                    break;
             }
-            //endregion
         }
-
+        //endregion
     }
 
     private void breweryFieldAction(Player player, GuiController guiController){
 
     }
 
-    private void chanceFieldAction (Player player, GuiController guiController) {
+    /**
+     *
+     * @param player Player
+     * @param guiController GuiController
+     * @param deck Deck
+     */
+
+    private void chanceFieldAction (Player player, GuiController guiController, Deck deck) {
+
+        guiController.displayCCard();
 
     }
 
