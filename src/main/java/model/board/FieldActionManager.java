@@ -46,18 +46,34 @@ public class FieldActionManager {
         }
     }
 
+    /**
+     * This method lets you purchase a boatField, and pays the rent if the field is already owned by a player.
+     * The rent is transfered to the player, that owns the field
+     * @param player Player
+     * @param guiController GuiController
+     * @param messageMap Hashmap
+     * @param field Field
+     */
     private void boatFieldAction(Player player, GuiController guiController, HashMap <String, String> messageMap, Field field){
 
+        // If a player lands on either of the boat fields, runs the code:
         if(field.getFieldNo() == 6 || field.getFieldNo()==16 || field.getFieldNo()== 26 || field.getFieldNo()==36) {
+            //region Check if the boatField has a owner, if false:
             if (field.getFieldOwner() == null) {
                 guiController.showMessage(messageMap.get("BoatMessage"));
                 guiController.getUserButton2("Vil du købe dette felt for: " + field.getFieldCost(), "Ja", "Nej");
+
+                // If the player wants to purchase a boatField
                 if (true) {
                     player.updateBalance(field.getFieldCost());
                     player.setBoatsOwned(+1);
                 }
             }
+            //endregion
+
+            //region if the there is a owner to the boat field:
             if(field.getFieldOwner() != null){
+                // runs the different cases if the player owns 1,2,3, or 4 boats:
                 switch(player.getBoatsOwned()){
                     case 1: player.updateBalance(-500);
                     guiController.showMessage(field.getFieldOwner() + messageMap.get("BoatsOwned1"));
@@ -76,6 +92,7 @@ public class FieldActionManager {
                     field.getFieldOwner().updateBalance(+4000);
                 }
             }
+            //endregion
         }
 
     }
