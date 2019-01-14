@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.cup.*;
 import model.player.Player;
 
@@ -29,9 +30,9 @@ public class PropertyField extends Field {
     ----------------------- Constructor -------------------------
      */
     
-    public PropertyField (int fieldNo, Field.FieldType fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor,
-    int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent, int field3HouseRent,
-    int field4HouseRent,int field5HouseRent) {
+    public PropertyField (int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor,
+                          int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent, int field3HouseRent,
+                          int field4HouseRent, int field5HouseRent) {
         super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
         forSale = true;

@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.cup.*;
 import model.player.Player;
 
@@ -22,7 +23,7 @@ public class BreweryField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public BreweryField(int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    public BreweryField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
         forSale = true;
     }

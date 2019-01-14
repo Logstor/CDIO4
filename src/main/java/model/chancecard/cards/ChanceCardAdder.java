@@ -1,6 +1,7 @@
 package model.chancecard.cards;
 
 import model.chancecard.ChanceCard;
+import model.chancecard.ChanceCardEnum;
 
 import java.util.ArrayList;
 
@@ -39,17 +40,17 @@ public class ChanceCardAdder {
     ---------------------- Public Methods -----------------------
      */
     
-    public void addChanceCardFromCardType (String cardTypes, String cardText, int moneyToTransfer,
-                        int taxHousePrice, int taxHotelPrice, int absFieldNo, int relMoving) {
+    public void addChanceCardFromCardType (ChanceCardEnum cardTypes, String cardText, int moneyToTransfer,
+                                           int taxHousePrice, int taxHotelPrice, int absFieldNo, int relMoving) {
 
         switch (cardTypes) {
-            case "moneyBank":
+            case moneyBank:
                 addMoneyBank(cardTypes,cardText,moneyToTransfer);
                 break;
-            case "MovingAbs":
+            case movingAbs:
                 addMovingAbs(cardTypes,cardText,absFieldNo);
                 break;
-            case "MovingRel":
+            case movingRel:
                 addMovingRel(cardTypes,cardText,relMoving);
                 break;
             default:
@@ -61,15 +62,15 @@ public class ChanceCardAdder {
     ---------------------- Support Methods ----------------------
      */
 
-    private void addMoneyBank (String cardType, String cardText, int moneyToTransfer) {
+    private void addMoneyBank (ChanceCardEnum cardType, String cardText, int moneyToTransfer) {
         tempListOfCards.add(new MoneyBank(cardType, cardText, moneyToTransfer));
     }
 
-    private void addMovingAbs (String cardType, String cardText, int absFieldNo) {
+    private void addMovingAbs (ChanceCardEnum cardType, String cardText, int absFieldNo) {
         tempListOfCards.add(new MovingAbs(cardType, cardText, absFieldNo));
     }
 
-    private void addMovingRel (String cardType, String cardText, int relMoving) {
+    private void addMovingRel (ChanceCardEnum cardType, String cardText, int relMoving) {
         tempListOfCards.add(new MovingAbs(cardType, cardText, relMoving));
     }
 }

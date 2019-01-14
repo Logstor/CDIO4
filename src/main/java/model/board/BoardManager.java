@@ -76,7 +76,7 @@ public class BoardManager {
             String[] fieldInfo = line.split(";");
 
             int tempFieldNo = Integer.parseInt(fieldInfo[fieldNumber_Index]);
-            String  tempFieldType = fieldInfo[fieldType_Index];
+            FieldTypeEnum tempFieldType = FieldTypeEnum.valueOf(fieldInfo[fieldType_Index]);
             String tempFieldName = fieldInfo[fieldName_Index];
             String tempFieldDescription = fieldInfo[fieldDescription_Index];
             int tempFieldCost = Integer.parseInt(fieldInfo[fieldCost_Index]);
