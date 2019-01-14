@@ -38,40 +38,40 @@ public class FieldAdder {
     ---------------------- Public Methods -----------------------
      */
     
-    public void addFieldFromFieldType (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor,
+    public void addFieldFromFieldType (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor,
                                        int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent, int field3HouseRent,
                                        int field4HouseRent,int field5HouseRent) {
 
         switch (fieldType) {
-            case "Property":
+            case Property:
                 addPropertyField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor, fieldRent, fieldHousePrice,
                         field1HouseRent, field2HouseRent, field3HouseRent, field4HouseRent, field5HouseRent);
                 break;
-            case "Start":
+            case Start:
                 addStartField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
-            case "Tax":
+            case Tax:
                 addTaxField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
-            case "Boat":
+            case Boat:
                 addBoatField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
-            case "Brewery":
+            case Brewery:
                 addBreweryField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
-            case "ChanceCard":
+            case ChanceCard:
                 addChanceField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
-            case "Parking":
+            case Parking:
                 addParkingField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
 
-            case "Prison":
+            case Prison:
                 addPrisonField(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
                 break;
             default:
@@ -85,11 +85,11 @@ public class FieldAdder {
     ---------------------- Support Methods ----------------------
      */
 
-    private void addStartField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addStartField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new StartField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addPropertyField(int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor,
+    private void addPropertyField(int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor,
                                   int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent,
                                   int field3HouseRent, int field4HouseRent, int field5HouseRent) {
 
@@ -98,27 +98,27 @@ public class FieldAdder {
                 field4HouseRent, field5HouseRent);
     }
 
-    private void addTaxField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addTaxField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new TaxField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addBoatField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addBoatField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new BoatField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addBreweryField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addBreweryField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new BreweryField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addChanceField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addChanceField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new ChanceField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addParkingField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addParkingField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new ParkingField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 
-    private void addPrisonField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    private void addPrisonField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         tempArrayOfFields[fieldIndexCounter] = new PrisonField(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
     }
 

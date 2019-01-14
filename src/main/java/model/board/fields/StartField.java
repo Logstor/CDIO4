@@ -22,7 +22,7 @@ public class StartField extends Field {
     ----------------------- Constructor -------------------------
      */
     
-    public StartField (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    public StartField (int fieldNo, Field.FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
         forSale = false;

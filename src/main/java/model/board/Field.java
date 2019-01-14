@@ -11,13 +11,14 @@ import java.awt.*;
  */
 public abstract class Field {
 
+    public enum FieldType {Prison, Start, Boat, ChanceCard, Brewery, Property, Tax, Parking}
+
     /*
     -------------------------- Fields --------------------------
      */
-
     protected int fieldNo;
     protected String fieldName;
-    protected String fieldType;
+    protected FieldType fieldType;
     protected int fieldCost;
     protected Color fieldColor;
     protected String actionText;
@@ -29,15 +30,16 @@ public abstract class Field {
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    protected Field (int fieldNo, FieldType fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
 
         this.fieldNo=fieldNo;
-        this.fieldType=fieldType;
+        this.fieldType= fieldType;
         this.fieldName = fieldName;
         this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
-        fieldOwner =null;
+        fieldOwner = null;
+
     }
     
     /*
@@ -62,11 +64,11 @@ public abstract class Field {
         this.fieldName = fieldName;
     }
 
-    public String getFieldType() {
+    public FieldType getFieldType() {
         return fieldType;
     }
 
-    public void setFieldType(String fieldType) {
+    public void setFieldType(FieldType fieldType) {
         this.fieldType = fieldType;
     }
 
