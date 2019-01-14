@@ -21,6 +21,7 @@ public class TurnController {
     
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
+    private int prePosition, postPosition;
     
     /*
     ----------------------- Constructor -------------------------
@@ -51,15 +52,17 @@ public class TurnController {
         die1Value = cup.getDies()[0].getFaceValue();
         die2Value = cup.getDies()[1].getFaceValue();
         preTotalPosition = player.getTotalPosition();
+        prePosition = player.getPosition();
 
         guiController.showDice(die1Value,die2Value);
         player.updatePosition(cupValue);
         postTotalPosition = player.getTotalPosition();
+        postPosition = player.getPosition();
 
     }
 
     public void moveRaffle (Player player, Board board, GuiController guiController, HashMap<String,String> messageMap) {
-        movingPlayerForwardGUI(player,board,guiController,preTotalPosition,postTotalPosition);
+        movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition);
         guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
     }
 
@@ -76,7 +79,6 @@ public class TurnController {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
             for (int i = 0; i<=finalPosition; i++) {
                 try {
