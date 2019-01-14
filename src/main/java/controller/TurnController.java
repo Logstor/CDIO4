@@ -1,6 +1,7 @@
 package controller;
 
 import model.board.Board;
+import model.board.FieldActionManager;
 import model.cup.Cup;
 import model.cup.Die;
 import model.game.Turn;
@@ -18,7 +19,7 @@ public class TurnController {
     /*
     -------------------------- Fields --------------------------
      */
-    
+    private FieldActionManager fieldActionManager;
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
     private int prePosition, postPosition;
@@ -27,8 +28,9 @@ public class TurnController {
     ----------------------- Constructor -------------------------
      */
     
-    public TurnController () {
-
+    public TurnController ()
+    {
+        fieldActionManager = new FieldActionManager();
     }
     
     /*
@@ -43,32 +45,40 @@ public class TurnController {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
-    public void raffleCup (Player player, GuiController guiController, HashMap<String,String> messageMap, Cup cup) {
-        guiController.showMessage(messageMap.get("YourTurn") + " " + player.getName() + ".\n" +
-                messageMap.get("PressToRoll"));
 
-        cupValue = cup.cupRoll();
-        die1Value = cup.getDies()[0].getFaceValue();
-        die2Value = cup.getDies()[1].getFaceValue();
-        preTotalPosition = player.getTotalPosition();
-        prePosition = player.getPosition();
+    public void playTurn (Player player, GuiController guiController,
+						  HashMap<String,String> messageMap, Board board, Cup cup)
+	{
+		raffleCup(player, guiController, messageMap, cup);
 
-        guiController.showDice(die1Value,die2Value);
-        player.updatePosition(cupValue);
-        postTotalPosition = player.getTotalPosition();
-        postPosition = player.getPosition();
+		moveRaffle(player, board, guiController, messageMap);
 
-    }
-
-    public void moveRaffle (Player player, Board board, GuiController guiController, HashMap<String,String> messageMap) {
-        movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition);
-        guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
-    }
+		fieldActionManager.fieldAction(player, board.getBoard()[player.getPosition()], guiController, messageMap);
+	}
 
     /*
     ---------------------- Support Methods ----------------------
      */
+
+    private void raffleCup (Player player, GuiController guiController, HashMap<String,String> messageMap, Cup cup) {
+		guiController.showMessage(messageMap.get("YourTurn") + " " + player.getName() + ".\n" +
+				messageMap.get("PressToRoll"));
+
+		cupValue = cup.cupRoll();
+		die1Value = cup.getDies()[0].getFaceValue();
+		die2Value = cup.getDies()[1].getFaceValue();
+		preTotalPosition = player.getTotalPosition();
+
+		guiController.showDice(die1Value,die2Value);
+		player.updatePosition(cupValue);
+		postTotalPosition = player.getTotalPosition();
+
+	}
+
+	private void moveRaffle (Player player, Board board, GuiController guiController, HashMap<String,String> messageMap) {
+		movingPlayerForwardGUI(player,board,guiController,preTotalPosition,postTotalPosition);
+		guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
+	}
 
     private void movingPlayerForwardGUI(Player player, Board board, GuiController guiController, int prePosition, int finalPosition) {
         if (prePosition>finalPosition) {

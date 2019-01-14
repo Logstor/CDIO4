@@ -294,8 +294,7 @@ public class Gui {
     public void setFieldOwner (Player player, Field theField) {
 
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
-        ((GUI_Street)fields[theField.getFieldNo()]).setOwnerName(player.getName());
-
+        ((GUI_Street)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
     }
 
     /**

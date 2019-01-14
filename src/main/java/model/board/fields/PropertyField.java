@@ -50,7 +50,7 @@ public class PropertyField extends Field {
     ------------------------ Properties -------------------------
      */
 
-    // <editor-folder desc="Properties"
+    //region Properties
 
     public int getFieldHousePrice() {
         return fieldHousePrice;
@@ -116,7 +116,7 @@ public class PropertyField extends Field {
         this.noOfHousesOnProperty = noOfHousesOnProperty;
     }
 
-    // </editor-folder>
+    //endregion
     
     /*
     ---------------------- Public Methods -----------------------
