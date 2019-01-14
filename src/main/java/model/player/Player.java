@@ -1,6 +1,9 @@
 package model.player;
 
+import model.board.Field;
+
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @author Rasmus Sander Larsen
@@ -21,6 +24,7 @@ public class Player {
     private int totalPosition;
     private int position;
     private Token token;
+    private ArrayList<Field> ownedFields;
     
     /*
     ----------------------- Constructor -------------------------
@@ -31,6 +35,7 @@ public class Player {
         account = new Account(initialBalance);
         totalPosition= startingPosition;
         token = new Token(color);
+        ownedFields = new ArrayList<>();
     }
     
     /*
@@ -133,9 +138,35 @@ public class Player {
         totalPosition += moves;
         position = totalPosition % 40;
     }
-    
+
+    public void addFieldToOwnedFields (Field ownedField) {
+        ownedFields.add(ownedField);
+    }
+
+    public void removeFieldFromOwnedFields (Field removableField) {
+        ownedFields.remove(removableField);
+    }
+
+    // TODO: SKAL DER TILFØJES VÆRDIEN AF SPILLERENS HUSE ?
+    public int calPlayerTotalValue () {
+        int totalPlayerValue = 0;
+        // Value of Account
+        totalPlayerValue += account.getBalance();
+        // Value of OwnedFields
+        totalPlayerValue += valueOfOwnedFields()*0.5;
+
+        return totalPlayerValue;
+    }
     /*
     ---------------------- Support Methods ----------------------
      */
+
+    private int valueOfOwnedFields () {
+        int valueOfOwnedFields = 0;
+        for (Field f : ownedFields) {
+            valueOfOwnedFields += f.getFieldCost();
+        }
+        return valueOfOwnedFields;
+    }
 
 }

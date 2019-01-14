@@ -21,7 +21,7 @@ public class ChanceAction extends FieldAction {
      */
 
 	public ChanceAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
-		super(guiController, player, messageMap);
+		super(player,messageMap,guiController);
 	}
 
 	/*

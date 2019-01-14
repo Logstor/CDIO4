@@ -21,7 +21,7 @@ public class StartAction extends FieldAction {
      */
 
 	public StartAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
-		super(guiController, player, messageMap);
+		super(player,messageMap,guiController);
 	}
 
 	/*

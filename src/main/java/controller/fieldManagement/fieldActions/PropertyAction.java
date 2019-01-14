@@ -24,7 +24,7 @@ public class PropertyAction extends FieldAction {
      */
 
 	public PropertyAction(GuiController guiController, Player player, HashMap<String, String> messageMap, PropertyField field) {
-		super(guiController, player, messageMap);
+		super(player,messageMap,guiController);
 		this.field = field;
 	}
 

@@ -21,7 +21,7 @@ public class ParkingAction extends FieldAction {
      */
 
 	public ParkingAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
-		super(guiController, player, messageMap);
+		super(player,messageMap,guiController);
 	}
 
 	/*
