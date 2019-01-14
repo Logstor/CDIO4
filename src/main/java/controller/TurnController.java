@@ -44,30 +44,41 @@ public class TurnController {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
-    public void raffleCup (Player player, GuiController guiController, HashMap<String,String> messageMap, Cup cup) {
-        guiController.showMessage(messageMap.get("YourTurn") + " " + player.getName() + ".\n" +
-                messageMap.get("PressToRoll"));
 
-        cupValue = cup.cupRoll();
-        die1Value = cup.getDies()[0].getFaceValue();
-        die2Value = cup.getDies()[1].getFaceValue();
-        preTotalPosition = player.getTotalPosition();
+    public void playTurn (Player player, GuiController guiController,
+						  HashMap<String,String> messageMap, Board board, Cup cup)
+	{
+		raffleCup(player, guiController, messageMap, cup);
 
-        guiController.showDice(die1Value,die2Value);
-        player.updatePosition(cupValue);
-        postTotalPosition = player.getTotalPosition();
+		moveRaffle(player, board, guiController, messageMap);
 
-    }
+		fieldActionManager.fieldAction(player, board.getBoard()[player.getPosition()], guiController, messageMap);
+	}
 
-    public void moveRaffle (Player player, Board board, GuiController guiController, HashMap<String,String> messageMap) {
-        movingPlayerForwardGUI(player,board,guiController,preTotalPosition,postTotalPosition);
-        guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
-    }
 
     /*
     ---------------------- Support Methods ----------------------
      */
+
+    private void raffleCup (Player player, GuiController guiController, HashMap<String,String> messageMap, Cup cup) {
+		guiController.showMessage(messageMap.get("YourTurn") + " " + player.getName() + ".\n" +
+				messageMap.get("PressToRoll"));
+
+		cupValue = cup.cupRoll();
+		die1Value = cup.getDies()[0].getFaceValue();
+		die2Value = cup.getDies()[1].getFaceValue();
+		preTotalPosition = player.getTotalPosition();
+
+		guiController.showDice(die1Value,die2Value);
+		player.updatePosition(cupValue);
+		postTotalPosition = player.getTotalPosition();
+
+	}
+
+	private void moveRaffle (Player player, Board board, GuiController guiController, HashMap<String,String> messageMap) {
+		movingPlayerForwardGUI(player,board,guiController,preTotalPosition,postTotalPosition);
+		guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
+	}
 
     private void movingPlayerForwardGUI(Player player, Board board, GuiController guiController, int prePosition, int finalPosition) {
         if (prePosition>finalPosition) {

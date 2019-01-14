@@ -24,7 +24,34 @@ public class FieldActionManager {
     --------- Public Methods ----------
     */
 
+    public void fieldAction(Player player, Field field, GuiController guiController,
+                            HashMap<String, String> messageMap)
+    {
+        //region Find Field Type
 
+        switch(field.getFieldType())
+        {
+            case "Property":
+                propertyFieldAction(player, (PropertyField)field, guiController, messageMap);
+                break;
+            case "Start":
+                break;
+            case "ChanceCard":
+                break;
+            case "Tax":
+                break;
+            case "Prison":
+                break;
+            case "Boat":
+                break;
+            case "Parking":
+                break;
+            case "Brewery":
+                break;
+        }
+
+        //endregion
+    }
 
     /*
     --------- Support Methods ---------
@@ -74,17 +101,16 @@ public class FieldActionManager {
      *
      * @param player
      * @param property
-     * @param position
      * @param guiController
      * @param messageMap
      */
-    private void propertyFieldAction (Player player, PropertyField property, int position, GuiController guiController,
+    private void propertyFieldAction (Player player, PropertyField property, GuiController guiController,
                                       HashMap<String, String> messageMap)
     {
         //region Buying Sequence
         if (property.getFieldOwner() == null)
         {
-
+            buyField(player, property, guiController);
         }
         //endregion
 
@@ -92,9 +118,13 @@ public class FieldActionManager {
         else
         {
             guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", property.getFieldOwner().getName()));
+
             // Update both players balance
             property.getFieldOwner().updateBalance(property.getFieldRent());
-            player.updateBalance(property.getFieldRent());
+            guiController.updateBalance(property.getFieldOwner(), property.getFieldOwner().getAccount().getBalance());
+
+            player.updateBalance(-property.getFieldRent());
+            guiController.updateBalance(player, player.getAccount().getBalance());
         }
         //endregion
     }
@@ -106,6 +136,14 @@ public class FieldActionManager {
         if(player.getPosition()==0){
             guiController.updateBalance(player, +4000);
         }
+
+    }
+
+    private void buyField (Player player, Field currentField, GuiController guiController) {
+
+        currentField.setFieldOwner(player);
+        player.updateBalance(-currentField.fieldCost);
+        guiController.setOwner(player,currentField);
 
     }
 
