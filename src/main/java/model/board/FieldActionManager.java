@@ -47,11 +47,13 @@ public class FieldActionManager {
 
     }
 
-    private void breweryFieldAction(Player player, Field currentField, Cup cup, GuiController guiController){
+    private void breweryFieldAction(Player player, Field currentField, Cup cup, GuiController guiController,
+                                    HashMap<String,String> messageMap){
         if (currentField.getFieldOwner() == null) {
             buyField(player,currentField,guiController);
         } else{
-
+            int rentFromCupValue = rentFromCupValue(player, cup);
+            payManuelRent(player,rentFromCupValue,currentField,guiController,messageMap);
         }
 
     }
@@ -152,5 +154,21 @@ public class FieldActionManager {
 
         }
         return rentFromNoOfHouses;
+    }
+
+    private int rentFromCupValue (Player player, Cup cup) {
+        int rentFromCupValue;
+        switch (player.getBreweriesOwned()) {
+            case 1:
+                rentFromCupValue = 100*cup.getCupValue();
+                break;
+            case 2:
+                rentFromCupValue = 200*cup.getCupValue();
+                break;
+            default:
+                rentFromCupValue = 0;
+                break;
+        }
+        return rentFromCupValue;
     }
 }
