@@ -17,6 +17,7 @@ public class PropertyField extends Field {
      */
 
     private int fieldHousePrice;
+    private int noOfHousesOnProperty = 0;
     private int fieldRent;
     private int field1HouseRent;
     private int field2HouseRent;
@@ -49,10 +50,73 @@ public class PropertyField extends Field {
     ------------------------ Properties -------------------------
      */
 
-    // <editor-folder desc="Properties"
+    //region Properties
 
+    public int getFieldHousePrice() {
+        return fieldHousePrice;
+    }
 
-    // </editor-folder>
+    public void setFieldHousePrice(int fieldHousePrice) {
+        this.fieldHousePrice = fieldHousePrice;
+    }
+
+    public int getFieldRent() {
+        return fieldRent;
+    }
+
+    public void setFieldRent(int fieldRent) {
+        this.fieldRent = fieldRent;
+    }
+
+    public int getField1HouseRent() {
+        return field1HouseRent;
+    }
+
+    public void setField1HouseRent(int field1HouseRent) {
+        this.field1HouseRent = field1HouseRent;
+    }
+
+    public int getField2HouseRent() {
+        return field2HouseRent;
+    }
+
+    public void setField2HouseRent(int field2HouseRent) {
+        this.field2HouseRent = field2HouseRent;
+    }
+
+    public int getField3HouseRent() {
+        return field3HouseRent;
+    }
+
+    public void setField3HouseRent(int field3HouseRent) {
+        this.field3HouseRent = field3HouseRent;
+    }
+
+    public int getField4HouseRent() {
+        return field4HouseRent;
+    }
+
+    public void setField4HouseRent(int field4HouseRent) {
+        this.field4HouseRent = field4HouseRent;
+    }
+
+    public int getField5HouseRent() {
+        return field5HouseRent;
+    }
+
+    public void setField5HouseRent(int field5HouseRent) {
+        this.field5HouseRent = field5HouseRent;
+    }
+
+    public int getNoOfHousesOnProperty() {
+        return noOfHousesOnProperty;
+    }
+
+    public void setNoOfHousesOnProperty(int noOfHousesOnProperty) {
+        this.noOfHousesOnProperty = noOfHousesOnProperty;
+    }
+
+    //endregion
     
     /*
     ---------------------- Public Methods -----------------------

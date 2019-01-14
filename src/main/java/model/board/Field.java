@@ -40,6 +40,7 @@ public abstract class Field {
         this.fieldColor=fieldColor;
         fieldOwner = null;
 
+
     }
     
     /*

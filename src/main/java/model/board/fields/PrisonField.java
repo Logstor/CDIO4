@@ -45,7 +45,7 @@ public class PrisonField extends Field {
             actionText = "Du er på besøg i fængslet. Dit ophold er gratis.";
         } else if(fieldNo==31) {
             actionText = "Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 11";
-            player.setInPrison(true);
+            player.setPrisonStat(1);
             player.setPosition(10);
         }
 

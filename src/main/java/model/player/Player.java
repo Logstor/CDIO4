@@ -17,7 +17,7 @@ public class Player {
     private boolean hasLost = false;
     private int BreweriesOwned = 0;
     private int BoatsOwned = 0;
-    private boolean inPrison;
+    private int prisonStat = 0;
     private int totalPosition;
     private int position;
     private Token token;
@@ -38,6 +38,7 @@ public class Player {
      */
 
     // <editor-folder desc="Properties"
+
 
     public boolean isHasLost() {
         return hasLost;
@@ -79,12 +80,12 @@ public class Player {
         BoatsOwned = boatsOwned;
     }
 
-    public boolean isInPrison() {
-        return inPrison;
+    public int getPrisonStat (){
+        return prisonStat;
     }
 
-    public void setInPrison(boolean inPrison) {
-        this.inPrison = inPrison;
+    public void setPrisonStat(int prisonStat) {
+        this.prisonStat = prisonStat;
     }
 
     public int getPosition() {
