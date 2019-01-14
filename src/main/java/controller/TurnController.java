@@ -44,7 +44,9 @@ public class TurnController {
      */
     
     public void raffleCup (Player player, GuiController guiController, HashMap<String,String> messageMap, Cup cup) {
-        guiController.showMessage(messageMap.get("PressToRoll"));
+        guiController.showMessage(messageMap.get("YourTurn") + " " + player.getName() + ".\n" +
+                messageMap.get("PressToRoll"));
+
         cupValue = cup.cupRoll();
         die1Value = cup.getDies()[0].getFaceValue();
         die2Value = cup.getDies()[1].getFaceValue();
@@ -53,6 +55,7 @@ public class TurnController {
         guiController.showDice(die1Value,die2Value);
         player.updatePosition(cupValue);
         postTotalPosition = player.getTotalPosition();
+
     }
 
     public void moveRaffle (Player player, Board board, GuiController guiController, HashMap<String,String> messageMap) {

@@ -10,5 +10,7 @@ GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
 NamePlayer;Indtast navnet på spiller
 PickColorForToken;Vælg en farve til din spillerbrik:
 TokenSelected;Du valgt
-GetReady;Så er alle vist på plads og spillet kan endelig begynder !
+GetReady;Så er alle vist på plads og spillet kan endelig begynde !
+YourTurn;Så er det din tur
 PressToRoll;Tryk for at slå med terningerne..
+YouRolled;Du slog

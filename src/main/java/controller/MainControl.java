@@ -54,10 +54,13 @@ public class MainControl {
 			// Set the game up, and display
 			setup();
 
-			for (int i = 0; i < players.length; i++) {
-				Player currentPlayer = players[i];
-				turn(currentPlayer);
-			}
+			do {
+                for (Player currentPlayer : players) {
+
+                    turn(currentPlayer);
+
+                }
+            } while (players.length>1);
 
 			return 0;
 		}
