@@ -99,5 +99,13 @@ public class TurnController {
         }
     }
 
+    //om playeren skal ha penge skal checkes INDEN han bliver flyttet.
+    private void passingStart(Player player, Cup cup) {
+        int i = ((player.getPosition())+(cup.getCupValue()));
+        if (i>39) {
+            player.getAccount().updateBalance(4000);
+        }
+    }
+
 
 }
