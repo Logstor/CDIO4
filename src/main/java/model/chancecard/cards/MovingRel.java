@@ -1,7 +1,7 @@
 package model.chancecard.cards;
 
 import model.chancecard.ChanceCard;
-import model.chancecard.ChanceCardEnum;
+import model.chancecard.CardTypeEnum;
 import model.player.Player;
 
 /**
@@ -21,7 +21,7 @@ public class MovingRel extends ChanceCard {
     ----------------------- Constructor -------------------------
      */
     
-    public MovingRel (ChanceCardEnum cardType, String title, int relMovement) {
+    public MovingRel (CardTypeEnum cardType, String title, int relMovement) {
         super(cardType, title);
         this.relMovement = relMovement;
     }

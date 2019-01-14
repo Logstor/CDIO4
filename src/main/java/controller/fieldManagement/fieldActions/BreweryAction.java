@@ -21,7 +21,7 @@ public class BreweryAction extends FieldAction {
      */
 
 	public BreweryAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
-		super(guiController, player, messageMap);
+		super(player,messageMap,guiController);
 	}
 
 	/*

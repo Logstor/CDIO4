@@ -1,7 +1,7 @@
 package model.chancecard.cards;
 
 import model.chancecard.ChanceCard;
-import model.chancecard.ChanceCardEnum;
+import model.chancecard.CardTypeEnum;
 import model.player.Player;
 
 /**
@@ -20,7 +20,7 @@ public class MoneyBank extends ChanceCard {
     ----------------------- Constructor -------------------------
      */
     
-    public MoneyBank (ChanceCardEnum cardType, String cardText, int moneyToTransfer) {
+    public MoneyBank (CardTypeEnum cardType, String cardText, int moneyToTransfer) {
         super(cardType, cardText);
         this.moneyToTransfer = moneyToTransfer;
 

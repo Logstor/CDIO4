@@ -21,7 +21,7 @@ public class BoatAction extends FieldAction {
      */
 
 	public BoatAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
-		super(guiController, player, messageMap);
+		super(player,messageMap,guiController);
 	}
 
 	/*

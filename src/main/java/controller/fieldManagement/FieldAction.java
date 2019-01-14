@@ -15,6 +15,7 @@ public abstract class FieldAction {
     ---------------------------------- Fields ----------------------------------
      */
 
+	protected Field currentField;
 	protected GuiController guiController;
 	protected Player player;
 	protected HashMap<String, String> messageMap;
@@ -23,10 +24,10 @@ public abstract class FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public FieldAction(GuiController guiController, Player player, HashMap<String, String> messageMap) {
-		this.guiController = guiController;
+    public FieldAction(Player player, HashMap<String, String> messageMap,GuiController guiController) {
 		this.player = player;
 		this.messageMap = messageMap;
+		this.guiController = guiController;
 	}
 
 	/*

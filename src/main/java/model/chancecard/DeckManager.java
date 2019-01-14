@@ -69,7 +69,7 @@ public class DeckManager {
 
             String line = deckInfoMap.get("card" + i);
             String[] chanceCardInfo = line.split(";");
-            ChanceCardEnum tempCardTypes = ChanceCardEnum.valueOf(chanceCardInfo[cardTypes_Index]);
+            CardTypeEnum tempCardTypes = CardTypeEnum.valueOf(chanceCardInfo[cardTypes_Index]);
             String tempCardText = chanceCardInfo[cardText_Index];
             int tempMoneyToTransfer = Integer.parseInt(chanceCardInfo[moneyToTransfer_Index]);
             int tempTaxHousePrice = Integer.parseInt(chanceCardInfo[taxHousePrice_Index]);

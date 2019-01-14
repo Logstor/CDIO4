@@ -1,7 +1,7 @@
 package model.chancecard.cards;
 
 import model.chancecard.ChanceCard;
-import model.chancecard.ChanceCardEnum;
+import model.chancecard.CardTypeEnum;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class ChanceCardAdder {
     ---------------------- Public Methods -----------------------
      */
     
-    public void addChanceCardFromCardType (ChanceCardEnum cardTypes, String cardText, int moneyToTransfer,
+    public void addChanceCardFromCardType (CardTypeEnum cardTypes, String cardText, int moneyToTransfer,
                                            int taxHousePrice, int taxHotelPrice, int absFieldNo, int relMoving) {
 
         switch (cardTypes) {
@@ -62,15 +62,15 @@ public class ChanceCardAdder {
     ---------------------- Support Methods ----------------------
      */
 
-    private void addMoneyBank (ChanceCardEnum cardType, String cardText, int moneyToTransfer) {
+    private void addMoneyBank (CardTypeEnum cardType, String cardText, int moneyToTransfer) {
         tempListOfCards.add(new MoneyBank(cardType, cardText, moneyToTransfer));
     }
 
-    private void addMovingAbs (ChanceCardEnum cardType, String cardText, int absFieldNo) {
+    private void addMovingAbs (CardTypeEnum cardType, String cardText, int absFieldNo) {
         tempListOfCards.add(new MovingAbs(cardType, cardText, absFieldNo));
     }
 
-    private void addMovingRel (ChanceCardEnum cardType, String cardText, int relMoving) {
+    private void addMovingRel (CardTypeEnum cardType, String cardText, int relMoving) {
         tempListOfCards.add(new MovingAbs(cardType, cardText, relMoving));
     }
 }

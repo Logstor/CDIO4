@@ -63,18 +63,7 @@ public class FieldActionManager {
     --------- Support Methods ---------
      */
 
-    private void taxFieldAction(Player player, Account account, GuiController guiController){
 
-        if(player.getPosition()==5 || player.getPosition()==39) {
-            guiController.showMessage(player + "Du er landet på et skattefelt");
-            guiController.showMessage("Du skal betale 4000 i skat");
-            if (account.getBalance() > 4000) {
-                guiController.updateBalance(player, field.getFieldCost());
-            } else if (account.getBalance() < 4000) {
-                player.setHasLost(true);
-            }
-        }
-    }
 
     /**
      * This method lets you purchase a boatField, and pays the rent if the field is already owned by a player.

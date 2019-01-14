@@ -12,7 +12,7 @@ public abstract class ChanceCard {
     -------------------------- Fields --------------------------
      */
 
-    protected ChanceCardEnum cardType;
+    protected CardTypeEnum cardType;
     protected String cardText;
 
     
@@ -20,7 +20,7 @@ public abstract class ChanceCard {
     ----------------------- Constructor -------------------------
      */
 
-    protected ChanceCard (ChanceCardEnum cardType, String cardText) {
+    protected ChanceCard (CardTypeEnum cardType, String cardText) {
 
         this.cardType=cardType;
         this.cardText = cardText;
@@ -42,11 +42,11 @@ public abstract class ChanceCard {
         this.cardText = cardText;
     }
 
-    public ChanceCardEnum getCardType() {
+    public CardTypeEnum getCardType() {
         return cardType;
     }
 
-    public void setCardType(ChanceCardEnum cardType) {
+    public void setCardType(CardTypeEnum cardType) {
         this.cardType = cardType;
     }
 
