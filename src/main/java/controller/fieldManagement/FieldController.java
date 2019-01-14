@@ -2,10 +2,11 @@ package controller.fieldManagement;
 
 import controller.GuiController;
 import controller.fieldManagement.fieldActions.BoatAction;
+import controller.fieldManagement.fieldActions.BreweryAction;
 import controller.fieldManagement.fieldActions.TaxAction;
 import model.board.Field;
-import model.board.fields.BoatField;
-import model.board.fields.PropertyField;
+import model.board.fields.BreweryField;
+import model.cup.Cup;
 import model.player.Player;
 
 import java.util.HashMap;
@@ -21,16 +22,19 @@ public class FieldController {
 	private Field currentField;
 	private TaxAction taxAction;
 	private BoatAction boatAction;
+	private BreweryAction breweryAction;
     
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-    public FieldController (Field currentField,GuiController guiController, Player player, HashMap<String, String> messageMap) {
+    public FieldController (Field currentField, GuiController guiController, Player player, HashMap<String,
+            String> messageMap, Cup cup) {
         this.currentField = currentField;
 
         taxAction = new TaxAction(player,messageMap,guiController,currentField);
         boatAction = new BoatAction(player,messageMap,guiController,currentField);
+        breweryAction = new BreweryAction(player, messageMap, guiController, cup, currentField);
 
     }
 
@@ -60,6 +64,7 @@ public class FieldController {
             case Parking:
                 break;
             case Brewery:
+                breweryAction.action();
                 break;
         }
     }

@@ -70,12 +70,7 @@ public class FieldActionManager {
 
     private void breweryFieldAction(Player player, Field currentField, Cup cup, GuiController guiController,
                                     HashMap<String,String> messageMap) {
-        if (currentField.getFieldOwner() == null) {
-            buyField(player, currentField, guiController);
-        } else {
-            int rentFromCupValue = rentFromCupValue(player, cup);
-            payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
-        }
+
     }
 
     /**
@@ -149,22 +144,12 @@ public class FieldActionManager {
         }
 
     }
-
     private void buyField (Player player, Field currentField, GuiController guiController) {
 
         currentField.setFieldOwner(player);
         player.updateBalance(-currentField.fieldCost);
         guiController.setOwner(player,currentField);
 
-    }
-
-    private void payManuelRent (Player player, int manuelRent, Field currentField, GuiController guiController,
-                                HashMap<String,String> messageMap) {
-
-        player.updateBalance(-manuelRent);
-        currentField.getFieldOwner().updateBalance(manuelRent);
-        guiController.showMessage(messageMap.get("PayRentTo") + " " +currentField.getFieldOwner().getName() + ".\n" +
-                messageMap.get("RentIs")+ " " + manuelRent);
     }
 
     private void payPropertyRent (Player player, PropertyField currentField, GuiController guiController,
@@ -214,19 +199,4 @@ public class FieldActionManager {
         return rentFromNoOfHouses;
     }
 
-    private int rentFromCupValue (Player player, Cup cup) {
-        int rentFromCupValue;
-        switch (player.getBreweriesOwned()) {
-            case 1:
-                rentFromCupValue = 100*cup.getCupValue();
-                break;
-            case 2:
-                rentFromCupValue = 200*cup.getCupValue();
-                break;
-            default:
-                rentFromCupValue = 0;
-                break;
-        }
-        return rentFromCupValue;
-    }
 }
