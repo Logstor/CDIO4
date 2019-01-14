@@ -46,6 +46,7 @@ public class BoatField extends Field {
             actionText = "Du køber dette felt for " + fieldCost + " pengesedler\n";
             setFieldOwner(player);
             player.updateBalance(-fieldCost);
+            player.setBoatsOwned((player.getBoatsOwned() + 1));
         } else {
             actionText = "Du er landet på "+ fieldOwner + "'s felt \n Du betaler "+ rentByOwnersNoOfBoats()
                     + " pengesedler i husleje til "+ fieldOwner.getName();
