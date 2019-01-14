@@ -53,7 +53,12 @@ public class MainControl {
 		{
 			// Set the game up, and display
 			setup();
-			turn();
+
+			for (int i = 0; i < players.length; i++) {
+				Player currentPlayer = players[i];
+				turn(currentPlayer);
+			}
+
 			return 0;
 		}
 		catch (Exception e)
@@ -86,9 +91,9 @@ public class MainControl {
 		guiController.showMessage(messageMap.get("GetReady"));
 	}
 
-	private void turn () {
+	private void turn (Player player) {
 	    TurnController turnController = new TurnController();
-	    turnController.raffleCup(players[1], guiController,messageMap,cup);
-	    turnController.moveRaffle(players[1],board,guiController,messageMap);
+	    turnController.raffleCup(player, guiController,messageMap,cup);
+	    turnController.moveRaffle(player,board,guiController,messageMap);
     }
 }
