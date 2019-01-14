@@ -136,13 +136,14 @@ public class FieldActionManager {
     }
 
     private void breweryFieldAction(Player player, Field currentField, Cup cup, GuiController guiController,
-                                    HashMap<String,String> messageMap){
+                                    HashMap<String,String> messageMap) {
         if (currentField.getFieldOwner() == null) {
-            buyField(player,currentField,guiController);
-        } else{
+            buyField(player, currentField, guiController);
+        } else {
             int rentFromCupValue = rentFromCupValue(player, cup);
-            payManuelRent(player,rentFromCupValue,currentField,guiController,messageMap);
+            payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
         }
+    }
 
     /**
      *
