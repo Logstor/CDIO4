@@ -100,6 +100,7 @@ public class SetupControl {
 
 		DeckManager deckManager = new DeckManager();
 		deckManager.setupBeck(chanceCardInfo,deck);
+		deck.shuffleDeck(10);
 
 	}
     

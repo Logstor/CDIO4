@@ -64,31 +64,8 @@ public class FieldActionManager {
      */
 
 
-    private void breweryFieldAction(Player player, GuiController guiController){
 
-    }
 
-    private void breweryFieldAction(Player player, Field currentField, Cup cup, GuiController guiController,
-                                    HashMap<String,String> messageMap) {
-        if (currentField.getFieldOwner() == null) {
-            buyField(player, currentField, guiController);
-        } else {
-            int rentFromCupValue = rentFromCupValue(player, cup);
-            payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
-        }
-    }
-
-    /**
-     *
-     * @param player Player
-     * @param guiController GuiController
-     * @param deck Deck
-     */
-    private void chanceFieldAction (Player player, GuiController guiController, Deck deck) {
-
-        guiController.displayCCard();
-
-    }
 
     private void parkingFieldAction (Player player, GuiController guiController) {
         if (player.getPosition()==21) {
