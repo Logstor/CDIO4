@@ -5,6 +5,8 @@ CarColor3;Rød
 CarColor4;Grøn
 CarColor5;Gul
 CarColor6;Blå
+Yes;Ja
+No;Nej
 Welcome;Velkommen til spillet Matador!
 GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
 NamePlayer;Indtast navnet på spiller
@@ -24,8 +26,9 @@ TaxToPay;Og skal derfor betale %tax i SKAT.
 PropertyFirst;Du er landet på %name's ejendom.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
 PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
-BoatMessage; Du er landet på et bådfelt. For hvert bådfelt du ejer vil huslejen bliver fordoblet.
-BoatsOwned1; Ejer et båd felt og derfor skal du betale 500
-BoatsOwned2; Ejer to båd felter og derfor skal du betale 1000
-BoatsOwned3; Ejer tre båd felter og derfor skal du betale 2000
-BoatsOwned4; Ejer alle båd felter og derfor skal du betale 4000
+BoatMessage;Du er landet på et bådfelt. For hvert bådfelt du ejer vil huslejen bliver fordoblet.
+BoatsOwned1;Ejer et båd felt og derfor skal du betale 500
+BoatsOwned2;Ejer to båd felter og derfor skal du betale 1000
+BoatsOwned3;Ejer tre båd felter og derfor skal du betale 2000
+BoatsOwned4;Ejer alle båd felter og derfor skal du betale 4000
+WantToBuy?;Du er landet på et redderi, og det kommer til koste dig %cost. Vil du købe det?
