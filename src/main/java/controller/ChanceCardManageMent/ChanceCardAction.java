@@ -44,7 +44,12 @@ public abstract class ChanceCardAction {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
+
+    /**
+     * This is the method that holds all the logid of the action of a certain ChanceCard and does it.
+     * @param player The Player that the action is done to.
+     * @param currentChanceCard The ChanceCard which action is done.
+     */
     protected abstract void chanceCardAction (Player player, ChanceCard currentChanceCard);
 
     /**

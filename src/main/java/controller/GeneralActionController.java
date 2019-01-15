@@ -4,7 +4,6 @@ import model.board.Board;
 import model.board.Field;
 import model.board.fields.PropertyField;
 import model.player.Player;
-import view.gui.Gui;
 
 /**
  * @author Rasmus Sander Larsen

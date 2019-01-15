@@ -3,14 +3,11 @@ package controller.ChanceCardManageMent.ChanceCardActions;
 import controller.ChanceCardManageMent.ChanceCardAction;
 import controller.GeneralActionController;
 import controller.GuiController;
-import model.chancecard.CardTypeEnum;
 import model.chancecard.ChanceCard;
 import model.chancecard.cards.MoneyBank;
 import model.player.Player;
-import view.gui.Gui;
 
 import java.util.HashMap;
-import java.util.SplittableRandom;
 
 /**
  * @author Rasmus Sander Larsen
@@ -44,7 +41,13 @@ public class MoneyBankAction extends ChanceCardAction {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
+
+    /**
+     * Show "YourDrawedChanceCard" on Gui and sets "ChanceCardTop" and ChanceCardText at GUI ChanceCardField.
+     * Gives or Takes the amount specified in moneyToTransfer:int from ChanceCard (MoneyBank).
+     * @param player The Player that the action is done to.
+     * @param currentChanceCard The ChanceCard which action is done.
+     */
     public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
         showAndSetChanceCardOnGUi(currentChanceCard);
         generalActionController.updatePlayerBalanceInclGui(guiController,player,((MoneyBank) currentChanceCard).getMoneyToTransfer());

@@ -1,12 +1,15 @@
 package controller.fieldManagement;
 
+import controller.ChanceCardManageMent.ChanceCardAction;
+import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.fieldActions.*;
+import model.board.Board;
 import model.board.Field;
-import model.board.fields.BoatField;
-import model.board.fields.PropertyField;
+import model.chancecard.Deck;
+import model.board.fields.BreweryField;
+import model.cup.Cup;
 import model.player.Player;
-
 import java.util.HashMap;
 
 /**
@@ -21,7 +24,6 @@ public class FieldController {
 	private GuiController guiController;
 	private Player player;
 	private HashMap<String, String> messageMap;
-    
     /*
     ------------------------------ Constructors --------------------------------
      */
@@ -58,6 +60,7 @@ public class FieldController {
                 break;
                 
             case ChanceCard:
+                chanceAction.action();
                 break;
                 
             case Tax:
@@ -79,6 +82,7 @@ public class FieldController {
             case Brewery:
 				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController);
 				breweryAction.action();
+
                 break;
         }
     }
