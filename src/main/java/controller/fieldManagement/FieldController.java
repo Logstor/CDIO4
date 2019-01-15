@@ -26,7 +26,7 @@ public class FieldController {
     ------------------------------ Constructors --------------------------------
      */
 
-    public FieldController (Field currentField,GuiController guiController, Player player, HashMap<String, String> messageMap) {
+    public FieldController (Field currentField, GuiController guiController, Player player, HashMap<String, String> messageMap) {
         this.currentField = currentField;
 
         taxAction = new TaxAction(player,messageMap,guiController,currentField);
@@ -38,11 +38,11 @@ public class FieldController {
     ------------------------------ Properties ----------------------------------
      */
 
-    public void doFieldActionByFieldType(Field field) {
+    public void doFieldActionByFieldType() {
 
         //region Find Field Type
 
-        switch (field.getFieldType()) {
+        switch (currentField.getFieldType()) {
             case Property:
                 break;
             case Start:
