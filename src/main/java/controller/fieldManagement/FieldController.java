@@ -1,14 +1,18 @@
 package controller.fieldManagement;
 
+import controller.ChanceCardManageMent.ChanceCardAction;
+import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.fieldActions.BoatAction;
+import controller.fieldManagement.fieldActions.ChanceAction;
 import controller.fieldManagement.fieldActions.BreweryAction;
 import controller.fieldManagement.fieldActions.TaxAction;
+import model.board.Board;
 import model.board.Field;
+import model.chancecard.Deck;
 import model.board.fields.BreweryField;
 import model.cup.Cup;
 import model.player.Player;
-
 import java.util.HashMap;
 
 /**
@@ -22,18 +26,22 @@ public class FieldController {
 	private Field currentField;
 	private TaxAction taxAction;
 	private BoatAction boatAction;
-	private BreweryAction breweryAction;
+	private ChanceAction chanceAction;
+  private BreweryAction breweryAction;
+
     
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-    public FieldController (Field currentField, GuiController guiController, Player player, HashMap<String,
-            String> messageMap, Cup cup) {
+    public FieldController (Field currentField, GuiController guiController, Player player,
+                            HashMap<String,String> messageMap, Board board, Deck deck,Cup cup,
+                            GeneralActionController generalActionController) {
         this.currentField = currentField;
 
         taxAction = new TaxAction(player,messageMap,guiController,currentField);
         boatAction = new BoatAction(player,messageMap,guiController,currentField);
+        chanceAction = new ChanceAction(player,messageMap,guiController,generalActionController,board, deck);
         breweryAction = new BreweryAction(player, messageMap, guiController, cup, currentField);
 
     }
@@ -52,6 +60,7 @@ public class FieldController {
             case Start:
                 break;
             case ChanceCard:
+                chanceAction.action();
                 break;
             case Tax:
                 taxAction.action();
@@ -73,7 +82,9 @@ public class FieldController {
     /*
     ---------------------------- Public Methods --------------------------------
      */
-    
+
+
+
     /*
     ----------------------------- Support Methods ------------------------------
      */

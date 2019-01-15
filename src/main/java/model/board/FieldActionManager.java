@@ -63,28 +63,6 @@ public class FieldActionManager {
     --------- Support Methods ---------
      */
 
-
-    private void breweryFieldAction(Player player, GuiController guiController){
-
-    }
-
-    private void breweryFieldAction(Player player, Field currentField, Cup cup, GuiController guiController,
-                                    HashMap<String,String> messageMap) {
-
-    }
-
-    /**
-     *
-     * @param player Player
-     * @param guiController GuiController
-     * @param deck Deck
-     */
-    private void chanceFieldAction (Player player, GuiController guiController, Deck deck) {
-
-        guiController.displayCCard();
-
-    }
-
     private void parkingFieldAction (Player player, GuiController guiController) {
         if (player.getPosition()==21) {
             guiController.showMessage(player + "Du er landet på Gratis Parkering");

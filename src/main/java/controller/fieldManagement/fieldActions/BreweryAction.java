@@ -33,6 +33,8 @@ public class BreweryAction extends FieldAction {
 	/*
     ------------------------------ Properties ----------------------------------
      */
+
+
     
     /*
     ---------------------------- Public Methods --------------------------------
