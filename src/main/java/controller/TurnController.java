@@ -62,6 +62,8 @@ public class TurnController {
 		
 		FieldController fieldController = new FieldController(board.getBoard()[player.getPosition()], guiController, player, messageMap, cup);
 		fieldController.doFieldActionByFieldType();
+
+		extraTurn(player,guiController,cup,board,messageMap,generalActionController);
 		
 		//endregion
 	}
@@ -95,6 +97,19 @@ public class TurnController {
 		
 		guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
 	}
+
+	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board,
+                           HashMap<String, String>messagemap,GeneralActionController generalActionController ){
+        int die1 = cup.getDies()[0].getFaceValue();
+        int die2 = cup.getDies()[1].getFaceValue();
+
+        if(die1==die2){
+            guiController.showMessage(messagemap.get("ExtraTurn"));
+            playTurn(player,guiController,messagemap,board,cup,generalActionController);
+
+        }
+
+    }
 
 
 
