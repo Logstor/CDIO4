@@ -1,13 +1,9 @@
 package controller.fieldManagement;
 
-import controller.ChanceCardManageMent.ChanceCardAction;
-import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.fieldActions.*;
-import model.board.Board;
 import model.board.Field;
-import model.chancecard.Deck;
-import model.board.fields.BreweryField;
+import model.board.fields.PropertyField;
 import model.cup.Cup;
 import model.player.Player;
 import java.util.HashMap;
@@ -24,20 +20,21 @@ public class FieldController {
 	private GuiController guiController;
 	private Player player;
 	private HashMap<String, String> messageMap;
+	private Cup cup;
     /*
     ------------------------------ Constructors --------------------------------
      */
 	
-	public FieldController(Field currentField, GuiController guiController, Player player, HashMap<String, String> messageMap)
-	{
+	public FieldController(Field currentField, GuiController guiController, Player player, HashMap<String, String> messageMap, Cup cup) {
 		this.currentField = currentField;
 		this.guiController = guiController;
 		this.player = player;
 		this.messageMap = messageMap;
-		
-		//TODO: Hvis vi vil have FieldController til at eksisterer gennem hele spillet, så skal der laves objekter af
-		//TODO: alle Action klasserne. De skal da initialiseres i constructoren og tilføjes, som attributer.
+		this.cup = cup;
 	}
+	
+	//TODO: Hvis vi vil have FieldController til at eksisterer gennem hele spillet, så skal der laves objekter af
+	//TODO: alle Action klasserne. De skal da initialiseres i constructoren og tilføjes, som attributer.
 
     /*
     ------------------------------ Properties ----------------------------------
@@ -60,7 +57,6 @@ public class FieldController {
                 break;
                 
             case ChanceCard:
-                chanceAction.action();
                 break;
                 
             case Tax:
@@ -80,7 +76,7 @@ public class FieldController {
                 break;
                 
             case Brewery:
-				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController);
+				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController, cup, currentField);
 				breweryAction.action();
 
                 break;

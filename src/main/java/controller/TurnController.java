@@ -60,7 +60,7 @@ public class TurnController {
 		
 		//region FieldAction
 		
-		FieldController fieldController = new FieldController(board.getBoard()[player.getPosition()], guiController, player, messageMap);
+		FieldController fieldController = new FieldController(board.getBoard()[player.getPosition()], guiController, player, messageMap, cup);
 		fieldController.doFieldActionByFieldType();
 		
 		//endregion
