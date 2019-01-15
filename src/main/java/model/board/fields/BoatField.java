@@ -42,14 +42,53 @@ public class BoatField extends Field {
      */
 
     public void fieldAction (Player player) {
-
+        if (fieldOwner == null) {
+            actionText = "Du køber dette felt for " + fieldCost + " pengesedler\n";
+            setFieldOwner(player);
+            player.updateBalance(-fieldCost);
+        } else {
+            actionText = "Du er landet på "+ fieldOwner + "'s felt \n Du betaler "+ rentByOwnersNoOfBoats()
+                    + " pengesedler i husleje til "+ fieldOwner.getName();
+            player.updateBalance(-rentByOwnersNoOfBoats());
+            fieldOwner.updateBalance(rentByOwnersNoOfBoats());
+        }
     }
 
-    public void fieldAction (Player player, Cup Cup) {}
+    public void fieldAction(Player player, Cup cup) {
+
+    }
     
     /*
     ---------------------- Support Methods ----------------------
      */
+
+
+    private int rentByOwnersNoOfBoats () {
+        int rent;
+        int noOfBoatsOwned = fieldOwner.getBoatsOwned();
+
+        switch (noOfBoatsOwned) {
+            case 1:
+                rent = 500;
+                break;
+
+            case 2:
+                rent = 1000;
+                break;
+            case 3:
+                rent = 2000;
+                break;
+
+            case 4:
+                rent = 4000;
+                break;
+
+            default:
+                rent = 0;
+                break;
+        }
+        return rent;
+        }
 
 
 }

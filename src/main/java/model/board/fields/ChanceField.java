@@ -1,9 +1,13 @@
 package model.board.fields;
 
+import controller.GuiController;
 import model.board.Field;
 import model.board.FieldTypeEnum;
+import model.chancecard.ChanceCard;
+import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
+import view.gui.Gui;
 
 import java.awt.*;
 
@@ -40,10 +44,21 @@ public class ChanceField extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
+    //Ved ikke hvad jeg skal gøre... :/
+    /*
     public void fieldAction (Player player) {
+        ChanceCard chanceCard;
+        Deck deck = new Deck();
+        GuiController guiController;
+        guiController.showMessage("Du er landet på chancefeltet og trækker et chancekort");
+        chanceCard= deck.drawChanceCard();
+        guiController.setCCard(chanceCard.getCardText());
+        guiController.displayCCard();
 
-        System.out.println("Du er landet på chancefeltet og trækker et chancekort");
+
+    }
+    */
+    public void fieldAction (Player player) {
 
     }
 
