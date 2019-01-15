@@ -65,7 +65,7 @@ public class BoatField extends Field {
 
     private int rentByOwnersNoOfBoats () {
         int rent;
-        int noOfBoatsOwned = fieldOwner.getBoatsOwned();
+        int noOfBoatsOwned = fieldOwner.getNoOfBoatsOwned();
 
         switch (noOfBoatsOwned) {
             case 1:

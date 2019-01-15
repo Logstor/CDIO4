@@ -57,7 +57,7 @@ public class BreweryAction extends FieldAction {
 
 	private int rentFromCupValue (Player player, Cup cup) {
 		int rentFromCupValue;
-		switch (player.getBreweriesOwned()) {
+		switch (player.getNoOfBreweriesOwned()) {
 			case 1:
 				rentFromCupValue = 100*cup.getCupValue();
 				break;

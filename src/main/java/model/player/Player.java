@@ -18,8 +18,8 @@ public class Player {
     private Account account;
     private String name;
     private boolean hasLost = false;
-    private int BreweriesOwned = 0;
-    private int BoatsOwned = 0;
+    private int noOfBreweriesOwned = 0;
+    private int noOfBoatsOwned = 0;
     private int prisonStat = 0;
     private int totalPosition;
     private int position;
@@ -69,20 +69,20 @@ public class Player {
         this.name = name;
     }
 
-    public int getBreweriesOwned() {
-        return BreweriesOwned;
+    public int getNoOfBreweriesOwned() {
+        return noOfBreweriesOwned;
     }
 
-    public void setBreweriesOwned(int breweriesOwned) {
-        BreweriesOwned = breweriesOwned;
+    public void setNoOfBreweriesOwned(int noOfBreweriesOwned) {
+        this.noOfBreweriesOwned = noOfBreweriesOwned;
     }
 
-    public int getBoatsOwned() {
-        return BoatsOwned;
+    public int getNoOfBoatsOwned() {
+        return noOfBoatsOwned;
     }
 
-    public void setBoatsOwned(int boatsOwned) {
-        BoatsOwned = boatsOwned;
+    public void setNoOfBoatsOwned(int noOfBoatsOwned) {
+        this.noOfBoatsOwned = noOfBoatsOwned;
     }
 
     public int getPrisonStat (){
@@ -138,6 +138,15 @@ public class Player {
         totalPosition += moves;
         position = totalPosition % 40;
     }
+
+    public void updateNoOfBoatsOwned (int noOfBoatsToUpdateWith) {
+        noOfBoatsOwned+=noOfBoatsToUpdateWith;
+    }
+
+    public void updateNoOfBreweriesOwned (int noOfBreweriesToUpdateWith) {
+        noOfBreweriesOwned+= noOfBreweriesToUpdateWith;
+    }
+
 
     public void addFieldToOwnedFields (Field ownedField) {
         ownedFields.add(ownedField);

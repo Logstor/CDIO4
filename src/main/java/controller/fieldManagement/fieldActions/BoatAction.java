@@ -1,5 +1,6 @@
 package controller.fieldManagement.fieldActions;
 
+import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.FieldAction;
 import model.board.Field;
@@ -17,16 +18,19 @@ public class BoatAction extends FieldAction {
      */
 
 	private Field currentField;
-	int rentFromNoOfBoats = 0;
-	String keyForBoatsOwned =null;
+	private int rentFromNoOfBoats = 0;
+	private String keyForBoatsOwned = null;
+	private GeneralActionController generalActionController;
 
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public BoatAction(Player player, HashMap<String, String> messageMap,GuiController guiController, Field currentField) {
+	public BoatAction(Player player, HashMap<String, String> messageMap, GuiController guiController,
+					  GeneralActionController generalActionController, Field currentField) {
 		super(player,messageMap,guiController);
 		this.currentField = currentField;
+		this.generalActionController = generalActionController;
 	}
 
 	/*
@@ -50,17 +54,14 @@ public class BoatAction extends FieldAction {
 		StringBuilder actionBuilder = new StringBuilder();
 		//region Check if the boatField has a owner, if false:
 		if (currentField.getFieldOwner() == null) {
-			actionBuilder.append(messageMap.get("BoatMessage") + "\n");
+			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()) + "\n");
 			actionBuilder.append(messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
 
 			String choice = guiController.getUserButton2(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"));
 
 			// If the player wants to purchase a boatField
 			if (choice.equals(messageMap.get("Yes"))) {
-				player.updateBalance(-currentField.getFieldCost());
-				player.setBoatsOwned(+1);
-				player.addFieldToOwnedFields(currentField);
-				guiController.updateBalance(player, player.getAccount().getBalance());
+				generalActionController.buyField(player,currentField,guiController);
 			}
 		}
 		//endregion
@@ -96,7 +97,7 @@ public class BoatAction extends FieldAction {
 	 * Sets rentFromNoOfBoats:int & keyForBoatsOwned:String with the correct rent matching number of boats.
 	 */
 	private void rentFromNoOfBoats () {
-		switch (player.getBoatsOwned()) {
+		switch (player.getNoOfBoatsOwned()) {
 			case 1:
 				rentFromNoOfBoats = 500;
 				keyForBoatsOwned = "BoatsOwned1";

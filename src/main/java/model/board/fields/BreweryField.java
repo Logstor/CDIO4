@@ -65,7 +65,7 @@ public class BreweryField extends Field {
 
     private int rentByOwnersNoOfBreweries (int cupRoll) {
         int variableRent;
-        int OwnersNoOfBreweries = fieldOwner.getBreweriesOwned();
+        int OwnersNoOfBreweries = fieldOwner.getNoOfBreweriesOwned();
 
         switch (OwnersNoOfBreweries) {
             case 1:

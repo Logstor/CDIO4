@@ -2,6 +2,7 @@ package controller;
 
 import model.board.Board;
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
@@ -43,11 +44,25 @@ public class GeneralActionController {
         guiController.updateBalance(player, player.getAccount().getBalance());
     }
 
+    /**
+     * Updates Player and Gui_Players Balance. Adds Field to Player ownedFields. Sets Field and Gui_Fields owner.
+     * If Field is Boat, Player.NoOfBoatsOwned is updated with 1.
+     * If Field is a Brewery, Player.NoOfBreweriesOwned is updated with 1.
+     * @param player The Player that buys the Field.
+     * @param fieldToBuy The Field that is bought.
+     * @param guiController GuiController to manage GUI.
+     */
     public void buyField (Player player, Field fieldToBuy, GuiController guiController) {
         updatePlayerBalanceInclGui(guiController,player,-fieldToBuy.getFieldCost());
         player.addFieldToOwnedFields(fieldToBuy);
         fieldToBuy.setFieldOwner(player);
         guiController.setOwner(player,fieldToBuy);
+        if (fieldToBuy.getFieldType()==FieldTypeEnum.Boat) {
+            player.updateNoOfBoatsOwned(1);
+        }
+        if (fieldToBuy.getFieldType()==FieldTypeEnum.Brewery) {
+            player.updateNoOfBreweriesOwned(1);
+        }
     }
     
     /**
