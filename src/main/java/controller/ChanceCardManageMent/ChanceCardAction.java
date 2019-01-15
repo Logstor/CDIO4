@@ -17,7 +17,6 @@ public abstract class ChanceCardAction {
     -------------------------- Fields --------------------------
      */
 
-    protected ChanceCard chanceCard;
     protected GuiController guiController;
     protected HashMap<String,String> messageMap;
     protected GeneralActionController generalActionController;
@@ -26,9 +25,8 @@ public abstract class ChanceCardAction {
     ----------------------- Constructor -------------------------
      */
     
-    public ChanceCardAction (ChanceCard chanceCard, GuiController guiController,
+    public ChanceCardAction (GuiController guiController,
                              HashMap<String,String> messageMap, GeneralActionController generalActionController) {
-        this.chanceCard = chanceCard;
         this.guiController = guiController;
         this.messageMap = messageMap;
         this.generalActionController = generalActionController;
@@ -47,12 +45,12 @@ public abstract class ChanceCardAction {
     ---------------------- Public Methods -----------------------
      */
     
-    protected abstract void chanceCardAction (Player player);
+    protected abstract void chanceCardAction (Player player, ChanceCard currentChanceCard);
 
-    public void showAndSetChanceCardOnGUi () {
+    public void showAndSetChanceCardOnGUi (ChanceCard currentChanceCard) {
         StringBuilder chanceCardToDisplayBuilder = new StringBuilder();
         chanceCardToDisplayBuilder.append(messageMap.get("ChanceCardTop") + "\n");
-        chanceCardToDisplayBuilder.append(chanceCard.getCardText());
+        chanceCardToDisplayBuilder.append(currentChanceCard.getCardText());
 
         guiController.setCCard(chanceCardToDisplayBuilder.toString());
         guiController.showMessage(messageMap.get("YouDrawedChanceCard"));

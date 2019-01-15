@@ -19,7 +19,6 @@ public class ChanceCardController {
     -------------------------- Fields --------------------------
      */
 
-    private ChanceCard currentChanceCard;
     // ChanceCardActions
     private MoneyBankAction moneyBankAction;
 
@@ -31,16 +30,15 @@ public class ChanceCardController {
     ----------------------- Constructor -------------------------
      */
     
-    public ChanceCardController (ChanceCard currentChanceCard, GeneralActionController generalActionController,
+    public ChanceCardController (GeneralActionController generalActionController,
                                  GuiController guiController,HashMap<String,String> messageMap) {
         this.generalActionController = generalActionController;
-        this.currentChanceCard = currentChanceCard;
         this.guiController = guiController;
         this.messageMap = messageMap;
 
 
         // ActionClasses
-        moneyBankAction = new MoneyBankAction(currentChanceCard,guiController,messageMap,generalActionController);
+        moneyBankAction = new MoneyBankAction(guiController,messageMap,generalActionController);
     }
     
     /*
@@ -56,10 +54,10 @@ public class ChanceCardController {
     ---------------------- Public Methods -----------------------
      */
 
-    public void doChanceCardActionFromCardType (Player player) {
+    public void doChanceCardActionFromCardType (Player player, ChanceCard currentChanceCard) {
         switch (currentChanceCard.getCardType()) {
             case moneyBank:
-                moneyBankAction.chanceCardAction(player);
+                moneyBankAction.chanceCardAction(player,currentChanceCard);
                 break;
             case movingAbs:
 

@@ -27,9 +27,9 @@ public class MoneyBankAction extends ChanceCardAction {
     ----------------------- Constructor -------------------------
      */
     
-    public MoneyBankAction (ChanceCard chanceCard, GuiController guiController, HashMap<String,String> messageMap,
+    public MoneyBankAction (GuiController guiController, HashMap<String,String> messageMap,
                             GeneralActionController generalActionController) {
-        super(chanceCard,guiController,messageMap, generalActionController);
+        super(guiController,messageMap, generalActionController);
     }
     
     /*
@@ -45,9 +45,9 @@ public class MoneyBankAction extends ChanceCardAction {
     ---------------------- Public Methods -----------------------
      */
     
-    public void chanceCardAction (Player player) {
-        showAndSetChanceCardOnGUi();
-        generalActionController.updatePlayerBalanceInclGui(guiController,player,((MoneyBank)chanceCard).getMoneyToTransfer());
+    public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
+        showAndSetChanceCardOnGUi(currentChanceCard);
+        generalActionController.updatePlayerBalanceInclGui(guiController,player,((MoneyBank) currentChanceCard).getMoneyToTransfer());
 
 }
     

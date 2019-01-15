@@ -1,5 +1,6 @@
 package controller.fieldManagement.fieldActions;
 
+import controller.ChanceCardManageMent.ChanceCardController;
 import controller.GuiController;
 import controller.fieldManagement.FieldAction;
 import model.board.Field;
@@ -21,13 +22,15 @@ public class ChanceAction extends FieldAction {
      */
 
 	private Deck deck;
+	private ChanceCardController chanceCardController;
 
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public ChanceAction(Player player, HashMap<String, String> messageMap, GuiController guiController, Deck deck) {
+	public ChanceAction(ChanceCardController chanceCardController, Player player, HashMap<String, String> messageMap, GuiController guiController, Deck deck) {
 		super(player,messageMap,guiController);
+		this.chanceCardController = chanceCardController;
 		this.deck = deck;
 	}
 
@@ -49,6 +52,7 @@ public class ChanceAction extends FieldAction {
 
 		ChanceCard drawedCard = deck.drawChanceCard();
 		guiController.setCCard(drawedCard.getCardText());
+		chanceCardController.doChanceCardActionFromCardType(player, drawedCard);
 
     }
 
