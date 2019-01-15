@@ -41,7 +41,13 @@ public class MoneyBankAction extends ChanceCardAction {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
+
+    /**
+     * Show "YourDrawedChanceCard" on Gui and sets "ChanceCardTop" and ChanceCardText at GUI ChanceCardField.
+     * Gives or Takes the amount specified in moneyToTransfer:int from ChanceCard (MoneyBank).
+     * @param player The Player that the action is done to.
+     * @param currentChanceCard The ChanceCard which action is done.
+     */
     public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
         showAndSetChanceCardOnGUi(currentChanceCard);
         generalActionController.updatePlayerBalanceInclGui(guiController,player,((MoneyBank) currentChanceCard).getMoneyToTransfer());

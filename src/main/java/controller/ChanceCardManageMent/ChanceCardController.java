@@ -59,6 +59,11 @@ public class ChanceCardController {
     ---------------------- Public Methods -----------------------
      */
 
+    /**
+     * Runs the chanceCardAction matching the cardType of inputted ChanceCard.
+     * @param player This is the player that does the CardAction.
+     * @param currentChanceCard This is the ChanceCard the Action is done for.
+     */
     public void doChanceCardActionFromCardType (Player player, ChanceCard currentChanceCard) {
         switch (currentChanceCard.getCardType()) {
             case moneyBank:

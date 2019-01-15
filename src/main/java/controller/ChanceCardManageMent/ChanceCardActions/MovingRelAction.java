@@ -48,7 +48,14 @@ public class MovingRelAction extends ChanceCardAction {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
+
+
+    /**
+     * Show "YourDrawedChanceCard" on Gui and sets "ChanceCardTop" and ChanceCardText at GUI ChanceCardField.
+     * Moves the Player back- or forwards depending on the value of relMovement:int in ChanceCard (MovingRel).
+     * @param player The Player that the action is done to.
+     * @param currentChanceCard The ChanceCard which action is done.
+     */
     public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
         showAndSetChanceCardOnGUi(currentChanceCard);
         prePosition = player.getPosition();
