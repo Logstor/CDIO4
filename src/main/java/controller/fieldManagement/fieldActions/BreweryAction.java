@@ -70,6 +70,7 @@ public class BreweryAction extends FieldAction {
 		}
 		return rentFromCupValue;
 	}
+	
 	private void buyField (Player player, Field currentField, GuiController guiController) {
 
 		currentField.setFieldOwner(player);

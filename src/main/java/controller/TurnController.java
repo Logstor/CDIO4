@@ -88,9 +88,11 @@ public class TurnController {
 	}
 
 	private void moveRaffle (Player player, Board board, GuiController guiController,
-                             HashMap<String,String> messageMap, GeneralActionController generalActionController) {
-		generalActionController.movingPlayerForwardGUI(player,board,guiController,preTotalPosition,postTotalPosition,
+                             HashMap<String,String> messageMap, GeneralActionController generalActionController)
+	{
+		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
                 500);
+		
 		guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
 	}
 
