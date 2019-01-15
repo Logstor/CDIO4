@@ -3,6 +3,7 @@ package controller.fieldManagement;
 import controller.GuiController;
 import controller.fieldManagement.fieldActions.*;
 import model.board.Field;
+import model.board.fields.PrisonField;
 import model.board.fields.PropertyField;
 import model.cup.Cup;
 import model.player.Player;
@@ -65,6 +66,8 @@ public class FieldController {
                 break;
                 
             case Prison:
+            	PrisonAction prisonAction = new PrisonAction(player, currentField, messageMap, guiController);
+            	prisonAction.action();
                 break;
                 
             case Boat:
