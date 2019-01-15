@@ -1,5 +1,6 @@
 package controller;
 
+import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.FieldActionManager;
 import model.cup.Cup;
@@ -19,31 +20,24 @@ public class TurnController {
     /*
     -------------------------- Fields --------------------------
      */
-
-    private FieldActionManager fieldActionManager;
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
     private int prePosition, postPosition;
-    
     /*
     ----------------------- Constructor -------------------------
      */
     
     public TurnController ()
-    {
-        fieldActionManager = new FieldActionManager();
-
-    }
+    { }
 
     
     /*
     ------------------------ Properties -------------------------
      */
 
-    // <editor-folder desc="Properties"
-
-
-    // </editor-folder>
+    //region Properties
+	
+	//endregion
     
     /*
     ---------------------- Public Methods -----------------------
@@ -52,11 +46,24 @@ public class TurnController {
     public void playTurn (Player player, GuiController guiController,
 						  HashMap<String,String> messageMap, Board board, Cup cup, GeneralActionController generalActionController)
 	{
+		//region Raffle
+		
 		raffleCup(player, guiController, messageMap, cup);
-
+		
+		//endregion
+		
+		//region Move Player
+		
 		moveRaffle(player, board, guiController, messageMap, generalActionController);
-
-		fieldActionManager.fieldAction(player, board.getBoard()[player.getPosition()], guiController, messageMap);
+		
+		//endregion
+		
+		//region FieldAction
+		
+		FieldController fieldController = new FieldController(board.getBoard()[player.getPosition()], guiController, player, messageMap, cup);
+		fieldController.doFieldActionByFieldType();
+		
+		//endregion
 	}
 
     /*
