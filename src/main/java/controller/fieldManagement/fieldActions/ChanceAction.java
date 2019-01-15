@@ -6,6 +6,7 @@ import model.board.Field;
 import model.chancecard.CardTypeEnum;
 import model.chancecard.ChanceCard;
 import model.chancecard.Deck;
+import model.chancecard.cards.MovingAbs;
 import model.player.Player;
 
 import java.util.HashMap;
@@ -33,7 +34,9 @@ public class ChanceAction extends FieldAction {
 	/*
     ------------------------------ Properties ----------------------------------
      */
-    
+
+
+
     /*
     ---------------------------- Public Methods --------------------------------
      */
@@ -45,14 +48,9 @@ public class ChanceAction extends FieldAction {
 	public void action() {
 
 		ChanceCard drawedCard = deck.drawChanceCard();
+		guiController.setCCard(drawedCard.getCardText());
 
-
-
-		guiController.displayCCard();
-
-
-
-	}
+    }
 
     /*
     ----------------------------- Support Methods ------------------------------
