@@ -1,5 +1,10 @@
 package model.player;
 
+import model.board.Field;
+
+import java.awt.*;
+import java.util.ArrayList;
+
 /**
  * @author Rasmus Sander Larsen
  * @date 07-01-2019
@@ -15,17 +20,22 @@ public class Player {
     private boolean hasLost = false;
     private int BreweriesOwned = 0;
     private int BoatsOwned = 0;
-    private boolean inPrison;
+    private int prisonStat = 0;
+    private int totalPosition;
     private int position;
+    private Token token;
+    private ArrayList<Field> ownedFields;
     
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public Player (String name, int initialBalance, int startingPosition) {
+    public Player (String name, Color color, int initialBalance, int startingPosition) {
         this.name=name;
         account = new Account(initialBalance);
-        position= startingPosition;
+        totalPosition= startingPosition;
+        token = new Token(color);
+        ownedFields = new ArrayList<>();
     }
     
     /*
@@ -33,6 +43,7 @@ public class Player {
      */
 
     // <editor-folder desc="Properties"
+
 
     public boolean isHasLost() {
         return hasLost;
@@ -74,12 +85,12 @@ public class Player {
         BoatsOwned = boatsOwned;
     }
 
-    public boolean isInPrison() {
-        return inPrison;
+    public int getPrisonStat (){
+        return prisonStat;
     }
 
-    public void setInPrison(boolean inPrison) {
-        this.inPrison = inPrison;
+    public void setPrisonStat(int prisonStat) {
+        this.prisonStat = prisonStat;
     }
 
     public int getPosition() {
@@ -90,7 +101,23 @@ public class Player {
         this.position = position;
     }
 
-    // </editor-folder>
+    public int getTotalPosition() {
+        return totalPosition;
+    }
+
+    public void setTotalPosition(int totalPosition) {
+        this.totalPosition = totalPosition;
+    }
+
+    public Token getToken() {
+        return token;
+    }
+
+    public void setToken(Token token) {
+        this.token = token;
+    }
+
+// </editor-folder>
     
     /*
     ---------------------- Public Methods -----------------------
@@ -101,12 +128,45 @@ public class Player {
         if (account.getBalance()<=0) {
             hasLost=true;
         }
-
     }
-    
+
+    /**
+     * This method updates the total position and the boardPosition.
+     * @param moves antallet af felter der skal rykkes.
+     */
+    public void updatePosition (int moves) {
+        totalPosition += moves;
+        position = totalPosition % 40;
+    }
+
+    public void addFieldToOwnedFields (Field ownedField) {
+        ownedFields.add(ownedField);
+    }
+
+    public void removeFieldFromOwnedFields (Field removableField) {
+        ownedFields.remove(removableField);
+    }
+
+    // TODO: SKAL DER TILFØJES VÆRDIEN AF SPILLERENS HUSE ?
+    public int calPlayerTotalValue () {
+        int totalPlayerValue = 0;
+        // Value of Account
+        totalPlayerValue += account.getBalance();
+        // Value of OwnedFields
+        totalPlayerValue += valueOfOwnedFields()*0.5;
+
+        return totalPlayerValue;
+    }
     /*
     ---------------------- Support Methods ----------------------
      */
 
+    private int valueOfOwnedFields () {
+        int valueOfOwnedFields = 0;
+        for (Field f : ownedFields) {
+            valueOfOwnedFields += f.getFieldCost();
+        }
+        return valueOfOwnedFields;
+    }
 
 }

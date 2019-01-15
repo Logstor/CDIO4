@@ -1,16 +1,10 @@
-package model.board.fields;
-
-import model.board.Field;
-import model.cup.*;
-import model.player.Player;
-
-import java.awt.*;
+package controller.ChanceCardManageMent.ChanceCardActions;
 
 /**
  * @author Rasmus Sander Larsen
- * @date 07-01-2019
+ * @date 15-01-2019
  */
-public class ActionField extends Field {
+public class MovingAbsAction {
 
     /*
     -------------------------- Fields --------------------------
@@ -21,11 +15,8 @@ public class ActionField extends Field {
     /*
     ----------------------- Constructor -------------------------
      */
-
-    public ActionField(int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
-        super(fieldNo,fieldType,fieldName,fieldCost,fieldColor);
-        forSale=false;
-    }
+    
+    
     
     /*
     ------------------------ Properties -------------------------
@@ -40,11 +31,7 @@ public class ActionField extends Field {
     ---------------------- Public Methods -----------------------
      */
     
-    public void fieldAction (Player player) {
-
-    }
-
-    public void fieldAction (Player player, Cup Cup) {}
+    
     
     /*
     ---------------------- Support Methods ----------------------

@@ -1,0 +1,37 @@
+﻿TYPE;MESSAGE
+CarColor1;Sort
+CarColor2;Hvid
+CarColor3;Rød
+CarColor4;Grøn
+CarColor5;Gul
+CarColor6;Blå
+Yes;Ja
+No;Nej
+Welcome;Velkommen til spillet Matador!
+GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
+NamePlayer;Indtast navnet på spiller
+PickColorForToken;Vælg en farve til din spillerbrik:
+TokenSelected;Du valgt
+GetReady;Så er alle vist på plads og spillet kan endelig begynde !
+YourTurn;Så er det din tur
+PressToRoll;Tryk for at slå med terningerne..
+YouRolled;Du slog
+YouDrawedChanceCard;Du trak følgende chancekort: \n
+ChanceCardTop;~~~~~~~ Chancekort ~~~~~~~
+LandedOnTax39;Du er landet på %fieldName og skal betale %rent i ekstra SKAT.
+LandedOnTax5;Du er landet på %fieldName og skal betale %rent i indkomst SKAT.
+LandedOnTaxOver;Du er landet på %fieldName, og besidder aktiver for mere end kr. 40.000.
+LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end kr. 40.000.
+TaxToPay;Og skal derfor betale %tax i SKAT.
+PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
+PrisonSentTo;"Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 11"""
+PropertyFirst;Du er landet på %name's ejendom.
+PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
+PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
+BoatMessage;Du er landet på et bådfelt. For hvert bådfelt du ejer vil huslejen bliver fordoblet.
+BoatsOwned1;Ejer et båd felt og derfor skal du betale 500
+BoatsOwned2;Ejer to båd felter og derfor skal du betale 1000
+BoatsOwned3;Ejer tre båd felter og derfor skal du betale 2000
+BoatsOwned4;Ejer alle båd felter og derfor skal du betale 4000
+WantToBuy?;Du er landet på et redderi, og det kommer til koste dig %cost. Vil du købe det?
+ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast

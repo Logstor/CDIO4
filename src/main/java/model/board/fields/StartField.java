@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.player.Player;
 import model.cup.*;
 
@@ -22,8 +23,8 @@ public class StartField extends Field {
     ----------------------- Constructor -------------------------
      */
     
-    public StartField (int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
-        super(fieldNo, fieldType, fieldName, fieldCost, fieldColor);
+    public StartField (int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
+        super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
         forSale = false;
     }

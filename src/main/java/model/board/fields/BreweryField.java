@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.cup.*;
 import model.player.Player;
 
@@ -22,8 +23,8 @@ public class BreweryField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public BreweryField(int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
-        super(fieldNo,fieldType,fieldName,fieldCost,fieldColor);
+    public BreweryField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
+        super(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
         forSale = true;
     }
     
@@ -46,15 +47,15 @@ public class BreweryField extends Field {
 
     public void fieldAction (Player player, Cup cup) {
 
-        if (owner == null) {
+        if (fieldOwner == null) {
         actionText = "Du køber dette felt for " + fieldCost + " pengesedler\n";
-        setOwner(player);
+        setFieldOwner(player);
         player.updateBalance(-fieldCost);
         } else {
-            actionText = "Du er landet på "+ owner + "'s felt \n Du betaler "+ rentByOwnersNoOfBreweries(cup.getCupValue())
-                    + " pengesedler i husleje til "+ owner.getName();
+            actionText = "Du er landet på "+ fieldOwner + "'s felt \n Du betaler "+ rentByOwnersNoOfBreweries(cup.getCupValue())
+                    + " pengesedler i husleje til "+ fieldOwner.getName();
             player.updateBalance(-rentByOwnersNoOfBreweries(cup.getCupValue()));
-            owner.updateBalance(rentByOwnersNoOfBreweries(cup.getCupValue()));
+            fieldOwner.updateBalance(rentByOwnersNoOfBreweries(cup.getCupValue()));
         }
     }
     
@@ -64,7 +65,7 @@ public class BreweryField extends Field {
 
     private int rentByOwnersNoOfBreweries (int cupRoll) {
         int variableRent;
-        int OwnersNoOfBreweries = owner.getBreweriesOwned();
+        int OwnersNoOfBreweries = fieldOwner.getBreweriesOwned();
 
         switch (OwnersNoOfBreweries) {
             case 1:

@@ -14,32 +14,32 @@ public abstract class Field {
     /*
     -------------------------- Fields --------------------------
      */
-
     protected int fieldNo;
     protected String fieldName;
-    protected String fieldType;
+    protected FieldTypeEnum fieldType;
     protected int fieldCost;
     protected Color fieldColor;
     protected String actionText;
-    protected Player owner;
+    protected String fieldDescription;
+    protected Player fieldOwner;
     protected boolean forSale;
-
     
     /*
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNo, String fieldType, String fieldName, int fieldCost, Color fieldColor) {
+    protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
 
         this.fieldNo=fieldNo;
-        this.fieldType=fieldType;
+        this.fieldType= fieldType;
         this.fieldName = fieldName;
+        this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
-        owner=null;
+        fieldOwner = null;
+
 
     }
-    
     
     /*
     ------------------------ Properties -------------------------
@@ -63,11 +63,11 @@ public abstract class Field {
         this.fieldName = fieldName;
     }
 
-    public String getFieldType() {
+    public FieldTypeEnum getFieldType() {
         return fieldType;
     }
 
-    public void setFieldType(String fieldType) {
+    public void setFieldType(FieldTypeEnum fieldType) {
         this.fieldType = fieldType;
     }
 
@@ -95,14 +95,29 @@ public abstract class Field {
         this.actionText = actionText;
     }
 
-    public Player getOwner() {
-        return owner;
+    public Player getFieldOwner() {
+        return fieldOwner;
     }
 
-    public void setOwner(Player owner) {
-        this.owner = owner;
+    public void setFieldOwner(Player fieldOwner) {
+        this.fieldOwner = fieldOwner;
     }
 
+    public String getFieldDescription() {
+        return fieldDescription;
+    }
+
+    public void setFieldDescription(String fieldDescription) {
+        this.fieldDescription = fieldDescription;
+    }
+
+    public boolean isForSale() {
+        return forSale;
+    }
+
+    public void setForSale(boolean forSale) {
+        this.forSale = forSale;
+    }
 
     // </editor-folder>
     
@@ -110,12 +125,15 @@ public abstract class Field {
     ---------------------- Public Methods -----------------------
      */
 
+    @Override
     public String toString () {
         StringBuilder toStringBuilder = new StringBuilder();
 
+        toStringBuilder.append("~~~~~~~~~~~~ Field Info ~~~~~~~~~~~~\n");
         toStringBuilder.append("Field No.: " +fieldNo + "\n");
         toStringBuilder.append("Field Type: " + fieldType + "\n");
         toStringBuilder.append("Field Name: " + fieldName + "\n");
+        toStringBuilder.append("Field Description: " + fieldDescription + "\n");
         toStringBuilder.append("Field Cost: " + fieldCost + "\n");
         toStringBuilder.append("Field Color: " + fieldColor + "\n");
 
@@ -126,10 +144,8 @@ public abstract class Field {
 
     protected abstract void fieldAction (Player player, Cup cup);
 
-    
     /*
     ---------------------- Support Methods ----------------------
      */
-
 
 }

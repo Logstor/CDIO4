@@ -15,6 +15,7 @@ public class Die {
     private int faceValue;          // Value of model.die after roll
     private final int DIESIDES = 6; // Sides on model.die
     private int sides;              // Sides for custom sides on model.die
+    private Random generator = new Random();
     
     /*
     ----------------------- Constructor -------------------------
@@ -71,14 +72,14 @@ public class Die {
     ---------------------- Public Methods -----------------------
      */
 
-    public void roll () { //
-
-        Random generator = new Random();
+    public void roll () {
 
         faceValue = generator.nextInt(sides)+1; // Random number om model.die with DIESIDES
-
     }
-    
+
+    public int toInteger () {
+        return faceValue;
+    }
     /*
     ---------------------- Support Methods ----------------------
      */
