@@ -59,8 +59,13 @@ public class GeneralActionController {
      */
     public void payPropertyRent(Player player, PropertyField field, GuiController guiController)
     {
+    	int rent = rentFromNoOfHouses(field);
+    	
         // Update the owners balance
-        updatePlayerBalanceInclGui(guiController, field.getFieldOwner(), rentFromNoOfHouses(field));
+        updatePlayerBalanceInclGui(guiController, field.getFieldOwner(), rent);
+        
+        // Update the payers balance
+		updatePlayerBalanceInclGui(guiController, player, -rent);
     }
     
     public void payManuelRent(Player player, Field field, GuiController guiController)

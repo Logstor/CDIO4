@@ -3,7 +3,6 @@ package controller.fieldManagement.fieldActions;
 import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.FieldAction;
-import model.board.Field;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
@@ -26,11 +25,11 @@ public class PropertyAction extends FieldAction {
      */
 	
 	/**
-	 *
-	 * @param player
-	 * @param messageMap
-	 * @param field
-	 * @param guiController
+	 * Primary Constructor
+	 * @param player The Player who landed on the PropertyField.
+	 * @param messageMap The HashMap holding all messages.
+	 * @param field The PropertyField the player landed on.
+	 * @param guiController The GuiController.
 	 */
 	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController) {
 		super(player,messageMap,guiController);
@@ -55,7 +54,16 @@ public class PropertyAction extends FieldAction {
 		//region Buying Sequence
 		if (field.getFieldOwner() == null)
 		{
-			generalAction.buyField(player, field, guiController);
+			// Ask the user if he wants to buy the Property
+			String choice = guiController.getUserButton2(messageMap.get("PropertyWantToBuy").replace("%fieldName", field.getFieldName()),
+					"Ja", "Nej");
+			
+			if (choice.equals("Ja"))
+			{
+				generalAction.buyField(player, field, guiController);
+			}
+			else
+			{ }
 		}
 		//endregion
 		
@@ -65,11 +73,7 @@ public class PropertyAction extends FieldAction {
 			guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", field.getFieldOwner().getName()));
 			
 			// Update both players balance
-			field.getFieldOwner().updateBalance(field.getFieldRent());
-			guiController.updateBalance(field.getFieldOwner(), field.getFieldOwner().getAccount().getBalance());
-			
-			player.updateBalance(-field.getFieldRent());
-			guiController.updateBalance(player, player.getAccount().getBalance());
+			generalAction.payPropertyRent(player, field, guiController);
 		}
 		//endregion
 	}
