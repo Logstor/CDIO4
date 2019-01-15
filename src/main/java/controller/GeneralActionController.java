@@ -2,6 +2,7 @@ package controller;
 
 import model.board.Board;
 import model.board.Field;
+import model.board.fields.PropertyField;
 import model.player.Player;
 import view.gui.Gui;
 
@@ -47,6 +48,24 @@ public class GeneralActionController {
         updatePlayerBalanceInclGui(guiController,player,-fieldToBuy.getFieldCost());
         player.addFieldToOwnedFields(fieldToBuy);
         guiController.setOwner(player,fieldToBuy);
+    }
+    
+    /**
+     * This method handles the event of the player paying rent to an owner of
+     * a property field.
+     * @param player The Player that landed on the field.
+     * @param field The PropertyField the player landed on.
+     * @param guiController The GuiController.
+     */
+    public void payPropertyRent(Player player, PropertyField field, GuiController guiController)
+    {
+        // Update the owners balance
+        updatePlayerBalanceInclGui(guiController, field.getFieldOwner(), rentFromNoOfHouses(field));
+    }
+    
+    public void payManuelRent(Player player, Field field, GuiController guiController)
+    {
+    
     }
 
     public void movingPlayerForwardGUI(Player player, Board board, GuiController guiController,
@@ -120,6 +139,43 @@ public class GeneralActionController {
     /*
     ---------------------- Support Methods ----------------------
      */
+    
+    /**
+     * This method takes the amount of houses build on the PropertyField into
+     * consideration, when it returns the rent.
+     * @param currentField The PropertyField.
+     * @return The current rent as an int.
+     */
+    private int rentFromNoOfHouses (PropertyField currentField) {
+        
+        int rentFromNoOfHouses;
+        
+        switch (currentField.getNoOfHousesOnProperty()) {
+            case 0:
+                rentFromNoOfHouses = currentField.getFieldRent();
+                break;
+            case 1:
+                rentFromNoOfHouses = currentField.getField1HouseRent();
+                break;
+            case 2:
+                rentFromNoOfHouses = currentField.getField2HouseRent();
+                break;
+            case 3:
+                rentFromNoOfHouses = currentField.getField3HouseRent();
+                break;
+            case 4:
+                rentFromNoOfHouses = currentField.getField4HouseRent();
+                break;
+            case 5:
+                rentFromNoOfHouses = currentField.getField5HouseRent();
+                break;
+            default:
+                rentFromNoOfHouses = 0;
+                break;
+            
+        }
+        return rentFromNoOfHouses;
+    }
 
 
 }
