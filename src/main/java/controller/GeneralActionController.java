@@ -80,7 +80,43 @@ public class GeneralActionController {
             }
         }
     }
-    
+
+    public void movingPlayerBackwardGUI(Player player, Board board, GuiController guiController,
+                                         int prePosition, int finalPosition, int milliSecondsPrTokenMovement) {
+
+        if (prePosition<finalPosition && ((finalPosition-prePosition)+finalPosition>=24)) {
+
+            for (int i = prePosition - 1; i >= 0; i--) {
+                try {
+                    Thread.sleep(milliSecondsPrTokenMovement);
+                    guiController.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            for (int i = board.getBoard().length - 1; i >= finalPosition; i--) {
+                try {
+                    Thread.sleep(milliSecondsPrTokenMovement);
+                    guiController.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } else {
+
+            for (int i = prePosition - 1; i >= finalPosition; i--) {
+                try {
+                    Thread.sleep(milliSecondsPrTokenMovement);
+                    guiController.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
     /*
     ---------------------- Support Methods ----------------------
      */
