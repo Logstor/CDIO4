@@ -43,6 +43,7 @@ public class PrisonField extends Field {
 
     public void fieldAction (Player player) {
         if (fieldNo==11) {
+
             actionText = "Du er på besøg i fængslet. Dit ophold er gratis.";
         } else if(fieldNo==31) {
             actionText = "Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 11";

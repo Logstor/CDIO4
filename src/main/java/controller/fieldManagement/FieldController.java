@@ -27,7 +27,7 @@ public class FieldController {
 	private TaxAction taxAction;
 	private BoatAction boatAction;
 	private ChanceAction chanceAction;
-  private BreweryAction breweryAction;
+    private BreweryAction breweryAction;
 
     
     /*
