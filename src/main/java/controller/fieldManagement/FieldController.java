@@ -84,7 +84,7 @@ public class FieldController {
                 break;
                 
             case Boat:
-				BoatAction boatAction = new BoatAction(player, messageMap, guiController, currentField);
+				BoatAction boatAction = new BoatAction(player, messageMap, guiController,generalActionController, currentField);
                 boatAction.action();
                 break;
                 
