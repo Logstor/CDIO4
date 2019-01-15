@@ -91,7 +91,6 @@ public class GuiController {
         gui.getUserChoice(message, button);
     }
 
-
     public String getUserString(String message) {
 
         //Display message to the user
@@ -134,6 +133,7 @@ public class GuiController {
 
         gui.setDie(value);
     }
+    
     public void showDice (int die1Value, int die2Value) {
         gui.setDice(die1Value,die2Value);
     }
@@ -142,7 +142,6 @@ public class GuiController {
 
         gui.getTextColor(color);
     }
-
 
     public void setTextColor(Color Tcolor) {
 

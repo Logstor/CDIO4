@@ -3,10 +3,7 @@ package controller.fieldManagement;
 import controller.ChanceCardManageMent.ChanceCardAction;
 import controller.GeneralActionController;
 import controller.GuiController;
-import controller.fieldManagement.fieldActions.BoatAction;
-import controller.fieldManagement.fieldActions.ChanceAction;
-import controller.fieldManagement.fieldActions.BreweryAction;
-import controller.fieldManagement.fieldActions.TaxAction;
+import controller.fieldManagement.fieldActions.*;
 import model.board.Board;
 import model.board.Field;
 import model.chancecard.Deck;
@@ -24,56 +21,68 @@ public class FieldController {
     ---------------------------------- Fields ----------------------------------
      */
 	private Field currentField;
-	private TaxAction taxAction;
-	private BoatAction boatAction;
-	private ChanceAction chanceAction;
-  private BreweryAction breweryAction;
-
-    
+	private GuiController guiController;
+	private Player player;
+	private HashMap<String, String> messageMap;
     /*
     ------------------------------ Constructors --------------------------------
      */
-
-    public FieldController (Field currentField, GuiController guiController, Player player,
-                            HashMap<String,String> messageMap, Board board, Deck deck,Cup cup,
-                            GeneralActionController generalActionController) {
-        this.currentField = currentField;
-
-        taxAction = new TaxAction(player,messageMap,guiController,currentField);
-        boatAction = new BoatAction(player,messageMap,guiController,currentField);
-        chanceAction = new ChanceAction(player,messageMap,guiController,generalActionController,board, deck);
-        breweryAction = new BreweryAction(player, messageMap, guiController, cup, currentField);
-
-    }
+	
+	public FieldController(Field currentField, GuiController guiController, Player player, HashMap<String, String> messageMap)
+	{
+		this.currentField = currentField;
+		this.guiController = guiController;
+		this.player = player;
+		this.messageMap = messageMap;
+		
+		//TODO: Hvis vi vil have FieldController til at eksisterer gennem hele spillet, så skal der laves objekter af
+		//TODO: alle Action klasserne. De skal da initialiseres i constructoren og tilføjes, som attributer.
+	}
 
     /*
     ------------------------------ Properties ----------------------------------
      */
 
-    public void doFieldActionByFieldType(Field field) {
+    public void doFieldActionByFieldType() {
 
         //region Find Field Type
 
-        switch (field.getFieldType()) {
+        switch (currentField.getFieldType())
+		{
             case Property:
+				PropertyAction propertyAction = new PropertyAction(player, messageMap, (PropertyField)currentField, guiController);
+				propertyAction.action();
                 break;
+                
             case Start:
+				StartAction startAction = new StartAction(player, messageMap, guiController);
+				startAction.action();
                 break;
+                
             case ChanceCard:
                 chanceAction.action();
                 break;
+                
             case Tax:
+				TaxAction taxAction = new TaxAction(player ,messageMap, guiController, currentField);
                 taxAction.action();
                 break;
+                
             case Prison:
                 break;
+                
             case Boat:
+				BoatAction boatAction = new BoatAction(player, messageMap, guiController, currentField);
                 boatAction.action();
                 break;
+                
             case Parking:
                 break;
+                
             case Brewery:
-                breweryAction.action();
+				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController);
+				breweryAction.action();
+
                 break;
         }
     }
