@@ -73,8 +73,10 @@ public class GeneralActionController {
     }
 
     public void movingPlayerForwardGUI(Player player, Board board, GuiController guiController,
-                                        int prePosition, int finalPosition, int milliSecondsPrTokenMovement) {
-        if (prePosition>finalPosition) {
+                                        int prePosition, int finalPosition, int milliSecondsPrTokenMovement)
+    {
+        if (prePosition>finalPosition)
+        {
             for (int i = prePosition+1; i<board.getBoard().length; i++){
                 try {
                     Thread.sleep(milliSecondsPrTokenMovement);
@@ -91,7 +93,9 @@ public class GeneralActionController {
                     e.printStackTrace();
                 }
             }
-        } else {
+        }
+        
+        else {
             for (int i = prePosition + 1; i <= finalPosition; i++) {
                 try {
                     Thread.sleep(milliSecondsPrTokenMovement);

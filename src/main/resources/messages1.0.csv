@@ -34,3 +34,4 @@ BoatsOwned2;Ejer to båd felter og derfor skal du betale 1000
 BoatsOwned3;Ejer tre båd felter og derfor skal du betale 2000
 BoatsOwned4;Ejer alle båd felter og derfor skal du betale 4000
 WantToBuy?;Du er landet på et redderi, og det kommer til koste dig %cost. Vil du købe det?
+ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
