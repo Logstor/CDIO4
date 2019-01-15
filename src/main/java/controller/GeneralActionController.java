@@ -1,7 +1,9 @@
 package controller;
 
+import model.board.Board;
 import model.board.Field;
 import model.player.Player;
+import view.gui.Gui;
 
 /**
  * @author Rasmus Sander Larsen
@@ -45,6 +47,38 @@ public class GeneralActionController {
         updatePlayerBalanceInclGui(guiController,player,-fieldToBuy.getFieldCost());
         player.addFieldToOwnedFields(fieldToBuy);
         guiController.setOwner(player,fieldToBuy);
+    }
+
+    public void movingPlayerForwardGUI(Player player, Board board, GuiController guiController,
+                                        int prePosition, int finalPosition, int milliSecondsPrTokenMovement) {
+        if (prePosition>finalPosition) {
+            for (int i = prePosition+1; i<board.getBoard().length; i++){
+                try {
+                    Thread.sleep(milliSecondsPrTokenMovement);
+                    guiController.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            for (int i = 0; i<=finalPosition; i++) {
+                try {
+                    Thread.sleep(milliSecondsPrTokenMovement);
+                    guiController.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            for (int i = prePosition + 1; i <= finalPosition; i++) {
+                try {
+                    Thread.sleep(milliSecondsPrTokenMovement);
+                    guiController.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }
     
     /*

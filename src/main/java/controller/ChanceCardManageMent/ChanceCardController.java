@@ -61,6 +61,10 @@ public class ChanceCardController {
                 break;
             case movingAbs:
 
+                break;
+            case movingRel:
+
+                break;
             default:
                 break;
 

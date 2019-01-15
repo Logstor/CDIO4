@@ -5,6 +5,7 @@ import controller.GeneralActionController;
 import controller.GuiController;
 import javafx.print.PageLayout;
 import model.chancecard.ChanceCard;
+import model.chancecard.cards.MovingRel;
 import model.player.Player;
 
 import java.util.HashMap;
@@ -45,6 +46,7 @@ public class MovingRelAction extends ChanceCardAction {
     
     public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
         showAndSetChanceCardOnGUi(currentChanceCard);
+        player.updatePosition(((MovingRel) currentChanceCard).getRelMovement());
     }
     
     /*
