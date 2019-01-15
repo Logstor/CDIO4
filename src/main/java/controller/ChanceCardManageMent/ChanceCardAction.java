@@ -25,8 +25,8 @@ public abstract class ChanceCardAction {
     ----------------------- Constructor -------------------------
      */
     
-    public ChanceCardAction (GuiController guiController,
-                             HashMap<String,String> messageMap, GeneralActionController generalActionController) {
+    public ChanceCardAction (GuiController guiController, HashMap<String,String> messageMap,
+                             GeneralActionController generalActionController) {
         this.guiController = guiController;
         this.messageMap = messageMap;
         this.generalActionController = generalActionController;
@@ -47,6 +47,10 @@ public abstract class ChanceCardAction {
     
     protected abstract void chanceCardAction (Player player, ChanceCard currentChanceCard);
 
+    /**
+     * Show "YourDrawedChanceCard" on Gui and sets "ChanceCardTop" and ChanceCardText at GUI ChanceCardField.
+     * @param currentChanceCard This is the ChanceCard that is showed.
+     */
     public void showAndSetChanceCardOnGUi (ChanceCard currentChanceCard) {
         StringBuilder chanceCardToDisplayBuilder = new StringBuilder();
         chanceCardToDisplayBuilder.append(messageMap.get("ChanceCardTop") + "\n");
