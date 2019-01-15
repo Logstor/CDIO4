@@ -291,12 +291,12 @@ public class Gui {
      * @param player The player which shall own the field
      * @param theField The field in focus
      */
-    public void setFieldOwner (Player player, Field theField) {
-
+    public void setOwner(Player player, Field theField)
+    {
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
-        ((GUI_Street)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
     }
-
+    
     /**
      * This methods makes all fields blink between
      * gold and gray eternally

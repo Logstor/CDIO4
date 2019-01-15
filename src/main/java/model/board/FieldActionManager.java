@@ -2,9 +2,6 @@ package model.board;
 
 import controller.GuiController;
 import model.board.fields.PropertyField;
-import model.cup.Cup;
-import model.chancecard.Deck;
-import model.player.Account;
 import model.player.Player;
 
 import java.util.HashMap;

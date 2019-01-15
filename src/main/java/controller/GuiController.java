@@ -1,9 +1,7 @@
 package controller;
 
-import gui_fields.GUI_Player;
-import gui_tests.PlayerTest;
 import model.board.Field;
-import model.cup.Cup;
+import model.board.fields.BreweryField;
 import model.player.Player;
 import view.gui.Gui;
 
@@ -58,7 +56,7 @@ public class GuiController {
 
     public void setOwner(Player player, Field field) {
 
-        gui.setFieldOwner(player, field);
+        gui.setOwner(player, field);
     }
 
     public void addPlayer(Player player) {
