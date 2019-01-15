@@ -42,24 +42,20 @@ public class BoatField extends Field {
      */
 
     public void fieldAction (Player player) {
-
-    }
-
-    public void fieldAction (Player player, Cup cup ) {
         if (fieldOwner == null) {
             actionText = "Du køber dette felt for " + fieldCost + " pengesedler\n";
             setFieldOwner(player);
             player.updateBalance(-fieldCost);
         } else {
-            actionText = "Du er landet på "+ fieldOwner + "'s felt \n Du betaler "+ rentByOwnersNoOfBoats(player.getBoatsOwned())
+            actionText = "Du er landet på "+ fieldOwner + "'s felt \n Du betaler "+ rentByOwnersNoOfBoats()
                     + " pengesedler i husleje til "+ fieldOwner.getName();
-            player.updateBalance(-rentByOwnersNoOfBoats(player.getBoatsOwned()));
-            fieldOwner.updateBalance(rentByOwnersNoOfBoats(player.getBoatsOwned());
+            player.updateBalance(-rentByOwnersNoOfBoats());
+            fieldOwner.updateBalance(rentByOwnersNoOfBoats());
         }
     }
 
-    private int rentByOwnersNoOfBoats(int boatsOwned) {
-        return 0;
+    public void fieldAction(Player player, Cup cup) {
+
     }
     
     /*
@@ -67,7 +63,7 @@ public class BoatField extends Field {
      */
 
 
-    private void rentByOwnersNoOfBoats (Player player) {
+    private int rentByOwnersNoOfBoats () {
         int rent;
         int noOfBoatsOwned = fieldOwner.getBoatsOwned();
 
