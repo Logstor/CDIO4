@@ -82,7 +82,7 @@ public class TurnController {
      */
 
     private void raffleCup (Player player, GuiController guiController, HashMap<String,String> messageMap, Cup cup) {
-		guiController.showMessage(messageMap.get("YourTurn") + " " + player.getName() + ".\n" +
+		guiController.showMessage(messageMap.get("YourTurn").replace("%name",player.getName())+ "\n" +
 				messageMap.get("PressToRoll"));
 
 		cupValue = cup.cupRoll();
