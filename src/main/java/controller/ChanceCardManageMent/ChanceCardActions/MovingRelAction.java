@@ -22,7 +22,7 @@ public class MovingRelAction extends ChanceCardAction {
 
     private Board board;
     private int prePosition = 0;
-    private int postPostion = 0;
+    private int postPosition = 0;
     
     
     /*
@@ -49,7 +49,6 @@ public class MovingRelAction extends ChanceCardAction {
     ---------------------- Public Methods -----------------------
      */
 
-
     /**
      * Show "YourDrawedChanceCard" on Gui and sets "ChanceCardTop" and ChanceCardText at GUI ChanceCardField.
      * Moves the Player back- or forwards depending on the value of relMovement:int in ChanceCard (MovingRel).
@@ -60,17 +59,17 @@ public class MovingRelAction extends ChanceCardAction {
         showAndSetChanceCardOnGUi(currentChanceCard);
         prePosition = player.getPosition();
         player.updatePosition(((MovingRel) currentChanceCard).getRelMovement());
-        postPostion = player.getPosition();
+        postPosition = player.getPosition();
 
         if (((MovingRel) currentChanceCard).getRelMovement() > 0) // ChanceCardMovement is forward
         {
             generalActionController.movingPlayerForwardGUI(player, board, guiController,
-                    prePosition, postPostion, 500);
+                    prePosition, postPosition, 500);
         }
         else // ChanceCardMovement is backwards
         {
             generalActionController.movingPlayerBackwardGUI(player, board,guiController,
-                    prePosition,postPostion, 500);
+                    prePosition, postPosition, 500);
         }
     }
     
