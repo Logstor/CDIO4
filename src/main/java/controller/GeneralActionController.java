@@ -46,6 +46,7 @@ public class GeneralActionController {
     public void buyField (Player player, Field fieldToBuy, GuiController guiController) {
         updatePlayerBalanceInclGui(guiController,player,-fieldToBuy.getFieldCost());
         player.addFieldToOwnedFields(fieldToBuy);
+        fieldToBuy.setFieldOwner(player);
         guiController.setOwner(player,fieldToBuy);
     }
     

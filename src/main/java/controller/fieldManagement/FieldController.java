@@ -1,10 +1,13 @@
 package controller.fieldManagement;
 
+import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.fieldActions.*;
+import model.board.Board;
 import model.board.Field;
 import model.board.fields.PrisonField;
 import model.board.fields.PropertyField;
+import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
 import java.util.HashMap;
@@ -22,16 +25,23 @@ public class FieldController {
 	private Player player;
 	private HashMap<String, String> messageMap;
 	private Cup cup;
+	private GeneralActionController generalActionController;
+	private Board board;
+	private Deck deck;
     /*
     ------------------------------ Constructors --------------------------------
      */
 	
-	public FieldController(Field currentField, GuiController guiController, Player player, HashMap<String, String> messageMap, Cup cup) {
+	public FieldController(Field currentField, GuiController guiController, Player player, Board board, Deck deck,
+						   HashMap<String, String> messageMap, Cup cup, GeneralActionController generalActionController) {
 		this.currentField = currentField;
 		this.guiController = guiController;
 		this.player = player;
 		this.messageMap = messageMap;
 		this.cup = cup;
+		this.generalActionController = generalActionController;
+		this.board = board;
+		this.deck = deck;
 	}
 	
 	//TODO: Hvis vi vil have FieldController til at eksisterer gennem hele spillet, så skal der laves objekter af
@@ -58,6 +68,9 @@ public class FieldController {
                 break;
                 
             case ChanceCard:
+            	ChanceAction chanceAction = new ChanceAction(player,messageMap,guiController,generalActionController,
+						board, deck);
+            	chanceAction.action();
                 break;
                 
             case Tax:

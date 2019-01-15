@@ -15,7 +15,7 @@ TokenSelected;Du valgt
 GetReady;Så er alle vist på plads og spillet kan endelig begynde !
 YourTurn;Så er det din tur
 PressToRoll;Tryk for at slå med terningerne..
-YouRolled;Du slog
+YouRolled;Du slog %cupValue.
 YouDrawedChanceCard;Du trak følgende chancekort: \n
 ChanceCardTop;~~~~~~~ Chancekort ~~~~~~~
 LandedOnTax39;Du er landet på %fieldName og skal betale %rent i ekstra SKAT.

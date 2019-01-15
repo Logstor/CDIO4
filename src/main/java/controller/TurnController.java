@@ -2,7 +2,9 @@ package controller;
 
 import controller.fieldManagement.FieldController;
 import model.board.Board;
+import model.board.Field;
 import model.board.FieldActionManager;
+import model.chancecard.Deck;
 import model.cup.Cup;
 import model.cup.Die;
 import model.game.Turn;
@@ -23,6 +25,7 @@ public class TurnController {
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
     private int prePosition, postPosition;
+    private Field currentField;
     /*
     ----------------------- Constructor -------------------------
      */
@@ -43,8 +46,8 @@ public class TurnController {
     ---------------------- Public Methods -----------------------
      */
 
-    public void playTurn (Player player, GuiController guiController,
-						  HashMap<String,String> messageMap, Board board, Cup cup, GeneralActionController generalActionController)
+    public void playTurn (Player player, GuiController guiController, HashMap<String,String> messageMap, Deck deck,
+						  Board board, Cup cup, GeneralActionController generalActionController)
 	{
 		//region Raffle
 		
@@ -60,7 +63,8 @@ public class TurnController {
 		
 		//region FieldAction
 		
-		FieldController fieldController = new FieldController(board.getBoard()[player.getPosition()], guiController, player, messageMap, cup);
+		FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
+				messageMap, cup, generalActionController);
 		fieldController.doFieldActionByFieldType();
 
 		
@@ -68,7 +72,7 @@ public class TurnController {
 
         //region ExtraTurn
 
-        extraTurn(player,guiController,cup,board,messageMap,generalActionController);
+        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController);
 
         //endregion
 	}
@@ -100,17 +104,19 @@ public class TurnController {
 		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
                 500);
 		
-		guiController.showMessage(messageMap.get("YouRolled") + " " + cupValue);
+		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));;
+
+		currentField = board.getBoard()[postPosition];
 	}
 
-	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board,
+	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board, Deck deck,
                            HashMap<String, String>messageMap,GeneralActionController generalActionController ){
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
 
         if(die1==die2){
             guiController.showMessage(messageMap.get("ExtraTurn"));
-            playTurn(player,guiController,messageMap,board,cup,generalActionController);
+            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController);
         }
 
     }
