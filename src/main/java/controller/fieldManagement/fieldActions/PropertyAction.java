@@ -54,14 +54,22 @@ public class PropertyAction extends FieldAction {
 		//region Buying Sequence
 		if (field.getFieldOwner() == null)
 		{
-			// Ask the user if he wants to buy the Property
-			String choice = guiController.getUserButton2(messageMap.get("PropertyWantToBuy").replace("%fieldName", field.getFieldName()),
-					"Ja", "Nej");
-			
-			if (choice.equals("Ja"))
+			// Make
+			if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
 			{
-				generalAction.buyField(player, field, guiController);
+				// Ask the user if he wants to buy the Property
+				String choice = guiController.getUserButton2(messageMap.get("PropertyWantToBuy").replace("%fieldName", field.getFieldName()),
+						"Ja", "Nej");
+				
+				if (choice.equals("Ja"))
+				{
+					generalAction.buyField(player, field, guiController);
+				}
+				
+				else { }
 			}
+			
+			// Otherwise put it on auction
 			else
 			{ }
 		}
@@ -70,6 +78,7 @@ public class PropertyAction extends FieldAction {
 		//region Pay Rent
 		else
 		{
+			// Display message to player
 			guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", field.getFieldOwner().getName()));
 			
 			// Update both players balance

@@ -20,12 +20,9 @@ public class TurnController {
     /*
     -------------------------- Fields --------------------------
      */
-
-    // private FieldController fieldController;
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
     private int prePosition, postPosition;
-    
     /*
     ----------------------- Constructor -------------------------
      */
@@ -50,16 +47,22 @@ public class TurnController {
 						  HashMap<String,String> messageMap, Board board, Cup cup, GeneralActionController generalActionController)
 	{
 		//region Raffle
+		
 		raffleCup(player, guiController, messageMap, cup);
+		
 		//endregion
 		
 		//region Move Player
+		
 		moveRaffle(player, board, guiController, messageMap, generalActionController);
+		
 		//endregion
 		
 		//region FieldAction
+		
 		FieldController fieldController = new FieldController(board.getBoard()[player.getPosition()], guiController, player, messageMap);
 		fieldController.doFieldActionByFieldType();
+		
 		//endregion
 	}
 
