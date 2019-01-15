@@ -65,7 +65,6 @@ public class MovingRelAction extends ChanceCardAction {
             generalActionController.movingPlayerBackwardGUI(player, board,guiController,
                     prePosition,postPostion, 500);
         }
-
     }
     
     /*

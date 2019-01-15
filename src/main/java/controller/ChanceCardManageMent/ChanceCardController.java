@@ -1,9 +1,11 @@
 package controller.ChanceCardManageMent;
 
 import controller.ChanceCardManageMent.ChanceCardActions.MoneyBankAction;
+import controller.ChanceCardManageMent.ChanceCardActions.MovingRelAction;
 import controller.GeneralActionController;
 import controller.GuiController;
 import javafx.print.PageLayout;
+import model.board.Board;
 import model.chancecard.ChanceCard;
 import model.player.Player;
 
@@ -21,24 +23,28 @@ public class ChanceCardController {
 
     // ChanceCardActions
     private MoneyBankAction moneyBankAction;
+    private MovingRelAction movingRelAction;
 
     private GuiController guiController;
     private GeneralActionController generalActionController;
     private HashMap<String,String> messageMap;
+    private Board board;
     
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public ChanceCardController (GeneralActionController generalActionController,
-                                 GuiController guiController,HashMap<String,String> messageMap) {
+    public ChanceCardController (GeneralActionController generalActionController, Board board,
+                                 GuiController guiController, HashMap<String,String> messageMap) {
         this.generalActionController = generalActionController;
         this.guiController = guiController;
         this.messageMap = messageMap;
+        this.board = board;
 
 
         // ActionClasses
         moneyBankAction = new MoneyBankAction(guiController,messageMap,generalActionController);
+        movingRelAction = new MovingRelAction(guiController, messageMap,generalActionController,board);
     }
     
     /*
@@ -63,7 +69,7 @@ public class ChanceCardController {
 
                 break;
             case movingRel:
-
+                movingRelAction.chanceCardAction(player, currentChanceCard);
                 break;
             default:
                 break;
