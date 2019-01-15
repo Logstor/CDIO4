@@ -109,9 +109,9 @@ public class GuiController {
         return gui.getUserInteger(message, min, max);
     }
 
-    public void movePlayer(Player player, int move) {
+    public void movePlayer(Player player, int theFieldIndex) {
 
-        gui.movePlayer(player, move);
+        gui.movePlayer(player, theFieldIndex);
     }
 
     public void WinnerMode() throws InterruptedException {
