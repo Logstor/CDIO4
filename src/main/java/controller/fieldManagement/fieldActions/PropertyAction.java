@@ -66,7 +66,14 @@ public class PropertyAction extends FieldAction {
 					generalAction.buyField(player, field, guiController);
 				}
 				
-				else { }
+				else
+				{
+					guiController.showMessage(messageMap.get("PropertyNoMoney"));
+					
+					//region auction
+					
+					//endregion
+				}
 			}
 			
 			// Otherwise put it on auction

@@ -23,6 +23,7 @@ LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end
 TaxToPay;Og skal derfor betale %tax i SKAT.
 PropertyFirst;Du er landet på %name's ejendom.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
+PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
 BoatMessage; Du er landet på et bådfelt. For hvert bådfelt du ejer vil huslejen bliver fordoblet.
 BoatsOwned1; Ejer et båd felt og derfor skal du betale 500
 BoatsOwned2; Ejer to båd felter og derfor skal du betale 1000
