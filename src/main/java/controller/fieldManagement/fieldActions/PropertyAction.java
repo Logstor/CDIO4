@@ -57,19 +57,22 @@ public class PropertyAction extends FieldAction {
 			// Make
 			if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
 			{
+				//region Does Player Want to Buy?
+				
 				// Ask the user if he wants to buy the Property
 				String choice = guiController.getUserButton2(messageMap.get("PropertyWantToBuy").replace("%fieldName", field.getFieldName()),
 						"Ja", "Nej");
+				
+				//endregion
 				
 				if (choice.equals("Ja"))
 				{
 					generalAction.buyField(player, field, guiController);
 				}
 				
+				// Otherwise, player don't want to
 				else
 				{
-					guiController.showMessage(messageMap.get("PropertyNoMoney"));
-					
 					//region auction
 					
 					//endregion
@@ -78,7 +81,13 @@ public class PropertyAction extends FieldAction {
 			
 			// Otherwise put it on auction
 			else
-			{ }
+			{
+				guiController.showMessage(messageMap.get("PropertyNoMoney"));
+				
+				//region auction
+				
+				//endregion
+			}
 		}
 		//endregion
 		
