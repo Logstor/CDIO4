@@ -99,6 +99,6 @@ public class MainControl {
 
 	private void turn (Player player) {
 	    TurnController turnController = new TurnController();
-	    turnController.playTurn(player, guiController, messageMap, board, cup, generalActionController);
+	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController);
     }
 }

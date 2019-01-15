@@ -54,7 +54,8 @@ public class BoatAction extends FieldAction {
 		StringBuilder actionBuilder = new StringBuilder();
 		//region Check if the boatField has a owner, if false:
 		if (currentField.getFieldOwner() == null) {
-			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()) + "\n");
+			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
+			actionBuilder.append("\n");
 			actionBuilder.append(messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
 
 			String choice = guiController.getUserButton2(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"));
