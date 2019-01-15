@@ -1,11 +1,14 @@
 package controller.fieldManagement;
 
+import controller.ChanceCardManageMent.ChanceCardAction;
+import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.fieldActions.BoatAction;
+import controller.fieldManagement.fieldActions.ChanceAction;
 import controller.fieldManagement.fieldActions.TaxAction;
+import model.board.Board;
 import model.board.Field;
-import model.board.fields.BoatField;
-import model.board.fields.PropertyField;
+import model.chancecard.Deck;
 import model.player.Player;
 
 import java.util.HashMap;
@@ -21,16 +24,20 @@ public class FieldController {
 	private Field currentField;
 	private TaxAction taxAction;
 	private BoatAction boatAction;
+	private ChanceAction chanceAction;
     
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-    public FieldController (Field currentField,GuiController guiController, Player player, HashMap<String, String> messageMap) {
+    public FieldController (Field currentField, GuiController guiController, Player player,
+                            HashMap<String,String> messageMap, Board board, Deck deck,
+                            GeneralActionController generalActionController) {
         this.currentField = currentField;
 
         taxAction = new TaxAction(player,messageMap,guiController,currentField);
         boatAction = new BoatAction(player,messageMap,guiController,currentField);
+        chanceAction = new ChanceAction(player,messageMap,guiController,generalActionController,board, deck);
 
     }
 
@@ -48,6 +55,7 @@ public class FieldController {
             case Start:
                 break;
             case ChanceCard:
+                chanceAction.action();
                 break;
             case Tax:
                 taxAction.action();
