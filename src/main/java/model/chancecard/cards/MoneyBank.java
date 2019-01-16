@@ -55,14 +55,6 @@ public class MoneyBank extends ChanceCard {
 
         return toStringBuilder.toString();
     }
-
-
-    public void cardAction (Player player) {
-
-        player.updateBalance(moneyToTransfer);
-
-    }
-    
     /*
     ---------------------- Support Methods ----------------------
      */
