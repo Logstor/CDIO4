@@ -1,6 +1,8 @@
 package model.player;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
+import model.board.fields.PropertyField;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -156,14 +158,19 @@ public class Player {
         ownedFields.remove(removableField);
     }
 
-    // TODO: SKAL DER TILFØJES VÆRDIEN AF SPILLERENS HUSE ?
-    //TODO Er det ikke det der bliver gjort i valueOfFields nedenunder?
+    /**
+     * Calculates the totalValue of a player.
+     * Sum of: Account.Balance, Value of Fields player own(half of buyPrice) and Value of Houses on those Fields.
+     * @return TotalValue of player.
+     */
     public int calPlayerTotalValue () {
         int totalPlayerValue = 0;
         // Value of Account
         totalPlayerValue += account.getBalance();
-        // Value of OwnedFields
+        // Adds value of OwnedFields
         totalPlayerValue += valueOfOwnedFields()*0.5;
+        // Adds value of houses on Fields ofOwnedFields
+        totalPlayerValue += valueOfHousesOnOwnedFields()*0.5;
 
         return totalPlayerValue;
     }
@@ -179,4 +186,18 @@ public class Player {
         return valueOfOwnedFields;
     }
 
+    private int valueOfHousesOnOwnedFields () {
+        int valueOfHousesOnOwnedFields = 0;
+
+        for (Field field : ownedFields) {
+            int noOfHouses = 0;
+            int housePrice = 0;
+            if (field.getFieldType().equals(FieldTypeEnum.Property)){
+                noOfHouses = ((PropertyField) field).getNoOfHousesOnProperty();
+                housePrice = ((PropertyField) field).getNoOfHousesOnProperty();
+            }
+            valueOfHousesOnOwnedFields = valueOfHousesOnOwnedFields + noOfHouses*housePrice;
+        }
+        return valueOfHousesOnOwnedFields;
+    }
 }
