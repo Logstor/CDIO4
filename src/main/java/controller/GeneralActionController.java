@@ -85,6 +85,8 @@ public class GeneralActionController {
     
     public void payManuelRent(Player player, Field field, GuiController guiController)
     {
+
+
     
     }
 

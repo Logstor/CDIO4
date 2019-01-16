@@ -71,6 +71,6 @@ public class ChanceCardAdder {
     }
 
     private void addMovingRel (CardTypeEnum cardType, String cardText, int relMoving) {
-        tempListOfCards.add(new MovingAbs(cardType, cardText, relMoving));
+        tempListOfCards.add(new MovingRel(cardType, cardText, relMoving));
     }
 }
