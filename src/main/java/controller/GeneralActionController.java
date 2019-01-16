@@ -59,7 +59,7 @@ public class GeneralActionController {
         player.addFieldToOwnedFields(fieldToBuy);
         fieldToBuy.setFieldOwner(player);
         guiController.setOwner(player,fieldToBuy);
-        guiController.setBorderWithPlayerCarColor(player,fieldToBuy);
+        guiController.setPlainBorderWithPlayerCarColor(player,fieldToBuy);
         if (fieldToBuy.getFieldType()==FieldTypeEnum.Boat) {
             player.updateNoOfBoatsOwned(1);
         }

@@ -59,15 +59,28 @@ public class GuiController {
     }
 
     /**
-     * Sets the Field Border to the color of the Players Car.
+     * Sets the Field Border (PLAIN) to the color of the Players Car.
      * @param player The Player that the BorderColor is decided on.
      * @param theField The Field which gets it borders Colored.
      */
-    public void setBorderWithPlayerCarColor (Player player, Field theField) {
+    public void setPlainBorderWithPlayerCarColor(Player player, Field theField) {
 
         gui.setPlainBorderWithPlayerCarColor(player,theField);
 
     }
+
+    /**
+     * Sets the Field Border (DOTTED) to the color of the Players Car and LightGrey.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setDottedBorderWithPlayerCarColor(Player player, Field theField) {
+
+        gui.setDottedBorderWithPlayerCarColor(player,theField);
+
+    }
+
+
 
     public void addPlayer(Player player) {
 
