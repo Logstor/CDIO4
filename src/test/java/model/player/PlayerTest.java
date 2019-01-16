@@ -1,5 +1,10 @@
 package model.player;
 
+import model.board.Field;
+import model.board.FieldTypeEnum;
+import model.board.fields.BoatField;
+import model.board.fields.BreweryField;
+import model.board.fields.PropertyField;
 import org.junit.Test;
 
 import java.awt.*;
@@ -28,13 +33,13 @@ public class PlayerTest {
         assertEquals(player.getAccount().getBalance(),3000);
 
     }
-/*
-Aint in use
-    @Test
-    public void setAccount() {
+    /*
+    Aint in use
+        @Test
+        public void setAccount() {
 
-    }
-*/
+        }
+    */
     @Test
     public void getName() {
         Player player = new Player("Test", Color.blue, 3000,1);
@@ -48,48 +53,6 @@ Aint in use
         assertEquals(player.getName(),"Test2");
     }
 
-    @Test
-    public void getBreweriesOwned() {
-        Player player = new Player("Test", Color.blue, 3000,1);
-        player.setBreweriesOwned(1);
-        assertEquals(player.getBreweriesOwned(),1);
-    }
-
-    @Test
-    public void setBreweriesOwned() {
-        Player player = new Player("Test", Color.blue, 3000,1);
-        player.setBreweriesOwned(2);
-        assertEquals(player.getBreweriesOwned(),2);
-    }
-
-    @Test
-    public void getBoatsOwned() {
-        Player player = new Player("Test", Color.blue, 3000,1);
-        player.setBoatsOwned(2);
-        assertEquals(player.getBoatsOwned(),2);
-    }
-
-    @Test
-    public void setBoatsOwned() {
-        Player player = new Player("Test", Color.blue, 3000,1);
-        player.setBoatsOwned(2);
-        assertEquals(player.getBoatsOwned(),2);
-    }
-
-    @Test
-    public void isInPrison() {
-        Player player = new Player("Test", Color.blue, 3000,1);
-        assertEquals(player.isInPrison(),false);
-
-    }
-
-    @Test
-    public void setInPrison() {
-        Player player = new Player("Test", Color.blue, 3000,1);
-        player.setInPrison(true);
-        assertEquals(player.isInPrison(),true);
-
-    }
 
     @Test
     public void getPosition() {
@@ -146,5 +109,122 @@ Aint in use
         assertEquals(player.getPosition(),2);
         player.updatePosition(-5);
         assertEquals(player.getPosition(),37);
+    }
+
+
+    @Test
+    public void getNoOfBreweriesOwned() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setNoOfBreweriesOwned(2);
+        assertEquals(player.getNoOfBreweriesOwned(),2);
+    }
+
+    @Test
+    public void setNoOfBreweriesOwned() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setNoOfBreweriesOwned(1);
+        assertEquals(player.getNoOfBreweriesOwned(),1);
+    }
+
+    @Test
+    public void getNoOfBoatsOwned() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setNoOfBoatsOwned(2);
+        assertEquals(player.getNoOfBoatsOwned(),2);
+
+        BoatField field = new BoatField(5, FieldTypeEnum.Boat, "Boat2","Test",4000,Color.blue);
+        field.fieldAction(player);
+        player.updateNoOfBoatsOwned(1);
+        assertEquals(player.getNoOfBoatsOwned(),3);
+
+    }
+
+    @Test
+    public void setNoOfBoatsOwned() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setNoOfBoatsOwned(2);
+        assertEquals(player.getNoOfBoatsOwned(),2);
+    }
+
+    @Test
+    public void getPrisonStat() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setPrisonStat(2);
+        assertEquals(player.getPrisonStat(),2);
+    }
+
+    @Test
+    public void setPrisonStat() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setPrisonStat(3);
+        assertEquals(player.getPrisonStat(),3);
+    }
+
+
+    @Test
+    public void getTotalPosition() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setTotalPosition(20);
+        assertEquals(player.getTotalPosition(),20);
+    }
+
+    @Test
+    public void setTotalPosition() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setTotalPosition(30);
+        assertEquals(player.getTotalPosition(),30);
+    }
+
+    @Test
+    public void updateNoOfBoatsOwned() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setNoOfBoatsOwned(1);
+        BoatField field = new BoatField(3,FieldTypeEnum.Boat,"Test2","testen",4000,Color.blue);
+        field.fieldAction(player);
+        player.updateNoOfBoatsOwned(1);
+        assertEquals(player.getNoOfBoatsOwned(),2);
+
+    }
+
+    @Test
+    public void updateNoOfBreweriesOwned() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        player.setNoOfBreweriesOwned(1);
+        BreweryField field = new BreweryField(3,FieldTypeEnum.Brewery,"Test2","testen",4000,Color.blue);
+        field.fieldAction(player);
+        player.updateNoOfBreweriesOwned(1);
+        assertEquals(player.getNoOfBreweriesOwned(),2);
+    }
+
+    @Test
+    public void addFieldToOwnedFields() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        PropertyField field = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",2000,Color.blue, 200,1000,400,700,1000,1300,1700);
+        PropertyField field2 = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",2000,Color.blue, 200,1000,400,700,1000,1300,1700);
+        player.addFieldToOwnedFields(field);
+        assertEquals(player.getOwnedFields().size(),1);
+        player.addFieldToOwnedFields(field2);
+        assertEquals(player.getOwnedFields().size(),2);
+    }
+
+    @Test
+    public void removeFieldFromOwnedFields() {
+        Player player = new Player("Test", Color.blue, 3000,0);
+        PropertyField field = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",2000,Color.blue, 200,1000,400,700,1000,1300,1700);
+        player.addFieldToOwnedFields(field);
+        assertEquals(player.getOwnedFields().size(),1);
+        player.removeFieldFromOwnedFields(field);
+        assertEquals(player.getOwnedFields().size(),0);
+    }
+
+    @Test
+    public void calPlayerTotalValue() {
+        Player player = new Player("Test", Color.blue, 1000,0);
+        PropertyField field = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",2000,Color.blue, 200,1000,400,700,1000,1300,1700);
+        PropertyField field2 = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",3000,Color.blue, 200,1000,400,700,1000,1300,1700);
+        player.addFieldToOwnedFields(field);
+        assertEquals(player.calPlayerTotalValue(),3000);
+        player.addFieldToOwnedFields(field2);
+        assertEquals(player.calPlayerTotalValue(),6000);
     }
 }
