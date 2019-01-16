@@ -42,8 +42,7 @@ public class ToPrisonAction extends ChanceCardAction {
     /*
     ---------------------- Public Methods -----------------------
      */
-    
-    
+
     
     /*
     ---------------------- Support Methods ----------------------
