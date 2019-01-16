@@ -4,7 +4,6 @@ import controller.GuiController;
 import controller.fieldManagement.FieldAction;
 import model.board.Field;
 import model.player.Player;
-import view.gui.Gui;
 
 import java.util.HashMap;
 
@@ -23,7 +22,8 @@ public class PrisonAction extends FieldAction {
     ------------------------------ Constructors --------------------------------
      */
 
-	public PrisonAction(Player player, Field currentField, HashMap<String, String> messageMap,GuiController guiController) {
+	public PrisonAction(Player player, Field currentField, HashMap<String, String> messageMap,GuiController guiController)
+	{
 		super(player,messageMap,guiController);
 		this.currentField = currentField;
 	}
@@ -41,11 +41,16 @@ public class PrisonAction extends FieldAction {
 	@Override
 	public void action() {
 
-		if (currentField.getFieldNo()==11) {
+		if (currentField.getFieldNo()==11)
+		{
 			guiController.showMessage(messageMap.get("PrisonVisiting"));
-		} else if(currentField.getFieldNo()==31) {
+		}
+		
+		else if(currentField.getFieldNo()==31)
+		{
 			guiController.showMessage(messageMap.get("PrisonSentTo"));
 			player.setPrisonStat(1);
+			
 			// Player position is updated with "-20" to set Player position to FieldNo 11.
 			player.updatePosition(-20);
 			guiController.movePlayer(player, player.getPosition());
