@@ -7,7 +7,7 @@ import model.board.FieldActionManager;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.cup.Die;
-import model.game.Turn;
+
 import model.player.Player;
 import view.gui.Gui;
 
