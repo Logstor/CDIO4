@@ -74,7 +74,7 @@ public class SetupControl {
 
 		for (int i = 0; i < players.length; i++) {
 			String name="";
-			String name1 = guiController.getUserString(messageMap.get("NamePlayer") + " " + Integer.toString(i+1));
+			String name1 = guiController.getUserString(messageMap.get("NamePlayer") + " " + (i+1));
 
 			//Tjekker for om navnet er optager.
 			if(PlayerNames.contains(name1)) {
