@@ -59,15 +59,11 @@ public class PropertyAction extends FieldAction {
 			// Make
 			if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
 			{
-				//region Does Player Want to Buy?
-				
-				// Ask the user if he wants to buy the Property
-				String choice = guiController.getUserButton2(messageMap.get("PropertyWantToBuy").replace("%fieldName", field.getFieldName()),
-						"Ja", "Nej");
-				
-				//endregion
-				
-				if (choice.equals("Ja"))
+
+				// Ask the player if he wants to buy, and handle the event
+				if (guiController.getLeftButtonPressed(messageMap.get("PropertyWantToBuy").replace("%fieldName",
+					field.getFieldName()),
+					messageMap.get("Yes"), messageMap.get("No")))
 				{
 					generalAction.buyField(player, field, guiController);
 				}
