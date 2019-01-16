@@ -45,6 +45,7 @@ public class TurnController {
     public void playTurn (Player player, GuiController guiController, HashMap<String,String> messageMap, Deck deck,
 						  Board board, Cup cup, GeneralActionController generalActionController)
 	{
+		
 		//region Raffle
 		
 		raffleCup(player, guiController, messageMap, cup);
@@ -71,6 +72,11 @@ public class TurnController {
         extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController);
 
         //endregion
+	}
+	
+	public void playPrisonTurn ()
+	{
+		//FIXME: Implementér denne metode, og brug den i MainControl - GameLoop
 	}
 
     /*
