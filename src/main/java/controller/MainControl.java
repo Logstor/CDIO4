@@ -57,13 +57,23 @@ public class MainControl {
 			// Set the game up, and display
 			setup();
 
+			//region GameLoop
 			do {
                 for (Player currentPlayer : players) {
-
-                    turn(currentPlayer);
-
+                	
+                	// Check if currentPlayer is in prison
+                	if(currentPlayer.getPrisonStat() > 0)
+						prisonTurn(currentPlayer);
+                	
+                	// Otherwise run a normal turn
+                	else
+                		turn(currentPlayer);
                 }
-            } while (players.length>1);
+            }
+			// Continue while there's more than 1 player left
+			while (players.length>1);
+			
+			//endregion
 
 			return 0;
 		}
@@ -97,8 +107,18 @@ public class MainControl {
 		guiController.showMessage(messageMap.get("GetReady"));
 	}
 
-	private void turn (Player player) {
+	private void turn (Player player)
+	{
 	    TurnController turnController = new TurnController();
 	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController);
     }
+    
+    private void prisonTurn (Player player)
+	{
+		//FIXME: Denne metode skal implementeres
+		
+		//TODO: Create new TurnController
+		
+		//TODO: Run the specific TurnController method for starting in prison
+	}
 }
