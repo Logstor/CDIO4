@@ -157,6 +157,7 @@ public class Player {
     }
 
     // TODO: SKAL DER TILFØJES VÆRDIEN AF SPILLERENS HUSE ?
+    //TODO Er det ikke det der bliver gjort i valueOfFields nedenunder?
     public int calPlayerTotalValue () {
         int totalPlayerValue = 0;
         // Value of Account

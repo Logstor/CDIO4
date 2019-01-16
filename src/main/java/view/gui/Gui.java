@@ -535,7 +535,6 @@ public class Gui {
                 boat.setDescription(fields[i].getFieldDescription());
                 boat.setRent(Integer.toString(fields[i].getFieldCost()));
 
-                //TODO: Er der for meget med forskellige farver til Molslinien og de andre færger?
                 boat.setBackGroundColor(fields[i].getFieldColor());
 
                 // Put the GUI_Field into the newFields array
