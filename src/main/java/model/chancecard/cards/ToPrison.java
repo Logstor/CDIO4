@@ -1,10 +1,13 @@
 package model.chancecard.cards;
 
+import model.chancecard.CardTypeEnum;
+import model.chancecard.ChanceCard;
+
 /**
  * @author Rasmus Sander Larsen
  * @date 16-01-2019
  */
-public class ToPrison {
+public class ToPrison extends ChanceCard {
 
     /*
     -------------------------- Fields --------------------------
@@ -16,7 +19,9 @@ public class ToPrison {
     ----------------------- Constructor -------------------------
      */
     
-    
+    public ToPrison (CardTypeEnum cardType, String cardText) {
+        super(cardType, cardText);
+    }
     
     /*
     ------------------------ Properties -------------------------
