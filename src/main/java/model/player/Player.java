@@ -136,7 +136,12 @@ public class Player {
      */
     public void updatePosition (int moves) {
         totalPosition += moves;
-        position = totalPosition % 40;
+        if (totalPosition<0) {
+            position = 40 + totalPosition;
+            totalPosition = position;
+        } else {
+            position = totalPosition % 40;
+        }
     }
 
     public void updateNoOfBoatsOwned (int noOfBoatsToUpdateWith) {
