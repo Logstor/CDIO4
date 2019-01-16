@@ -72,9 +72,11 @@ public class ChanceCardController {
             case matadorLegat:
                 MatadorLegatAction matadorLegatAction = new MatadorLegatAction(guiController,messageMap,generalActionController);
                 matadorLegatAction.chanceCardAction(player,currentChanceCard);
+                break;
             case toPrison:
                 ToPrisonAction toPrisonAction = new ToPrisonAction(guiController,messageMap,generalActionController,board);
                 toPrisonAction.chanceCardAction(player,currentChanceCard);
+                break;
             default:
                 break;
 
