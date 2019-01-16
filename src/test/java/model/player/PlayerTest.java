@@ -223,8 +223,8 @@ public class PlayerTest {
         PropertyField field = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",2000,Color.blue, 200,1000,400,700,1000,1300,1700);
         PropertyField field2 = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",3000,Color.blue, 200,1000,400,700,1000,1300,1700);
         player.addFieldToOwnedFields(field);
-        assertEquals(player.calPlayerTotalValue(),3000);
+        assertEquals(player.calPlayerTotalValue(),2000);
         player.addFieldToOwnedFields(field2);
-        assertEquals(player.calPlayerTotalValue(),6000);
+        assertEquals(player.calPlayerTotalValue(),3500);
     }
 }
