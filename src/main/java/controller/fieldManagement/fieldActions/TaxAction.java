@@ -51,8 +51,8 @@ public class TaxAction extends FieldAction {
      */
 
     private void taxStandardAction (StringBuilder actionBuilder,String stringLabel) {
-		actionBuilder.append(messageMap.get(stringLabel).replace("%fieldName", currentField.getFieldName()
-				.replace("%rent", String.valueOf(currentField.getFieldCost())) + "\n"));
+		actionBuilder.append(messageMap.get(stringLabel).replace("%fieldName", currentField.getFieldName())
+				.replace("%rent",String.valueOf(currentField.getFieldCost())) + "\n");
 		player.updateBalance(-currentField.getFieldCost());
 		guiController.updateBalance(player,player.getAccount().getBalance());
 		guiController.showMessage(actionBuilder.toString());
