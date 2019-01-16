@@ -1,9 +1,6 @@
 package controller.ChanceCardManageMent;
 
-import controller.ChanceCardManageMent.ChanceCardActions.MatadorLegatAction;
-import controller.ChanceCardManageMent.ChanceCardActions.MoneyBankAction;
-import controller.ChanceCardManageMent.ChanceCardActions.MovingAbsAction;
-import controller.ChanceCardManageMent.ChanceCardActions.MovingRelAction;
+import controller.ChanceCardManageMent.ChanceCardActions.*;
 import controller.GeneralActionController;
 import controller.GuiController;
 import model.board.Board;
@@ -75,6 +72,9 @@ public class ChanceCardController {
             case matadorLegat:
                 MatadorLegatAction matadorLegatAction = new MatadorLegatAction(guiController,messageMap,generalActionController);
                 matadorLegatAction.chanceCardAction(player,currentChanceCard);
+            case toPrison:
+                ToPrisonAction toPrisonAction = new ToPrisonAction(guiController,messageMap,generalActionController,board);
+                toPrisonAction.chanceCardAction(player,currentChanceCard);
             default:
                 break;
 
