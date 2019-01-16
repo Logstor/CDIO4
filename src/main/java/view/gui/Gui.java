@@ -301,7 +301,14 @@ public class Gui {
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
     }
-    
+
+    public void setBorderWithPlayerCarColor (Player player, Field theField) {
+
+        ((GUI_Ownable) fields[theField.getFieldNo()-1]).setBorder(player.getToken().getCarColor());
+
+    }
+
+
     /**
      * This methods makes all fields blink between
      * gold and gray eternally

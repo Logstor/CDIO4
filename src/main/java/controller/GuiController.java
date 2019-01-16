@@ -59,6 +59,17 @@ public class GuiController {
         gui.setOwner(player, field);
     }
 
+    /**
+     * Sets the Field Border to the color of the Players Car.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setBorderWithPlayerCarColor (Player player, Field theField) {
+
+        gui.setBorderWithPlayerCarColor(player,theField);
+
+    }
+
     public void addPlayer(Player player) {
 
         gui.addPlayer(player);
