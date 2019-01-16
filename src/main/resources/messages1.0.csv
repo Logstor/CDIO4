@@ -24,7 +24,7 @@ LandedOnTaxOver;Du er landet på %fieldName, og besidder aktiver for mere end kr
 LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end kr. 40.000.
 TaxToPay;Og skal derfor betale %tax i SKAT.
 PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
-PrisonSentTo;"Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 11"""
+PrisonSentTo;Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 11
 PropertyFirst;Du er landet på %name's ejendom, og du skal betale kr. %rent i husleje.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
 PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
@@ -38,3 +38,5 @@ WantToBuy?;Denne færge er stadig til salg og koster: %cost. Vil du købe det?
 ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
 PayRentTo;Du skal betale %rent i husleje til %fieldOwner.
 FreeParking;Du er heldig at have fundet en gratis parkering.
+MatadorLegatGranted;Din totaleværdi ligger er %playerValue og du anses derfor som værende berettiget til 'Matador-Legatet for værdigt trængende' og tildeles kr. 40.000.
+MatadorLegatNOTGranted;Din totaleværdi ligger er %playerValue og du anses derfor IKKE som værende berettiget til 'Matador-Legatet for værdigt trængende'.
