@@ -56,7 +56,7 @@ public class MovingRelAction extends ChanceCardAction {
      * @param currentChanceCard The ChanceCard which action is done.
      */
     public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
-        showAndSetChanceCardOnGUi(currentChanceCard);
+        setDisplayMessageChanceCardOnGUi(currentChanceCard);
         prePosition = player.getPosition();
         player.updatePosition(((MovingRel) currentChanceCard).getRelMovement());
         postPosition = player.getPosition();
