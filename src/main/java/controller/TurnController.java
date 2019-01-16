@@ -98,7 +98,7 @@ public class TurnController {
                              HashMap<String,String> messageMap, GeneralActionController generalActionController)
 	{
 		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
-                500);
+                250);
 		
 		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));
 
