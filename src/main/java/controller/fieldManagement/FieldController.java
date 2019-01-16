@@ -58,7 +58,8 @@ public class FieldController {
         switch (currentField.getFieldType())
 		{
             case Property:
-				PropertyAction propertyAction = new PropertyAction(player, messageMap, (PropertyField)currentField, guiController);
+				PropertyAction propertyAction = new PropertyAction(player, messageMap, (PropertyField)currentField,
+						guiController, generalActionController);
 				propertyAction.action();
                 break;
                 
@@ -92,7 +93,8 @@ public class FieldController {
                 break;
                 
             case Brewery:
-				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController, cup, currentField);
+				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController, cup,
+						currentField, generalActionController);
 				breweryAction.action();
 
                 break;
