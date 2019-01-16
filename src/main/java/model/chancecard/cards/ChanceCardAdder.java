@@ -53,6 +53,8 @@ public class ChanceCardAdder {
             case movingRel:
                 addMovingRel(cardTypes,cardText,relMoving);
                 break;
+            case matadorLegat:
+                addMatadorLegat(cardTypes,cardText);
             default:
                 break;
         }
@@ -72,5 +74,9 @@ public class ChanceCardAdder {
 
     private void addMovingRel (CardTypeEnum cardType, String cardText, int relMoving) {
         tempListOfCards.add(new MovingRel(cardType, cardText, relMoving));
+    }
+
+    private void addMatadorLegat (CardTypeEnum cardType, String cardText) {
+        tempListOfCards.add(new MatadorLegat(cardType, cardText));
     }
 }
