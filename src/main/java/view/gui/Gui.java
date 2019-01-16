@@ -195,6 +195,11 @@ public class Gui {
         return gui.getUserInteger(message);
     }
 
+    public boolean getLeftButtonPressed (String message, String truebutton, String falsebutton ){
+        return gui.getUserLeftButtonPressed(message, truebutton, falsebutton);
+
+    }
+
     /**
      * This method prompts the user to input a String into
      * a textfield, and returns the inputted String.

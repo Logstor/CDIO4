@@ -89,6 +89,12 @@ public class GuiController {
         gui.getUserChoice(message, button);
     }
 
+    public void getLeftButtonPressed (String message, String truebutton, String falsebutton){
+
+        gui.getLeftButtonPressed(message, truebutton, falsebutton);
+
+    }
+
     public String getUserString(String message) {
 
         //Display message to the user
