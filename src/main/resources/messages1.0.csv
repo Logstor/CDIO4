@@ -35,3 +35,5 @@ BoatsOwned3;Ejer tre båd felter og derfor skal du betale 2000
 BoatsOwned4;Ejer alle båd felter og derfor skal du betale 4000
 WantToBuy?;Denne færge er stadig til salg og koster: %cost. Vil du købe det?
 ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
+PayRentTo;Du skal betale %rent i husleje til %fieldOwner.
+FreeParking;Du er heldig at have fundet en gratis parkering.
