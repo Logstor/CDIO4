@@ -55,6 +55,8 @@ public class ChanceCardAdder {
                 break;
             case matadorLegat:
                 addMatadorLegat(cardTypes,cardText);
+            case toPrison:
+                addToPrison(cardTypes,cardText);
             default:
                 break;
         }
@@ -78,5 +80,9 @@ public class ChanceCardAdder {
 
     private void addMatadorLegat (CardTypeEnum cardType, String cardText) {
         tempListOfCards.add(new MatadorLegat(cardType, cardText));
+    }
+
+    private void addToPrison (CardTypeEnum cardType, String cardText) {
+        tempListOfCards.add(new ToPrison(cardType, cardText));
     }
 }
