@@ -62,7 +62,7 @@ public class MovingAbsAction extends ChanceCardAction {
         finalPosition = ((MovingAbs) currentCard).getAbsFieldNo();
         if (prePosition>finalPosition) {
             int diffPassed = 39-prePosition;
-            finalPositionUpdate = finalPosition + diffPassed + 1; // +1 for 0 in index
+            finalPositionUpdate = finalPosition + diffPassed; // +1 for 0 in index
         } else {
             finalPositionUpdate= finalPosition-prePosition;
         }
