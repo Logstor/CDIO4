@@ -38,5 +38,5 @@ WantToBuy?;Denne færge er stadig til salg og koster: %cost. Vil du købe det?
 ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
 PayRentTo;Du skal betale %rent i husleje til %fieldOwner.
 FreeParking;Du er heldig at have fundet en gratis parkeringsplads.
-LandedOnBrewery; Du er landet på bryggeriet: %brewery.
+LandedOnBrewery;Du er landet på bryggeriet: %brewery.
 BuyBrewery; Dette bryggeri er stadig til salg og koster: %cost. Vil du købe det?
