@@ -42,11 +42,6 @@ public class StartField extends Field {
     ---------------------- Public Methods -----------------------
      */
     
-    public void fieldAction (Player player) {
-        actionText="Du er landet på start og modtager 4000 kr.";
-    }
-    public void fieldAction (Player player, Cup cup) {}
-    
     /*
     ---------------------- Support Methods ----------------------
      */

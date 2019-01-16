@@ -140,7 +140,7 @@ public class Player {
     }
 
     public void updateNoOfBoatsOwned (int noOfBoatsToUpdateWith) {
-        noOfBoatsOwned+=noOfBoatsToUpdateWith;
+        noOfBoatsOwned = noOfBoatsOwned + noOfBoatsToUpdateWith;
     }
 
     public void updateNoOfBreweriesOwned (int noOfBreweriesToUpdateWith) {
@@ -157,6 +157,7 @@ public class Player {
     }
 
     // TODO: SKAL DER TILFØJES VÆRDIEN AF SPILLERENS HUSE ?
+    //TODO Er det ikke det der bliver gjort i valueOfFields nedenunder?
     public int calPlayerTotalValue () {
         int totalPlayerValue = 0;
         // Value of Account

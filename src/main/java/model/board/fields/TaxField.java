@@ -41,12 +41,6 @@ public class TaxField extends Field {
     ---------------------- Public Methods -----------------------
      */
     
-    public void fieldAction (Player player) {
-
-    }
-
-    public void fieldAction (Player player, Cup Cup) {}
-    
     /*
     ---------------------- Support Methods ----------------------
      */

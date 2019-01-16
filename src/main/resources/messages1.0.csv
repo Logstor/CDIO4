@@ -25,13 +25,16 @@ LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end
 TaxToPay;Og skal derfor betale %tax i SKAT.
 PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
 PrisonSentTo;"Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 11"""
-PropertyFirst;Du er landet på %name's ejendom.
+PropertyFirst;Du er landet på %name's ejendom, og du skal betale kr. %rent i husleje.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
 PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
-BoatMessage;Du er landet på færgen: %boat.
-BoatsOwned1;Ejer et båd felt og derfor skal du betale 500
-BoatsOwned2;Ejer to båd felter og derfor skal du betale 1000
-BoatsOwned3;Ejer tre båd felter og derfor skal du betale 2000
-BoatsOwned4;Ejer alle båd felter og derfor skal du betale 4000
+BoatMessage; Du er landet på færgen: %boat.
+BoatsOwned1;%ownerName ejer denne færge og derfor skal du betale 500
+BoatsOwned2;%ownerName ejer denne færge og én anden. Derfor skal du betale 1000
+BoatsOwned3;%ownerName ejer denne færge og to andre. Derfor skal du betale 2000
+BoatsOwned4;%ownerName ejer denne færge og tre andre. Derfor skal du betale 4000
+BoatsOwnedError;FEJL!!! Noobs
 WantToBuy?;Denne færge er stadig til salg og koster: %cost. Vil du købe det?
 ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
+PayRentTo;Du skal betale %rent i husleje til %fieldOwner.
+FreeParking;Du er heldig at have fundet en gratis parkering.

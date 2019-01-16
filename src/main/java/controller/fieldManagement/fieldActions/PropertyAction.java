@@ -31,10 +31,12 @@ public class PropertyAction extends FieldAction {
 	 * @param field The PropertyField the player landed on.
 	 * @param guiController The GuiController.
 	 */
-	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController) {
+	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController,
+						  GeneralActionController generalActionController)
+	{
 		super(player,messageMap,guiController);
 		this.field = field;
-		this.generalAction = new GeneralActionController();
+		this.generalAction = generalActionController;
 	}
 
 	/*
@@ -57,15 +59,11 @@ public class PropertyAction extends FieldAction {
 			// Make
 			if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
 			{
-				//region Does Player Want to Buy?
-				
-				// Ask the user if he wants to buy the Property
-				String choice = guiController.getUserButton2(messageMap.get("PropertyWantToBuy").replace("%fieldName", field.getFieldName()),
-						"Ja", "Nej");
-				
-				//endregion
-				
-				if (choice.equals("Ja"))
+
+				// Ask the player if he wants to buy, and handle the event
+				if (guiController.getLeftButtonPressed(messageMap.get("PropertyWantToBuy").replace("%fieldName",
+					field.getFieldName()),
+					messageMap.get("Yes"), messageMap.get("No")))
 				{
 					generalAction.buyField(player, field, guiController);
 				}
@@ -94,11 +92,8 @@ public class PropertyAction extends FieldAction {
 		//region Pay Rent
 		else
 		{
-			// Display message to player
-			guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", field.getFieldOwner().getName()));
-			
-			// Update both players balance
-			generalAction.payPropertyRent(player, field, guiController);
+			// Handle the rent event, and display messages
+			generalAction.payPropertyRent(player, field, guiController, messageMap);
 		}
 		//endregion
 	}

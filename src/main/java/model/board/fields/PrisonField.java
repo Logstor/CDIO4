@@ -40,20 +40,6 @@ public class PrisonField extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
-
-    public void fieldAction (Player player) {
-        if (fieldNo==11) {
-
-            actionText = "Du er på besøg i fængslet. Dit ophold er gratis.";
-        } else if(fieldNo==31) {
-            actionText = "Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 11";
-            player.setPrisonStat(1);
-            player.setPosition(10);
-        }
-
-    }
-
-    public void fieldAction (Player player, Cup Cup) {}
     
     /*
     ---------------------- Support Methods ----------------------
