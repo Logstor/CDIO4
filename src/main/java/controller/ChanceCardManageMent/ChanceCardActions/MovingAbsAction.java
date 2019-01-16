@@ -62,13 +62,13 @@ public class MovingAbsAction extends ChanceCardAction {
         finalPosition = ((MovingAbs) currentCard).getAbsFieldNo();
         if (prePosition>finalPosition) {
             int diffPassed = 39-prePosition;
-            finalPositionUpdate = finalPosition + diffPassed; // +1 for 0 in index
+            finalPositionUpdate = finalPosition + diffPassed + 1; // +1 for 0 in index
         } else {
-            finalPositionUpdate= finalPosition-prePosition;
+            finalPositionUpdate= finalPosition-prePosition-1;
         }
 
         // Do actions.
-        guiController.updateBalance(player,finalPositionUpdate);
+        player.updatePosition(finalPositionUpdate);
         generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,finalPosition,250);
     }
     
