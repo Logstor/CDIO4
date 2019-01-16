@@ -6,6 +6,7 @@ import model.board.Field;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
+import view.gui.Gui;
 
 import java.util.HashMap;
 
@@ -72,6 +73,12 @@ public class TurnController {
         extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController);
 
         //endregion
+
+		//region Buy Houses?
+
+		buyHouses(player,guiController,messageMap,generalActionController);
+
+		//endregion
 	}
 	
 	public void playPrisonTurn ()
@@ -124,6 +131,19 @@ public class TurnController {
         }
 
     }
+
+    private void buyHouses(Player player, GuiController guiController, HashMap<String,String> messageMap,
+						   GeneralActionController generalActionController) {
+
+		if (guiController.getLeftButtonPressed(messageMap.get("WantToBuyHouse?"),
+				messageMap.get("Yes"), messageMap.get("No")))
+		{
+			generalActionController.buyHouses(player,guiController,messageMap);
+		}
+
+
+
+	}
 
 
 

@@ -6,6 +6,7 @@ import model.board.FieldTypeEnum;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -111,6 +112,38 @@ public class GeneralActionController {
         // Show message to player
         guiController.showMessage( messageMap.get("PayRentTo").replace("%rent", String.valueOf(manualRent))
                 .replace("%fieldOwner", currentField.getFieldOwner().getName()) );
+    }
+
+    public void buyHouses (Player player, GuiController guiController, HashMap<String,String> messageMap) {
+
+        // ArrayList of the Properties that the player owns.
+        ArrayList<PropertyField> propertiesToPutHouseOn = new ArrayList<>();
+        for (Field field : player.getOwnedFields()) {
+            if (field.getFieldType().equals(FieldTypeEnum.Property)) {
+                propertiesToPutHouseOn.add(((PropertyField) field));
+            }
+        }
+        // Asks where the player wants to buy a house. DropDownMenu.
+        String nameOnSelectedField = guiController.getUserChoiceProperty(messageMap.get("WhereToBuyHouse?"), propertiesToPutHouseOn);
+
+        for (PropertyField field : propertiesToPutHouseOn) {
+            // Finds the PropertyField the players wants to buy.
+            if (field.getFieldName().equals(nameOnSelectedField)) {
+                // Presents the player for the price of the house.
+                if (guiController.getLeftButtonPressed(messageMap.get("HouseOnPropertyCosts")
+                                .replace("%housePrice", String.valueOf(field.getFieldHousePrice())),
+                        messageMap.get("Yes"), messageMap.get("No"))) {
+                    // If the Players still wants to buy the house the Field.noOfHousesOnProperty is updated
+                    field.updateHousesOnProperty(1);
+                    // Gui is updated with the correct number of Houses or Hotels.
+                    guiController.setHousesAndHotels(field.getNoOfHousesOnProperty(), field);
+                    // Tells that the house is bought and shows the new rent on the Property.
+                    guiController.showMessage(messageMap.get("BoughtHouses").replace("%fieldName", field.getFieldName())
+                            .replace("%newRent", String.valueOf(rentFromNoOfHouses(field))));
+                }
+
+            }
+        }
     }
 
     public void movingPlayerForwardGUI(Player player, Board board, GuiController guiController,
