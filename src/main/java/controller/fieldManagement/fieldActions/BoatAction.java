@@ -88,7 +88,7 @@ public class BoatAction extends FieldAction {
 		player.updateBalance(-rentFromNoOfBoats);
 		guiController.updateBalance(player, player.getAccount().getBalance());
 		// ShowMessage on GUI
-		guiController.showMessage(messageMap.get(keyForBoatsOwned).replace("%ownerName", currentField.getFieldOwner().getName()));
+		guiController.showMessage(messageMap.get("keyForBoatsOwned").replace("%ownerName", currentField.getFieldOwner().getName()));
 		// Updates FieldOwner's Balance and matching GUI_Players Balance.
 		currentField.getFieldOwner().updateBalance(+rentFromNoOfBoats);
 		guiController.updateBalance(currentField.getFieldOwner(), currentField.getFieldOwner().getAccount().getBalance());
