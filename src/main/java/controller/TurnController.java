@@ -66,7 +66,7 @@ public class TurnController {
 		
 		//endregion
 
-        //region ExtraTurn
+        //region ExtraTurn?
 
         extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController);
 
@@ -106,19 +106,16 @@ public class TurnController {
 	}
 
 	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board, Deck deck,
-                           HashMap<String, String>messageMap,GeneralActionController generalActionController ){
+                           HashMap<String, String>messageMap,GeneralActionController generalActionController )
+	{
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
 
-        if(die1==die2){
+        if(die1==die2)
+        {
             guiController.showMessage(messageMap.get("ExtraTurn"));
             playTurn(player,guiController,messageMap,deck,board,cup,generalActionController);
         }
-
-    }
-
-
-	private void extraTurn (Player player, GuiController guiController){
 
     }
 
