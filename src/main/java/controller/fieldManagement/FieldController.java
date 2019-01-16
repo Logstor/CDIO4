@@ -90,6 +90,8 @@ public class FieldController {
                 break;
                 
             case Parking:
+            	ParkingAction parkingAction = new ParkingAction(player,messageMap,guiController);
+            	parkingAction.action();
                 break;
                 
             case Brewery:
