@@ -119,7 +119,15 @@ public class Player {
         this.token = token;
     }
 
-// </editor-folder>
+    public ArrayList<Field> getOwnedFields() {
+        return ownedFields;
+    }
+
+    public void setOwnedFields(ArrayList<Field> ownedFields) {
+        this.ownedFields = ownedFields;
+    }
+
+    // </editor-folder>
     
     /*
     ---------------------- Public Methods -----------------------
