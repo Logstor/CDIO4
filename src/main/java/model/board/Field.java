@@ -139,10 +139,6 @@ public abstract class Field {
 
         return toStringBuilder.toString();
     }
-    
-    protected abstract void fieldAction (Player player);
-
-    protected abstract void fieldAction (Player player, Cup cup);
 
     /*
     ---------------------- Support Methods ----------------------

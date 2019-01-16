@@ -137,21 +137,6 @@ public class PropertyField extends Field {
 
         return toStringBuilder.toString();
     }
-
-    public void fieldAction (Player player) {
-
-        if (fieldOwner ==null) {
-            actionText = "Ejendommen du er landet på er til salg og kan købes for " + getFieldCost() + "?";
-            player.updateBalance(getFieldCost());
-        } else {
-            actionText = "Ejendommen er ejet af " + getFieldOwner() + " og du skal betale " + fieldRent + "for at dit ophold.";
-            player.updateBalance(-fieldRent);
-            fieldOwner.updateBalance(fieldRent);
-        }
-
-    }
-
-    public void fieldAction (Player player, Cup cup) {}
     
     /*
     ---------------------- Support Methods ----------------------

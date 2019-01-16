@@ -41,11 +41,6 @@ public class ParkingField extends Field {
     ---------------------- Public Methods -----------------------
      */
     
-    public void fieldAction (Player player) {
-        actionText="ParkingActionText";
-    }
-    public void fieldAction (Player player, Cup cup) {}
-    
     /*
     ---------------------- Support Methods ----------------------
      */
