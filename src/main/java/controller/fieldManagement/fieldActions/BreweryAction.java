@@ -45,8 +45,14 @@ public class BreweryAction extends FieldAction {
 
 	@Override
 	public void action() {
+		StringBuilder actionBuilder = new StringBuilder();
 		if (currentField.getFieldOwner() == null) {
-			generalActionController.buyField(player, currentField, guiController);
+			actionBuilder.append(messageMap.get("LandedOnBrewery").replace("%brewery", currentField.getFieldName()));
+			actionBuilder.append(messageMap.get("BuyBrewery").replace("%cost", String.valueOf(currentField.getFieldCost())));
+
+			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
+				generalActionController.buyField(player, currentField, guiController);
+			}
 		} else {
 			int rentFromCupValue = rentFromCupValue(player, cup);
 			generalActionController.payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
