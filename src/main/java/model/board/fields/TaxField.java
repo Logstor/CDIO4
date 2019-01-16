@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.cup.*;
 import model.player.Player;
 
@@ -22,7 +23,7 @@ public class TaxField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public TaxField(int fieldNo, String fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
+    public TaxField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo,fieldType,fieldName,fieldDescription, fieldCost,fieldColor);
         forSale=false;
     }

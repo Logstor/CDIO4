@@ -1,9 +1,7 @@
 package controller;
 
-import gui_fields.GUI_Player;
-import gui_tests.PlayerTest;
 import model.board.Field;
-import model.cup.Cup;
+import model.board.fields.BreweryField;
 import model.player.Player;
 import view.gui.Gui;
 
@@ -58,7 +56,7 @@ public class GuiController {
 
     public void setOwner(Player player, Field field) {
 
-        gui.setFieldOwner(player, field);
+        gui.setOwner(player, field);
     }
 
     public void addPlayer(Player player) {
@@ -77,17 +75,19 @@ public class GuiController {
         gui.setChanceCard(cardText);
     }
 
-    public void getUserButton2(String message, String button1, String button2) {
+    public String getUserButton2(String message, String button1, String button2) {
 
+        String choosen;
         //Display a message to the user and awaits response
-        gui.getUserChoice(message, button1, button2);
+        choosen=gui.getUserChoice(message, button1, button2);
+
+        return choosen;
     }
 
     public void getUserButton1 (String message, String button){
 
         gui.getUserChoice(message, button);
     }
-
 
     public String getUserString(String message) {
 
@@ -107,9 +107,9 @@ public class GuiController {
         return gui.getUserInteger(message, min, max);
     }
 
-    public void movePlayer(Player player, int move) {
+    public void movePlayer(Player player, int theFieldIndex) {
 
-        gui.movePlayer(player, move);
+        gui.movePlayer(player, theFieldIndex);
     }
 
     public void WinnerMode() throws InterruptedException {
@@ -131,6 +131,7 @@ public class GuiController {
 
         gui.setDie(value);
     }
+    
     public void showDice (int die1Value, int die2Value) {
         gui.setDice(die1Value,die2Value);
     }
@@ -139,7 +140,6 @@ public class GuiController {
 
         gui.getTextColor(color);
     }
-
 
     public void setTextColor(Color Tcolor) {
 

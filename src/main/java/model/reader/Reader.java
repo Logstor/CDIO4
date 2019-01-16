@@ -89,7 +89,7 @@ public class Reader {
 
         try {
             // Nedenstående er den gamle filePath
-            filePath = getClass().getClassLoader().getResource(fileName).getPath();
+            filePath = getClass().getClassLoader().getResource(fileName).getPath().replace("%20"," ");
 
             bufferedReader = new BufferedReader(new FileReader(filePath));
 

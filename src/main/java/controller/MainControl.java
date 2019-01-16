@@ -23,7 +23,8 @@ public class MainControl {
     private Player[] players;
     private Cup cup;
     private Deck deck;
-    
+
+    private GeneralActionController generalActionController;
     private HashMap<String, String> messageMap;
 
     /*
@@ -36,6 +37,8 @@ public class MainControl {
 		deck = new Deck();
     	messageMap = new HashMap<>();
     	cup = new Cup();
+
+    	generalActionController = new GeneralActionController();
 	}
     
     /*
@@ -96,7 +99,6 @@ public class MainControl {
 
 	private void turn (Player player) {
 	    TurnController turnController = new TurnController();
-	    turnController.raffleCup(player, guiController,messageMap,cup);
-	    turnController.moveRaffle(player,board,guiController,messageMap);
+	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController);
     }
 }

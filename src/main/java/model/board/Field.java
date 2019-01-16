@@ -14,10 +14,9 @@ public abstract class Field {
     /*
     -------------------------- Fields --------------------------
      */
-
     protected int fieldNo;
     protected String fieldName;
-    protected String fieldType;
+    protected FieldTypeEnum fieldType;
     protected int fieldCost;
     protected Color fieldColor;
     protected String actionText;
@@ -29,15 +28,17 @@ public abstract class Field {
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
 
         this.fieldNo=fieldNo;
-        this.fieldType=fieldType;
+        this.fieldType= fieldType;
         this.fieldName = fieldName;
         this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
-        fieldOwner =null;
+        fieldOwner = null;
+
+
     }
     
     /*
@@ -62,11 +63,11 @@ public abstract class Field {
         this.fieldName = fieldName;
     }
 
-    public String getFieldType() {
+    public FieldTypeEnum getFieldType() {
         return fieldType;
     }
 
-    public void setFieldType(String fieldType) {
+    public void setFieldType(FieldTypeEnum fieldType) {
         this.fieldType = fieldType;
     }
 
