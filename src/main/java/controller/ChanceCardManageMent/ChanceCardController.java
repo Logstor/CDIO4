@@ -77,6 +77,10 @@ public class ChanceCardController {
                 ToPrisonAction toPrisonAction = new ToPrisonAction(guiController,messageMap,generalActionController,board);
                 toPrisonAction.chanceCardAction(player,currentChanceCard);
                 break;
+            case extraExpense:
+                ExtraExpenseAction extraExpenseAction = new ExtraExpenseAction(guiController,messageMap,generalActionController);
+                extraExpenseAction.chanceCardAction(player,currentChanceCard);
+                break;
             default:
                 break;
 

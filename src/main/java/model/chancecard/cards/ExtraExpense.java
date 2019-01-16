@@ -13,17 +13,17 @@ public class ExtraExpense extends ChanceCard {
     -------------------------- Fields --------------------------
      */
     
-    private int housePrice = 0, hotelPrice = 0;
+    private int taxHousePrice, taxHotelPrice;
 
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public ExtraExpense (CardTypeEnum cardType, String cardText, int housePrice, int hotelPrice) {
+    public ExtraExpense (CardTypeEnum cardType, String cardText, int taxHousePrice, int taxHotelPrice) {
         super(cardType, cardText);
 
-        this.housePrice = housePrice;
-        this.hotelPrice = hotelPrice;
+        this.taxHousePrice = taxHousePrice;
+        this.taxHotelPrice = taxHotelPrice;
     }
     
     /*
@@ -32,20 +32,20 @@ public class ExtraExpense extends ChanceCard {
 
     // <editor-folder desc="Properties"
 
-    public int getHousePrice() {
-        return housePrice;
+    public int getTaxHousePrice() {
+        return taxHousePrice;
     }
 
-    public void setHousePrice(int housePrice) {
-        this.housePrice = housePrice;
+    public void setTaxHousePrice(int taxHousePrice) {
+        this.taxHousePrice = taxHousePrice;
     }
 
-    public int getHotelPrice() {
-        return hotelPrice;
+    public int getTaxHotelPrice() {
+        return taxHotelPrice;
     }
 
-    public void setHotelPrice(int hotelPrice) {
-        this.hotelPrice = hotelPrice;
+    public void setTaxHotelPrice(int taxHotelPrice) {
+        this.taxHotelPrice = taxHotelPrice;
     }
 
 
