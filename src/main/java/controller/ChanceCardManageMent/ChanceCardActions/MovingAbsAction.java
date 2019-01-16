@@ -69,7 +69,7 @@ public class MovingAbsAction extends ChanceCardAction {
 
         // Do actions.
         player.updatePosition(finalPositionUpdate);
-        generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,finalPosition,250);
+        generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,finalPosition-1,250);
     }
     
     /*
