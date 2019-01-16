@@ -96,11 +96,8 @@ public class PropertyAction extends FieldAction {
 		//region Pay Rent
 		else
 		{
-			// Display message to player
-			guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", field.getFieldOwner().getName()));
-			
-			// Update both players balance
-			generalAction.payPropertyRent(player, field, guiController);
+			// Handle the rent event, and display messages
+			generalAction.payPropertyRent(player, field, guiController, messageMap);
 		}
 		//endregion
 	}

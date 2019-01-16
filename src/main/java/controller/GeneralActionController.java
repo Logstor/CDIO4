@@ -74,10 +74,15 @@ public class GeneralActionController {
      * @param field The PropertyField the player landed on.
      * @param guiController The GuiController.
      */
-    public void payPropertyRent(Player player, PropertyField field, GuiController guiController)
+    public void payPropertyRent(Player player, PropertyField field, GuiController guiController,
+                                HashMap<String,String> messageMap)
     {
     	int rent = rentFromNoOfHouses(field);
-    	
+
+    	// Display message to player
+        guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", field.getFieldOwner().getName()).
+                                    replace("%rent",String.valueOf(rent)));
+
         // Update the owners balance
         updatePlayerBalanceInclGui(guiController, field.getFieldOwner(), rent);
         
