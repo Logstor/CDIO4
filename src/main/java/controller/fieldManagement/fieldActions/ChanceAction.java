@@ -52,7 +52,6 @@ public class ChanceAction extends FieldAction {
 	public void action() {
 
 		ChanceCard drawedCard = deck.drawChanceCard();
-		guiController.setCCard(drawedCard.getCardText());
 		chanceCardController.doChanceCardActionFromCardType(player, drawedCard);
 
     }

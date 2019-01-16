@@ -55,8 +55,10 @@ public class ChanceCardAdder {
                 break;
             case matadorLegat:
                 addMatadorLegat(cardTypes,cardText);
+                break;
             case toPrison:
                 addToPrison(cardTypes,cardText);
+                break;
             default:
                 break;
         }

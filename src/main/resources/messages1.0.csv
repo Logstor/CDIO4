@@ -37,8 +37,8 @@ BoatsOwnedError;FEJL!!! Noobs
 WantToBuy?;Denne færge er stadig til salg og koster: %cost. Vil du købe det?
 ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
 PayRentTo;Du skal betale %rent i husleje til %fieldOwner.
-MatadorLegatGranted;Din totaleværdi ligger er %playerValue og du anses derfor som værende berettiget til 'Matador-Legatet for værdigt trængende' og tildeles kr. 40.000.
-MatadorLegatNOTGranted;Din totaleværdi ligger er %playerValue og du anses derfor IKKE som værende berettiget til 'Matador-Legatet for værdigt trængende'.
+MatadorLegatGranted;Din totaleværdi er kr. %playerValue og du anses derfor som værende berettiget til 'Matador-Legatet for værdigt trængende' og tildeles kr. 40.000.
+MatadorLegatNOTGranted;Din totaleværdi er kr. %playerValue og du anses derfor IKKE som værende berettiget til 'Matador-Legatet for værdigt trængende'.
 FreeParking;Du er heldig at have fundet en gratis parkeringsplads.
 LandedOnBrewery;Du er landet på bryggeriet: %brewery.
 BuyBrewery; Dette bryggeri er stadig til salg og koster: %cost. Vil du købe det?
