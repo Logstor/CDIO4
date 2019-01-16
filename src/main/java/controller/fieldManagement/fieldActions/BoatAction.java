@@ -62,13 +62,15 @@ public class BoatAction extends FieldAction {
 
 			// If the player wants to purchase a boatField
 			if (choice.equals(messageMap.get("Yes"))) {
-				generalActionController.buyField(player,currentField,guiController);
+				generalActionController.buyField(player, currentField, guiController);
 			}
 		}
-		//endregion
 
-		//region if the there is a owner to the boat field:
-		if (currentField.getFieldOwner() != null) {
+
+			//endregion
+
+			//region if the there is a owner to the boat field:
+			else {
 			// runs the different cases if the player owns 1,2,3, or 4 boats:
 			rentFromNoOfBoats();
 			payBoatRent();
@@ -88,7 +90,7 @@ public class BoatAction extends FieldAction {
 		player.updateBalance(-rentFromNoOfBoats);
 		guiController.updateBalance(player, player.getAccount().getBalance());
 		// ShowMessage on GUI
-		guiController.showMessage(messageMap.get("keyForBoatsOwned").replace("%ownerName", currentField.getFieldOwner().getName()));
+		guiController.showMessage(messageMap.get(keyForBoatsOwned).replace("%ownerName", currentField.getFieldOwner().getName()));
 		// Updates FieldOwner's Balance and matching GUI_Players Balance.
 		currentField.getFieldOwner().updateBalance(+rentFromNoOfBoats);
 		guiController.updateBalance(currentField.getFieldOwner(), currentField.getFieldOwner().getAccount().getBalance());
