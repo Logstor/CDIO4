@@ -3,13 +3,9 @@ package controller;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
-import model.board.FieldActionManager;
 import model.chancecard.Deck;
 import model.cup.Cup;
-import model.cup.Die;
-import model.game.Turn;
 import model.player.Player;
-import view.gui.Gui;
 
 import java.util.HashMap;
 
@@ -104,7 +100,7 @@ public class TurnController {
 		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
                 500);
 		
-		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));;
+		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));
 
 		currentField = board.getBoard()[postPosition];
 	}

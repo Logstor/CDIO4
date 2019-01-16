@@ -6,7 +6,6 @@ import model.chancecard.Deck;
 import model.chancecard.DeckManager;
 import model.player.Player;
 import model.reader.Reader;
-import view.gui.Gui;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -70,7 +69,7 @@ public class SetupControl {
 		tokenColorsString.add(messageMap.get("CarColor5")); tokenColorsString.add(messageMap.get("CarColor6"));
 
 		for (int i = 0; i < players.length; i++) {
-		String name = guiController.getUserString(messageMap.get("NamePlayer") + " " + Integer.toString(i+1));
+		String name = guiController.getUserString(messageMap.get("NamePlayer") + " " + (i + 1));
 
 			String chosenTokenColor = guiController.getUserChoice(messageMap.get("PickColorForToken") + " ", tokenColorsString);
 			for (int j = 0; j < tokenColorsString.size(); j++) {
