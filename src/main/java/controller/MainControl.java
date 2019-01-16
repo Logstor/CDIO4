@@ -23,8 +23,10 @@ public class MainControl {
     private Player[] players;
     private Cup cup;
     private Deck deck;
-    
+
+    private GeneralActionController generalActionController;
     private HashMap<String, String> messageMap;
+
     /*
     ------------------------ Constructors ------------------------
      */
@@ -35,6 +37,8 @@ public class MainControl {
 		deck = new Deck();
     	messageMap = new HashMap<>();
     	cup = new Cup();
+
+    	generalActionController = new GeneralActionController();
 	}
     
     /*
@@ -52,6 +56,15 @@ public class MainControl {
 		{
 			// Set the game up, and display
 			setup();
+
+			do {
+                for (Player currentPlayer : players) {
+
+                    turn(currentPlayer);
+
+                }
+            } while (players.length>1);
+
 			return 0;
 		}
 		catch (Exception e)
@@ -83,4 +96,9 @@ public class MainControl {
 		setupControl.createGUIPlayers(guiController,players);
 		guiController.showMessage(messageMap.get("GetReady"));
 	}
+
+	private void turn (Player player) {
+	    TurnController turnController = new TurnController();
+	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController);
+    }
 }

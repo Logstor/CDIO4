@@ -1,6 +1,9 @@
 package model.player;
 
+import model.board.Field;
+
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @author Rasmus Sander Larsen
@@ -15,12 +18,13 @@ public class Player {
     private Account account;
     private String name;
     private boolean hasLost = false;
-    private int BreweriesOwned = 0;
-    private int BoatsOwned = 0;
-    private boolean inPrison;
+    private int noOfBreweriesOwned = 0;
+    private int noOfBoatsOwned = 0;
+    private int prisonStat = 0;
     private int totalPosition;
     private int position;
     private Token token;
+    private ArrayList<Field> ownedFields;
     
     /*
     ----------------------- Constructor -------------------------
@@ -31,6 +35,7 @@ public class Player {
         account = new Account(initialBalance);
         totalPosition= startingPosition;
         token = new Token(color);
+        ownedFields = new ArrayList<>();
     }
     
     /*
@@ -38,6 +43,7 @@ public class Player {
      */
 
     // <editor-folder desc="Properties"
+
 
     public boolean isHasLost() {
         return hasLost;
@@ -63,28 +69,28 @@ public class Player {
         this.name = name;
     }
 
-    public int getBreweriesOwned() {
-        return BreweriesOwned;
+    public int getNoOfBreweriesOwned() {
+        return noOfBreweriesOwned;
     }
 
-    public void setBreweriesOwned(int breweriesOwned) {
-        BreweriesOwned = breweriesOwned;
+    public void setNoOfBreweriesOwned(int noOfBreweriesOwned) {
+        this.noOfBreweriesOwned = noOfBreweriesOwned;
     }
 
-    public int getBoatsOwned() {
-        return BoatsOwned;
+    public int getNoOfBoatsOwned() {
+        return noOfBoatsOwned;
     }
 
-    public void setBoatsOwned(int boatsOwned) {
-        BoatsOwned = boatsOwned;
+    public void setNoOfBoatsOwned(int noOfBoatsOwned) {
+        this.noOfBoatsOwned = noOfBoatsOwned;
     }
 
-    public boolean isInPrison() {
-        return inPrison;
+    public int getPrisonStat (){
+        return prisonStat;
     }
 
-    public void setInPrison(boolean inPrison) {
-        this.inPrison = inPrison;
+    public void setPrisonStat(int prisonStat) {
+        this.prisonStat = prisonStat;
     }
 
     public int getPosition() {
@@ -132,9 +138,44 @@ public class Player {
         totalPosition += moves;
         position = totalPosition % 40;
     }
-    
+
+    public void updateNoOfBoatsOwned (int noOfBoatsToUpdateWith) {
+        noOfBoatsOwned+=noOfBoatsToUpdateWith;
+    }
+
+    public void updateNoOfBreweriesOwned (int noOfBreweriesToUpdateWith) {
+        noOfBreweriesOwned+= noOfBreweriesToUpdateWith;
+    }
+
+
+    public void addFieldToOwnedFields (Field ownedField) {
+        ownedFields.add(ownedField);
+    }
+
+    public void removeFieldFromOwnedFields (Field removableField) {
+        ownedFields.remove(removableField);
+    }
+
+    // TODO: SKAL DER TILFØJES VÆRDIEN AF SPILLERENS HUSE ?
+    public int calPlayerTotalValue () {
+        int totalPlayerValue = 0;
+        // Value of Account
+        totalPlayerValue += account.getBalance();
+        // Value of OwnedFields
+        totalPlayerValue += valueOfOwnedFields()*0.5;
+
+        return totalPlayerValue;
+    }
     /*
     ---------------------- Support Methods ----------------------
      */
+
+    private int valueOfOwnedFields () {
+        int valueOfOwnedFields = 0;
+        for (Field f : ownedFields) {
+            valueOfOwnedFields += f.getFieldCost();
+        }
+        return valueOfOwnedFields;
+    }
 
 }

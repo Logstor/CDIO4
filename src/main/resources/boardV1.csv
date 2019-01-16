@@ -3,7 +3,7 @@ field1;1;Start;Start;Her starter spillet;0;76:187:23;0;0;0;0;0;0;0
 field2;2;Property;Rødovrevej;Rødovrevej går gennem både Islev og Rødovre forbi Rødovre centrum hvor den til sidst ender ved Roskildevej.;1200;115:194:251;1000;50;250;750;2250;4000;6000
 field3;3;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0
 field4;4;Property;Hvidovrevej;Hvidovrevej er en sidevej til Roskilde der går gennem både Vigerslev og Hvidovre for at til sidst at slutte ved friheden.;1200;115:194:251;1000;50;250;750;2250;4000;6000
-field5;5;Tax;Indkomstskat;Her skal du betale en skat af din indkomst;0;199:234:70;0;0;0;0;0;0;0
+field5;5;Tax;Indkomstskat;Her skal du betale en skat af din indkomst;4000;199:234:70;0;0;0;0;0;0;0
 field6;6;Boat;Helsingør-Helsingborg;Har du lyst til at tage en tur til Sverige, så er det denne færge du skal tage;4000;0:142:204;0;0;0;0;0;0;0
 field7;7;Property;Roskildevej;Roskildevej er en vej der starter ved Baldersbrønde og går hele vejen til Albertslund hvor den skifter navn til Hovedvejen.;2000;239:130:13;1000;100;600;1800;5400;8000;11000
 field8;8;ChanceCard;Chancefelt;Tør du prøve lykken og trække et chancekort?;0;00:00:00;0;0;0;0;0;0;0

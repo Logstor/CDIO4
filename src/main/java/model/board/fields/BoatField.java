@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.cup.*;
 import model.player.Player;
 
@@ -22,7 +23,7 @@ public class BoatField extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public BoatField(int fieldNo, String fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    public BoatField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
         forSale=true;
     }
@@ -41,54 +42,53 @@ public class BoatField extends Field {
      */
 
     public void fieldAction (Player player) {
-
         if (fieldOwner == null) {
             actionText = "Du køber dette felt for " + fieldCost + " pengesedler\n";
             setFieldOwner(player);
             player.updateBalance(-fieldCost);
-            player.setBoatsOwned((player.getBoatsOwned() + 1));
         } else {
             actionText = "Du er landet på "+ fieldOwner + "'s felt \n Du betaler "+ rentByOwnersNoOfBoats()
                     + " pengesedler i husleje til "+ fieldOwner.getName();
             player.updateBalance(-rentByOwnersNoOfBoats());
             fieldOwner.updateBalance(rentByOwnersNoOfBoats());
         }
-
-
     }
 
-    public void fieldAction (Player player, Cup Cup) {}
+    public void fieldAction(Player player, Cup cup) {
+
+    }
     
     /*
     ---------------------- Support Methods ----------------------
      */
 
-    private int rentByOwnersNoOfBoats () {
-        int variableRent;
-        int OwnersNoOfBoats = fieldOwner.getBoatsOwned();
 
-        switch (OwnersNoOfBoats) {
+    private int rentByOwnersNoOfBoats () {
+        int rent;
+        int noOfBoatsOwned = fieldOwner.getNoOfBoatsOwned();
+
+        switch (noOfBoatsOwned) {
             case 1:
-                variableRent = 500;
+                rent = 500;
                 break;
 
             case 2:
-                variableRent = 1000;
+                rent = 1000;
                 break;
-
             case 3:
-                variableRent = 2000;
+                rent = 2000;
                 break;
 
             case 4:
-                variableRent = 4000;
+                rent = 4000;
                 break;
 
             default:
-                variableRent = 666;
+                rent = 0;
                 break;
         }
-        return variableRent;
-    }
+        return rent;
+        }
+
 
 }

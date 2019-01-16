@@ -1,6 +1,7 @@
 package model.chancecard.cards;
 
 import model.chancecard.ChanceCard;
+import model.chancecard.CardTypeEnum;
 import model.player.Player;
 
 /**
@@ -19,7 +20,7 @@ public class MovingAbs extends ChanceCard {
     ----------------------- Constructor -------------------------
      */
     
-    public MovingAbs(String cardType, String title, int absFieldNo) {
+    public MovingAbs(CardTypeEnum cardType, String title, int absFieldNo) {
         super(cardType, title);
         this.absFieldNo=absFieldNo;
     }

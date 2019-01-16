@@ -8,6 +8,7 @@ import model.player.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Alfred Röttger Rydahl
@@ -128,6 +129,11 @@ public class Gui {
 
         // Set the dice on the board
         gui.setDie(faceValue);
+    }
+
+    public void setDice (int die1Value, int die2Value) {
+        Random generator = new Random();
+        gui.setDice(die1Value, generator.nextInt(90),die2Value,generator.nextInt(90));
     }
 
     //<editor-fold desc="Chancecard Methods">
@@ -285,13 +291,12 @@ public class Gui {
      * @param player The player which shall own the field
      * @param theField The field in focus
      */
-    public void setFieldOwner (Player player, Field theField) {
-
+    public void setOwner(Player player, Field theField)
+    {
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
-        ((GUI_Street)fields[theField.getFieldNo()]).setOwnerName(player.getName());
-
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
     }
-
+    
     /**
      * This methods makes all fields blink between
      * gold and gray eternally
