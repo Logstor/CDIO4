@@ -1,7 +1,6 @@
 package controller;
 
 import model.board.Field;
-import model.board.fields.BreweryField;
 import model.player.Player;
 import view.gui.Gui;
 
@@ -66,7 +65,7 @@ public class GuiController {
      */
     public void setBorderWithPlayerCarColor (Player player, Field theField) {
 
-        gui.setBorderWithPlayerCarColor(player,theField);
+        gui.setPlainBorderWithPlayerCarColor(player,theField);
 
     }
 

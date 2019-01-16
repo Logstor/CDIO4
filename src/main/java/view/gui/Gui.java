@@ -302,11 +302,30 @@ public class Gui {
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
     }
 
-    public void setBorderWithPlayerCarColor (Player player, Field theField) {
+    /**
+     * Sets the Field Border (PLAIN) to the color of the Players Car.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setPlainBorderWithPlayerCarColor(Player player, Field theField) {
 
         ((GUI_Ownable) fields[theField.getFieldNo()-1]).setBorder(player.getToken().getCarColor());
 
     }
+
+    /**
+     * Sets the Field Border (DOTTED) to the color of the Players Car and LightGrey.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setDottedBorderWithPlayerCarColor(Player player, Field theField) {
+
+        ((GUI_Ownable) fields[theField.getFieldNo()-1]).setBorder(player.getToken().getCarColor(),
+                Color.LIGHT_GRAY);
+
+    }
+
+
 
 
     /**
