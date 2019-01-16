@@ -64,7 +64,7 @@ public class MovingAbsAction extends ChanceCardAction {
             int diffPassed = 39-prePosition;
             finalPositionUpdate = finalPosition + diffPassed + 1; // +1 for 0 in index
         } else {
-            finalPositionUpdate= finalPosition-prePosition-1;
+            finalPositionUpdate = (finalPosition-1)-prePosition;
         }
 
         // Do actions.
