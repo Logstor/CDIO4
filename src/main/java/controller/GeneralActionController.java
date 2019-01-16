@@ -47,7 +47,8 @@ public class GeneralActionController {
     }
 
     /**
-     * Updates Player and Gui_Players Balance. Adds Field to Player ownedFields. Sets Field and Gui_Fields owner.
+     * Updates Player and Gui_Players Balance. Adds Field to Player ownedFields.
+     * Sets Field and Gui_Fields owner. Sets the Field Border (DOTTED )to Player CarColor and LightGrey.
      * If Field is Boat, Player.NoOfBoatsOwned is updated with 1.
      * If Field is a Brewery, Player.NoOfBreweriesOwned is updated with 1.
      * @param player The Player that buys the Field.
@@ -59,7 +60,7 @@ public class GeneralActionController {
         player.addFieldToOwnedFields(fieldToBuy);
         fieldToBuy.setFieldOwner(player);
         guiController.setOwner(player,fieldToBuy);
-        guiController.setPlainBorderWithPlayerCarColor(player,fieldToBuy);
+        guiController.setDottedBorderWithPlayerCarColor(player,fieldToBuy);
         if (fieldToBuy.getFieldType()==FieldTypeEnum.Boat) {
             player.updateNoOfBoatsOwned(1);
         }
