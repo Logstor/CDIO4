@@ -57,10 +57,8 @@ public class BoatAction extends FieldAction {
 			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
 			actionBuilder.append(messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
 
-			String choice = guiController.getUserButton2(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"));
-
 			// If the player wants to purchase a boatField
-			if (choice.equals(messageMap.get("Yes"))) {
+			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
 				generalActionController.buyField(player, currentField, guiController);
 			}
 		}

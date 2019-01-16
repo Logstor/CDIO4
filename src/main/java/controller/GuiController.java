@@ -89,9 +89,9 @@ public class GuiController {
         gui.getUserChoice(message, button);
     }
 
-    public void getLeftButtonPressed (String message, String truebutton, String falsebutton){
+    public boolean getLeftButtonPressed (String message, String truebutton, String falsebutton){
 
-        gui.getLeftButtonPressed(message, truebutton, falsebutton);
+        return gui.getLeftButtonPressed(message, truebutton, falsebutton);
 
     }
 
