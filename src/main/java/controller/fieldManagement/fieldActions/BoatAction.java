@@ -66,7 +66,6 @@ public class BoatAction extends FieldAction {
 			}
 		}
 
-
 			//endregion
 
 			//region if the there is a owner to the boat field:
