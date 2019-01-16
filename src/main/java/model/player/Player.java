@@ -140,7 +140,7 @@ public class Player {
     }
 
     public void updateNoOfBoatsOwned (int noOfBoatsToUpdateWith) {
-        noOfBoatsOwned+=noOfBoatsToUpdateWith;
+        noOfBoatsOwned = noOfBoatsOwned + noOfBoatsToUpdateWith;
     }
 
     public void updateNoOfBreweriesOwned (int noOfBreweriesToUpdateWith) {

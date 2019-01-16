@@ -6,6 +6,8 @@ import model.board.FieldTypeEnum;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
+import java.util.HashMap;
+
 /**
  * @author Rasmus Sander Larsen
  * @date 15-01-2019
@@ -60,7 +62,7 @@ public class GeneralActionController {
         if (fieldToBuy.getFieldType()==FieldTypeEnum.Boat) {
             player.updateNoOfBoatsOwned(1);
         }
-        if (fieldToBuy.getFieldType()==FieldTypeEnum.Brewery) {
+        else if (fieldToBuy.getFieldType()==FieldTypeEnum.Brewery) {
             player.updateNoOfBreweriesOwned(1);
         }
     }
@@ -82,12 +84,26 @@ public class GeneralActionController {
         // Update the payers balance
 		updatePlayerBalanceInclGui(guiController, player, -rent);
     }
-    
-    public void payManuelRent(Player player, Field field, GuiController guiController)
+
+    /**
+     * This method
+     * @param player The player who landed on the Field.
+     * @param manualRent The rent which shall be paid.
+     * @param currentField The Field the player landed on.
+     * @param guiController The GuiController.
+     * @param messageMap The Map of messages.
+     */
+    public void payManuelRent(Player player, int manualRent, Field currentField, GuiController guiController,
+                              HashMap<String, String> messageMap)
     {
 
+        // Update both players balance
+        updatePlayerBalanceInclGui(guiController, player, -manualRent);
+        updatePlayerBalanceInclGui(guiController, currentField.getFieldOwner(), manualRent);
 
-    
+        // Show message to player
+        guiController.showMessage( messageMap.get("PayRentTo").replace("%rent", String.valueOf(manualRent))
+                .replace("%fieldOwner", currentField.getFieldOwner().getName()) );
     }
 
     public void movingPlayerForwardGUI(Player player, Board board, GuiController guiController,

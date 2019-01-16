@@ -31,10 +31,12 @@ public class PropertyAction extends FieldAction {
 	 * @param field The PropertyField the player landed on.
 	 * @param guiController The GuiController.
 	 */
-	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController) {
+	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController,
+						  GeneralActionController generalActionController)
+	{
 		super(player,messageMap,guiController);
 		this.field = field;
-		this.generalAction = new GeneralActionController();
+		this.generalAction = generalActionController;
 	}
 
 	/*
