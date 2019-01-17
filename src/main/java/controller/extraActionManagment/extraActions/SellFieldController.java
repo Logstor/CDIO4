@@ -99,13 +99,14 @@ public class SellFieldController extends ExtraAction {
 
             // Finds the sell Price
             int sellPrice = (guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
-                    replace("%fieldName", fieldForSell.getFieldName()).
-                    replace("%buyer", nameOnBuyer),
+                    replace("%buyer", nameOnBuyer).
+                    replace("%fieldName", fieldForSell.getFieldName()),
                     0,buyer.getAccount().getBalance()));
 
             guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
                     .replace("%fieldName",fieldForSell.getFieldName())
-                    .replace("%sellPrice", String.valueOf(sellPrice)));
+                    .replace("%sellPrice", String.valueOf(sellPrice))
+                    .replace("%buyer", buyer.getName()));
 
 
             setNewFieldOwner(currentPlayer,buyer,fieldForSell,sellPrice,guiController,generalActionController);
@@ -140,8 +141,8 @@ public class SellFieldController extends ExtraAction {
 
         // General change in values.
         // GuiPlayers Updates.
-        generalActionController.updatePlayerBalanceInclGui(guiController,seller,sellPrice);
-        generalActionController.updatePlayerBalanceInclGui(guiController,buyer,-sellPrice);
+        generalActionController.updatePlayerBalanceInclGui(guiController,seller,1*sellPrice);
+        generalActionController.updatePlayerBalanceInclGui(guiController,buyer,-1*sellPrice);
 
         // Adds and remove FieldForSell from Player.OwnedFields incl. noOfBoats and noOfBreweries.
         seller.removeFieldFromOwnedFields(fieldForSale);
