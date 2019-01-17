@@ -100,6 +100,10 @@ public class TurnController {
 		//endregion
 	}
 	
+	/**
+	 * This method handles the logic when the currentPlayer is in prison.
+	 * @param player The currentPlayer
+	 */
 	public void playPrisonTurn (Player player)
 	{
 		// Update currentPlayer
