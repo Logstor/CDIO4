@@ -7,8 +7,6 @@ CarColor5;Gul
 CarColor6;Blå
 Yes;Ja
 No;Nej
-Pay;Betal
-Roll;Rull
 Welcome;Velkommen til spillet Matador!
 GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
 NamePlayer;Indtast navnet på spiller
@@ -26,12 +24,7 @@ LandedOnTaxOver;Du er landet på %fieldName, og besidder aktiver for mere end kr
 LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end kr. 40.000.
 TaxToPay;Og skal derfor betale %tax i SKAT.
 PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
-UsePrisonCard;Fængselskort
-InPrison;Du er i fængsel, og du skal du afgøre om du vil prøve at slå to ens, eller betale dig ud for kr. 1000.
 PrisonSentTo;Du er landet på fængslet og du bliver sendt direkte i fængselt. Hvis du modtager ikke kr. 4.000 hvis du passér 'START'.
-PrisonRoll;Rul med terningerne for %gang.
-PrisonBreakout;Du lykkedes med at bryde ud af fængslet!
-PrisonNoBreakout;Du lykkedes dig ikke, at bryde ud af fængslet. Bedre held næste gang.
 PropertyFirst;Du er landet på %name's ejendom, og du skal betale kr. %rent i husleje.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
 PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
@@ -64,3 +57,7 @@ FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
 PassingStart;Du er passeret start og modtager derfor 4000 i belønning.
 Lost;Du har ikke flere penge tilbage og derfor har du tabt spillet.
 Winner;%name har vundet dette spil Matador
+DoExtraAction?;Vil du benytte dig af nogle af special handlingerne?
+SellField;Sælg felter
+BuyHouse;Køb huse
+ExtraOptionsChoices;Hvilken af nedenstående handlinger vil du udføre?

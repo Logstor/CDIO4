@@ -2,6 +2,8 @@ package controller.extraActionManagment.extraActions;
 
 import controller.GeneralActionController;
 import controller.GuiController;
+import controller.extraActionManagment.ExtraAction;
+import controller.extraActionManagment.ExtraActionType_Enum;
 import model.board.Board;
 import model.board.Field;
 import model.board.FieldTypeEnum;
@@ -16,7 +18,7 @@ import java.util.HashMap;
  * @author Rasmus Sander Larsen
  * @date 16-01-2019
  */
-public class BuyHousesController {
+public class BuyHousesAction extends ExtraAction {
 
     /*
     -------------------------- Fields --------------------------
@@ -25,17 +27,25 @@ public class BuyHousesController {
     private ArrayList<PropertyField> propertiesToPutHouseOn;
     private int[] RGB_ColorMatchingColorCroup;
     private int[] propertiesPrFieldColorBoard;
+    private int[] propertiesPrFieldColorPlayerFields;
+
+    private Board board;
     
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public BuyHousesController () {
+    public BuyHousesAction(Player player, Board board, GuiController guiController, HashMap<String,String> messageMap,
+                           GeneralActionController generalActionController) {
+        super(player,guiController,messageMap,generalActionController);
+        extraActionType = ExtraActionType_Enum.BuyHouse;
+        this.board = board;
 
         propertyFieldsInBoard =  new ArrayList<>();
         propertiesToPutHouseOn = new ArrayList<>();
         RGB_ColorMatchingColorCroup = new int[8];
         propertiesPrFieldColorBoard = new int[8];
+        propertiesPrFieldColorPlayerFields = new int[8];
     }
     
     /*
@@ -51,16 +61,34 @@ public class BuyHousesController {
     ---------------------- Public Methods -----------------------
      */
     
-    public void houseBuying(Player player, Board board, GuiController guiController, HashMap<String,String> messageMap,
-                            GeneralActionController generalActionController) {
+    public void doExtraAction() {
 
-        while (propertyFieldsInBoard.size()==0) {
-            setLocalVarNeeded(board);
+        if (checkIfPlayerIsValidForBuyHouses()) {
+            if (guiController.getLeftButtonPressed(messageMap.get("WantToBuyHouse?"),
+                    messageMap.get("Yes"), messageMap.get("No"))) {
+                buyHouses();
+            }
         }
 
-        int[] propertiesPrFieldColorPlayerFields = new int[8];
-        propertiesPrFieldColorCounter(propertiesPrFieldColorPlayerFields,player.getOwnedFields());
+    }
 
+    public boolean checkIfPlayerIsValidForBuyHouses () {
+
+        //Adds Properties on board to ArrayList of Fields
+        for (Field f : board.getBoard()){
+            if (f.getFieldType().equals(FieldTypeEnum.Property)){
+                propertyFieldsInBoard.add(f);
+            }
+        }
+        // Sets the FieldPrColorCounterArray, with data from ArrayList of Properties on board.
+        propertiesPrFieldColorCounter(propertiesPrFieldColorBoard,propertyFieldsInBoard);
+
+        // Sets the FieldPrColorCounterArray, with data from ArrayList of Fields that Player Owns.
+        propertiesPrFieldColorCounter(propertiesPrFieldColorPlayerFields,currentPlayer.getOwnedFields());
+
+        // Checks if player haves the total amout of fields for each FieldColor.
+        // If yes, that FieldColor is added to an ArrayList of Color.
+        // Fields with this Color is allowed to buy Houses on.
         ArrayList<Color> fieldColorAllowsToPutHouseOn = new ArrayList<>();
         for (int i = 0; i < propertiesPrFieldColorBoard.length; i++){
             if (propertiesPrFieldColorBoard[i]==propertiesPrFieldColorPlayerFields[i]){
@@ -71,32 +99,27 @@ public class BuyHousesController {
         // If fieldColorAllowedToButHousesOn is bigger than 0, it means that the Player holds of fields of the same Color.
         if (fieldColorAllowsToPutHouseOn.size()>0) {
             // Properties the player owns is added to propertiesToPutHousesOn: ArrayList<PropertyFields>.
-            for (int k =0; k <fieldColorAllowsToPutHouseOn.size();k++) {
-            for (Field field : player.getOwnedFields()) {
-                if (field.getFieldType().equals(FieldTypeEnum.Property)) {
-                    if (field.getFieldColor().equals(fieldColorAllowsToPutHouseOn.get(k))){
-                        // If Field is a PropertyField and has the allowColor it is added to the Array of PropertiesToPutHousesOn.
-                        propertiesToPutHouseOn.add(((PropertyField) field));
+            for (int k = 0; k < fieldColorAllowsToPutHouseOn.size(); k++) {
+                for (Field field : currentPlayer.getOwnedFields()) {
+                    if (field.getFieldType().equals(FieldTypeEnum.Property)) {
+                        if (field.getFieldColor().equals(fieldColorAllowsToPutHouseOn.get(k))) {
+                            // If Field is a PropertyField and has the allowColor it is added to the Array of PropertiesToPutHousesOn.
+                            propertiesToPutHouseOn.add(((PropertyField) field));
                         }
 
                     }
                 }
             }
-
-            if (guiController.getLeftButtonPressed(messageMap.get("WantToBuyHouse?"),
-                    messageMap.get("Yes"), messageMap.get("No")))
-            {
-                buyHouses(player,board, guiController,messageMap,generalActionController);
-            }
         }
+
+        return fieldColorAllowsToPutHouseOn.size()>0;
     }
     
     /*
     ---------------------- Support Methods ----------------------
      */
 
-    private void buyHouses (Player player,Board board, GuiController guiController, HashMap<String,String> messageMap,
-                             GeneralActionController generalActionController)
+    private void buyHouses ()
     {
 
         // Asks where the player wants to buy a house. DropDownMenu.
@@ -120,16 +143,6 @@ public class BuyHousesController {
 
             }
         }
-    }
-
-    private void setLocalVarNeeded (Board board) {
-        for (Field f : board.getBoard()){
-            if (f.getFieldType().equals(FieldTypeEnum.Property)){
-                propertyFieldsInBoard.add(f);
-            }
-        }
-
-        propertiesPrFieldColorCounter(propertiesPrFieldColorBoard,propertyFieldsInBoard);
     }
 
 

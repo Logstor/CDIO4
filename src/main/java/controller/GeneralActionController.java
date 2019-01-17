@@ -187,19 +187,6 @@ public class GeneralActionController {
         }
     }
 
-    public boolean checkIfPlayerOwnsAnyFieldsAndAddsThemToArrayList(Player player, ArrayList<Field> fieldsToSell) {
-
-        for (Field f : player.getOwnedFields()) {
-            fieldsToSell.add(f);
-        }
-
-        if (fieldsToSell.size()!=0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     /*
     ---------------------- Support Methods ----------------------
      */
