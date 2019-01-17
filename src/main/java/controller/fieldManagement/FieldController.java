@@ -5,7 +5,6 @@ import controller.GuiController;
 import controller.fieldManagement.fieldActions.*;
 import model.board.Board;
 import model.board.Field;
-import model.board.fields.PrisonField;
 import model.board.fields.PropertyField;
 import model.chancecard.Deck;
 import model.cup.Cup;
@@ -43,9 +42,6 @@ public class FieldController {
 		this.board = board;
 		this.deck = deck;
 	}
-	
-	//TODO: Hvis vi vil have FieldController til at eksisterer gennem hele spillet, så skal der laves objekter af
-	//TODO: alle Action klasserne. De skal da initialiseres i constructoren og tilføjes, som attributer.
 
     /*
     ------------------------------ Properties ----------------------------------

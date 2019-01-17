@@ -1,10 +1,9 @@
-package controller.ChanceCardManageMent.ChanceCardActions;
+package controller.chanceCardManagement.chanceCardActions;
 
-import controller.ChanceCardManageMent.ChanceCardAction;
+import controller.chanceCardManagement.ChanceCardAction;
 import controller.GeneralActionController;
 import controller.GuiController;
 import model.chancecard.ChanceCard;
-import model.chancecard.cards.MatadorLegat;
 import model.player.Player;
 
 import java.util.HashMap;

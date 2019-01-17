@@ -137,6 +137,10 @@ public class PropertyField extends Field {
 
         return toStringBuilder.toString();
     }
+
+    public void updateHousesOnProperty (int noofHousesToAddToProperty) {
+        noOfHousesOnProperty += noofHousesToAddToProperty;
+    }
     
     /*
     ---------------------- Support Methods ----------------------

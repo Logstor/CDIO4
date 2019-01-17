@@ -1,5 +1,6 @@
 package controller;
 
+import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
@@ -43,7 +44,8 @@ public class TurnController {
      */
 
     public void playTurn (Player player, GuiController guiController, HashMap<String,String> messageMap, Deck deck,
-						  Board board, Cup cup, GeneralActionController generalActionController)
+						  Board board, Cup cup, GeneralActionController generalActionController,
+						  BuyHousesController buyHousesController)
 	{
 		
 		//region Raffle
@@ -63,15 +65,20 @@ public class TurnController {
 		FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
 				messageMap, cup, generalActionController);
 		fieldController.doFieldActionByFieldType();
-
 		
 		//endregion
 
         //region ExtraTurn?
 
-        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController);
+        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController, buyHousesController);
 
         //endregion
+
+		//region Buy Houses?
+
+		buyHousesController.houseBuying(player, board, guiController, messageMap,generalActionController);
+
+		//endregion
 	}
 	
 	public void playPrisonTurn ()
@@ -112,7 +119,8 @@ public class TurnController {
 	}
 
 	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board, Deck deck,
-                           HashMap<String, String>messageMap,GeneralActionController generalActionController )
+                           HashMap<String, String>messageMap,GeneralActionController generalActionController,
+						   BuyHousesController buyHousesController)
 	{
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
@@ -120,11 +128,9 @@ public class TurnController {
         if(die1==die2)
         {
             guiController.showMessage(messageMap.get("ExtraTurn"));
-            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController);
+            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController,buyHousesController);
         }
 
     }
-
-
 
 }

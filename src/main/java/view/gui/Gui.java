@@ -325,9 +325,27 @@ public class Gui {
 
     }
 
+    /**
+     * Set the entered number of GuI_houses on the entered Field.
+     * @param noOfHousesOnProperty This is the number of houses that is build on GUI_Field.
+     * @param theField The field that the houses is build on.
+     */
+    public void setHouses (int noOfHousesOnProperty, Field theField) {
 
+        ((GUI_Street) fields[theField.getFieldNo()-1]).setHouses(noOfHousesOnProperty);
 
+    }
 
+    /**
+     * Sets hotel to be "true" on the entered Field.
+     * @param theField The field that the hotel is build on.
+     */
+    public void setHotel (Field theField) {
+
+        ((GUI_Street) fields[theField.getFieldNo()-1]).setHotel(true);
+
+    }
+    
     /**
      * This methods makes all fields blink between
      * gold and gray eternally

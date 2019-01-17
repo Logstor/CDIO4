@@ -6,6 +6,7 @@ import model.board.FieldTypeEnum;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -185,6 +186,20 @@ public class GeneralActionController {
             }
         }
     }
+
+    public boolean checkIfPlayerOwnsAnyFieldsAndAddsThemToArrayList(Player player, ArrayList<Field> fieldsToSell) {
+
+        for (Field f : player.getOwnedFields()) {
+            fieldsToSell.add(f);
+        }
+
+        if (fieldsToSell.size()!=0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     ---------------------- Support Methods ----------------------
      */
@@ -195,7 +210,7 @@ public class GeneralActionController {
      * @param currentField The PropertyField.
      * @return The current rent as an int.
      */
-    private int rentFromNoOfHouses (PropertyField currentField) {
+    public int rentFromNoOfHouses (PropertyField currentField) {
         
         int rentFromNoOfHouses;
         

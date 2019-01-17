@@ -1,6 +1,7 @@
 package controller;
 
 import model.board.Field;
+import model.board.fields.PropertyField;
 import model.player.Player;
 import view.gui.Gui;
 
@@ -52,6 +53,44 @@ public class GuiController {
         // Return the String
         return gui.getUserChoice(message, optionList);
     }
+    /**
+     * Shows a message and a dropdown menu, and returns the
+     * choosen String.
+     * @param message The information to the user
+     * @param options The available options as ArrayList<PropertyField></PropertyField>
+     * @return the choosen String as String
+     */
+    public String getUserChoiceProperty (String message, ArrayList<PropertyField> options) {
+        
+        String[] optionList = new String[options.size()];
+        for (int p =0; p < options.size(); p++) {
+                optionList[p] = options.get(p).getFieldName();
+        }
+
+        // Return the String
+        return gui.getUserChoice(message, optionList);
+    }
+
+    /**
+     * Shows a message and a dropdown menu, and returns the
+     * choosen String.
+     * @param message The information to the user
+     * @param options The available options as ArrayList<PropertyField></PropertyField>
+     * @return the choosen String as String
+     */
+    public String getUserChoiceFields (String message, ArrayList<Field> options) {
+        
+        String[] optionList = new String[options.size()];
+        int indexCounter=0;
+        for (Field f: options) {
+            optionList[indexCounter] = f.getFieldName();
+            indexCounter++;
+        }
+
+        // Return the String
+        return gui.getUserChoice(message, optionList);
+    }
+
 
     public void setOwner(Player player, Field field) {
 
@@ -179,6 +218,20 @@ public class GuiController {
     public void setBGColor(Color BGcolor) {
 
         gui.setBackgroundColor(BGcolor);
+
+    }
+
+    /**
+     * If number of houses on property is 5, setHotel becomes true otherwise the number of houses is set on entered field.
+     * @param noOfHousesOnProperty This is the number of houses that is build on GUI_Field.
+     * @param theField The field that the houses or hotel is build on.
+     */
+    public void setHousesAndHotels (int noOfHousesOnProperty, Field theField) {
+        if (noOfHousesOnProperty==5) {
+            gui.setHotel(theField);
+        } else {
+            gui.setHouses(noOfHousesOnProperty, theField);
+        }
 
     }
 
