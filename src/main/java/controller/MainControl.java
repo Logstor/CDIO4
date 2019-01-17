@@ -1,5 +1,6 @@
 package controller;
 
+import controller.extraActionManagment.ExtraActionController;
 import controller.extraActionManagment.extraActions.BuyHousesController;
 import model.board.Board;
 import model.chancecard.Deck;
@@ -26,7 +27,6 @@ public class MainControl {
     private Deck deck;
 
     private GeneralActionController generalActionController;
-    private BuyHousesController buyHousesController;
     private HashMap<String, String> messageMap;
 
     /*
@@ -41,7 +41,6 @@ public class MainControl {
     	cup = new Cup();
 
     	generalActionController = new GeneralActionController();
-    	buyHousesController = new BuyHousesController();
 	}
     
     /*
@@ -113,8 +112,7 @@ public class MainControl {
 	private void turn (Player player)
 	{
 	    TurnController turnController = new TurnController();
-	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController,
-				buyHousesController);
+	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController);
     }
     
     private void prisonTurn (Player player)

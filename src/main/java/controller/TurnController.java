@@ -1,5 +1,6 @@
 package controller;
 
+import controller.extraActionManagment.ExtraActionController;
 import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
@@ -23,12 +24,13 @@ public class TurnController {
     private int preTotalPosition, postTotalPosition;
     private int prePosition, postPosition;
     private Field currentField;
+    private ExtraActionController extraActionController;
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public TurnController ()
-    { }
+    public TurnController () {
+	}
 
     
     /*
@@ -45,7 +47,7 @@ public class TurnController {
 
     public void playTurn (Player player, GuiController guiController, HashMap<String,String> messageMap, Deck deck,
 						  Board board, Cup cup, GeneralActionController generalActionController,
-						  BuyHousesController buyHousesController)
+						  ExtraActionController extraActionController)
 	{
 		
 		//region Raffle
@@ -70,13 +72,13 @@ public class TurnController {
 
         //region ExtraTurn?
 
-        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController, buyHousesController);
+        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController, extraActionController);
 
         //endregion
 
 		//region Buy Houses?
 
-		buyHousesController.houseBuying(player, board, guiController, messageMap,generalActionController);
+		extraActionController.doExtraAction();
 
 		//endregion
 	}
@@ -120,7 +122,7 @@ public class TurnController {
 
 	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board, Deck deck,
                            HashMap<String, String>messageMap,GeneralActionController generalActionController,
-						   BuyHousesController buyHousesController)
+						   ExtraActionController extraActionController)
 	{
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
@@ -128,7 +130,7 @@ public class TurnController {
         if(die1==die2)
         {
             guiController.showMessage(messageMap.get("ExtraTurn"));
-            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController,buyHousesController);
+            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController, extraActionController);
         }
 
     }
