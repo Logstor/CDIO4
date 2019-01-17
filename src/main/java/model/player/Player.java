@@ -19,7 +19,7 @@ public class Player {
 
     private Account account;
     private String name;
-    private boolean hasLost = false;
+    private boolean hasLost = false, prisonCard = false;
     private int noOfBreweriesOwned = 0;
     private int noOfBoatsOwned = 0;
     private int prisonStat = 0;
@@ -45,8 +45,12 @@ public class Player {
      */
 
     // <editor-folder desc="Properties"
-
-
+    
+    
+    public boolean isPrisonCard() { return prisonCard; }
+    
+    public void setPrisonCard(boolean prisonCard) { this.prisonCard = prisonCard; }
+    
     public boolean isHasLost() {
         return hasLost;
     }
@@ -161,8 +165,7 @@ public class Player {
     public void updateNoOfBreweriesOwned (int noOfBreweriesToUpdateWith) {
         noOfBreweriesOwned+= noOfBreweriesToUpdateWith;
     }
-
-
+    
     public void addFieldToOwnedFields (Field ownedField) {
         ownedFields.add(ownedField);
     }

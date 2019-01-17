@@ -1,6 +1,5 @@
 package controller;
 
-import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
@@ -8,6 +7,7 @@ import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -22,14 +22,33 @@ public class TurnController {
     private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
     private int prePosition, postPosition;
+    private final int ROLLCHANCES = 3;
     private Field currentField;
+    
+	private GuiController guiController;
+	private Board board;
+	private Player[] players;
+	private Cup cup;
+	private Deck deck;
+	
+	private Player currentPlayer;
+	
+	private HashMap<String, String> messageMap;
+	private GeneralActionController generalActionController;
     /*
     ----------------------- Constructor -------------------------
      */
-    
-    public TurnController ()
-    { }
-
+	
+	public TurnController(GuiController guiController, Board board, Player[] players, Cup cup, Deck deck, HashMap<String, String> messageMap)
+	{
+		this.guiController = guiController;
+		this.board = board;
+		this.players = players;
+		this.cup = cup;
+		this.deck = deck;
+		this.messageMap = messageMap;
+		this.generalActionController = new GeneralActionController();
+	}
     
     /*
     ------------------------ Properties -------------------------
@@ -43,20 +62,20 @@ public class TurnController {
     ---------------------- Public Methods -----------------------
      */
 
-    public void playTurn (Player player, GuiController guiController, HashMap<String,String> messageMap, Deck deck,
-						  Board board, Cup cup, GeneralActionController generalActionController,
-						  BuyHousesController buyHousesController)
+    public void playTurn (Player player)
 	{
+		// Update currentPlayer
+		currentPlayer = player;
 		
 		//region Raffle
 		
-		raffleCup(player, guiController, messageMap, cup);
+		raffleCup();
 		
 		//endregion
 		
 		//region Move Player
 		
-		moveRaffle(player, board, guiController, messageMap, generalActionController);
+		moveRaffle();
 		
 		//endregion
 
@@ -76,7 +95,7 @@ public class TurnController {
 
         //region ExtraTurn?
 
-        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController, buyHousesController);
+        extraTurn();
 
         //endregion
 
@@ -87,36 +106,86 @@ public class TurnController {
 		//endregion
 	}
 	
-	public void playPrisonTurn ()
+	public void playPrisonTurn (Player player)
 	{
-		//FIXME: Implementér denne metode, og brug den i MainControl - GameLoop
+		
+		//FIXME: Implementér denne metode
+		
+		// Update currentPlayer
+		currentPlayer = player;
+		
+		// ArrayList to hold the players opportunities
+		ArrayList<String> options = new ArrayList<>(3);
+		
+		//region Check the players opportunities
+		
+		// Add roll option
+		options.add(messageMap.get("Roll"));
+		//region Checks
+		
+		if ( player.isPrisonCard() )
+		{
+			options.add(messageMap.get("UsePrisonCard"));
+		}
+		
+		if ( player.getAccount().getBalance() >= 1000 )
+		{
+			options.add(messageMap.get("Pay"));
+		}
+		
+		//endregion
+		
+		//endregion
+		
+		switch ( guiController.getUserChoice( messageMap.get("InPrison"), options ) )
+		{
+			// Subtract kr. 1000 from the player, and set prisonStat to 0
+			case "Betal":
+				generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -1000);
+				currentPlayer.setPrisonStat(0);
+				break;
+				
+			//
+			case "Rul":
+				//TODO: Give the player 3 rolls
+				if ( raffleBreakout() )
+				{
+				
+				}
+				break;
+				
+			case "Fængselskort":
+				break;
+		}
+		
+		
 	}
 
     /*
     ---------------------- Support Methods ----------------------
      */
 
-    private void raffleCup (Player player, GuiController guiController, HashMap<String,String> messageMap, Cup cup) {
-		guiController.showMessage(messageMap.get("YourTurn").replace("%name",player.getName())+ "\n" +
+    private void raffleCup ()
+	{
+		guiController.showMessage(messageMap.get("YourTurn").replace("%name",currentPlayer.getName())+ "\n" +
 				messageMap.get("PressToRoll"));
 
 		cupValue = cup.cupRoll();
 		die1Value = cup.getDies()[0].getFaceValue();
 		die2Value = cup.getDies()[1].getFaceValue();
-		preTotalPosition = player.getTotalPosition();
-		prePosition = player.getPosition();
+		preTotalPosition = currentPlayer.getTotalPosition();
+		prePosition = currentPlayer.getPosition();
 
 		guiController.showDice(die1Value,die2Value);
-		player.updatePosition(cupValue);
-		postTotalPosition = player.getTotalPosition();
-		postPosition = player.getPosition();
+		currentPlayer.updatePosition(cupValue);
+		postTotalPosition = currentPlayer.getTotalPosition();
+		postPosition = currentPlayer.getPosition();
 
 	}
 
-	private void moveRaffle (Player player, Board board, GuiController guiController,
-                             HashMap<String,String> messageMap, GeneralActionController generalActionController)
+	private void moveRaffle ()
 	{
-		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
+		generalActionController.movingPlayerForwardGUI(currentPlayer,board,guiController,prePosition,postPosition,
                 250);
 		
 		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));
@@ -124,9 +193,7 @@ public class TurnController {
 		currentField = board.getBoard()[postPosition];
 	}
 
-	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board, Deck deck,
-                           HashMap<String, String>messageMap,GeneralActionController generalActionController,
-						   BuyHousesController buyHousesController)
+	private void extraTurn ()
 	{
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
@@ -134,10 +201,43 @@ public class TurnController {
         if(die1==die2)
         {
             guiController.showMessage(messageMap.get("ExtraTurn"));
-            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController,buyHousesController);
+            playTurn(currentPlayer);
         }
 
     }
+	
+	/**
+	 * This method gives the player "rolls" amount of chances to roll 2 equal dices.
+	 * @return True if the player gets equal dices.
+	 */
+	private boolean raffleBreakout ()
+	{
+		//region Give player "rolls" amount of chances in loop
+		for (int i = 0; i < ROLLCHANCES; i++ )
+		{
+			// Roll the dices
+			guiController.showMessage( messageMap.get("PrisonRoll").replace("%gang", String.valueOf(i)) );
+			cup.cupRoll();
+			
+			if ( cup.getDies()[0] == cup.getDies()[1] )
+			{
+				guiController.showMessage(messageMap.get("PrisonBreakout"));
+				
+				// Return true, as the player made it.
+				return true;
+			}
+		}
+		
+		//endregion
+		
+		//region Didn't succeed
+		
+		// Inform the player, and Return false
+		guiController.showMessage(messageMap.get("PrisonNoBreak"));
+		return false;
+		
+		//endregion
+	}
 
     private void passingStart(Player player, GuiController guiController,
                               HashMap<String,String>messageMap, GeneralActionController generalActionController) {

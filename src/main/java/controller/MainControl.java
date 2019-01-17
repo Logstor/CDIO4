@@ -1,6 +1,5 @@
 package controller;
 
-import controller.extraActionManagment.extraActions.BuyHousesController;
 import model.board.Board;
 import model.chancecard.Deck;
 import model.cup.Cup;
@@ -24,9 +23,8 @@ public class MainControl {
     private Player[] players;
     private Cup cup;
     private Deck deck;
-
-    private GeneralActionController generalActionController;
-    private BuyHousesController buyHousesController;
+    
+    private TurnController turnController;
     private HashMap<String, String> messageMap;
 
     /*
@@ -39,9 +37,6 @@ public class MainControl {
 		deck = new Deck();
     	messageMap = new HashMap<>();
     	cup = new Cup();
-
-    	generalActionController = new GeneralActionController();
-    	buyHousesController = new BuyHousesController();
 	}
     
     /*
@@ -65,7 +60,7 @@ public class MainControl {
                 for (Player currentPlayer : players) {
                 	
                 	// Check if currentPlayer is in prison
-                	if(currentPlayer.getPrisonStat() > 0)
+                	if ( currentPlayer.getPrisonStat() > 0 )
 						prisonTurn(currentPlayer);
                 	
                 	// Otherwise run a normal turn
@@ -108,21 +103,21 @@ public class MainControl {
 		players = setupControl.playerSetup(guiController, messageMap);
 		setupControl.createGUIPlayers(guiController,players);
 		guiController.showMessage(messageMap.get("GetReady"));
+		
+		turnController = new TurnController(guiController, board, players, cup, deck, messageMap);
 	}
 
 	private void turn (Player player)
 	{
-	    TurnController turnController = new TurnController();
-	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController,
-				buyHousesController);
+	    turnController.playTurn(player);
     }
-    
-    private void prisonTurn (Player player)
+	
+	/**
+	 *
+	 * @param player
+	 */
+	private void prisonTurn (Player player)
 	{
-		//FIXME: Denne metode skal implementeres
-		
-		//TODO: Create new TurnController
-		
-		//TODO: Run the specific TurnController method for starting in prison
+		turnController.playPrisonTurn(player);
 	}
 }
