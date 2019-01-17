@@ -46,11 +46,14 @@ public class SellFieldController {
     
     public void sellField (Player seller, Player[] players, Board board, GuiController guiController, HashMap<String,String> messageMap,
                            GeneralActionController generalActionController) {
-
-        if (generalActionController.checkIfPlayerOwnsAnyFieldsAndAddsThemToArrayList(seller,fieldsToSell)){
+        
+        // Check if the owns any Fields at all
+        if (generalActionController.checkIfPlayerOwnsAnyFieldsAndAddsThemToArrayList(seller,fieldsToSell))
+        {
 
             if (guiController.getLeftButtonPressed(messageMap.get("WantToSellFields?"),
-                    messageMap.get("Yes"),messageMap.get("No"))){
+                    messageMap.get("Yes"),messageMap.get("No")))
+            {
 
                 String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
                         fieldsToSell);
@@ -77,9 +80,9 @@ public class SellFieldController {
                         fieldForSell.getFieldName()),possibleBuyers);
 
                 // Finds the Player who is the buyer.
-                Player buyer =null;
+                Player buyer = null;
                 for (Player p : players) {
-                    if (p.getName().equals(nameOnBuyer)){
+                    if (p.getName().equals(nameOnBuyer)) {
                         buyer=p;
                     }
                 }
