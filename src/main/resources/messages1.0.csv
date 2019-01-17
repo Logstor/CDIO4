@@ -26,8 +26,12 @@ LandedOnTaxOver;Du er landet på %fieldName, og besidder aktiver for mere end kr
 LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end kr. 40.000.
 TaxToPay;Og skal derfor betale %tax i SKAT.
 PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
+UsePrisonCard;Fængselskort
 InPrison;Du er i fængsel, og du skal du afgøre om du vil prøve at slå to ens, eller betale dig ud for kr. 1000.
 PrisonSentTo;Du er landet på fængslet og du bliver sendt direkte i fængselt. Hvis du modtager ikke kr. 4.000 hvis du passér 'START'.
+PrisonRoll;Rul med terningerne for %gang.
+PrisonBreakout;Du lykkedes med at bryde ud af fængslet!
+PrisonNoBreakout;Du lykkedes dig ikke, at bryde ud af fængslet. Bedre held næste gang.
 PropertyFirst;Du er landet på %name's ejendom, og du skal betale kr. %rent i husleje.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
 PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
