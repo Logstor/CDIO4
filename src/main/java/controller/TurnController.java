@@ -114,8 +114,6 @@ public class TurnController {
 	public void playPrisonTurn (Player player)
 	{
 		
-		//FIXME: Implementér denne metode
-		
 		// Update currentPlayer
 		currentPlayer = player;
 
@@ -152,13 +150,13 @@ public class TurnController {
 				currentPlayer.setPrisonStat(0);
 				break;
 
-			//
+			// Give the player 3 roll chances
 			case "Rul":
-				//TODO: Give the player 3 rolls
 				if ( raffleBreakout() )
 					currentPlayer.setPrisonStat(0);
 				break;
-
+				
+			// Take the player out of prison, and remove his PrisonCard
 			case "Fængselskort":
 				currentPlayer.setPrisonStat(0);
 				currentPlayer.setPrisonCard(false);
