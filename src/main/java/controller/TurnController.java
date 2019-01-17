@@ -102,9 +102,6 @@ public class TurnController {
 	
 	public void playPrisonTurn (Player player)
 	{
-		
-		//FIXME: Implementér denne metode
-		
 		// Update currentPlayer
 		currentPlayer = player;
 		
@@ -115,6 +112,7 @@ public class TurnController {
 		
 		// Add roll option
 		options.add(messageMap.get("Roll"));
+		
 		//region Checks
 		
 		if ( player.isPrisonCard() )
@@ -131,6 +129,7 @@ public class TurnController {
 		
 		//endregion
 		
+		//region Decide which option the player chose
 		switch ( guiController.getUserChoice( messageMap.get("InPrison"), options ) )
 		{
 			// Subtract kr. 1000 from the player, and set prisonStat to 0
@@ -143,16 +142,15 @@ public class TurnController {
 			case "Rul":
 				//TODO: Give the player 3 rolls
 				if ( raffleBreakout() )
-				{
-				
-				}
+					currentPlayer.setPrisonStat(0);
 				break;
 				
 			case "Fængselskort":
+				currentPlayer.setPrisonStat(0);
+				currentPlayer.setPrisonCard(false);
 				break;
 		}
-		
-		
+		//endregion
 	}
 
     /*
