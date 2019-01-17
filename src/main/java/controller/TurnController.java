@@ -59,6 +59,12 @@ public class TurnController {
 		moveRaffle(player, board, guiController, messageMap, generalActionController);
 		
 		//endregion
+
+        //region Passing Start
+
+        passingStart(player,guiController,messageMap, generalActionController);
+
+        //endregion
 		
 		//region FieldAction
 		
@@ -131,6 +137,18 @@ public class TurnController {
             playTurn(player,guiController,messageMap,deck,board,cup,generalActionController,buyHousesController);
         }
 
+    }
+
+    private void passingStart(Player player, GuiController guiController,
+                              HashMap<String,String>messageMap, GeneralActionController generalActionController) {
+        int preTotalRounds = preTotalPosition/40;
+        int postTotalRounds = postTotalPosition/40;
+
+        if (preTotalRounds<postTotalRounds) {
+            guiController.showMessage(messageMap.get("PassingStart"));
+            generalActionController.updatePlayerBalanceInclGui(guiController,player, +4000);
+
+        }
     }
 
 }

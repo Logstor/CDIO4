@@ -54,3 +54,4 @@ WhichFieldToSellField?;Hvilken grund kunne du tænke dig at sælge?
 WhoToSellTo?;Hvem ønsker du at sælge %fieldName til?
 WhatIsSellPrice?;Hvad skal %buyer betale for %fieldName?
 FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
+PassingStart;Du er passeret start og modtager derfor 4000 i belønning.
