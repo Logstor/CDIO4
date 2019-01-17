@@ -5,6 +5,7 @@ import controller.GuiController;
 import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.extraActionManagment.extraActions.SellFieldController;
 import model.board.Board;
+import model.board.Field;
 import model.player.Player;
 
 import java.util.ArrayList;
@@ -67,8 +68,7 @@ public class ExtraActionController {
 
             //Checks if the Player owns anything and if true it adds extra options to Arraylist.
             ArrayList<String> extraActionOptions = new ArrayList<>();
-            if (generalActionController.checkIfPlayerOwnsAnyFieldsAndAddsThemToArrayList(
-                    currentPlayer, currentPlayer.getOwnedFields())) {
+            if (sellFieldController.checkIfValidForSellField()) {
                 // Adds the option: SellField.
                 extraActionOptions.add(messageMap.get("SellField"));
             }
@@ -90,7 +90,6 @@ public class ExtraActionController {
     /*
     ---------------------- Support Methods ----------------------
      */
-
 
     private void extraActionSelectorSwitch (String nameOnSelectedAction) {
 

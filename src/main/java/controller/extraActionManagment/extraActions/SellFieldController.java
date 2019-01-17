@@ -54,14 +54,21 @@ public class SellFieldController extends ExtraAction {
     
     public void doExtraAction () {
 
+
         if (guiController.getLeftButtonPressed(messageMap.get("WantToSellFields?"),
                 messageMap.get("Yes"),messageMap.get("No")))
         {
 
+            // Adds players owned fields to List af fieldsToSell.
+            for (Field f : currentPlayer.getOwnedFields()){
+                fieldsToSell.add(f);
+            }
+
+            // Asks which field the player wises to sell. DropDownMenu.
             String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
                     fieldsToSell);
 
-            // Finds the field the Player wises to sell.
+            // Find the field the Player wises to sell.
             Field[] fieldForSellArray = new Field[1];
             for (Field f :fieldsToSell) {
                 if (f.getFieldName().equals(nameOnChosenField)){
@@ -148,6 +155,14 @@ public class SellFieldController extends ExtraAction {
         guiController.setOwner(buyer,fieldForSale);
         guiController.setDottedBorderWithPlayerCarColor(buyer,fieldForSale);
 
+    }
+
+    /**
+     * Is true if currentPlayer owns 1 or more fields.
+     * @return false if Player OwnedFields == 0 else true.
+     */
+    public boolean checkIfValidForSellField () {
+        return currentPlayer.getOwnedFields().size()!=0;
     }
 
 

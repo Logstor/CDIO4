@@ -93,7 +93,7 @@ public class BuyHousesController extends ExtraAction {
             if (guiController.getLeftButtonPressed(messageMap.get("WantToBuyHouse?"),
                     messageMap.get("Yes"), messageMap.get("No")))
             {
-                buyHouses(currentPlayer,board, guiController,messageMap,generalActionController);
+                buyHouses();
             }
         }
     }
@@ -102,8 +102,7 @@ public class BuyHousesController extends ExtraAction {
     ---------------------- Support Methods ----------------------
      */
 
-    private void buyHouses (Player player,Board board, GuiController guiController, HashMap<String,String> messageMap,
-                             GeneralActionController generalActionController)
+    private void buyHouses ()
     {
 
         // Asks where the player wants to buy a house. DropDownMenu.
