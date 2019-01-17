@@ -1,4 +1,4 @@
-package controller.chanceCardManagement;
+package controller.ChanceCardManageMent;
 
 import controller.GeneralActionController;
 import controller.GuiController;

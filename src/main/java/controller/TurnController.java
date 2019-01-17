@@ -1,6 +1,6 @@
 package controller;
 
-import controller.fieldManagement.BuyHousesController;
+import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;

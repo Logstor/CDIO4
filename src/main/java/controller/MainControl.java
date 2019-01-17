@@ -1,6 +1,6 @@
 package controller;
 
-import controller.fieldManagement.BuyHousesController;
+import controller.extraActionManagment.extraActions.BuyHousesController;
 import model.board.Board;
 import model.chancecard.Deck;
 import model.cup.Cup;
