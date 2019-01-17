@@ -102,7 +102,10 @@ public class TurnController {
         extraActionController = new ExtraActionController(currentPlayer, players, board, guiController, messageMap,
                 generalActionController);
 
-		extraActionController.doExtraAction();
+        if (extraActionController.isExtraActionsValid()) {
+			extraActionController.doExtraAction();
+		}
+
 
 		//endregion
 	}

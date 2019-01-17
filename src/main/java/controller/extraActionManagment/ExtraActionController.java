@@ -46,6 +46,10 @@ public class ExtraActionController {
         this.messageMap = messageMap;
         this.generalActionController = generalActionController;
 
+        sellFieldController = new SellFieldController(currentPlayer,players,board,guiController,messageMap,
+                generalActionController);
+        buyHousesController = new BuyHousesController(currentPlayer,board,guiController,messageMap,generalActionController);
+
     }
     
     /*
@@ -72,8 +76,7 @@ public class ExtraActionController {
                 // Adds the option: SellField.
                 extraActionOptions.add(messageMap.get("SellField"));
             }
-            if (generalActionController.checkIfPlayerOwnsAnyFieldsAndAddsThemToArrayList(
-                    currentPlayer, currentPlayer.getOwnedFields())) {
+            if (buyHousesController.checkIfPlayerIsValidForBuyHouses()) {
                 // Adds the option: BuyHouses.
                 extraActionOptions.add(messageMap.get("BuyHouse"));
             }
@@ -86,7 +89,16 @@ public class ExtraActionController {
         }
     }
     
-    
+    public boolean isExtraActionsValid () {
+
+        if (sellFieldController.checkIfValidForSellField()) {
+            return true;
+        } else if (buyHousesController.checkIfPlayerIsValidForBuyHouses()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /*
     ---------------------- Support Methods ----------------------
      */

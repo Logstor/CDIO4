@@ -2,9 +2,7 @@ package controller.extraActionManagment;
 
 import controller.GeneralActionController;
 import controller.GuiController;
-import model.board.Board;
 import model.player.Player;
-import sun.java2d.loops.GeneralRenderer;
 
 import java.util.HashMap;
 

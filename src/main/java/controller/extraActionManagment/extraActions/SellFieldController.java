@@ -86,8 +86,8 @@ public class SellFieldController extends ExtraAction {
             }
 
             // Asks who to sell the Property for?
-            String nameOnBuyer = guiController.getUserChoice(messageMap.get("WhoToSellTo?").replace("%fielName",
-                    fieldForSell.getFieldName()),possibleBuyers);
+            String nameOnBuyer = guiController.getUserChoice(messageMap.get("WhoToSellTo?")
+                    .replace("%fieldName",fieldForSell.getFieldName()),possibleBuyers);
 
             // Finds the Player who is the buyer.
             Player buyer = null;
@@ -98,9 +98,10 @@ public class SellFieldController extends ExtraAction {
             }
 
             // Finds the sell Price
-            int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
-                            replace("%buyer", buyer.getName()).replace("%fieldName",fieldForSell.getFieldName()),
-                    0,buyer.getAccount().getBalance());
+            int sellPrice = (guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
+                    replace("%fieldName", fieldForSell.getFieldName()).
+                    replace("%buyer", nameOnBuyer),
+                    0,buyer.getAccount().getBalance()));
 
             guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
                     .replace("%fieldName",fieldForSell.getFieldName())
@@ -111,7 +112,15 @@ public class SellFieldController extends ExtraAction {
 
         }
     }
-    
+
+    /**
+     * Is true if currentPlayer owns 1 or more fields.
+     * @return false if Player OwnedFields == 0 else true.
+     */
+    public boolean checkIfValidForSellField () {
+        return currentPlayer.getOwnedFields().size()!=0;
+    }
+
     /*
     ---------------------- Support Methods ----------------------
      */
@@ -156,14 +165,5 @@ public class SellFieldController extends ExtraAction {
         guiController.setDottedBorderWithPlayerCarColor(buyer,fieldForSale);
 
     }
-
-    /**
-     * Is true if currentPlayer owns 1 or more fields.
-     * @return false if Player OwnedFields == 0 else true.
-     */
-    public boolean checkIfValidForSellField () {
-        return currentPlayer.getOwnedFields().size()!=0;
-    }
-
 
 }
