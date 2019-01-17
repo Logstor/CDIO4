@@ -25,8 +25,6 @@ public class TurnController {
     private int prePosition, postPosition;
     private final int ROLLCHANCES = 3;
     private Field currentField;
-    private ExtraActionController extraActionController;
-
 	private GuiController guiController;
 	private Board board;
 	private Player[] players;
@@ -37,6 +35,8 @@ public class TurnController {
 
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
+    private ExtraActionController extraActionController;
+
     /*
     ----------------------- Constructor -------------------------
      */
@@ -50,8 +50,6 @@ public class TurnController {
 		this.deck = deck;
 		this.messageMap = messageMap;
 
-		extraActionController = new ExtraActionController(currentPlayer, players, board, guiController, messageMap,
-                generalActionController);
 		this.generalActionController = new GeneralActionController();
 
 	}
@@ -100,6 +98,9 @@ public class TurnController {
         //endregion
 
 		//region Buy Houses?
+
+        extraActionController = new ExtraActionController(currentPlayer, players, board, guiController, messageMap,
+                generalActionController);
 
 		extraActionController.doExtraAction();
 
