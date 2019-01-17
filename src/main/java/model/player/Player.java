@@ -22,7 +22,7 @@ public class Player {
     private boolean hasLost = false;
     private int noOfBreweriesOwned = 0;
     private int noOfBoatsOwned = 0;
-    private int prisonStat = 0;
+    private int prisonStat = 0, prisonCard = 0;
     private int totalPosition;
     private int position;
     private Token token;
@@ -45,8 +45,11 @@ public class Player {
      */
 
     // <editor-folder desc="Properties"
-
-
+    
+    public int getPrisonCard() { return prisonCard; }
+    
+    public void setPrisonCard(int prisonCard) { this.prisonCard = prisonCard; }
+    
     public boolean isHasLost() {
         return hasLost;
     }
@@ -161,8 +164,7 @@ public class Player {
     public void updateNoOfBreweriesOwned (int noOfBreweriesToUpdateWith) {
         noOfBreweriesOwned+= noOfBreweriesToUpdateWith;
     }
-
-
+    
     public void addFieldToOwnedFields (Field ownedField) {
         ownedFields.add(ownedField);
     }

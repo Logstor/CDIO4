@@ -54,3 +54,7 @@ WhichFieldToSellField?;Hvilken grund kunne du tænke dig at sælge?
 WhoToSellTo?;Hvem ønsker du at sælge %fieldName til?
 WhatIsSellPrice?;Hvad skal %buyer betale for %fieldName?
 FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
+DoExtraAction?;Vil du benytte dig af nogle af special handlingerne?
+SellField;Sælg felter
+BuyHouse;Køb huse
+ExtraOptionsChoices;Hvilken af nedenstående handlinger vil du udføre?

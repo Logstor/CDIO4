@@ -2,6 +2,8 @@ package controller.extraActionManagment.extraActions;
 
 import controller.GeneralActionController;
 import controller.GuiController;
+import controller.extraActionManagment.ExtraAction;
+import controller.extraActionManagment.ExtraActionType_Enum;
 import model.board.Board;
 import model.board.Field;
 import model.board.FieldTypeEnum;
@@ -16,7 +18,7 @@ import java.util.HashMap;
  * @author Rasmus Sander Larsen
  * @date 16-01-2019
  */
-public class BuyHousesController {
+public class BuyHousesController extends ExtraAction {
 
     /*
     -------------------------- Fields --------------------------
@@ -25,12 +27,18 @@ public class BuyHousesController {
     private ArrayList<PropertyField> propertiesToPutHouseOn;
     private int[] RGB_ColorMatchingColorCroup;
     private int[] propertiesPrFieldColorBoard;
+
+    private Board board;
     
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public BuyHousesController () {
+    public BuyHousesController ( Player player, Board board, GuiController guiController, HashMap<String,String> messageMap,
+                                GeneralActionController generalActionController) {
+        super(player,guiController,messageMap,generalActionController);
+        extraActionType = ExtraActionType_Enum.BuyHouse;
+        this.board = board;
 
         propertyFieldsInBoard =  new ArrayList<>();
         propertiesToPutHouseOn = new ArrayList<>();
@@ -51,15 +59,14 @@ public class BuyHousesController {
     ---------------------- Public Methods -----------------------
      */
     
-    public void houseBuying(Player player, Board board, GuiController guiController, HashMap<String,String> messageMap,
-                            GeneralActionController generalActionController) {
+    public void doExtraAction() {
 
         while (propertyFieldsInBoard.size()==0) {
             setLocalVarNeeded(board);
         }
 
         int[] propertiesPrFieldColorPlayerFields = new int[8];
-        propertiesPrFieldColorCounter(propertiesPrFieldColorPlayerFields,player.getOwnedFields());
+        propertiesPrFieldColorCounter(propertiesPrFieldColorPlayerFields,currentPlayer.getOwnedFields());
 
         ArrayList<Color> fieldColorAllowsToPutHouseOn = new ArrayList<>();
         for (int i = 0; i < propertiesPrFieldColorBoard.length; i++){
@@ -72,7 +79,7 @@ public class BuyHousesController {
         if (fieldColorAllowsToPutHouseOn.size()>0) {
             // Properties the player owns is added to propertiesToPutHousesOn: ArrayList<PropertyFields>.
             for (int k =0; k <fieldColorAllowsToPutHouseOn.size();k++) {
-            for (Field field : player.getOwnedFields()) {
+            for (Field field : currentPlayer.getOwnedFields()) {
                 if (field.getFieldType().equals(FieldTypeEnum.Property)) {
                     if (field.getFieldColor().equals(fieldColorAllowsToPutHouseOn.get(k))){
                         // If Field is a PropertyField and has the allowColor it is added to the Array of PropertiesToPutHousesOn.
@@ -86,7 +93,7 @@ public class BuyHousesController {
             if (guiController.getLeftButtonPressed(messageMap.get("WantToBuyHouse?"),
                     messageMap.get("Yes"), messageMap.get("No")))
             {
-                buyHouses(player,board, guiController,messageMap,generalActionController);
+                buyHouses(currentPlayer,board, guiController,messageMap,generalActionController);
             }
         }
     }
