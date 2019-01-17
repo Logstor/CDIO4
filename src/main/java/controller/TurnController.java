@@ -278,6 +278,7 @@ public class TurnController {
 
     		for(Field field: player.getOwnedFields()){
     			guiController.clearFieldForInfo(field);
+    			field.setFieldOwner(null);
 			}
 
 		}
