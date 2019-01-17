@@ -2,10 +2,9 @@ package controller.extraActionManagment;
 
 import controller.GeneralActionController;
 import controller.GuiController;
-import controller.extraActionManagment.extraActions.BuyHousesController;
-import controller.extraActionManagment.extraActions.SellFieldController;
+import controller.extraActionManagment.extraActions.BuyHousesAction;
+import controller.extraActionManagment.extraActions.SellFieldAction;
 import model.board.Board;
-import model.board.Field;
 import model.player.Player;
 
 import java.util.ArrayList;
@@ -29,8 +28,8 @@ public class ExtraActionController {
     private GeneralActionController generalActionController;
 
     // ExtraActions
-    private SellFieldController sellFieldController;
-    private BuyHousesController buyHousesController;
+    private SellFieldAction sellFieldAction;
+    private BuyHousesAction buyHousesAction;
 
     
     /*
@@ -46,9 +45,9 @@ public class ExtraActionController {
         this.messageMap = messageMap;
         this.generalActionController = generalActionController;
 
-        sellFieldController = new SellFieldController(currentPlayer,players,board,guiController,messageMap,
+        sellFieldAction = new SellFieldAction(currentPlayer,players,board,guiController,messageMap,
                 generalActionController);
-        buyHousesController = new BuyHousesController(currentPlayer,board,guiController,messageMap,generalActionController);
+        buyHousesAction = new BuyHousesAction(currentPlayer,board,guiController,messageMap,generalActionController);
 
     }
     
@@ -72,11 +71,11 @@ public class ExtraActionController {
 
             //Checks if the Player owns anything and if true it adds extra options to Arraylist.
             ArrayList<String> extraActionOptions = new ArrayList<>();
-            if (sellFieldController.checkIfValidForSellField()) {
+            if (sellFieldAction.checkIfValidForSellField()) {
                 // Adds the option: SellField.
                 extraActionOptions.add(messageMap.get("SellField"));
             }
-            if (buyHousesController.checkIfPlayerIsValidForBuyHouses()) {
+            if (buyHousesAction.checkIfPlayerIsValidForBuyHouses()) {
                 // Adds the option: BuyHouses.
                 extraActionOptions.add(messageMap.get("BuyHouse"));
             }
@@ -91,9 +90,9 @@ public class ExtraActionController {
     
     public boolean isExtraActionsValid () {
 
-        if (sellFieldController.checkIfValidForSellField()) {
+        if (sellFieldAction.checkIfValidForSellField()) {
             return true;
-        } else if (buyHousesController.checkIfPlayerIsValidForBuyHouses()) {
+        } else if (buyHousesAction.checkIfPlayerIsValidForBuyHouses()) {
             return true;
         } else {
             return false;
@@ -115,14 +114,14 @@ public class ExtraActionController {
 
         switch (extraActionTypeOfSelected) {
             case BuyHouse:
-                buyHousesController = new BuyHousesController(currentPlayer,board,guiController,messageMap,
+                buyHousesAction = new BuyHousesAction(currentPlayer,board,guiController,messageMap,
                         generalActionController);
-                buyHousesController.doExtraAction();
+                buyHousesAction.doExtraAction();
                 break;
             case SellField:
-                sellFieldController = new SellFieldController(currentPlayer, players, board,guiController,messageMap,
+                sellFieldAction = new SellFieldAction(currentPlayer, players, board,guiController,messageMap,
                         generalActionController);
-                sellFieldController.doExtraAction();
+                sellFieldAction.doExtraAction();
                 break;
             default:
                 break;

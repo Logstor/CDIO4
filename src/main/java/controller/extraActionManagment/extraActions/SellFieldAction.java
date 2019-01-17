@@ -16,7 +16,7 @@ import java.util.HashMap;
  * @author Rasmus Sander Larsen
  * @date 17-01-2019
  */
-public class SellFieldController extends ExtraAction {
+public class SellFieldAction extends ExtraAction {
 
     /*
     -------------------------- Fields --------------------------
@@ -29,9 +29,9 @@ public class SellFieldController extends ExtraAction {
     ----------------------- Constructor -------------------------
      */
     
-    public SellFieldController (Player seller, Player[] players, Board board,
-                                GuiController guiController, HashMap<String,String> messageMap,
-                                GeneralActionController generalActionController) {
+    public SellFieldAction(Player seller, Player[] players, Board board,
+                           GuiController guiController, HashMap<String,String> messageMap,
+                           GeneralActionController generalActionController) {
         super(seller, guiController, messageMap, generalActionController);
         extraActionType = ExtraActionType_Enum.SellField;
         this.players = players;

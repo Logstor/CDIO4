@@ -18,7 +18,7 @@ import java.util.HashMap;
  * @author Rasmus Sander Larsen
  * @date 16-01-2019
  */
-public class BuyHousesController extends ExtraAction {
+public class BuyHousesAction extends ExtraAction {
 
     /*
     -------------------------- Fields --------------------------
@@ -35,8 +35,8 @@ public class BuyHousesController extends ExtraAction {
     ----------------------- Constructor -------------------------
      */
 
-    public BuyHousesController ( Player player, Board board, GuiController guiController, HashMap<String,String> messageMap,
-                                GeneralActionController generalActionController) {
+    public BuyHousesAction(Player player, Board board, GuiController guiController, HashMap<String,String> messageMap,
+                           GeneralActionController generalActionController) {
         super(player,guiController,messageMap,generalActionController);
         extraActionType = ExtraActionType_Enum.BuyHouse;
         this.board = board;
