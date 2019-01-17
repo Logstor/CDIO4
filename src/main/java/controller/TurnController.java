@@ -2,6 +2,7 @@ package controller;
 
 import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.fieldManagement.FieldController;
+import gui_fields.GUI_Field;
 import model.board.Board;
 import model.board.Field;
 import model.chancecard.Deck;
@@ -71,6 +72,8 @@ public class TurnController {
 	{
 		// Update currentPlayer
 		currentPlayer = player;
+
+		checkIfPlayerHasLost(player, guiController, messageMap);
 		
 		//region Raffle
 		
@@ -95,10 +98,12 @@ public class TurnController {
 		FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
 				messageMap, cup, generalActionController);
 		fieldController.doFieldActionByFieldType();
-		
+
 		//endregion
 
-        //region ExtraTurn?
+        checkIfPlayerHasLost(player,guiController,messageMap);
+
+		//region ExtraTurn?
 
         extraTurn();
 
@@ -263,5 +268,27 @@ public class TurnController {
 
         }
     }
+
+    private void checkIfPlayerHasLost (Player player, GuiController guiController, HashMap<String,String>messageMap) {
+
+
+    	if(player.getAccount().getBalance()<0){
+    		player.setHasLost(true);
+    		guiController.showMessage(messageMap.get("Lost"));
+
+    		for(Field field: player.getOwnedFields()){
+    			guiController.clearFieldForInfo(field);
+			}
+
+		}
+
+	}
+
+	private void checkWinner (Player player, GuiController guiController,
+							  GeneralActionController generalActionController, HashMap<String,String>messageMap) {
+
+
+
+	}
 
 }

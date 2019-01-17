@@ -658,4 +658,11 @@ public class Gui {
     }
     //</editor-fold>
 
+    public void clearFieldForInfo (Field theField) {
+
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setBorder(null);
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(null);
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnableLabel(null);
+
+    }
 }
