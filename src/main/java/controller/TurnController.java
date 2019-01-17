@@ -244,6 +244,14 @@ public class TurnController {
 		//endregion
 	}
 
+	/**
+	 * This method awards the player with 4000 if they pass start.
+	 * @param player Player
+	 * @param guiController GuiController
+	 * @param messageMap Messages.csv
+	 * @param generalActionController GeneralActionController
+	 */
+
     private void passingStart(Player player, GuiController guiController,
                               HashMap<String,String>messageMap, GeneralActionController generalActionController) {
         int preTotalRounds = preTotalPosition/40;
