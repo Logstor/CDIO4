@@ -236,8 +236,9 @@ public class TurnController {
 
 		//region Didn't succeed
 
-		// Inform the player, and Return false
+		// Inform the player, increate prisonStat, and Return false
 		guiController.showMessage(messageMap.get("PrisonNoBreak"));
+		currentPlayer.setPrisonStat(currentPlayer.getPrisonStat() + 1);
 		return false;
 
 		//endregion
