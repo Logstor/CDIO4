@@ -1,7 +1,9 @@
 package controller;
 
+import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.extraActionManagment.ExtraActionController;
 import controller.fieldManagement.FieldController;
+import gui_fields.GUI_Field;
 import model.board.Board;
 import model.board.Field;
 import model.chancecard.Deck;
@@ -35,7 +37,9 @@ public class TurnController {
 
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
-    private ExtraActionController extraActionController;
+	private BuyHousesController buyHousesController;
+  private ExtraActionController extraActionController;
+    
 
     /*
     ----------------------- Constructor -------------------------
@@ -51,6 +55,7 @@ public class TurnController {
 		this.messageMap = messageMap;
 
 		this.generalActionController = new GeneralActionController();
+		this.buyHousesController = new BuyHousesController();
 
 	}
     
@@ -71,6 +76,18 @@ public class TurnController {
 		// Update currentPlayer
 		currentPlayer = player;
 
+		//region Check winner/loser
+
+		checkIfPlayerHasLost(player, guiController, messageMap);
+
+		try {
+			checkWinner(player,guiController,messageMap);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		//endregion
+
 		//region Raffle
 		
 		raffleCup();
@@ -82,16 +99,34 @@ public class TurnController {
 		moveRaffle();
 		
 		//endregion
+
+    //region Passing Start
+
+    passingStart(player,guiController,messageMap, generalActionController);
+
+    //endregion
 		
 		//region FieldAction
 		
 		FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
 				messageMap, cup, generalActionController);
 		fieldController.doFieldActionByFieldType();
-		
+
 		//endregion
 
-        //region ExtraTurn?
+		//region Check winner/loser
+
+        checkIfPlayerHasLost(player,guiController,messageMap);
+
+		try {
+			checkWinner(player,guiController,messageMap);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		//endregion
+
+		//region ExtraTurn?
 
         extraTurn();
 
@@ -245,6 +280,64 @@ public class TurnController {
 		return false;
 
 		//endregion
+	}
+
+	/**
+	 * This method awards the player with 4000 if they pass start.
+	 * @param player Player
+	 * @param guiController GuiController
+	 * @param messageMap Messages.csv
+	 * @param generalActionController GeneralActionController
+	 */
+
+    private void passingStart(Player player, GuiController guiController,
+                              HashMap<String,String>messageMap, GeneralActionController generalActionController) {
+        int preTotalRounds = preTotalPosition/40;
+        int postTotalRounds = postTotalPosition/40;
+
+        if (preTotalRounds<postTotalRounds) {
+            guiController.showMessage(messageMap.get("PassingStart"));
+            generalActionController.updatePlayerBalanceInclGui(guiController,player, +4000);
+
+        }
+    }
+
+	/**
+	 * This method checks if the player has a balance above 0,
+	 * if the player doesn't the ownedFields will be remove aswell as all the houses and hotels
+	 * @param player The Player
+	 * @param guiController The GuiController
+	 * @param messageMap Messages.csv
+	 */
+    private void checkIfPlayerHasLost (Player player, GuiController guiController, HashMap<String,String>messageMap) {
+
+
+    	if(player.getAccount().getBalance()<0){
+    		player.setHasLost(true);
+    		guiController.showMessage(messageMap.get("Lost"));
+
+    		for(Field field: player.getOwnedFields()){
+    			guiController.clearFieldForInfo(field);
+    			field.setFieldOwner(null);
+    			guiController.setHousesAndHotels(0, field);
+				field.setNoOfHousesOnField(0);
+    			player.removeFieldFromOwnedFields(field);
+			}
+
+		}
+
+	}
+
+	private void checkWinner (Player player, GuiController guiController,
+							  HashMap<String,String>messageMap) throws InterruptedException {
+
+    	if(players.length==1){
+			guiController.showMessage(messageMap.get("Winner").replace("%name",player.getName()));
+    		guiController.WinnerMode();
+
+
+		}
+
 	}
 
 }

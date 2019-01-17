@@ -97,6 +97,11 @@ public class GuiController {
         gui.setOwner(player, field);
     }
 
+    public void clearFieldForInfo (Field field ){
+
+        gui.clearFieldForInfo(field);
+    }
+
     /**
      * Sets the Field Border (PLAIN) to the color of the Players Car.
      * @param player The Player that the BorderColor is decided on.
