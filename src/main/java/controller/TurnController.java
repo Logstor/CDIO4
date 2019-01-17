@@ -1,12 +1,12 @@
 package controller;
 
+import controller.fieldManagement.BuyHousesController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
-import view.gui.Gui;
 
 import java.util.HashMap;
 
@@ -44,7 +44,8 @@ public class TurnController {
      */
 
     public void playTurn (Player player, GuiController guiController, HashMap<String,String> messageMap, Deck deck,
-						  Board board, Cup cup, GeneralActionController generalActionController)
+						  Board board, Cup cup, GeneralActionController generalActionController,
+						  BuyHousesController buyHousesController)
 	{
 		
 		//region Raffle
@@ -70,13 +71,13 @@ public class TurnController {
 
         //region ExtraTurn?
 
-        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController);
+        extraTurn(player,guiController,cup,board,deck,messageMap,generalActionController, buyHousesController);
 
         //endregion
 
 		//region Buy Houses?
 
-		buyHouses(player,guiController,messageMap,generalActionController);
+		buyHousesController.houseBuying(player, board, guiController, messageMap,generalActionController);
 
 		//endregion
 	}
@@ -119,7 +120,8 @@ public class TurnController {
 	}
 
 	private void extraTurn(Player player, GuiController guiController, Cup cup, Board board, Deck deck,
-                           HashMap<String, String>messageMap,GeneralActionController generalActionController )
+                           HashMap<String, String>messageMap,GeneralActionController generalActionController,
+						   BuyHousesController buyHousesController)
 	{
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
@@ -127,24 +129,9 @@ public class TurnController {
         if(die1==die2)
         {
             guiController.showMessage(messageMap.get("ExtraTurn"));
-            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController);
+            playTurn(player,guiController,messageMap,deck,board,cup,generalActionController,buyHousesController);
         }
 
     }
-
-    private void buyHouses(Player player, GuiController guiController, HashMap<String,String> messageMap,
-						   GeneralActionController generalActionController) {
-
-		if (guiController.getLeftButtonPressed(messageMap.get("WantToBuyHouse?"),
-				messageMap.get("Yes"), messageMap.get("No")))
-		{
-			generalActionController.buyHouses(player,guiController,messageMap);
-		}
-
-
-
-	}
-
-
 
 }

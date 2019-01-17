@@ -1,5 +1,6 @@
 package controller;
 
+import controller.fieldManagement.BuyHousesController;
 import model.board.Board;
 import model.chancecard.Deck;
 import model.cup.Cup;
@@ -25,6 +26,7 @@ public class MainControl {
     private Deck deck;
 
     private GeneralActionController generalActionController;
+    private BuyHousesController buyHousesController;
     private HashMap<String, String> messageMap;
 
     /*
@@ -39,6 +41,7 @@ public class MainControl {
     	cup = new Cup();
 
     	generalActionController = new GeneralActionController();
+    	buyHousesController = new BuyHousesController();
 	}
     
     /*
@@ -110,7 +113,8 @@ public class MainControl {
 	private void turn (Player player)
 	{
 	    TurnController turnController = new TurnController();
-	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController);
+	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController,
+				buyHousesController);
     }
     
     private void prisonTurn (Player player)
