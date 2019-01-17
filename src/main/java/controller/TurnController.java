@@ -1,5 +1,6 @@
 package controller;
 
+import controller.extraActionManagment.ExtraActionController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
@@ -24,21 +25,22 @@ public class TurnController {
     private int prePosition, postPosition;
     private final int ROLLCHANCES = 3;
     private Field currentField;
-    
 	private GuiController guiController;
 	private Board board;
 	private Player[] players;
 	private Cup cup;
 	private Deck deck;
-	
+
 	private Player currentPlayer;
-	
+
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
+    private ExtraActionController extraActionController;
+
     /*
     ----------------------- Constructor -------------------------
      */
-	
+
 	public TurnController(GuiController guiController, Board board, Player[] players, Cup cup, Deck deck, HashMap<String, String> messageMap)
 	{
 		this.guiController = guiController;
@@ -47,7 +49,9 @@ public class TurnController {
 		this.cup = cup;
 		this.deck = deck;
 		this.messageMap = messageMap;
+
 		this.generalActionController = new GeneralActionController();
+
 	}
     
     /*
@@ -66,7 +70,7 @@ public class TurnController {
 	{
 		// Update currentPlayer
 		currentPlayer = player;
-		
+
 		//region Raffle
 		
 		raffleCup();
@@ -95,7 +99,10 @@ public class TurnController {
 
 		//region Buy Houses?
 
-		buyHousesController.houseBuying(player, board, guiController, messageMap,generalActionController);
+        extraActionController = new ExtraActionController(currentPlayer, players, board, guiController, messageMap,
+                generalActionController);
+
+		extraActionController.doExtraAction();
 
 		//endregion
 	}
@@ -106,31 +113,34 @@ public class TurnController {
 	 */
 	public void playPrisonTurn (Player player)
 	{
+		
+		//FIXME: Implementér denne metode
+		
 		// Update currentPlayer
 		currentPlayer = player;
-		
+
 		// ArrayList to hold the players opportunities
 		ArrayList<String> options = new ArrayList<>(3);
-		
+
 		//region Check the players opportunities
-		
+
 		// Add roll option
 		options.add(messageMap.get("Roll"));
-		
+
 		//region Checks
-		
+
 		if ( player.isPrisonCard() )
 		{
 			options.add(messageMap.get("UsePrisonCard"));
 		}
-		
+
 		if ( player.getAccount().getBalance() >= 1000 )
 		{
 			options.add(messageMap.get("Pay"));
 		}
-		
+
 		//endregion
-		
+
 		//endregion
 		
 		//region Decide which option the player chose
@@ -141,14 +151,14 @@ public class TurnController {
 				generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -1000);
 				currentPlayer.setPrisonStat(0);
 				break;
-				
+
 			//
 			case "Rul":
 				//TODO: Give the player 3 rolls
 				if ( raffleBreakout() )
 					currentPlayer.setPrisonStat(0);
 				break;
-				
+
 			case "Fængselskort":
 				currentPlayer.setPrisonStat(0);
 				currentPlayer.setPrisonCard(false);
@@ -201,7 +211,7 @@ public class TurnController {
         }
 
     }
-	
+
 	/**
 	 * This method gives the player "rolls" amount of chances to roll 2 equal dices.
 	 * @return True if the player gets equal dices.
@@ -214,24 +224,24 @@ public class TurnController {
 			// Roll the dices
 			guiController.showMessage( messageMap.get("PrisonRoll").replace("%gang", String.valueOf(i)) );
 			cup.cupRoll();
-			
+
 			if ( cup.getDies()[0] == cup.getDies()[1] )
 			{
 				guiController.showMessage(messageMap.get("PrisonBreakout"));
-				
+
 				// Return true, as the player made it.
 				return true;
 			}
 		}
-		
+
 		//endregion
-		
+
 		//region Didn't succeed
-		
+
 		// Inform the player, and Return false
 		guiController.showMessage(messageMap.get("PrisonNoBreak"));
 		return false;
-		
+
 		//endregion
 	}
 

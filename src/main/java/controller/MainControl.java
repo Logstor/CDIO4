@@ -23,7 +23,7 @@ public class MainControl {
     private Player[] players;
     private Cup cup;
     private Deck deck;
-    
+
     private TurnController turnController;
     private HashMap<String, String> messageMap;
 
@@ -103,7 +103,7 @@ public class MainControl {
 		players = setupControl.playerSetup(guiController, messageMap);
 		setupControl.createGUIPlayers(guiController,players);
 		guiController.showMessage(messageMap.get("GetReady"));
-		
+
 		turnController = new TurnController(guiController, board, players, cup, deck, messageMap);
 	}
 
@@ -111,7 +111,7 @@ public class MainControl {
 	{
 	    turnController.playTurn(player);
     }
-	
+
 	/**
 	 *
 	 * @param player

@@ -1,7 +1,9 @@
-package controller.extraActionManagment;
+package controller.extraActionManagment.extraActions;
 
 import controller.GeneralActionController;
 import controller.GuiController;
+import controller.extraActionManagment.ExtraAction;
+import controller.extraActionManagment.ExtraActionType_Enum;
 import model.board.Board;
 import model.board.Field;
 import model.board.FieldTypeEnum;
@@ -14,19 +16,25 @@ import java.util.HashMap;
  * @author Rasmus Sander Larsen
  * @date 17-01-2019
  */
-public class SellFieldController {
+public class SellFieldController extends ExtraAction {
 
     /*
     -------------------------- Fields --------------------------
      */
     
     private ArrayList<Field> fieldsToSell;
+    private Player[] players;
     
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public SellFieldController () {
+    public SellFieldController (Player seller, Player[] players, Board board,
+                                GuiController guiController, HashMap<String,String> messageMap,
+                                GeneralActionController generalActionController) {
+        super(seller, guiController, messageMap, generalActionController);
+        extraActionType = ExtraActionType_Enum.SellField;
+        this.players = players;
 
         fieldsToSell = new ArrayList<>();
 
@@ -44,62 +52,56 @@ public class SellFieldController {
     ---------------------- Public Methods -----------------------
      */
     
-    public void sellField (Player seller, Player[] players, Board board, GuiController guiController, HashMap<String,String> messageMap,
-                           GeneralActionController generalActionController) {
-        
-        // Check if the owns any Fields at all
-        if (generalActionController.checkIfPlayerOwnsAnyFieldsAndAddsThemToArrayList(seller,fieldsToSell))
+    public void doExtraAction () {
+
+        if (guiController.getLeftButtonPressed(messageMap.get("WantToSellFields?"),
+                messageMap.get("Yes"),messageMap.get("No")))
         {
 
-            if (guiController.getLeftButtonPressed(messageMap.get("WantToSellFields?"),
-                    messageMap.get("Yes"),messageMap.get("No")))
-            {
+            String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
+                    fieldsToSell);
 
-                String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
-                        fieldsToSell);
-
-                // Finds the field the Player wises to sell.
-                Field[] fieldForSellArray = new Field[1];
-                for (Field f :fieldsToSell) {
-                    if (f.getFieldName().equals(nameOnChosenField)){
-                        fieldForSellArray[0] =f;
-                    }
+            // Finds the field the Player wises to sell.
+            Field[] fieldForSellArray = new Field[1];
+            for (Field f :fieldsToSell) {
+                if (f.getFieldName().equals(nameOnChosenField)){
+                    fieldForSellArray[0] =f;
                 }
-                Field fieldForSell = fieldForSellArray[0];
-
-                // Finds names on possible buyers
-                ArrayList<String> possibleBuyers = new ArrayList<>();
-                for (Player p : players) {
-                    if (!seller.getName().equals(p.getName())){
-                        possibleBuyers.add(p.getName());
-                    }
-                }
-
-                // Asks who to sell the Property for?
-                String nameOnBuyer = guiController.getUserChoice(messageMap.get("WhoToSellTo?").replace("%fielName",
-                        fieldForSell.getFieldName()),possibleBuyers);
-
-                // Finds the Player who is the buyer.
-                Player buyer = null;
-                for (Player p : players) {
-                    if (p.getName().equals(nameOnBuyer)) {
-                        buyer=p;
-                    }
-                }
-
-                // Finds the sell Price
-                int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
-                        replace("%buyer", buyer.getName()).replace("%fieldName",fieldForSell.getFieldName()),
-                        0,buyer.getAccount().getBalance());
-
-                guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", seller.getName())
-                .replace("%fieldName",fieldForSell.getFieldName())
-                        .replace("%sellPrice", String.valueOf(sellPrice)));
-
-
-                setNewFieldOwner(seller,buyer,fieldForSell,sellPrice,guiController,generalActionController);
-
             }
+            Field fieldForSell = fieldForSellArray[0];
+
+            // Finds names on possible buyers
+            ArrayList<String> possibleBuyers = new ArrayList<>();
+            for (Player p : players) {
+                if (!currentPlayer.getName().equals(p.getName())){
+                    possibleBuyers.add(p.getName());
+                }
+            }
+
+            // Asks who to sell the Property for?
+            String nameOnBuyer = guiController.getUserChoice(messageMap.get("WhoToSellTo?").replace("%fielName",
+                    fieldForSell.getFieldName()),possibleBuyers);
+
+            // Finds the Player who is the buyer.
+            Player buyer = null;
+            for (Player p : players) {
+                if (p.getName().equals(nameOnBuyer)) {
+                    buyer=p;
+                }
+            }
+
+            // Finds the sell Price
+            int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
+                            replace("%buyer", buyer.getName()).replace("%fieldName",fieldForSell.getFieldName()),
+                    0,buyer.getAccount().getBalance());
+
+            guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
+                    .replace("%fieldName",fieldForSell.getFieldName())
+                    .replace("%sellPrice", String.valueOf(sellPrice)));
+
+
+            setNewFieldOwner(currentPlayer,buyer,fieldForSell,sellPrice,guiController,generalActionController);
+
         }
     }
     
