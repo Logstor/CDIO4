@@ -72,6 +72,27 @@ public class GuiController {
         return gui.getUserChoice(message, optionList);
     }
 
+    /**
+     * Shows a message and a dropdown menu, and returns the
+     * choosen String.
+     * @param message The information to the user
+     * @param options The available options as ArrayList<PropertyField></PropertyField>
+     * @return the choosen String as String
+     */
+    public String getUserChoiceFields (String message, ArrayList<Field> options) {
+
+        //TODO: Nogle der har en fed løsning på det her ?
+        String[] optionList = new String[options.size()];
+        int indexCounter=0;
+        for (Field f: options) {
+            optionList[indexCounter] = f.getFieldName();
+            indexCounter++;
+        }
+
+        // Return the String
+        return gui.getUserChoice(message, optionList);
+    }
+
 
     public void setOwner(Player player, Field field) {
 

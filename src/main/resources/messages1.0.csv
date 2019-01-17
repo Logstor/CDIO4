@@ -49,3 +49,8 @@ WantToBuyHouse?;Kunne du tænke dig at købe nogle huse?
 WhereToBuyHouse?;På hvilken grund kunne du godt tænkte dig at købe et hus?
 HouseOnPropertyCosts;Huse på denne grund koster kr. %housePrice. Vil du stadig gerne købe et hus?
 BoughtHouses;Du købte 1 hus på %fieldName og huslejen på grunden er hævet til kr. %newRent.
+WantToSellFields?;Kunne du tænke dig at sælge nogle af dine grunde?
+WhichFieldToSellField?;Hvilken grund kunne du tænke dig at sælge?
+WhoToSellTo?;Hvem ønsker du at sælge %fieldName til?
+WhatIsSellPrice?;Hvad skal %buyer betale for %fieldName?
+FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
