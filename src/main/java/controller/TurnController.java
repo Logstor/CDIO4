@@ -131,11 +131,28 @@ public class TurnController {
 		
 		//endregion
 		
-			
-			//TODO: Take kr. 1000 from the player, and set prisonStat to 0
-			
+		switch ( guiController.getUserChoice( messageMap.get("InPrison"), options ) )
+		{
+			// Subtract kr. 1000 from the player, and set prisonStat to 0
+			case "Betal":
+				generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -1000);
+				currentPlayer.setPrisonStat(0);
+				break;
+				
+			//
+			case "Rul":
+				//TODO: Give the player 3 rolls
+				if ( raffleBreakout() )
+				{
+				
+				}
+				break;
+				
+			case "Fængselskort":
+				break;
+		}
 		
-			//TODO: Give the player 3 rolls
+		
 	}
 
     /*
@@ -209,9 +226,8 @@ public class TurnController {
 		
 		//region Didn't succeed
 		
+		// Inform the player, and Return false
 		guiController.showMessage(messageMap.get("PrisonNoBreak"));
-		
-		// Return false, as the player didn't make it
 		return false;
 		
 		//endregion
