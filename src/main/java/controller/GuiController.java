@@ -61,8 +61,7 @@ public class GuiController {
      * @return the choosen String as String
      */
     public String getUserChoiceProperty (String message, ArrayList<PropertyField> options) {
-
-        //TODO: Nogle der har en fed løsning på det her ?
+        
         String[] optionList = new String[options.size()];
         for (int p =0; p < options.size(); p++) {
                 optionList[p] = options.get(p).getFieldName();
@@ -80,8 +79,7 @@ public class GuiController {
      * @return the choosen String as String
      */
     public String getUserChoiceFields (String message, ArrayList<Field> options) {
-
-        //TODO: Nogle der har en fed løsning på det her ?
+        
         String[] optionList = new String[options.size()];
         int indexCounter=0;
         for (Field f: options) {

@@ -60,7 +60,6 @@ public class ExtraExpenseAction extends ChanceCardAction {
                     totalExtraExpenseToPay += taxHotelPrice;
                 } else {
                     // Otherwise the tax pr. houses is multiplied with number of houses and added to total.
-                    //TODO: Er dette okay? eller vil det give problemer hvis noOfHousesOnProperty er 0?
                     totalExtraExpenseToPay += (noOfHousesOnProperty*taxHousePrice);
                 }
             }
