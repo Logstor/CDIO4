@@ -65,7 +65,6 @@ public class TurnController {
 		FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
 				messageMap, cup, generalActionController);
 		fieldController.doFieldActionByFieldType();
-
 		
 		//endregion
 

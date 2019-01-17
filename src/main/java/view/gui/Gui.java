@@ -345,10 +345,7 @@ public class Gui {
         ((GUI_Street) fields[theField.getFieldNo()-1]).setHotel(true);
 
     }
-
-
-
-
+    
     /**
      * This methods makes all fields blink between
      * gold and gray eternally

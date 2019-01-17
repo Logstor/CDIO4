@@ -36,10 +36,9 @@ public class SellFieldController {
     ------------------------ Properties -------------------------
      */
 
-    // <editor-folder desc="Properties"
-
-
-    // </editor-folder>
+    //region Properties
+    
+    //endregion
     
     /*
     ---------------------- Public Methods -----------------------
@@ -106,16 +105,17 @@ public class SellFieldController {
      */
 
     /**
-     * Runs all the changes in Players & GUI_Players involved in the sale and the Field & GUI_Field
-     * @param seller
-     * @param buyer
-     * @param fieldForSell
-     * @param sellPrice
-     * @param guiController
-     * @param generalActionController
+     * Runs all the changes in Players & GUI_Players involved in the sale and the Field & GUI_Field.
+     * @param seller The Player that is selling the Field.
+     * @param buyer The Player who buys the Field.
+     * @param fieldForSale The Field that is for sale.
+     * @param sellPrice The price of the Field as an positive int.
+     * @param guiController The GuiController.
+     * @param generalActionController The GeneralActionController.
      */
-    private void setNewFieldOwner(Player seller, Player buyer, Field fieldForSell, int sellPrice, GuiController guiController,
-                                  GeneralActionController generalActionController) {
+    private void setNewFieldOwner(Player seller, Player buyer, Field fieldForSale, int sellPrice, GuiController guiController,
+                                  GeneralActionController generalActionController)
+    {
 
         // General change in values.
         // GuiPlayers Updates.
@@ -123,21 +123,25 @@ public class SellFieldController {
         generalActionController.updatePlayerBalanceInclGui(guiController,buyer,-sellPrice);
 
         // Adds and remove FieldForSell from Player.OwnedFields incl. noOfBoats and noOfBreweries.
-        seller.removeFieldFromOwnedFields(fieldForSell);
-        buyer.addFieldToOwnedFields(fieldForSell);
-        if (fieldForSell.getFieldType().equals(FieldTypeEnum.Boat)) {
+        seller.removeFieldFromOwnedFields(fieldForSale);
+        buyer.addFieldToOwnedFields(fieldForSale);
+        
+        //region Handle Counters in Player object
+        if (fieldForSale.getFieldType() == FieldTypeEnum.Boat)
+        {
             seller.updateNoOfBoatsOwned(-1);
             buyer.updateNoOfBoatsOwned(1);
         }
-        if (fieldForSell.getFieldType().equals(FieldTypeEnum.Brewery)) {
+        else if (fieldForSale.getFieldType() == FieldTypeEnum.Brewery) {
             seller.updateNoOfBreweriesOwned(-1);
             buyer.updateNoOfBreweriesOwned(1);
         }
+        //endregion
 
         // Field and GUI_Field Updates.
-        fieldForSell.setFieldOwner(buyer);
-        guiController.setOwner(buyer,fieldForSell);
-        guiController.setDottedBorderWithPlayerCarColor(buyer,fieldForSell);
+        fieldForSale.setFieldOwner(buyer);
+        guiController.setOwner(buyer,fieldForSale);
+        guiController.setDottedBorderWithPlayerCarColor(buyer,fieldForSale);
 
     }
 
