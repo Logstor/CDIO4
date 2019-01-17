@@ -269,6 +269,13 @@ public class TurnController {
         }
     }
 
+	/**
+	 * This method checks if the player has a balance above 0,
+	 * if the player doesn't the ownedFields will be remove aswell as all the houses and hotels
+	 * @param player The Player
+	 * @param guiController The GuiController
+	 * @param messageMap Messages.csv
+	 */
     private void checkIfPlayerHasLost (Player player, GuiController guiController, HashMap<String,String>messageMap) {
 
 
@@ -279,6 +286,9 @@ public class TurnController {
     		for(Field field: player.getOwnedFields()){
     			guiController.clearFieldForInfo(field);
     			field.setFieldOwner(null);
+    			guiController.setHousesAndHotels(0, field);
+				field.setNoOfHousesOnField(0);
+    			player.removeFieldFromOwnedFields(field);
 			}
 
 		}
