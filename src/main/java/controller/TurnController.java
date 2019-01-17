@@ -1,5 +1,6 @@
 package controller;
 
+import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
@@ -35,11 +36,14 @@ public class TurnController {
 	
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
+	private BuyHousesController buyHousesController;
     /*
     ----------------------- Constructor -------------------------
      */
 	
-	public TurnController(GuiController guiController, Board board, Player[] players, Cup cup, Deck deck, HashMap<String, String> messageMap)
+	public TurnController(GuiController guiController, Board board,
+						  Player[] players, Cup cup, Deck deck,
+						  HashMap<String, String> messageMap)
 	{
 		this.guiController = guiController;
 		this.board = board;
@@ -48,6 +52,7 @@ public class TurnController {
 		this.deck = deck;
 		this.messageMap = messageMap;
 		this.generalActionController = new GeneralActionController();
+		this.buyHousesController = new BuyHousesController();
 	}
     
     /*
