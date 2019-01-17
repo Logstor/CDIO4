@@ -63,3 +63,4 @@ WhatIsSellPrice?;Hvad skal %buyer betale for %fieldName?
 FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
 PassingStart;Du er passeret start og modtager derfor 4000 i belønning.
 Lost;Du har ikke flere penge tilbage og derfor har du tabt spillet.
+Winner;%name har vundet dette spil Matador

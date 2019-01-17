@@ -73,8 +73,18 @@ public class TurnController {
 		// Update currentPlayer
 		currentPlayer = player;
 
+		//region Check winner/loser
+
 		checkIfPlayerHasLost(player, guiController, messageMap);
-		
+
+		try {
+			checkWinner(player,guiController,messageMap);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		//endregion
+
 		//region Raffle
 		
 		raffleCup();
@@ -101,7 +111,17 @@ public class TurnController {
 
 		//endregion
 
+		//region Check winner/loser
+
         checkIfPlayerHasLost(player,guiController,messageMap);
+
+		try {
+			checkWinner(player,guiController,messageMap);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		//endregion
 
 		//region ExtraTurn?
 
@@ -296,9 +316,14 @@ public class TurnController {
 	}
 
 	private void checkWinner (Player player, GuiController guiController,
-							  GeneralActionController generalActionController, HashMap<String,String>messageMap) {
+							  HashMap<String,String>messageMap) throws InterruptedException {
+
+    	if(players.length==1){
+			guiController.showMessage(messageMap.get("Winner").replace("%name",player.getName()));
+    		guiController.WinnerMode();
 
 
+		}
 
 	}
 
