@@ -1,6 +1,6 @@
-package controller.ChanceCardManageMent.ChanceCardActions;
+package controller.chanceCardManagement.chanceCardActions;
 
-import controller.ChanceCardManageMent.ChanceCardAction;
+import controller.chanceCardManagement.ChanceCardAction;
 import controller.GeneralActionController;
 import controller.GuiController;
 import model.board.Field;
