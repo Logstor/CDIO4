@@ -1,9 +1,7 @@
 package controller;
 
-import controller.extraActionManagment.extraActions.BuyHousesController;
 import controller.extraActionManagment.ExtraActionController;
 import controller.fieldManagement.FieldController;
-import gui_fields.GUI_Field;
 import model.board.Board;
 import model.board.Field;
 import model.chancecard.Deck;
@@ -37,8 +35,7 @@ public class TurnController {
 
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
-	private BuyHousesController buyHousesController;
-  private ExtraActionController extraActionController;
+ 	private ExtraActionController extraActionController;
     
 
     /*
@@ -55,7 +52,6 @@ public class TurnController {
 		this.messageMap = messageMap;
 
 		this.generalActionController = new GeneralActionController();
-		this.buyHousesController = new BuyHousesController();
 
 	}
     

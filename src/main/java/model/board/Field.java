@@ -30,7 +30,7 @@ public abstract class Field {
      */
 
     protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,
-                     String fieldDescription, int fieldCost, Color fieldColor, int noOfHousesOnField) {
+                     String fieldDescription, int fieldCost, Color fieldColor) {
 
         this.fieldNo=fieldNo;
         this.fieldType= fieldType;
@@ -39,7 +39,7 @@ public abstract class Field {
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
         fieldOwner = null;
-        this.noOfHousesOnField = noOfHousesOnField;
+        noOfHousesOnField = 0;
 
 
     }
