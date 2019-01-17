@@ -65,7 +65,7 @@ public class MainControl {
                 for (Player currentPlayer : players) {
                 	
                 	// Check if currentPlayer is in prison
-                	if(currentPlayer.getPrisonStat() > 0)
+                	if ( currentPlayer.getPrisonStat() > 0 )
 						prisonTurn(currentPlayer);
                 	
                 	// Otherwise run a normal turn
@@ -116,13 +116,14 @@ public class MainControl {
 	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController,
 				buyHousesController);
     }
-    
-    private void prisonTurn (Player player)
+	
+	/**
+	 *
+	 * @param player
+	 */
+	private void prisonTurn (Player player)
 	{
-		//FIXME: Denne metode skal implementeres
-		
-		//TODO: Create new TurnController
-		
-		//TODO: Run the specific TurnController method for starting in prison
+		TurnController turnController = new TurnController();
+		turnController.playPrisonTurn(guiController, player);
 	}
 }

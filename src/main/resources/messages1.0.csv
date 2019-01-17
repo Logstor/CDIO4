@@ -7,6 +7,8 @@ CarColor5;Gul
 CarColor6;Blå
 Yes;Ja
 No;Nej
+Pay;Betal
+Roll;Rull
 Welcome;Velkommen til spillet Matador!
 GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
 NamePlayer;Indtast navnet på spiller
@@ -24,6 +26,7 @@ LandedOnTaxOver;Du er landet på %fieldName, og besidder aktiver for mere end kr
 LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end kr. 40.000.
 TaxToPay;Og skal derfor betale %tax i SKAT.
 PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
+InPrison;Du er i fængsel, og du skal du afgøre om du vil prøve at slå to ens, eller betale dig ud for kr. 1000.
 PrisonSentTo;Du er landet på fængslet og du bliver sendt direkte i fængselt. Hvis du modtager ikke kr. 4.000 hvis du passér 'START'.
 PropertyFirst;Du er landet på %name's ejendom, og du skal betale kr. %rent i husleje.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?

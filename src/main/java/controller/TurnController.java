@@ -81,9 +81,22 @@ public class TurnController {
 		//endregion
 	}
 	
-	public void playPrisonTurn ()
+	public void playPrisonTurn (GuiController guiController, Player player, HashMap<String, String> messageMap)
 	{
-		//FIXME: Implementér denne metode, og brug den i MainControl - GameLoop
+		
+		//FIXME: Implementér denne metode
+		
+		//region Check the players opportunities
+		
+		
+		
+		//endregion
+		
+			
+			//TODO: Take kr. 1000 from the player, and set prisonStat to 0
+			
+		
+			//TODO: Give the player 3 rolls
 	}
 
     /*
