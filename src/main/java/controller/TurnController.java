@@ -106,11 +106,15 @@ public class TurnController {
 		//endregion
 	}
 	
+	/**
+	 * This method handles the logic when the currentPlayer is in prison.
+	 * @param player The currentPlayer
+	 */
 	public void playPrisonTurn (Player player)
 	{
-
+		
 		//FIXME: Implementér denne metode
-
+		
 		// Update currentPlayer
 		currentPlayer = player;
 
@@ -121,6 +125,7 @@ public class TurnController {
 
 		// Add roll option
 		options.add(messageMap.get("Roll"));
+
 		//region Checks
 
 		if ( player.isPrisonCard() )
@@ -136,12 +141,29 @@ public class TurnController {
 		//endregion
 
 		//endregion
+		
+		//region Decide which option the player chose
+		switch ( guiController.getUserChoice( messageMap.get("InPrison"), options ) )
+		{
+			// Subtract kr. 1000 from the player, and set prisonStat to 0
+			case "Betal":
+				generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -1000);
+				currentPlayer.setPrisonStat(0);
+				break;
 
+			//
+			case "Rul":
+				//TODO: Give the player 3 rolls
+				if ( raffleBreakout() )
+					currentPlayer.setPrisonStat(0);
+				break;
 
-			//TODO: Take kr. 1000 from the player, and set prisonStat to 0
-
-
-			//TODO: Give the player 3 rolls
+			case "Fængselskort":
+				currentPlayer.setPrisonStat(0);
+				currentPlayer.setPrisonCard(false);
+				break;
+		}
+		//endregion
 	}
 
     /*
@@ -215,9 +237,8 @@ public class TurnController {
 
 		//region Didn't succeed
 
+		// Inform the player, and Return false
 		guiController.showMessage(messageMap.get("PrisonNoBreak"));
-
-		// Return false, as the player didn't make it
 		return false;
 
 		//endregion
