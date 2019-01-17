@@ -19,10 +19,10 @@ public class Player {
 
     private Account account;
     private String name;
-    private boolean hasLost = false, prisonCard = false;
+    private boolean hasLost = false;
     private int noOfBreweriesOwned = 0;
     private int noOfBoatsOwned = 0;
-    private int prisonStat = 0;
+    private int prisonStat = 0, prisonCard = 0;
     private int totalPosition;
     private int position;
     private Token token;
@@ -46,10 +46,9 @@ public class Player {
 
     // <editor-folder desc="Properties"
     
+    public int getPrisonCard() { return prisonCard; }
     
-    public boolean isPrisonCard() { return prisonCard; }
-    
-    public void setPrisonCard(boolean prisonCard) { this.prisonCard = prisonCard; }
+    public void setPrisonCard(int prisonCard) { this.prisonCard = prisonCard; }
     
     public boolean isHasLost() {
         return hasLost;

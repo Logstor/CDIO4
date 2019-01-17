@@ -127,7 +127,7 @@ public class TurnController {
 
 		//region Checks
 
-		if ( player.isPrisonCard() )
+		if ( player.getPrisonCard() > 0 )
 		{
 			options.add(messageMap.get("UsePrisonCard"));
 		}
@@ -159,7 +159,7 @@ public class TurnController {
 			// Take the player out of prison, and remove his PrisonCard
 			case "Fængselskort":
 				currentPlayer.setPrisonStat(0);
-				currentPlayer.setPrisonCard(false);
+				currentPlayer.setPrisonCard(currentPlayer.getPrisonCard() - 1);
 				break;
 		}
 		//endregion
