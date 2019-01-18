@@ -63,17 +63,10 @@ public class SellFieldAction extends ExtraAction {
         }
     }
 
-    public boolean forceSellField () {
+    public void forceSellField () {
 
-         {
-
-            // This there is anyone who wishes to buy any of Players Fields. Start SellField and do it.
-            sellField();
-
-            return true;
-        } else {
-            return false;
-        }
+         // This there is anyone who wishes to buy any of Players Fields. Start SellField and do it.
+         sellField();
 
     }
 

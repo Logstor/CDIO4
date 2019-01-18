@@ -74,7 +74,7 @@ public class TurnController {
 		do {
 			//region Check winner/loser
 
-			checkIfPlayerHasLost(player, guiController, messageMap);
+			checkIfPlayerHasLost(player, guiController, messageMap, extraActionController.getSellFieldAction());
 
 			try {
 				checkWinner(player,guiController,messageMap);
@@ -310,22 +310,22 @@ public class TurnController {
 
     		if (player.getOwnedFields().size()>0) {
 
-                if (guiController.getLeftButtonPressed(messageMap.get("PlayerFallitAnyBuyersOfFields").
-                                replace("&name", player.getName()).
-                                replace("%ownedFields", String.valueOf(player.getOwnedFields().size())),
-                        messageMap.get("Yes"), messageMap.get("No"))) {
-                    sellFieldAction.forceSellField();
-                }
+    			while (guiController.getLeftButtonPressed(messageMap.get("PlayerFallitAnyBuyersOfFields").
+								replace("&name", player.getName()).
+								replace("%ownedFields", String.valueOf(player.getOwnedFields().size())),
+						messageMap.get("Yes"), messageMap.get("No"))) {
 
-				do {
-					sellFieldAction.forceSellField();
-				} while (true);
-
+    				sellFieldAction.forceSellField();
+				}
 			}
 
-    		player.setHasLost(true);
-    		guiController.showMessage(messageMap.get("Lost"));
-    		return true;
+    		if (player.getAccount().getBalance() <0) {
+
+				player.setHasLost(true);
+				guiController.showMessage(messageMap.get("Lost"));
+
+			}
+    		return player.isHasLost();
 		} else {
     		return false;
 		}
