@@ -54,7 +54,7 @@ public class PropertyAction extends FieldAction {
 	public void action() {
 
 		// Check if the currentPlayer doesn't own the Property
-		if ( !field.getFieldOwner().equals(player) )
+		if ( field.getFieldOwner() !=  player)
 		{
 			//region Buying Sequence
 			if (field.getFieldOwner() == null) {
