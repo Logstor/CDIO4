@@ -62,6 +62,9 @@ public class ChanceCardAdder {
             case extraExpense:
                 addExtraExpense (cardTypes,cardText, taxHousePrice, taxHotelPrice);
                 break;
+            case outOfPrison:
+                addOutOfPrison(cardTypes,cardText);
+                break;
             default:
                 break;
         }
@@ -94,4 +97,10 @@ public class ChanceCardAdder {
     private void addExtraExpense (CardTypeEnum cardType, String cardText, int taxHousePrice, int taxHotelPrice){
         tempListOfCards.add(new ExtraExpense(cardType,cardText,taxHousePrice,taxHotelPrice));
     }
+
+    private void addOutOfPrison (CardTypeEnum cardType, String cardText){
+        tempListOfCards.add(new OutOfPrison(cardType,cardText));
+    }
+
+
 }
