@@ -25,7 +25,7 @@ public class DieTest {
         int lowerBoundCon = (int) ( (amountOfRolls/die.getSides() ) * 0.96 );   // 4% below even
 
 
-        // Max deviation limits for the 12 sided dice
+        // Max deviation limits for the 6 sided dice
         int upperBound6 = (int) ( (amountOfRolls/die6.getSides() ) * 1.04 );  // 4% above even
         int lowerBound6 = (int) ( (amountOfRolls/die6.getSides() ) * 0.96 );  // 4% below even
 
@@ -47,7 +47,7 @@ public class DieTest {
         System.out.println();
 
         /*
-        Test 12 sided dice
+        Test 6 sided dice
          */
         for ( int i=0 ; i < amountOfRolls ; i++ ) {
 
