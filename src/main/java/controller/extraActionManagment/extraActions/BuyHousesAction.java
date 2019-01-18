@@ -144,6 +144,8 @@ public class BuyHousesAction extends ExtraAction {
                     // Gui is updated with the correct number of Houses or Hotels.
                     guiController.setHousesAndHotels(field.getNoOfHousesOnProperty(), field);
                     guiController.setOwnableRent(field, generalActionController.rentFromNoOfHouses(field));
+                    // Updates Player Balance with price of house.
+                    generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -field.getFieldHousePrice());
 
                     // Tells that the house is bought and shows the new rent on the Property.
                     guiController.showMessage(messageMap.get("BoughtHouses").replace("%fieldName", field.getFieldName())
