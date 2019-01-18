@@ -4,6 +4,7 @@ import controller.extraActionManagment.ExtraActionController;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
@@ -329,7 +330,9 @@ public class TurnController {
     		for(Field field: player.getOwnedFields()){
     			guiController.clearFieldForInfo(field);
     			field.setFieldOwner(null);
-    			guiController.setHousesAndHotels(0, field);
+    			if (field.getFieldType() == FieldTypeEnum.Property) {
+					guiController.setHousesAndHotels(0, field);
+				}
 				field.setNoOfHousesOnField(0);
     			player.removeFieldFromOwnedFields(field);
 			}
