@@ -52,53 +52,67 @@ public class PropertyAction extends FieldAction {
 	 */
 	@Override
 	public void action() {
-		
-		//region Buying Sequence
-		if (field.getFieldOwner() == null)
-		{
-			// Make
-			if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
-			{
 
-				// Ask the player if he wants to buy, and handle the event
-				if (guiController.getLeftButtonPressed(messageMap.get("PropertyWantToBuy").replace("%fieldName",
-					field.getFieldName()),
-					messageMap.get("Yes"), messageMap.get("No")))
-				{
-					generalAction.buyField(player, field, guiController);
-				}
-				
-				// Otherwise, player don't want to
-				else
-				{
-					//region auction
-					
-					//endregion
-				}
-			}
-			
-			// Otherwise put it on auction
-			else
-			{
-				guiController.showMessage(messageMap.get("PropertyNoMoney"));
-				
-				//region auction
-				
-				//endregion
-			}
-		}
-		//endregion
-		
-		//region Pay Rent
-		else
+		// Check if the currentPlayer doesn't own the Property
+		if ( !field.getFieldOwner().equals(player) )
 		{
-			// Handle the rent event, and display messages
-			generalAction.payPropertyRent(player, field, guiController, messageMap);
+			//region Buying Sequence
+			if (field.getFieldOwner() == null) {
+				buyingSequence();
+			}
+			//endregion
+
+			//region Pay Rent
+			else {
+				// Handle the rent event, and display messages
+				generalAction.payPropertyRent(player, field, guiController, messageMap);
+			}
+			//endregion
 		}
-		//endregion
+
+		// Otherwise he owns the property
+		else
+			guiController.showMessage(messageMap.get("LandedOnOwnField"));
 	}
 
     /*
     ----------------------------- Support Methods ------------------------------
      */
+
+	/**
+	 *
+	 */
+	private void buyingSequence()
+	{
+		// Make
+		if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
+		{
+
+			// Ask the player if he wants to buy, and handle the event
+			if (guiController.getLeftButtonPressed(messageMap.get("PropertyWantToBuy").replace("%fieldName",
+					field.getFieldName()),
+					messageMap.get("Yes"), messageMap.get("No")))
+			{
+				generalAction.buyField(player, field, guiController);
+			}
+
+			// Otherwise, player don't want to
+			else
+			{
+				//region auction
+
+				//endregion
+			}
+		}
+
+		// Otherwise put it on auction
+		else
+		{
+			guiController.showMessage(messageMap.get("PropertyNoMoney"));
+
+			//region auction
+
+			//endregion
+		}
+	}
 }
