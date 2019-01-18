@@ -1,5 +1,10 @@
 package model.board;
 
+/**
+ * @author Søren Poulsen
+ * @date 16-01-2019
+ */
+
 import model.board.fields.PropertyField;
 import model.player.Player;
 import org.junit.Test;
