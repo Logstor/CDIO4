@@ -66,6 +66,8 @@ public class ExtraExpenseAction extends ChanceCardAction {
         }
         // Set, Display og showMessage.
         setDisplayMessageChanceCardOnGUi(currentCard);
+
+        // Show result depending on number of houses.
         if (totalExtraExpenseToPay==0) {
             guiController.showMessage(messageMap.get("NoExtraExpense"));
 
