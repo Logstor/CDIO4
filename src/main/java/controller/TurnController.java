@@ -327,6 +327,7 @@ public class TurnController {
     		player.setHasLost(true);
     		guiController.showMessage(messageMap.get("Lost"));
 
+    		ArrayList<Field> fieldsToRemove = new ArrayList<>();
     		for(Field field: player.getOwnedFields()){
     			guiController.clearFieldForInfo(field);
     			field.setFieldOwner(null);
@@ -334,7 +335,11 @@ public class TurnController {
 					guiController.setHousesAndHotels(0, field);
 				}
 				field.setNoOfHousesOnField(0);
-    			player.removeFieldFromOwnedFields(field);
+    			fieldsToRemove.add(field);
+			}
+    		// Removes field from Player
+    		for (Field fieldToRemove : fieldsToRemove) {
+    			player.removeFieldFromOwnedFields(fieldToRemove);
 			}
 
 		}
