@@ -133,7 +133,6 @@ public class PlayerTest {
         assertEquals(player.getNoOfBoatsOwned(),2);
 
         BoatField field = new BoatField(5, FieldTypeEnum.Boat, "Boat2","Test",4000,Color.blue);
-        field.fieldAction(player);
         player.updateNoOfBoatsOwned(1);
         assertEquals(player.getNoOfBoatsOwned(),3);
 
@@ -180,7 +179,6 @@ public class PlayerTest {
         Player player = new Player("Test", Color.blue, 3000,0);
         player.setNoOfBoatsOwned(1);
         BoatField field = new BoatField(3,FieldTypeEnum.Boat,"Test2","testen",4000,Color.blue);
-        field.fieldAction(player);
         player.updateNoOfBoatsOwned(1);
         assertEquals(player.getNoOfBoatsOwned(),2);
 
@@ -191,7 +189,6 @@ public class PlayerTest {
         Player player = new Player("Test", Color.blue, 3000,0);
         player.setNoOfBreweriesOwned(1);
         BreweryField field = new BreweryField(3,FieldTypeEnum.Brewery,"Test2","testen",4000,Color.blue);
-        field.fieldAction(player);
         player.updateNoOfBreweriesOwned(1);
         assertEquals(player.getNoOfBreweriesOwned(),2);
     }
