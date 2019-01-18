@@ -1,17 +1,14 @@
-package model.board.fields;
+package model.chancecard.cards;
 
-import model.board.Field;
-import model.board.FieldTypeEnum;
-import model.cup.*;
-import model.player.Player;
-
-import java.awt.*;
+import controller.MainControl;
+import model.chancecard.CardTypeEnum;
+import model.chancecard.ChanceCard;
 
 /**
  * @author Rasmus Sander Larsen
- * @date 07-01-2019
+ * @date 16-01-2019
  */
-public class TaxField extends Field {
+public class MatadorLegat extends ChanceCard {
 
     /*
     -------------------------- Fields --------------------------
@@ -22,10 +19,9 @@ public class TaxField extends Field {
     /*
     ----------------------- Constructor -------------------------
      */
-
-    public TaxField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
-        super(fieldNo,fieldType,fieldName,fieldDescription, fieldCost,fieldColor);
-        forSale=false;
+    
+    public MatadorLegat (CardTypeEnum cardType, String cardText) {
+        super(cardType,cardText);
     }
     
     /*
@@ -40,6 +36,8 @@ public class TaxField extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
+    
+    
     
     /*
     ---------------------- Support Methods ----------------------

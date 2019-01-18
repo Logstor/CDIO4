@@ -64,10 +64,7 @@ public abstract class ChanceCard {
         toStringBuilder.append("ChanceCard Text: " + cardText + "\n");
 
         return toStringBuilder.toString();
-
     }
-
-    protected abstract void cardAction(Player player);
     
     /*
     ---------------------- Support Methods ----------------------

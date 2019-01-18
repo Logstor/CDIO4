@@ -1,7 +1,7 @@
 package controller;
 
 import model.board.Field;
-import model.board.fields.BreweryField;
+import model.board.fields.PropertyField;
 import model.player.Player;
 import view.gui.Gui;
 
@@ -53,11 +53,78 @@ public class GuiController {
         // Return the String
         return gui.getUserChoice(message, optionList);
     }
+    /**
+     * Shows a message and a dropdown menu, and returns the
+     * choosen String.
+     * @param message The information to the user
+     * @param options The available options as ArrayList<PropertyField></PropertyField>
+     * @return the choosen String as String
+     */
+    public String getUserChoiceProperty (String message, ArrayList<PropertyField> options) {
+        
+        String[] optionList = new String[options.size()];
+        for (int p =0; p < options.size(); p++) {
+                optionList[p] = options.get(p).getFieldName();
+        }
+
+        // Return the String
+        return gui.getUserChoice(message, optionList);
+    }
+
+    /**
+     * Shows a message and a dropdown menu, and returns the
+     * choosen String.
+     * @param message The information to the user
+     * @param options The available options as ArrayList<PropertyField></PropertyField>
+     * @return the choosen String as String
+     */
+    public String getUserChoiceFields (String message, ArrayList<Field> options) {
+        
+        String[] optionList = new String[options.size()];
+        int indexCounter=0;
+        for (Field f: options) {
+            optionList[indexCounter] = f.getFieldName();
+            indexCounter++;
+        }
+
+        // Return the String
+        return gui.getUserChoice(message, optionList);
+    }
+
 
     public void setOwner(Player player, Field field) {
 
         gui.setOwner(player, field);
     }
+
+    public void clearFieldForInfo (Field field ){
+
+        gui.clearFieldForInfo(field);
+    }
+
+    /**
+     * Sets the Field Border (PLAIN) to the color of the Players Car.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setPlainBorderWithPlayerCarColor(Player player, Field theField) {
+
+        gui.setPlainBorderWithPlayerCarColor(player,theField);
+
+    }
+
+    /**
+     * Sets the Field Border (DOTTED) to the color of the Players Car and LightGrey.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setDottedBorderWithPlayerCarColor(Player player, Field theField) {
+
+        gui.setDottedBorderWithPlayerCarColor(player,theField);
+
+    }
+
+
 
     public void addPlayer(Player player) {
 
@@ -87,6 +154,12 @@ public class GuiController {
     public void getUserButton1 (String message, String button){
 
         gui.getUserChoice(message, button);
+    }
+
+    public boolean getLeftButtonPressed (String message, String truebutton, String falsebutton){
+
+        return gui.getLeftButtonPressed(message, truebutton, falsebutton);
+
     }
 
     public String getUserString(String message) {
@@ -150,6 +223,20 @@ public class GuiController {
     public void setBGColor(Color BGcolor) {
 
         gui.setBackgroundColor(BGcolor);
+
+    }
+
+    /**
+     * If number of houses on property is 5, setHotel becomes true otherwise the number of houses is set on entered field.
+     * @param noOfHousesOnProperty This is the number of houses that is build on GUI_Field.
+     * @param theField The field that the houses or hotel is build on.
+     */
+    public void setHousesAndHotels (int noOfHousesOnProperty, Field theField) {
+        if (noOfHousesOnProperty==5) {
+            gui.setHotel(theField);
+        } else {
+            gui.setHouses(noOfHousesOnProperty, theField);
+        }
 
     }
 

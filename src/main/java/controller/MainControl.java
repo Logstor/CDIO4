@@ -24,7 +24,7 @@ public class MainControl {
     private Cup cup;
     private Deck deck;
 
-    private GeneralActionController generalActionController;
+    private TurnController turnController;
     private HashMap<String, String> messageMap;
 
     /*
@@ -37,8 +37,6 @@ public class MainControl {
 		deck = new Deck();
     	messageMap = new HashMap<>();
     	cup = new Cup();
-
-    	generalActionController = new GeneralActionController();
 	}
     
     /*
@@ -57,13 +55,23 @@ public class MainControl {
 			// Set the game up, and display
 			setup();
 
+			//region GameLoop
 			do {
                 for (Player currentPlayer : players) {
-
-                    turn(currentPlayer);
-
+                	
+                	// Check if currentPlayer is in prison
+                	if ( currentPlayer.getPrisonStat() > 0 )
+						prisonTurn(currentPlayer);
+                	
+                	// Otherwise run a normal turn
+                	else
+                		turn(currentPlayer);
                 }
-            } while (players.length>1);
+            }
+			// Continue while there's more than 1 player left
+			while (players.length>1);
+			
+			//endregion
 
 			return 0;
 		}
@@ -95,10 +103,21 @@ public class MainControl {
 		players = setupControl.playerSetup(guiController, messageMap);
 		setupControl.createGUIPlayers(guiController,players);
 		guiController.showMessage(messageMap.get("GetReady"));
+
+		turnController = new TurnController(guiController, board, players, cup, deck, messageMap);
 	}
 
-	private void turn (Player player) {
-	    TurnController turnController = new TurnController();
-	    turnController.playTurn(player, guiController, messageMap, deck, board, cup, generalActionController);
+	private void turn (Player player)
+	{
+	    turnController.playTurn(player);
     }
+
+	/**
+	 *
+	 * @param player
+	 */
+	private void prisonTurn (Player player)
+	{
+		turnController.playPrisonTurn(player);
+	}
 }

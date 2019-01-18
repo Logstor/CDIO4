@@ -59,6 +59,9 @@ public class SetupControl {
 	
 	public Player[] playerSetup(GuiController guiController, HashMap<String, String> messageMap)
 	{
+
+		ArrayList PlayerNames = new ArrayList();
+
 		guiController.showMessage(messageMap.get("Welcome"));
 		
 		// Ask how many players who wants to play and Initialize Player[]
@@ -70,7 +73,18 @@ public class SetupControl {
 		tokenColorsString.add(messageMap.get("CarColor5")); tokenColorsString.add(messageMap.get("CarColor6"));
 
 		for (int i = 0; i < players.length; i++) {
-		String name = guiController.getUserString(messageMap.get("NamePlayer") + " " + Integer.toString(i+1));
+			String name="";
+			String name1 = guiController.getUserString(messageMap.get("NamePlayer") + " " + (i+1));
+
+			//Tjekker for om navnet er optager.
+			if(PlayerNames.contains(name1)) {
+				guiController.showMessage("Navn er taget, vælg venligst et andet");
+				i--;
+				continue;
+			}else {
+				name=name1;
+				PlayerNames.add(name1);
+			}
 
 			String chosenTokenColor = guiController.getUserChoice(messageMap.get("PickColorForToken") + " ", tokenColorsString);
 			for (int j = 0; j < tokenColorsString.size(); j++) {

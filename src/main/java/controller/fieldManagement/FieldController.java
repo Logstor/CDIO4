@@ -5,7 +5,6 @@ import controller.GuiController;
 import controller.fieldManagement.fieldActions.*;
 import model.board.Board;
 import model.board.Field;
-import model.board.fields.PrisonField;
 import model.board.fields.PropertyField;
 import model.chancecard.Deck;
 import model.cup.Cup;
@@ -43,9 +42,6 @@ public class FieldController {
 		this.board = board;
 		this.deck = deck;
 	}
-	
-	//TODO: Hvis vi vil have FieldController til at eksisterer gennem hele spillet, så skal der laves objekter af
-	//TODO: alle Action klasserne. De skal da initialiseres i constructoren og tilføjes, som attributer.
 
     /*
     ------------------------------ Properties ----------------------------------
@@ -58,7 +54,8 @@ public class FieldController {
         switch (currentField.getFieldType())
 		{
             case Property:
-				PropertyAction propertyAction = new PropertyAction(player, messageMap, (PropertyField)currentField, guiController);
+				PropertyAction propertyAction = new PropertyAction(player, messageMap, (PropertyField)currentField,
+						guiController, generalActionController);
 				propertyAction.action();
                 break;
                 
@@ -89,10 +86,13 @@ public class FieldController {
                 break;
                 
             case Parking:
+            	ParkingAction parkingAction = new ParkingAction(player,messageMap,guiController);
+            	parkingAction.action();
                 break;
                 
             case Brewery:
-				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController, cup, currentField);
+				BreweryAction breweryAction = new BreweryAction(player, messageMap, guiController, cup,
+						currentField, generalActionController);
 				breweryAction.action();
 
                 break;

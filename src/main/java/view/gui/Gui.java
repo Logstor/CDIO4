@@ -195,6 +195,11 @@ public class Gui {
         return gui.getUserInteger(message);
     }
 
+    public boolean getLeftButtonPressed (String message, String truebutton, String falsebutton ){
+        return gui.getUserLeftButtonPressed(message, truebutton, falsebutton);
+
+    }
+
     /**
      * This method prompts the user to input a String into
      * a textfield, and returns the inputted String.
@@ -295,6 +300,50 @@ public class Gui {
     {
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
+    }
+
+    /**
+     * Sets the Field Border (PLAIN) to the color of the Players Car.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setPlainBorderWithPlayerCarColor(Player player, Field theField) {
+
+        ((GUI_Ownable) fields[theField.getFieldNo()-1]).setBorder(player.getToken().getCarColor());
+
+    }
+
+    /**
+     * Sets the Field Border (DOTTED) to the color of the Players Car and LightGrey.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setDottedBorderWithPlayerCarColor(Player player, Field theField) {
+
+        ((GUI_Ownable) fields[theField.getFieldNo()-1]).setBorder(player.getToken().getCarColor(),
+                Color.LIGHT_GRAY);
+
+    }
+
+    /**
+     * Set the entered number of GuI_houses on the entered Field.
+     * @param noOfHousesOnProperty This is the number of houses that is build on GUI_Field.
+     * @param theField The field that the houses is build on.
+     */
+    public void setHouses (int noOfHousesOnProperty, Field theField) {
+
+        ((GUI_Street) fields[theField.getFieldNo()-1]).setHouses(noOfHousesOnProperty);
+
+    }
+
+    /**
+     * Sets hotel to be "true" on the entered Field.
+     * @param theField The field that the hotel is build on.
+     */
+    public void setHotel (Field theField) {
+
+        ((GUI_Street) fields[theField.getFieldNo()-1]).setHotel(true);
+
     }
     
     /**
@@ -530,7 +579,6 @@ public class Gui {
                 boat.setDescription(fields[i].getFieldDescription());
                 boat.setRent(Integer.toString(fields[i].getFieldCost()));
 
-                //TODO: Er der for meget med forskellige farver til Molslinien og de andre færger?
                 boat.setBackGroundColor(fields[i].getFieldColor());
 
                 // Put the GUI_Field into the newFields array
@@ -610,4 +658,11 @@ public class Gui {
     }
     //</editor-fold>
 
+    public void clearFieldForInfo (Field theField) {
+
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setBorder(null);
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(null);
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnableLabel(null);
+
+    }
 }

@@ -1,5 +1,6 @@
 package controller.fieldManagement.fieldActions;
 
+import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.FieldAction;
 import model.board.Field;
@@ -19,15 +20,17 @@ public class BreweryAction extends FieldAction {
 
 	private Cup cup;
 	private Field currentField;
+	private GeneralActionController generalActionController;
     /*
     ------------------------------ Constructors --------------------------------
      */
 
 	public BreweryAction(Player player, HashMap<String, String> messageMap,GuiController guiController,
-						 Cup cup, Field currentField) {
+						 Cup cup, Field currentField, GeneralActionController generalActionController) {
 		super(player,messageMap,guiController);
 		this.cup = cup;
 		this.currentField = currentField;
+		this.generalActionController = generalActionController;
 	}
 
 	/*
@@ -42,11 +45,17 @@ public class BreweryAction extends FieldAction {
 
 	@Override
 	public void action() {
+		StringBuilder actionBuilder = new StringBuilder();
 		if (currentField.getFieldOwner() == null) {
-			buyField(player, currentField, guiController);
+			actionBuilder.append(messageMap.get("LandedOnBrewery").replace("%brewery", currentField.getFieldName()));
+			actionBuilder.append(messageMap.get("BuyBrewery").replace("%cost", String.valueOf(currentField.getFieldCost())));
+
+			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
+				generalActionController.buyField(player, currentField, guiController);
+			}
 		} else {
 			int rentFromCupValue = rentFromCupValue(player, cup);
-			payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
+			generalActionController.payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
 		}
 
 	}
@@ -69,24 +78,6 @@ public class BreweryAction extends FieldAction {
 				break;
 		}
 		return rentFromCupValue;
-	}
-	
-	private void buyField (Player player, Field currentField, GuiController guiController) {
-
-		currentField.setFieldOwner(player);
-		player.updateBalance(-currentField.getFieldCost());
-		guiController.updateBalance(player, player.getAccount().getBalance());
-		guiController.setOwner(player,currentField);
-
-	}
-
-	private void payManuelRent (Player player, int manuelRent, Field currentField, GuiController guiController,
-								HashMap<String,String> messageMap) {
-
-		player.updateBalance(-manuelRent);
-		currentField.getFieldOwner().updateBalance(manuelRent);
-		guiController.showMessage(messageMap.get("PayRentTo") + " " +currentField.getFieldOwner().getName() + ".\n" +
-				messageMap.get("RentIs")+ " " + manuelRent);
 	}
 
 }

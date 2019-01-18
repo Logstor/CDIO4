@@ -23,12 +23,14 @@ public abstract class Field {
     protected String fieldDescription;
     protected Player fieldOwner;
     protected boolean forSale;
+    protected int noOfHousesOnField;
     
     /*
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,
+                     String fieldDescription, int fieldCost, Color fieldColor) {
 
         this.fieldNo=fieldNo;
         this.fieldType= fieldType;
@@ -37,6 +39,7 @@ public abstract class Field {
         this.fieldCost = fieldCost;
         this.fieldColor=fieldColor;
         fieldOwner = null;
+        noOfHousesOnField = 0;
 
 
     }
@@ -119,6 +122,14 @@ public abstract class Field {
         this.forSale = forSale;
     }
 
+    public int getNoOfHousesOnField() {
+        return noOfHousesOnField;
+    }
+
+    public void setNoOfHousesOnField(int noOfHousesOnField) {
+        this.noOfHousesOnField = noOfHousesOnField;
+    }
+
     // </editor-folder>
     
     /*
@@ -139,10 +150,6 @@ public abstract class Field {
 
         return toStringBuilder.toString();
     }
-    
-    protected abstract void fieldAction (Player player);
-
-    protected abstract void fieldAction (Player player, Cup cup);
 
     /*
     ---------------------- Support Methods ----------------------

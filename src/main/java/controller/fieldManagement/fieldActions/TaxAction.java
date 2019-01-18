@@ -51,8 +51,8 @@ public class TaxAction extends FieldAction {
      */
 
     private void taxStandardAction (StringBuilder actionBuilder,String stringLabel) {
-		actionBuilder.append(messageMap.get(stringLabel).replace("%fieldName", currentField.getFieldName()
-				.replace("%rent", String.valueOf(currentField.getFieldCost())) + "\n"));
+		actionBuilder.append(messageMap.get(stringLabel).replace("%fieldName", currentField.getFieldName())
+				.replace("%rent",String.valueOf(currentField.getFieldCost())) + "\n");
 		player.updateBalance(-currentField.getFieldCost());
 		guiController.updateBalance(player,player.getAccount().getBalance());
 		guiController.showMessage(actionBuilder.toString());
@@ -64,7 +64,7 @@ public class TaxAction extends FieldAction {
 
     if (totalPlayerValue <= 40000) {
 				// TODO: JEG KAN IKKE FINDE UD AF HVORNÅR MAN SKAL HAVE MULIGHEDEN FOR AT BETALE 10% I SKAT,
-				// TODO: ELLER SKAL DE BETALES 4000.
+				// TODO: ELLER SKAL DE BETALES 4000. (Jeg ville gætte på at man måske kunne have den under startfield)
 				int taxUnder = (int) ((totalPlayerValue*0.1)-((totalPlayerValue*0.1)%100));
 
 				actionBuilder.append(messageMap.get("LandedOnTaxUnder").replace("%fieldName", currentField.getFieldName()));

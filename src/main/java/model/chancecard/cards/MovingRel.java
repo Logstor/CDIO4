@@ -54,13 +54,8 @@ public class MovingRel extends ChanceCard {
         toStringBuilder.append("ChanceCard Number Of Fields to be moved: " + relMovement);
 
         return toStringBuilder.toString();
-
     }
 
-    public void cardAction (Player player) {
-        player.updatePosition(relMovement);
-    }
-    
     /*
     ---------------------- Support Methods ----------------------
      */

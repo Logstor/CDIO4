@@ -34,6 +34,7 @@ public class ParkingAction extends FieldAction {
 
 	@Override
 	public void action() {
+			guiController.showMessage(messageMap.get("FreeParking"));
 
 	}
 

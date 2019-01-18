@@ -44,25 +44,6 @@ public class ChanceField extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
-    //Ved ikke hvad jeg skal gøre... :/
-    /*
-    public void fieldAction (Player player) {
-        ChanceCard chanceCard;
-        Deck deck = new Deck();
-        GuiController guiController;
-        guiController.showMessage("Du er landet på chancefeltet og trækker et chancekort");
-        chanceCard= deck.drawChanceCard();
-        guiController.setCCard(chanceCard.getCardText());
-        guiController.displayCCard();
-
-
-    }
-    */
-    public void fieldAction (Player player) {
-
-    }
-
-    public void fieldAction (Player player, Cup Cup) {}
     
     /*
     ---------------------- Support Methods ----------------------
