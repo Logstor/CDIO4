@@ -98,6 +98,7 @@ public class ExtraActionController {
             return false;
         }
     }
+    
     /*
     ---------------------- Support Methods ----------------------
      */
@@ -112,17 +113,20 @@ public class ExtraActionController {
 
         ExtraActionType_Enum extraActionTypeOfSelected = ExtraActionType_Enum.valueOf(keyForValue);
 
-        switch (extraActionTypeOfSelected) {
+        switch (extraActionTypeOfSelected)
+        {
             case BuyHouse:
                 buyHousesAction = new BuyHousesAction(currentPlayer,board,guiController,messageMap,
                         generalActionController);
                 buyHousesAction.doExtraAction();
                 break;
+                
             case SellField:
                 sellFieldAction = new SellFieldAction(currentPlayer, players, board,guiController,messageMap,
                         generalActionController);
                 sellFieldAction.doExtraAction();
                 break;
+                
             default:
                 break;
         }
