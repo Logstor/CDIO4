@@ -119,28 +119,36 @@ public class BuyHousesAction extends ExtraAction {
     ---------------------- Support Methods ----------------------
      */
 
+    /**
+     *
+     */
     private void buyHouses ()
     {
 
         // Asks where the player wants to buy a house. DropDownMenu.
         String nameOnSelectedField = guiController.getUserChoiceProperty(messageMap.get("WhereToBuyHouse?"), propertiesToPutHouseOn);
 
-        for (PropertyField field : propertiesToPutHouseOn) {
+        for (PropertyField field : propertiesToPutHouseOn)
+        {
             // Finds the PropertyField the players wants to buy.
-            if (field.getFieldName().equals(nameOnSelectedField)) {
+            if (field.getFieldName().equals(nameOnSelectedField))
+            {
                 // Presents the player for the price of the house.
                 if (guiController.getLeftButtonPressed(messageMap.get("HouseOnPropertyCosts")
                                 .replace("%housePrice", String.valueOf(field.getFieldHousePrice())),
-                        messageMap.get("Yes"), messageMap.get("No"))) {
+                        messageMap.get("Yes"), messageMap.get("No")))
+                {
                     // If the Players still wants to buy the house the Field.noOfHousesOnProperty is updated
                     field.updateHousesOnProperty(1);
+
                     // Gui is updated with the correct number of Houses or Hotels.
                     guiController.setHousesAndHotels(field.getNoOfHousesOnProperty(), field);
+                    guiController.setOwnableRent(field, generalActionController.rentFromNoOfHouses(field));
+
                     // Tells that the house is bought and shows the new rent on the Property.
                     guiController.showMessage(messageMap.get("BoughtHouses").replace("%fieldName", field.getFieldName())
                             .replace("%newRent", String.valueOf(generalActionController.rentFromNoOfHouses(field))));
                 }
-
             }
         }
     }
