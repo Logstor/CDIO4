@@ -23,7 +23,6 @@ public abstract class Field {
     protected String fieldDescription;
     protected Player fieldOwner;
     protected boolean forSale;
-    protected int noOfHousesOnField;
     
     /*
     ----------------------- Constructor -------------------------
@@ -32,16 +31,13 @@ public abstract class Field {
     protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,
                      String fieldDescription, int fieldCost, Color fieldColor) {
 
-        this.fieldNo=fieldNo;
-        this.fieldType= fieldType;
+        this.fieldNo = fieldNo;
+        this.fieldType = fieldType;
         this.fieldName = fieldName;
         this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
-        this.fieldColor=fieldColor;
+        this.fieldColor = fieldColor;
         fieldOwner = null;
-        noOfHousesOnField = 0;
-
-
     }
     
     /*
@@ -120,14 +116,6 @@ public abstract class Field {
 
     public void setForSale(boolean forSale) {
         this.forSale = forSale;
-    }
-
-    public int getNoOfHousesOnField() {
-        return noOfHousesOnField;
-    }
-
-    public void setNoOfHousesOnField(int noOfHousesOnField) {
-        this.noOfHousesOnField = noOfHousesOnField;
     }
 
     // </editor-folder>

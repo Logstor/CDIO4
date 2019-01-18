@@ -97,16 +97,19 @@ public class BuyHousesAction extends ExtraAction {
         }
 
         // If fieldColorAllowedToButHousesOn is bigger than 0, it means that the Player holds of fields of the same Color.
-        if (fieldColorAllowsToPutHouseOn.size()>0) {
+        if ( fieldColorAllowsToPutHouseOn.size()>0 )
+        {
             // Properties the player owns is added to propertiesToPutHousesOn: ArrayList<PropertyFields>.
-            for (int k = 0; k < fieldColorAllowsToPutHouseOn.size(); k++) {
-                for (Field field : currentPlayer.getOwnedFields()) {
-                    if (field.getFieldType().equals(FieldTypeEnum.Property)) {
-                        if (field.getFieldColor().equals(fieldColorAllowsToPutHouseOn.get(k))) {
-                            // If Field is a PropertyField and has the allowColor it is added to the Array of PropertiesToPutHousesOn.
+            for (int k = 0; k < fieldColorAllowsToPutHouseOn.size(); k++)
+            {
+                for (Field field : currentPlayer.getOwnedFields())
+                {
+                    // Check if the field is a PropertyField and the fieldColor matches the fieldColorAllowsToPutHouseOn
+                    if (field.getFieldType().equals(FieldTypeEnum.Property) && field.getFieldColor().equals(fieldColorAllowsToPutHouseOn.get(k)))
+                    {
+                        // Make sure that there isn't 5 houses already
+                        if ( ((PropertyField)field).getNoOfHousesOnProperty() < 5 )
                             propertiesToPutHouseOn.add(((PropertyField) field));
-                        }
-
                     }
                 }
             }
