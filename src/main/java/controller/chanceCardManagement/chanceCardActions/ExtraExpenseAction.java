@@ -64,13 +64,17 @@ public class ExtraExpenseAction extends ChanceCardAction {
                 }
             }
         }
-
+        // Set, Display og showMessage.
+        setDisplayMessageChanceCardOnGUi(currentCard);
         if (totalExtraExpenseToPay==0) {
             guiController.showMessage(messageMap.get("NoExtraExpense"));
+
         } else {
             guiController.showMessage(messageMap.get("PayExtraExpense").
                     replace("%extraExpense", String.valueOf(totalExtraExpenseToPay)));
             generalActionController.updatePlayerBalanceInclGui(guiController,player,-totalExtraExpenseToPay);
+
+
         }
     }
     
