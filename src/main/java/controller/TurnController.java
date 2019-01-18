@@ -111,6 +111,12 @@ public class TurnController {
 
 		//endregion
 
+        //region CheckIfPassedStartAfterAction
+
+        passingStart(player, guiController,messageMap, generalActionController);
+
+        //endregion
+
 		//region Check winner/loser
 
         checkIfPlayerHasLost(player,guiController,messageMap);
