@@ -68,6 +68,7 @@ public class GeneralActionController {
         else if (fieldToBuy.getFieldType()==FieldTypeEnum.Brewery) {
             player.updateNoOfBreweriesOwned(1);
         }
+
     }
     
     /**

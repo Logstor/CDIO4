@@ -527,8 +527,8 @@ public class Gui {
 
                 // Create new GUI_Street
                 GUI_Street street = new GUI_Street(fields[i].getFieldName(), "Beløb: " + fields[i].getFieldCost(),
-                        fields[i].getFieldDescription(),
-                        Integer.toString(fields[i].getFieldCost()), fields[i].getFieldColor(), textColor);
+                        fields[i].getFieldDescription(),String.valueOf(((PropertyField)fields[i]).getFieldRent()),
+                        fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = street;
