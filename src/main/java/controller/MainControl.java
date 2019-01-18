@@ -1,11 +1,15 @@
 package controller;
 
 import model.board.Board;
+import model.board.Field;
+import model.board.FieldTypeEnum;
+import model.board.fields.PropertyField;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
 import view.gui.Gui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -58,7 +62,7 @@ public class MainControl {
 			//region GameLoop
 			do {
                 for (Player currentPlayer : players) {
-                	
+
                 	// Check if currentPlayer is in prison
                 	if ( currentPlayer.getPrisonStat() > 0 )
 						prisonTurn(currentPlayer);
@@ -119,5 +123,23 @@ public class MainControl {
 	private void prisonTurn (Player player)
 	{
 		turnController.playPrisonTurn(player);
+	}
+
+	private void cleanAFallitPlayer (Player player) {
+
+		ArrayList<Field> fieldsToRemove = new ArrayList<>();
+		for(Field field: player.getOwnedFields()){
+			guiController.clearFieldForInfo(field);
+			field.setFieldOwner(null);
+			if (field.getFieldType() == FieldTypeEnum.Property) {
+				guiController.setHousesAndHotels(0, field);
+			}
+			((PropertyField)field).setNoOfHousesOnProperty(0);
+			fieldsToRemove.add(field);
+		}
+		// Removes field from Player
+		for (Field fieldToRemove : fieldsToRemove) {
+			player.removeFieldFromOwnedFields(fieldToRemove);
+		}
 	}
 }

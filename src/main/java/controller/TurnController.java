@@ -1,6 +1,7 @@
 package controller;
 
 import controller.extraActionManagment.ExtraActionController;
+import controller.extraActionManagment.extraActions.SellFieldAction;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
@@ -33,8 +34,6 @@ public class TurnController {
 	private Cup cup;
 	private Deck deck;
 
-	private Player currentPlayer;
-
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
  	private ExtraActionController extraActionController;
@@ -54,7 +53,6 @@ public class TurnController {
 		this.messageMap = messageMap;
 
 		this.generalActionController = new GeneralActionController();
-
 	}
     
     /*
@@ -71,78 +69,73 @@ public class TurnController {
 
     public void playTurn (Player player)
 	{
-		// Update currentPlayer
-		currentPlayer = player;
+		extraActionController = new ExtraActionController(player, players, board,guiController,messageMap,generalActionController);
 
-		//region Check winner/loser
+		do {
+			//region Check winner/loser
 
-		checkIfPlayerHasLost(player, guiController, messageMap);
+			checkIfPlayerHasLost(player, guiController, messageMap);
 
-		try {
-			checkWinner(player,guiController,messageMap);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+			try {
+				checkWinner(player,guiController,messageMap);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
-		//endregion
+			//endregion
 
-		//region Raffle
-		
-		raffleCup();
-		
-		//endregion
-		
-		//region Move Player
-		
-		moveRaffle();
-		
-		//endregion
+			//region Raffle
 
-    	//region Passing Start
+			raffleCup(player);
 
-    	passingStart(player,guiController,messageMap, generalActionController);
+			//endregion
 
-    	//endregion
-		
-		//region FieldAction
-		
-		FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
-				messageMap, cup, generalActionController);
-		fieldController.doFieldActionByFieldType();
+			//region Move Player
 
-		//endregion
+			moveRaffle(player);
 
-        //region CheckIfPassedStartAfterAction
+			//endregion
 
-        passingStart(player, guiController,messageMap, generalActionController);
+			//region CheckIfPassedStartAfterAction
 
-        //endregion
+			generalActionController.passingStart(player, preTotalPosition, postTotalPosition,guiController, messageMap);
 
-		//region Check winner/loser
+			//endregion
 
-        checkIfPlayerHasLost(player,guiController,messageMap);
+			//region FieldAction
 
-		try {
-			checkWinner(player,guiController,messageMap);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+			FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
+					messageMap, cup, generalActionController);
+			fieldController.doFieldActionByFieldType();
 
-		//endregion
+			//endregion
+
+			//region Check winner/loser
+			if (checkIfPlayerHasLost(player,guiController,messageMap, extraActionController.getSellFieldAction())){
+				break;
+			}
+
+			//endregion
+
+		} while (die1Value != die2Value);
+
+
+
+
 
 		//region ExtraTurn?
 
 		// Check if the player is in prison
-		if ( currentPlayer.getPrisonStat() == 0 )
+		if (player.getPrisonStat() == 0 )
 		{
-			extraTurn();
+			extraTurn(player);
 		}
 
         //endregion
 
 		//region Buy Houses?
 
-        extraActionController = new ExtraActionController(currentPlayer, players, board, guiController, messageMap,
+        extraActionController = new ExtraActionController(player, players, board, guiController, messageMap,
                 generalActionController);
 
         if (extraActionController.isExtraActionsValid()) {
@@ -159,9 +152,7 @@ public class TurnController {
 	 */
 	public void playPrisonTurn (Player player)
 	{
-		
-		// Update currentPlayer
-		currentPlayer = player;
+
 
 		// ArrayList to hold the players opportunities
 		ArrayList<String> options = new ArrayList<>(3);
@@ -194,20 +185,20 @@ public class TurnController {
 		{
 			// Subtract kr. 1000 from the player, and set prisonStat to 0
 			case "Betal":
-				generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -1000);
-				currentPlayer.setPrisonStat(0);
+				generalActionController.updatePlayerBalanceInclGui(guiController, player, -1000);
+				player.setPrisonStat(0);
 				break;
 
 			// Give the player 3 roll chances
 			case "Rul":
-				if ( raffleBreakout() )
-					currentPlayer.setPrisonStat(0);
+				if ( raffleBreakout(player) )
+					player.setPrisonStat(0);
 				break;
 				
 			// Take the player out of prison, and remove his PrisonCard
 			case "Fængselskort":
-				currentPlayer.setPrisonStat(0);
-				currentPlayer.setPrisonCard(currentPlayer.getPrisonCard() - 1);
+				player.setPrisonStat(0);
+				player.setPrisonCard(player.getPrisonCard() - 1);
 				break;
 		}
 		//endregion
@@ -217,27 +208,27 @@ public class TurnController {
     ---------------------- Support Methods ----------------------
      */
 
-    private void raffleCup ()
+    private void raffleCup (Player player)
 	{
-		guiController.showMessage(messageMap.get("YourTurn").replace("%name",currentPlayer.getName())+ "\n" +
+		guiController.showMessage(messageMap.get("YourTurn").replace("%name",player.getName())+ "\n" +
 				messageMap.get("PressToRoll"));
 
 		cupValue = cup.cupRoll();
 		die1Value = cup.getDies()[0].getFaceValue();
 		die2Value = cup.getDies()[1].getFaceValue();
-		preTotalPosition = currentPlayer.getTotalPosition();
-		prePosition = currentPlayer.getPosition();
+		preTotalPosition = player.getTotalPosition();
+		prePosition = player.getPosition();
 
 		guiController.showDice(die1Value,die2Value);
-		currentPlayer.updatePosition(cupValue);
-		postTotalPosition = currentPlayer.getTotalPosition();
-		postPosition = currentPlayer.getPosition();
+		player.updatePosition(cupValue);
+		postTotalPosition = player.getTotalPosition();
+		postPosition = player.getPosition();
 
 	}
 
-	private void moveRaffle ()
+	private void moveRaffle (Player player)
 	{
-		generalActionController.movingPlayerForwardGUI(currentPlayer,board,guiController,prePosition,postPosition,
+		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
                 250);
 		
 		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));
@@ -245,7 +236,7 @@ public class TurnController {
 		currentField = board.getBoard()[postPosition];
 	}
 
-	private void extraTurn ()
+	private void extraTurn (Player player)
 	{
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
@@ -253,7 +244,7 @@ public class TurnController {
         if(die1==die2)
         {
             guiController.showMessage(messageMap.get("ExtraTurn"));
-            playTurn(currentPlayer);
+            playTurn(player);
         }
 
     }
@@ -262,7 +253,7 @@ public class TurnController {
 	 * This method gives the player "rolls" amount of chances to roll 2 equal dices.
 	 * @return True if the player gets equal dices.
 	 */
-	private boolean raffleBreakout ()
+	private boolean raffleBreakout (Player player)
 	{
 		//region Give player "rolls" amount of chances in loop
 		for (int i = 0; i < ROLLCHANCES; i++ )
@@ -300,31 +291,11 @@ public class TurnController {
 
 		// Inform the player, increate prisonStat, and Return false
 		guiController.showMessage(messageMap.get("PrisonNoBreak"));
-		currentPlayer.setPrisonStat(currentPlayer.getPrisonStat() + 1);
+		player.setPrisonStat(player.getPrisonStat() + 1);
 		return false;
 
 		//endregion
 	}
-
-	/**
-	 * This method awards the player with 4000 if they pass start.
-	 * @param player Player
-	 * @param guiController GuiController
-	 * @param messageMap Messages.csv
-	 * @param generalActionController GeneralActionController
-	 */
-
-    private void passingStart(Player player, GuiController guiController,
-                              HashMap<String,String>messageMap, GeneralActionController generalActionController) {
-        int preTotalRounds = preTotalPosition/40;
-        int postTotalRounds = postTotalPosition/40;
-
-        if (preTotalRounds<postTotalRounds) {
-            guiController.showMessage(messageMap.get("PassingStart"));
-            generalActionController.updatePlayerBalanceInclGui(guiController,player, +4000);
-
-        }
-    }
 
 	/**
 	 * This method checks if the player has a balance above 0,
@@ -333,28 +304,30 @@ public class TurnController {
 	 * @param guiController The GuiController
 	 * @param messageMap Messages.csv
 	 */
-    private void checkIfPlayerHasLost (Player player, GuiController guiController, HashMap<String,String>messageMap) {
-
-
+    private boolean checkIfPlayerHasLost (Player player, GuiController guiController, HashMap<String,String>messageMap,
+										  SellFieldAction sellFieldAction) {
     	if(player.getAccount().getBalance()<0){
+
+    		if (player.getOwnedFields().size()>0) {
+
+                if (guiController.getLeftButtonPressed(messageMap.get("PlayerFallitAnyBuyersOfFields").
+                                replace("&name", player.getName()).
+                                replace("%ownedFields", String.valueOf(player.getOwnedFields().size())),
+                        messageMap.get("Yes"), messageMap.get("No"))) {
+                    sellFieldAction.forceSellField();
+                }
+
+				do {
+					sellFieldAction.forceSellField();
+				} while (true);
+
+			}
+
     		player.setHasLost(true);
     		guiController.showMessage(messageMap.get("Lost"));
-
-    		ArrayList<Field> fieldsToRemove = new ArrayList<>();
-    		for(Field field: player.getOwnedFields()){
-    			guiController.clearFieldForInfo(field);
-    			field.setFieldOwner(null);
-    			if (field.getFieldType() == FieldTypeEnum.Property) {
-					guiController.setHousesAndHotels(0, field);
-				}
-				((PropertyField)field).setNoOfHousesOnProperty(0);
-    			fieldsToRemove.add(field);
-			}
-    		// Removes field from Player
-    		for (Field fieldToRemove : fieldsToRemove) {
-    			player.removeFieldFromOwnedFields(fieldToRemove);
-			}
-
+    		return true;
+		} else {
+    		return false;
 		}
 
 	}

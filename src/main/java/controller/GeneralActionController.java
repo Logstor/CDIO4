@@ -95,6 +95,26 @@ public class GeneralActionController {
     }
 
     /**
+     * This method awards the player with 4000 if they pass start.
+     * @param player Player
+     * @param guiController GuiController
+     * @param messageMap Messages.csv
+     *
+     */
+
+    public void passingStart(Player player, int preTotalPosition, int postTotalPosition,
+                              GuiController guiController, HashMap<String,String>messageMap) {
+        int preTotalRounds = preTotalPosition/40;
+        int postTotalRounds = postTotalPosition/40;
+
+        if (preTotalRounds<postTotalRounds) {
+            guiController.showMessage(messageMap.get("PassingStart"));
+            updatePlayerBalanceInclGui(guiController,player, +4000);
+        }
+    }
+
+
+    /**
      * This method
      * @param player The player who landed on the Field.
      * @param manualRent The rent which shall be paid.

@@ -57,6 +57,22 @@ public class ExtraActionController {
 
     // <editor-folder desc="Properties"
 
+    public SellFieldAction getSellFieldAction() {
+        return sellFieldAction;
+    }
+
+    public void setSellFieldAction(SellFieldAction sellFieldAction) {
+        this.sellFieldAction = sellFieldAction;
+    }
+
+    public BuyHousesAction getBuyHousesAction() {
+        return buyHousesAction;
+    }
+
+    public void setBuyHousesAction(BuyHousesAction buyHousesAction) {
+        this.buyHousesAction = buyHousesAction;
+    }
+
 
     // </editor-folder>
     
