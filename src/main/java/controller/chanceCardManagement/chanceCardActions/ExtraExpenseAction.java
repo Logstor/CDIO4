@@ -75,8 +75,6 @@ public class ExtraExpenseAction extends ChanceCardAction {
             guiController.showMessage(messageMap.get("PayExtraExpense").
                     replace("%extraExpense", String.valueOf(totalExtraExpenseToPay)));
             generalActionController.updatePlayerBalanceInclGui(guiController,player,-totalExtraExpenseToPay);
-
-
         }
     }
     
