@@ -97,11 +97,11 @@ public class TurnController {
 		
 		//endregion
 
-    //region Passing Start
+    	//region Passing Start
 
-    passingStart(player,guiController,messageMap, generalActionController);
+    	passingStart(player,guiController,messageMap, generalActionController);
 
-    //endregion
+    	//endregion
 		
 		//region FieldAction
 		
@@ -131,7 +131,11 @@ public class TurnController {
 
 		//region ExtraTurn?
 
-        extraTurn();
+		// Check if the player is in prison
+		if ( currentPlayer.getPrisonStat() == 0 )
+		{
+			extraTurn();
+		}
 
         //endregion
 
@@ -266,14 +270,16 @@ public class TurnController {
 			guiController.showMessage( messageMap.get("PrisonRoll").
 					replace("%noPrisonRoll", String.valueOf(i+1)));
 
+
 			//Rolls and loads variables
 			cup.cupRoll();
 			int die1 = cup.getDies()[0].getFaceValue();
 			int die2 = cup.getDies()[1].getFaceValue();
 
+			guiController.showDice(die1, die2);
+
 			if ( die1 == die2 )
 			{
-				guiController.showDice(die1, die2);
 				guiController.showMessage(messageMap.get("PrisonBreakout"));
 				//TODO: Spilleren skal rykkes hans slag, ved ikke om det sker.
 
