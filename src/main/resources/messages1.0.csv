@@ -61,3 +61,11 @@ DoExtraAction?;Vil du benytte dig af nogle af special handlingerne?
 SellField;Sælg felter
 BuyHouse;Køb huse
 ExtraOptionsChoices;Hvilken af nedenstående handlinger vil du udføre?
+InPrison;Så er det din tur %name. Men du sidder desværre i fængsel. Vælg metode for komme ud af fængslet.
+Roll;Rul
+UsePrisonCard;Fængselskort
+Pay;Betal
+PrisonRoll;Dette er dit %noPrisonRoll. slag, i forsøget på at komme ud af fængslet.
+PrisonNewRoll;Du slog desværre ikke 2 ens, prøv ingen.
+PrisonBreakout;HURRA! Du slog 2 ens og kan forlade fængslet.
+PrisonNoBreak;ØV! Du slog desværre ikke 2 ens på nogle af dine slog. Du må derfor tage runde mere i fængslet.

@@ -174,9 +174,11 @@ public class TurnController {
 		//endregion
 
 		//endregion
-		
+
+		String chosenGetOutOption = guiController.getUserChoice( messageMap.get("InPrison")
+				.replace("%name",player.getName()), options );
 		//region Decide which option the player chose
-		switch ( guiController.getUserChoice( messageMap.get("InPrison"), options ) )
+		switch (chosenGetOutOption)
 		{
 			// Subtract kr. 1000 from the player, and set prisonStat to 0
 			case "Betal":
@@ -254,15 +256,27 @@ public class TurnController {
 		for (int i = 0; i < ROLLCHANCES; i++ )
 		{
 			// Roll the dices
-			guiController.showMessage( messageMap.get("PrisonRoll").replace("%gang", String.valueOf(i)) );
-			cup.cupRoll();
+			guiController.showMessage( messageMap.get("PrisonRoll").
+					replace("%noPrisonRoll", String.valueOf(i+1)));
 
-			if ( cup.getDies()[0] == cup.getDies()[1] )
+			//Rolls and loads variables
+			cup.cupRoll();
+			int die1 = cup.getDies()[0].getFaceValue();
+			int die2 = cup.getDies()[1].getFaceValue();
+
+			if ( die1 == die2 )
 			{
+				guiController.showDice(die1, die2);
 				guiController.showMessage(messageMap.get("PrisonBreakout"));
+				//TODO: Spilleren skal rykkes hans slag, ved ikke om det sker.
 
 				// Return true, as the player made it.
 				return true;
+			} else {
+				// "You didnt roll two of the same, try again" message.
+				if (i!=2) {
+					guiController.showMessage(messageMap.get("PrisonNewRoll"));
+				}
 			}
 		}
 
