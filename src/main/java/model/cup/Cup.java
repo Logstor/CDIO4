@@ -97,7 +97,9 @@ public class Cup {
 
 		// Update this.cupValue and return it
 		this.cupValue = cupValue;
-		return this.cupValue;
+
+		return 30;
+		//return this.cupValue;
 	}
     
     /*

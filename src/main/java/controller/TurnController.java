@@ -97,11 +97,11 @@ public class TurnController {
 		
 		//endregion
 
-    //region Passing Start
+    	//region Passing Start
 
-    passingStart(player,guiController,messageMap, generalActionController);
+    	passingStart(player,guiController,messageMap, generalActionController);
 
-    //endregion
+    	//endregion
 		
 		//region FieldAction
 		
@@ -131,7 +131,11 @@ public class TurnController {
 
 		//region ExtraTurn?
 
-        extraTurn();
+		// Check if the player is in prison
+		if ( currentPlayer.getPrisonStat() == 0 )
+		{
+			extraTurn();
+		}
 
         //endregion
 
