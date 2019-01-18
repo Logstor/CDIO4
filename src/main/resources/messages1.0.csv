@@ -62,6 +62,7 @@ SellField;Sælg felter
 BuyHouse;Køb huse
 ExtraOptionsChoices;Hvilken af nedenstående handlinger vil du udføre?
 InPrison;Så er det din tur %name. Men du sidder desværre i fængsel. Vælg metode for komme ud af fængslet.
+LandedOnOwnField;Du er landet på din ejen ejendom.
 Roll;Rul
 UsePrisonCard;Fængselskort
 Pay;Betal
