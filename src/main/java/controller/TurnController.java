@@ -112,7 +112,7 @@ public class TurnController {
 
 				//endregion
 
-				//region CheckIfPassedStartAfterAction
+				//region CheckIfPassedStartAfterMovement.
 
 				generalActionController.passingStart(player, preTotalPosition, postTotalPosition, guiController, messageMap);
 
@@ -376,9 +376,17 @@ public class TurnController {
     	do{
     		preFieldActionTotalPosition = player.getTotalPosition();
 
+    		// Do FieldAction
 			fieldController.doFieldActionByFieldType(player, board.getBoard()[player.getPosition()]);
 
 			postFieldActionTotalPosition = player.getTotalPosition();
+
+			if (preFieldActionTotalPosition!=postFieldActionTotalPosition) {
+				// Checks if player passed Start as part for fieldAction.
+				generalActionController.passingStart(player, preFieldActionTotalPosition, postFieldActionTotalPosition,
+						guiController, messageMap);
+
+			}
 
 		} while (preFieldActionTotalPosition<postFieldActionTotalPosition);
 
@@ -389,7 +397,7 @@ public class TurnController {
     	postPosition= player.getPosition();
     	postTotalPosition = player.getTotalPosition();
 
-		prePosition = (player.getTotalPosition()-cup.getCupValue())%24;
+		prePosition = (player.getTotalPosition()-cup.getCupValue())%40;
 		preTotalPosition = player.getTotalPosition()-cup.getCupValue();
 
 	}

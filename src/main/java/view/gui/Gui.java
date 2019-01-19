@@ -596,7 +596,7 @@ public class Gui {
 
                 // Change the title of the field
                 boat.setTitle(fields[i].getFieldName());
-                boat.setSubText("Færge");
+                boat.setSubText("Beløb: " + fields[i].getFieldCost());
                 boat.setDescription(fields[i].getFieldDescription());
                 boat.setRent(Integer.toString(fields[i].getFieldCost()));
 
@@ -616,7 +616,7 @@ public class Gui {
 
                 // Change the title of the field
                 brewery.setTitle(fields[i].getFieldName());
-                brewery.setSubText("Bryggeri");
+                brewery.setSubText("Beløb: " + fields[i].getFieldCost());
                 brewery.setDescription(fields[i].getFieldDescription());
                 brewery.setRent(Integer.toString(fields[i].getFieldCost()));
 
@@ -634,7 +634,7 @@ public class Gui {
 
                 // Change the title of the field
                 tax.setTitle(fields[i].getFieldName());
-                tax.setSubText("Ekstra SKAT");
+                tax.setSubText(String.valueOf(fields[i].getFieldCost()));
                 tax.setDescription(fields[i].getFieldDescription());
                 tax.setBackGroundColor(fields[i].getFieldColor());
 

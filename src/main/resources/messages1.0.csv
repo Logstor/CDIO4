@@ -35,7 +35,7 @@ BoatsOwned3;%ownerName ejer denne færge og to andre. Derfor skal du betale 2000
 BoatsOwned4;%ownerName ejer denne færge og tre andre. Derfor skal du betale 4000
 BoatsOwnedError;FEJL!!! Noobs
 WantToBuy?;Denne færge er stadig til salg og koster: %cost. Vil du købe det?
-ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
+ExtraTurn;Du har slået 2 ens og får derfor et ekstra kast.
 PayRentTo;Du skal betale %rent i husleje til %fieldOwner.
 MatadorLegatGranted;Din totaleværdi er kr. %playerValue og du anses derfor som værende berettiget til 'Matador-Legatet for værdigt trængende' og tildeles kr. 40.000.
 MatadorLegatNOTGranted;Din totaleværdi er kr. %playerValue og du anses derfor IKKE som værende berettiget til 'Matador-Legatet for værdigt trængende'.
