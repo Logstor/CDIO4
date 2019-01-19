@@ -20,7 +20,7 @@ public class ExtraActionController {
     -------------------------- Fields --------------------------
      */
 
-    private Player[] players;
+    private ArrayList<Player> playerArrayList;
     private Board board;
     private GuiController guiController;
     private HashMap<String,String> messageMap;
@@ -35,15 +35,15 @@ public class ExtraActionController {
     ----------------------- Constructor -------------------------
      */
     
-    public ExtraActionController (Player[] players, Board board, GuiController guiController,
+    public ExtraActionController (ArrayList<Player> playerArrayList, Board board, GuiController guiController,
                                   HashMap<String,String> messageMap, GeneralActionController generalActionController) {
-        this.players = players;
+        this.playerArrayList = playerArrayList;
         this.board = board;
         this.guiController = guiController;
         this.messageMap = messageMap;
         this.generalActionController = generalActionController;
 
-        sellFieldAction = new SellFieldAction(players,guiController,messageMap,generalActionController);
+        sellFieldAction = new SellFieldAction(playerArrayList,guiController,messageMap,generalActionController);
         buyHousesAction = new BuyHousesAction(board,guiController,messageMap,generalActionController);
 
     }
@@ -135,7 +135,7 @@ public class ExtraActionController {
                 break;
                 
             case SellField:
-                sellFieldAction = new SellFieldAction(players, guiController,messageMap,
+                sellFieldAction = new SellFieldAction(playerArrayList, guiController,messageMap,
                         generalActionController);
                 sellFieldAction.doExtraAction(currentPlayer);
                 break;

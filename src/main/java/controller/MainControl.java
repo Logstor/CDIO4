@@ -128,7 +128,7 @@ public class MainControl {
 
 		//TODO: Er det her okay? :D // RSL
 		generalActionController = new GeneralActionController();
-		extraActionController = new ExtraActionController(players,board,guiController,messageMap,generalActionController);
+		extraActionController = new ExtraActionController(playerArrayList,board,guiController,messageMap,generalActionController);
 		turnController = new TurnController(guiController, board, players, cup, deck, messageMap,extraActionController);
 
 

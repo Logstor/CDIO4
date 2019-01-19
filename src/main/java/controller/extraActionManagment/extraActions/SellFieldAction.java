@@ -23,18 +23,18 @@ public class SellFieldAction extends ExtraAction {
      */
     
     private ArrayList<Field> fieldsToSell;
-    private Player[] players;
+    private ArrayList<Player> playerArrayList;
     
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public SellFieldAction(Player[] players,
+    public SellFieldAction(ArrayList<Player> playerArrayList,
                            GuiController guiController, HashMap<String,String> messageMap,
                            GeneralActionController generalActionController) {
         super(guiController, messageMap, generalActionController);
         extraActionType = ExtraActionType_Enum.SellField;
-        this.players = players;
+        this.playerArrayList = playerArrayList;
 
         fieldsToSell = new ArrayList<>();
 
@@ -104,7 +104,7 @@ public class SellFieldAction extends ExtraAction {
 
         // Finds names on possible buyers
         ArrayList<String> possibleBuyers = new ArrayList<>();
-        for (Player p : players) {
+        for (Player p : playerArrayList) {
             if (!currentPlayer.getName().equals(p.getName())){
                 possibleBuyers.add(p.getName());
             }
@@ -116,7 +116,7 @@ public class SellFieldAction extends ExtraAction {
 
         // Finds the Player who is the buyer.
         Player buyer = null;
-        for (Player p : players) {
+        for (Player p : playerArrayList) {
             if (p.getName().equals(nameOnBuyer)) {
                 buyer=p;
             }
