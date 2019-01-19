@@ -120,7 +120,8 @@ public class TurnController {
 
 				//region FieldAction
 
-				fieldController.doFieldActionByFieldType(player, currentField);
+				fieldActionWithNewFieldActionIfMovedByField(player);
+				//				fieldController.doFieldActionByFieldType(player, currentField);
 
 				//endregion
 
@@ -366,4 +367,19 @@ public class TurnController {
 		guiController.movePlayer(player, player.getPosition());
 	}
 
+	public void fieldActionWithNewFieldActionIfMovedByField (Player player) {
+
+		int postFieldActionTotalPosition;
+		int preFieldActionTotalPosition;
+
+    	do{
+    		preFieldActionTotalPosition = player.getTotalPosition();
+
+			fieldController.doFieldActionByFieldType(player, board.getBoard()[player.getPosition()]);
+
+			postFieldActionTotalPosition = player.getTotalPosition();
+
+		} while (preFieldActionTotalPosition<postFieldActionTotalPosition);
+
+	}
 }

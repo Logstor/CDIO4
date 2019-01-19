@@ -26,6 +26,7 @@ public class MainControl {
     private GuiController guiController;
     private Board board;
     private Player[] players;
+    private ArrayList<Player> playerArrayList;
     private Cup cup;
     private Deck deck;
 
@@ -44,6 +45,7 @@ public class MainControl {
 		deck = new Deck();
     	messageMap = new HashMap<>();
     	cup = new Cup();
+    	playerArrayList = new ArrayList<>();
 
 	}
     
@@ -65,7 +67,7 @@ public class MainControl {
 
 			//region GameLoop
 			do {
-                for (Player currentPlayer : players) {
+                for (Player currentPlayer : playerArrayList) {
 
                     turn(currentPlayer);
 
@@ -82,12 +84,14 @@ public class MainControl {
                 		*/
                 }
 
+
                 // Clean a player if hasLost=True.
-                cleanFaliitPlayers(players);
+                removeAllTracesOfFallitPlayers(playerArrayList);
+				removesFallitPlayersFromPlayerArrayList();
 
             }
 			// Continue while there's more than 1 player left
-			while (players.length>1);
+			while (playerArrayList.size()>=1);
 			
 			//endregion
 
@@ -127,6 +131,11 @@ public class MainControl {
 		extraActionController = new ExtraActionController(players,board,guiController,messageMap,generalActionController);
 		turnController = new TurnController(guiController, board, players, cup, deck, messageMap,extraActionController);
 
+
+		// Adds Players for Player[] to ArrayList<Player> playerArraylist.
+ 		for (Player player : players) {
+			playerArrayList.add(player);
+		}
 	}
 
 	private void turn (Player player)
@@ -144,11 +153,10 @@ public class MainControl {
 		turnController.playPrisonTurn(player);
 	}
 
-	private void cleanFaliitPlayers (Player[] players) {
+	private void removeAllTracesOfFallitPlayers(ArrayList<Player> playerArrayList) {
 	    for (Player player : players) {
 	        if (player.isHasLost()){
                     cleanAFallitPlayer(player);
-                    ;
             }
         }
     }
@@ -161,14 +169,17 @@ public class MainControl {
             field.setFieldOwner(null);
             if (field.getFieldType() == FieldTypeEnum.Property) {
                 guiController.setHousesAndHotels(0, field);
+				((PropertyField)field).setNoOfHousesOnProperty(0);
             }
-            ((PropertyField)field).setNoOfHousesOnProperty(0);
+
             fieldsToRemove.add(field);
         }
         // Removes field from Player
         for (Field fieldToRemove : fieldsToRemove) {
             player.removeFieldFromOwnedFields(fieldToRemove);
         }
+
+        guiController.removeGUICarFromField(player);
     }
 
     /**
@@ -180,4 +191,12 @@ public class MainControl {
             extraActionController.doExtraAction(currentPlayer);
         }
     }
+
+    private void removesFallitPlayersFromPlayerArrayList () {
+		for (Player player : players) {
+			if (player.isHasLost()) {
+				playerArrayList.remove(player);
+			}
+		}
+	}
 }

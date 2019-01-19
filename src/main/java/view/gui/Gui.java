@@ -355,6 +355,17 @@ public class Gui {
         ((GUI_Street) fields[theField.getFieldNo()-1]).setHotel(true);
 
     }
+
+
+    /**
+     * Removes a players GUI_car from GUI_field.
+     * @param player
+     */
+    public void removeGUICar (Player player) {
+
+        fields[player.getPosition()].setCar(findPlayer(player),false);
+
+    }
     
     /**
      * This methods makes all fields blink between
