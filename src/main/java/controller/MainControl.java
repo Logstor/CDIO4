@@ -81,6 +81,10 @@ public class MainControl {
                 		turn(currentPlayer);
                 		*/
                 }
+
+                // Clean a player if hasLost=True.
+                cleanFaliitPlayers(players);
+
             }
 			// Continue while there's more than 1 player left
 			while (players.length>1);
@@ -140,24 +144,32 @@ public class MainControl {
 		turnController.playPrisonTurn(player);
 	}
 
-	private void cleanAFallitPlayer (Player player) {
+	private void cleanFaliitPlayers (Player[] players) {
+	    for (Player player : players) {
+	        if (player.isHasLost()){
+                    cleanAFallitPlayer(player);
+                    ;
+            }
+        }
+    }
 
-		ArrayList<Field> fieldsToRemove = new ArrayList<>();
-		for(Field field: player.getOwnedFields()){
-			guiController.clearFieldForInfo(field);
-			field.setFieldOwner(null);
-			if (field.getFieldType() == FieldTypeEnum.Property) {
-				guiController.setHousesAndHotels(0, field);
-			}
-			((PropertyField)field).setNoOfHousesOnProperty(0);
-			fieldsToRemove.add(field);
-		}
-		// Removes field from Player
-		for (Field fieldToRemove : fieldsToRemove) {
-			player.removeFieldFromOwnedFields(fieldToRemove);
-		}
-	}
+    private void cleanAFallitPlayer (Player player) {
 
+        ArrayList<Field> fieldsToRemove = new ArrayList<>();
+        for(Field field: player.getOwnedFields()){
+            guiController.clearFieldForInfo(field);
+            field.setFieldOwner(null);
+            if (field.getFieldType() == FieldTypeEnum.Property) {
+                guiController.setHousesAndHotels(0, field);
+            }
+            ((PropertyField)field).setNoOfHousesOnProperty(0);
+            fieldsToRemove.add(field);
+        }
+        // Removes field from Player
+        for (Field fieldToRemove : fieldsToRemove) {
+            player.removeFieldFromOwnedFields(fieldToRemove);
+        }
+    }
 
     /**
      * Does ExtraActions if it is valid.
