@@ -51,25 +51,28 @@ public class BoatAction extends FieldAction {
 	@Override
 	public void action() {
 
-		StringBuilder actionBuilder = new StringBuilder();
-		//region Check if the boatField has a owner, if false:
-		if (currentField.getFieldOwner() == null) {
-			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
-			actionBuilder.append(messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
+		// Checks that the player doesn't own the field.
+		if (currentField.getFieldOwner() != player) {
 
-			// If the player wants to purchase a boatField
-			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
-				generalActionController.buyField(player, currentField, guiController);
+			//region Buying Sequence.
+			if (currentField.getFieldOwner() == null) {
+				// Buys the if Player wants.
+				buyingSequence();
 			}
-		}
 
 			//endregion
 
-			//region if the there is a owner to the boat field:
+			//region If there is a owner to the boat field, runs Ray Rent Sequence.
 			else {
-			// runs the different cases if the player owns 1,2,3, or 4 boats:
-			rentFromNoOfBoats();
-			payBoatRent();
+
+				// Pay Rent and show message depending on owner number of boats.
+				payBoatRent();
+			}
+			//endregion
+		}
+		// Otherwise he owns the property
+		else {
+			guiController.showMessage(messageMap.get("LandedOnOwnField"));
 		}
 	}
 
@@ -78,10 +81,29 @@ public class BoatAction extends FieldAction {
      */
 
 	/**
-	 * Uses rentFromNoOfBoats and keyForBoatsOwned to update Player and GUI_Player for both paying and
+	 * Player is asked if he wants to buy the field. If yes, player buys the field.
+	 */
+	private void buyingSequence() {
+
+		StringBuilder actionBuilder = new StringBuilder();
+		actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
+		actionBuilder.append(messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
+
+		// Askes if the player wants to purchase a boatField
+		if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
+
+			// Player Buys the Field.
+			generalActionController.buyField(player, currentField, guiController);
+		}
+	}
+
+	/**
+	 * Uses calRentFromNoOfBoats and keyForBoatsOwned to update Player and GUI_Player for both paying and
 	 * receiving Player and show the right message on GUI.
 	 */
 	private void payBoatRent() {
+
+		calRentFromNoOfBoats();
 
 		// Updates Players Balance and matching GUI_Player Balance
 		player.updateBalance(-rentFromNoOfBoats);
@@ -96,9 +118,9 @@ public class BoatAction extends FieldAction {
 	}
 
 	/**
-	 * Sets rentFromNoOfBoats:int & keyForBoatsOwned:String with the correct rent matching number of boats.
+	 * Sets calRentFromNoOfBoats:int & keyForBoatsOwned:String with the correct rent matching number of boats.
 	 */
-	private void rentFromNoOfBoats () {
+	private void calRentFromNoOfBoats() {
 		switch (currentField.getFieldOwner().getNoOfBoatsOwned()) {
 			case 1:
 				rentFromNoOfBoats = 500;
