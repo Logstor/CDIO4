@@ -29,10 +29,6 @@ public abstract class FieldAction {
 		this.messageMap = messageMap;
 		this.guiController = guiController;
 	}
-
-	/*
-    ------------------------------ Properties ----------------------------------
-     */
     
     /*
     ---------------------------- Public Methods --------------------------------
