@@ -215,20 +215,21 @@ public class TurnController {
 		cupValue = cup.cupRoll();
 		die1Value = cup.getDies()[0].getFaceValue();
 		die2Value = cup.getDies()[1].getFaceValue();
-		preTotalPosition = player.getTotalPosition();
-		prePosition = player.getPosition();
-
 		guiController.showDice(die1Value,die2Value);
-		player.updatePosition(cupValue);
-		postTotalPosition = player.getTotalPosition();
-		postPosition = player.getPosition();
 
 	}
 
 	private void moveRaffle (Player player)
 	{
+		// Updates Player Position.
+		player.updatePosition(cupValue);
+
+		// Updates all local pre and post variables for player.
+		calAllPreAndPostPositionAfterPlayerPositionUpdate(player);
+
+		// Moves player on GUI.
 		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
-                250);
+				250);
 		
 		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));
 
@@ -380,6 +381,16 @@ public class TurnController {
 			postFieldActionTotalPosition = player.getTotalPosition();
 
 		} while (preFieldActionTotalPosition<postFieldActionTotalPosition);
+
+	}
+
+	private void calAllPreAndPostPositionAfterPlayerPositionUpdate (Player player) {
+
+    	postPosition= player.getPosition();
+    	postTotalPosition = player.getTotalPosition();
+
+		prePosition = (player.getTotalPosition()-cup.getCupValue())%24;
+		preTotalPosition = player.getTotalPosition()-cup.getCupValue();
 
 	}
 }
