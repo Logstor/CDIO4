@@ -681,9 +681,14 @@ public class Gui {
 
     public void clearFieldForInfo (Field theField) {
 
+        // Reset Field Border.
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setBorder(null);
+        // Reset Field Owner.
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(null);
+        // Reset Field OwnableLabel
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnableLabel(null);
+        // Reset Field Rent.
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setRent(String.valueOf(((PropertyField)theField).getFieldRent()));
 
     }
 }

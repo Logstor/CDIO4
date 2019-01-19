@@ -85,14 +85,16 @@ public class MainControl {
                 }
 
 
-                // Clean a player if hasLost=True.
-                removeAllTracesOfFallitPlayers(playerArrayList);
-				removesFallitPlayersFromPlayerArrayList();
+                // Clean and removes a player if hasLost=True.
+				findingHasLostPlayersAndRemovesThem();
 
             }
 			// Continue while there's more than 1 player left
 			while (playerArrayList.size()>=1);
-			
+
+			// ANNOUNCES THE WINNER.
+			announceWinner();
+
 			//endregion
 
 			return 0;
@@ -143,7 +145,6 @@ public class MainControl {
 	    turnController.playTurn(player);
     }
 
-
 	/**
 	 *
 	 * @param player
@@ -153,50 +154,89 @@ public class MainControl {
 		turnController.playPrisonTurn(player);
 	}
 
-	private void removeAllTracesOfFallitPlayers(ArrayList<Player> playerArrayList) {
-	    for (Player player : players) {
-	        if (player.isHasLost()){
-                    cleanAFallitPlayer(player);
-            }
-        }
-    }
+	/**
+	 * Does ExtraActions if it is valid.
+	 * @param currentPlayer The Player.
+	 */
+	private void extraActions (Player currentPlayer) {
+		if (extraActionController.isExtraActionsValid(currentPlayer)){
+			extraActionController.doExtraAction(currentPlayer);
+		}
+	}
 
-    private void cleanAFallitPlayer (Player player) {
+	/**
+	 * Announces the Winner of the game and actives the WINNER/PARTYMODE!
+	 */
+	public void announceWinner () throws InterruptedException	{
 
-        ArrayList<Field> fieldsToRemove = new ArrayList<>();
+		for (Player winningPlayer : playerArrayList) {
+			// Announce Winner of the game
+			guiController.showMessage(messageMap.get("Winner").replace("%name", winningPlayer.getName()));
+		}
+		guiController.WinnerMode();
+	}
+
+	//region Handling of hasLost Players
+
+	/**
+	 * Finds and removes the Players that hasLost. Remove from GUI and as Players in game.
+	 */
+	private void findingHasLostPlayersAndRemovesThem () {
+
+		// Finds players that has lost and sell there Fields and reset them. Remove Player GUI_Car from board.
+		for (Player player : playerArrayList) {
+			if (player.isHasLost()){
+				cleanAPlayersFields(player);
+			}
+		}
+
+		// Removes player from the Arraylist of Players that runs the Turn()
+		removesHasLostPlayersFromPlayerArrayList();
+
+	}
+
+	/**
+	 * Resets Fields and GUI_Fields of the inputted Player.OwnedFields Fields.
+	 * @param player Dome to this player.
+	 */
+    private void cleanAPlayersFields (Player player) {
+
+    	// List of Fields to reset.
+        ArrayList<Field> fieldsToRemoveFromPlayer = new ArrayList<>();
+
+        // Runs through all Players Owned Fields.
         for(Field field: player.getOwnedFields()){
+        	// Set GUI_field to default.
             guiController.clearFieldForInfo(field);
-            field.setFieldOwner(null);
-            if (field.getFieldType() == FieldTypeEnum.Property) {
-                guiController.setHousesAndHotels(0, field);
-				((PropertyField)field).setNoOfHousesOnProperty(0);
-            }
 
-            fieldsToRemove.add(field);
+            // Removes houses on Field and GUI_Field.
+            if (field.getFieldType() == FieldTypeEnum.Property) {
+				((PropertyField)field).setNoOfHousesOnProperty(0);
+                guiController.setHousesAndHotels(((PropertyField) field).getNoOfHousesOnProperty(), field);
+            }
+			field.setFieldOwner(null);
+            // Adds Field to List of FieldsToRemoveFromPlayer
+            fieldsToRemoveFromPlayer.add(field);
         }
-        // Removes field from Player
-        for (Field fieldToRemove : fieldsToRemove) {
+        // Removes fields from Player OwnedFields.
+        for (Field fieldToRemove : fieldsToRemoveFromPlayer) {
             player.removeFieldFromOwnedFields(fieldToRemove);
         }
 
+        // Removes Players GUI_Car From Board.
         guiController.removeGUICarFromField(player);
     }
 
-    /**
-     * Does ExtraActions if it is valid.
-     * @param currentPlayer The Player.
-     */
-	private void extraActions (Player currentPlayer) {
-        if (extraActionController.isExtraActionsValid(currentPlayer)){
-            extraActionController.doExtraAction(currentPlayer);
-        }
-    }
-
-    private void removesFallitPlayersFromPlayerArrayList () {
+	/**
+	 * Runs through all Players in Player[] players and remove the player from the Arraylist if Player Has Lost.
+	 */
+	private void removesHasLostPlayersFromPlayerArrayList () {
 		for (Player player : players) {
 			if (player.isHasLost()) {
 				playerArrayList.remove(player);
 			}
 		}
 	}
+
+	//endregion
 }

@@ -56,13 +56,13 @@ WhatIsSellPrice?;Hvad skal %buyer betale for %fieldName?
 FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
 PassingStart;Du er passeret start og modtager derfor 4000 i belønning.
 Lost;Du har ikke flere penge tilbage og derfor har du tabt spillet.
-Winner;%name har vundet dette spil Matador
+Winner;TILLYKKE %name ! Du er vinderen af dette spil Matador.
 DoExtraAction?;Vil du benytte dig af nogle af special handlingerne?
 SellField;Sælg felter
 BuyHouse;Køb huse
 ExtraOptionsChoices;Hvilken af nedenstående handlinger vil du udføre?
 InPrison;Så er det din tur %name. Men du sidder desværre i fængsel. Vælg metode for komme ud af fængslet.
-LandedOnOwnField;Du er landet på din ejen ejendom.
+LandedOnOwnField;Du er landet på din egen ejendom.
 Roll;Rul
 UsePrisonCard;Fængselskort
 Pay;Betal
