@@ -634,7 +634,7 @@ public class Gui {
 
                 // Change the title of the field
                 tax.setTitle(fields[i].getFieldName());
-                tax.setSubText(String.valueOf(fields[i].getFieldCost()));
+                tax.setSubText("Betal: " + fields[i].getFieldCost());
                 tax.setDescription(fields[i].getFieldDescription());
                 tax.setBackGroundColor(fields[i].getFieldColor());
 

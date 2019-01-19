@@ -45,25 +45,55 @@ public class BreweryAction extends FieldAction {
 
 	@Override
 	public void action() {
-		StringBuilder actionBuilder = new StringBuilder();
-		if (currentField.getFieldOwner() == null) {
-			actionBuilder.append(messageMap.get("LandedOnBrewery").replace("%brewery", currentField.getFieldName()));
-			actionBuilder.append(messageMap.get("BuyBrewery").replace("%cost", String.valueOf(currentField.getFieldCost())));
 
-			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
-				generalActionController.buyField(player, currentField, guiController);
+		// Checks that Player doesn't own the field.
+		if (currentField.getFieldOwner() != player) {
+
+			//region Buying Sequence
+			// Checks if the field is for sell and runs BuyingSequence if true.
+			if (currentField.getFieldOwner() == null) {
+
+				buyingSequence();
+
 			}
-		} else {
-			int rentFromCupValue = rentFromCupValue();
-			generalActionController.payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
-		}
+			//endregion.
 
+			//region Pay Rent Sequence
+			// If Field has an owner, runs PayRentSequence.
+			else {
+				payRentFromCupValueAndNoOfBreweries();
+			}
+			//endregion
+
+		}
+		// Otherwise he owns the property
+		else {
+			guiController.showMessage(messageMap.get("LandedOnOwnField"));
+		}
 	}
 
     /*
     ----------------------------- Support Methods ------------------------------
      */
 
+    private void buyingSequence () {
+    	StringBuilder actionBuilder = new StringBuilder();
+		actionBuilder.append(messageMap.get("LandedOnBrewery").replace("%brewery", currentField.getFieldName()));
+		actionBuilder.append(messageMap.get("BuyBrewery").replace("%cost", String.valueOf(currentField.getFieldCost())));
+
+		if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
+			generalActionController.buyField(player, currentField, guiController);
+		}
+	}
+
+	private void payRentFromCupValueAndNoOfBreweries () {
+		generalActionController.payManuelRent(player, rentFromCupValue(), currentField, guiController, messageMap);
+	}
+
+	/**
+	 * Calculates the rent from Cup.CupValue and number of owned Breweries.
+	 * @return The calculated rent.
+	 */
 	private int rentFromCupValue () {
 		int rentFromCupValue;
 		switch (currentField.getFieldOwner().getNoOfBreweriesOwned()) {

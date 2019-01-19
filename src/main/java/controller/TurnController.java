@@ -308,7 +308,7 @@ public class TurnController {
 
 	/**
 	 * This method checks if the player has a balance above 0,
-	 * if the player doesn't the ownedFields will be remove aswell as all the houses and hotels
+	 * if the player doesn't the ownedFields will be remove as well as all the houses and hotels
 	 * @param player The Player
 	 */
     private boolean checkIfPlayerHasLost (Player player, SellFieldAction sellFieldAction) {
@@ -381,6 +381,7 @@ public class TurnController {
 
 			postFieldActionTotalPosition = player.getTotalPosition();
 
+			// Checks If Player has moves as result at fieldAction.
 			if (preFieldActionTotalPosition!=postFieldActionTotalPosition) {
 				// Checks if player passed Start as part for fieldAction.
 				generalActionController.passingStart(player, preFieldActionTotalPosition, postFieldActionTotalPosition,
