@@ -5,8 +5,6 @@ import controller.extraActionManagment.extraActions.SellFieldAction;
 import controller.fieldManagement.FieldController;
 import model.board.Board;
 import model.board.Field;
-import model.board.FieldTypeEnum;
-import model.board.fields.PropertyField;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
@@ -37,13 +35,16 @@ public class TurnController {
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
  	private ExtraActionController extraActionController;
+
+ 	private FieldController fieldController;
     
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-	public TurnController(GuiController guiController, Board board, Player[] players, Cup cup, Deck deck, HashMap<String, String> messageMap)
+	public TurnController(GuiController guiController, Board board, Player[] players, Cup cup, Deck deck,
+						  HashMap<String, String> messageMap, ExtraActionController extraActionController)
 	{
 		this.guiController = guiController;
 		this.board = board;
@@ -53,6 +54,11 @@ public class TurnController {
 		this.messageMap = messageMap;
 
 		this.generalActionController = new GeneralActionController();
+		this.extraActionController = extraActionController;
+
+		fieldController = new FieldController(board, deck, guiController,
+				messageMap, cup, generalActionController);
+
 	}
     
     /*
@@ -69,81 +75,73 @@ public class TurnController {
 
     public void playTurn (Player player)
 	{
-		extraActionController = new ExtraActionController(player, players, board,guiController,messageMap,generalActionController);
+		int equalsCounter = 0;
 
 		do {
-			//region Check winner/loser
 
-			checkIfPlayerHasLost(player, guiController, messageMap, extraActionController.getSellFieldAction());
+			//region If Player is in Prison: Do Prison Logic. Else Raffle Logic incl 3 times equal dices.
 
-			try {
-				checkWinner(player,guiController,messageMap);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			if (player.getPrisonStat()>0) {
+				playPrisonTurn(player);
+			} else {
+				// Raffle Cup.
+				raffleCup(player);
+
+				// Checks if Roll is valid for an extraTurn (NO Message). Increments equalsCounter if valid.
+				if (checkIfRollIsValidForExtraTurn()) {
+					equalsCounter++;
+				}
+
+				// If player Rolls 2 equal dices, 3 times. Players is sent to prison and Player turn ends.
+				if (equalsCounter== 3) {
+					guiController.showMessage(messageMap.get("3EqualsRolls"));
+					sentPlayerToPrison(player);
+					break;
+				}
+
 			}
 
 			//endregion
 
-			//region Raffle
+			//region to run if out of Prison
+			if (player.getPrisonStat()==0) {
 
-			raffleCup(player);
+				//region Move Player
 
+				moveRaffle(player);
+
+				//endregion
+
+				//region CheckIfPassedStartAfterAction
+
+				generalActionController.passingStart(player, preTotalPosition, postTotalPosition, guiController, messageMap);
+
+				//endregion
+
+				//region FieldAction
+
+				fieldController.doFieldActionByFieldType(player, currentField);
+
+				//endregion
+
+				//region Check winner/loser
+				checkIfPlayerHasLost(player, extraActionController.getSellFieldAction());
+				//endregion
+
+			}
 			//endregion
 
-			//region Move Player
+			//region Prints ExtraTurn Message if Valid
 
-			moveRaffle(player);
-
-			//endregion
-
-			//region CheckIfPassedStartAfterAction
-
-			generalActionController.passingStart(player, preTotalPosition, postTotalPosition,guiController, messageMap);
-
-			//endregion
-
-			//region FieldAction
-
-			FieldController fieldController = new FieldController(currentField, guiController, player, board, deck,
-					messageMap, cup, generalActionController);
-			fieldController.doFieldActionByFieldType();
-
-			//endregion
-
-			//region Check winner/loser
-			if (checkIfPlayerHasLost(player,guiController,messageMap, extraActionController.getSellFieldAction())){
-				break;
+			if (player.getPrisonStat()==0) {
+				printExtraTurnMessageIfValid();
 			}
 
 			//endregion
 
-		} while (die1Value != die2Value);
 
+		} while (die1Value == die2Value);
 
-
-
-
-		//region ExtraTurn?
-
-		// Check if the player is in prison
-		if (player.getPrisonStat() == 0 )
-		{
-			extraTurn(player);
-		}
-
-        //endregion
-
-		//region Buy Houses?
-
-        extraActionController = new ExtraActionController(player, players, board, guiController, messageMap,
-                generalActionController);
-
-        if (extraActionController.isExtraActionsValid()) {
-			extraActionController.doExtraAction();
-		}
-
-
-		//endregion
 	}
 	
 	/**
@@ -236,18 +234,26 @@ public class TurnController {
 		currentField = board.getBoard()[postPosition];
 	}
 
-	private void extraTurn (Player player)
+	private boolean checkIfRollIsValidForExtraTurn()
 	{
         int die1 = cup.getDies()[0].getFaceValue();
         int die2 = cup.getDies()[1].getFaceValue();
 
-        if(die1==die2)
-        {
-            guiController.showMessage(messageMap.get("ExtraTurn"));
-            playTurn(player);
-        }
-
+        if(die1==die2){
+            return true;
+        } else {
+        	return false;
+		}
     }
+
+    public void printExtraTurnMessageIfValid () {
+		int die1 = cup.getDies()[0].getFaceValue();
+		int die2 = cup.getDies()[1].getFaceValue();
+
+		if(die1==die2) {
+			guiController.showMessage(messageMap.get("ExtraTurn"));
+		}
+	}
 
 	/**
 	 * This method gives the player "rolls" amount of chances to roll 2 equal dices.
@@ -276,6 +282,7 @@ public class TurnController {
 				//TODO: Spilleren skal rykkes hans slag, ved ikke om det sker.
 
 				// Return true, as the player made it.
+
 				return true;
 			} else {
 				// "You didnt roll two of the same, try again" message.
@@ -301,11 +308,8 @@ public class TurnController {
 	 * This method checks if the player has a balance above 0,
 	 * if the player doesn't the ownedFields will be remove aswell as all the houses and hotels
 	 * @param player The Player
-	 * @param guiController The GuiController
-	 * @param messageMap Messages.csv
 	 */
-    private boolean checkIfPlayerHasLost (Player player, GuiController guiController, HashMap<String,String>messageMap,
-										  SellFieldAction sellFieldAction) {
+    private boolean checkIfPlayerHasLost (Player player, SellFieldAction sellFieldAction) {
     	if(player.getAccount().getBalance()<0){
 
     		if (player.getOwnedFields().size()>0) {
@@ -315,7 +319,7 @@ public class TurnController {
 								replace("%ownedFields", String.valueOf(player.getOwnedFields().size())),
 						messageMap.get("Yes"), messageMap.get("No"))) {
 
-    				sellFieldAction.forceSellField();
+    				sellFieldAction.forceSellField(player);
 				}
 			}
 
@@ -342,6 +346,24 @@ public class TurnController {
 
 		}
 
+	}
+
+	private void sentPlayerToPrison (Player player){
+
+    	player.setPrisonStat(1);
+
+		int currentPosition, movesToUpdatePositionWith, prisonFieldIndex = 10;
+
+		currentPosition = player.getPosition();
+		if (currentPosition>prisonFieldIndex) {
+			movesToUpdatePositionWith = -1*(currentPosition-prisonFieldIndex);
+		} else {
+			movesToUpdatePositionWith = prisonFieldIndex - currentPosition;
+		}
+
+		// Player position is updated with "movesToUpDatePositionWith" which is calculated from players CurrentPosition.
+		player.updatePosition(movesToUpdatePositionWith);
+		guiController.movePlayer(player, player.getPosition());
 	}
 
 }

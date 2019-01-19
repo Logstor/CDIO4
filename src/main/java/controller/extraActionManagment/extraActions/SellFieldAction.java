@@ -29,10 +29,10 @@ public class SellFieldAction extends ExtraAction {
     ----------------------- Constructor -------------------------
      */
     
-    public SellFieldAction(Player seller, Player[] players,
+    public SellFieldAction(Player[] players,
                            GuiController guiController, HashMap<String,String> messageMap,
                            GeneralActionController generalActionController) {
-        super(seller, guiController, messageMap, generalActionController);
+        super(guiController, messageMap, generalActionController);
         extraActionType = ExtraActionType_Enum.SellField;
         this.players = players;
 
@@ -52,21 +52,21 @@ public class SellFieldAction extends ExtraAction {
     ---------------------- Public Methods -----------------------
      */
     
-    public void doExtraAction () {
+    public void doExtraAction (Player player) {
 
 
         if (guiController.getLeftButtonPressed(messageMap.get("WantToSellFields?"),
                 messageMap.get("Yes"),messageMap.get("No"))) {
 
             // Runs Sell Logic
-            sellField();
+            sellField(player);
         }
     }
 
-    public void forceSellField () {
+    public void forceSellField (Player player) {
 
          // This there is anyone who wishes to buy any of Players Fields. Start SellField and do it.
-         sellField();
+         sellField(player);
 
     }
 
@@ -74,7 +74,7 @@ public class SellFieldAction extends ExtraAction {
      * Is true if currentPlayer owns 1 or more fields.
      * @return false if Player OwnedFields == 0 else true.
      */
-    public boolean checkIfValidForSellField () {
+    public boolean checkIfValidForSellField (Player currentPlayer) {
         return currentPlayer.getOwnedFields().size()!=0;
     }
 
@@ -82,7 +82,7 @@ public class SellFieldAction extends ExtraAction {
     ---------------------- Support Methods ----------------------
      */
 
-    public void sellField () {
+    public void sellField (Player currentPlayer) {
 
         // Adds players owned fields to List af fieldsToSell.
         for (Field f : currentPlayer.getOwnedFields()){
@@ -137,8 +137,6 @@ public class SellFieldAction extends ExtraAction {
         setNewFieldOwner(currentPlayer,buyer,fieldForSell,sellPrice,guiController,generalActionController);
 
     }
-
-
 
     /**
      * Runs all the changes in Players & GUI_Players involved in the sale and the Field & GUI_Field.

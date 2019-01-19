@@ -1,5 +1,6 @@
 package controller;
 
+import controller.extraActionManagment.ExtraActionController;
 import model.board.Board;
 import model.board.Field;
 import model.board.FieldTypeEnum;
@@ -29,6 +30,8 @@ public class MainControl {
     private Deck deck;
 
     private TurnController turnController;
+    private ExtraActionController extraActionController;
+    private GeneralActionController generalActionController;
     private HashMap<String, String> messageMap;
 
     /*
@@ -41,6 +44,7 @@ public class MainControl {
 		deck = new Deck();
     	messageMap = new HashMap<>();
     	cup = new Cup();
+
 	}
     
     /*
@@ -63,6 +67,11 @@ public class MainControl {
 			do {
                 for (Player currentPlayer : players) {
 
+                    turn(currentPlayer);
+
+                    extraActions(currentPlayer);
+
+                    /*
                 	// Check if currentPlayer is in prison
                 	if ( currentPlayer.getPrisonStat() > 0 )
 						prisonTurn(currentPlayer);
@@ -70,6 +79,7 @@ public class MainControl {
                 	// Otherwise run a normal turn
                 	else
                 		turn(currentPlayer);
+                		*/
                 }
             }
 			// Continue while there's more than 1 player left
@@ -108,13 +118,18 @@ public class MainControl {
 		setupControl.createGUIPlayers(guiController,players);
 		guiController.showMessage(messageMap.get("GetReady"));
 
-		turnController = new TurnController(guiController, board, players, cup, deck, messageMap);
+		//TODO: Er det her okay? :D // RSL
+		generalActionController = new GeneralActionController();
+		extraActionController = new ExtraActionController(players,board,guiController,messageMap,generalActionController);
+		turnController = new TurnController(guiController, board, players, cup, deck, messageMap,extraActionController);
+
 	}
 
 	private void turn (Player player)
 	{
 	    turnController.playTurn(player);
     }
+
 
 	/**
 	 *
@@ -142,4 +157,15 @@ public class MainControl {
 			player.removeFieldFromOwnedFields(fieldToRemove);
 		}
 	}
+
+
+    /**
+     * Does ExtraActions if it is valid.
+     * @param currentPlayer The Player.
+     */
+	private void extraActions (Player currentPlayer) {
+        if (extraActionController.isExtraActionsValid(currentPlayer)){
+            extraActionController.doExtraAction(currentPlayer);
+        }
+    }
 }

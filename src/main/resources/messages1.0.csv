@@ -70,3 +70,5 @@ PrisonRoll;Dette er dit %noPrisonRoll. slag, i forsøget på at komme ud af fæn
 PrisonNewRoll;Du slog desværre ikke 2 ens, prøv ingen.
 PrisonBreakout;HURRA! Du slog 2 ens og kan forlade fængslet.
 PrisonNoBreak;ØV! Du slog desværre ikke 2 ens på nogle af dine slog. Du må derfor tage runde mere i fængslet.
+PlayerFallitAnyBuyersOfFields;%name er gået fallit, men ejer %ownedFields. Er der nogle der vil købe %name's felter? Ellers har spilleren tabt og alle grunde sættes til salg igen.
+3EqualsRolls;Du har slået 2 ens, 3 gang i streg. Så heldig har man altså ikke lov til at være! Du sendes direkte i fængslet!

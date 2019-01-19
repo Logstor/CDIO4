@@ -35,9 +35,9 @@ public class BuyHousesAction extends ExtraAction {
     ----------------------- Constructor -------------------------
      */
 
-    public BuyHousesAction(Player player, Board board, GuiController guiController, HashMap<String,String> messageMap,
+    public BuyHousesAction(Board board, GuiController guiController, HashMap<String,String> messageMap,
                            GeneralActionController generalActionController) {
-        super(player,guiController,messageMap,generalActionController);
+        super(guiController,messageMap,generalActionController);
         extraActionType = ExtraActionType_Enum.BuyHouse;
         this.board = board;
 
@@ -61,18 +61,18 @@ public class BuyHousesAction extends ExtraAction {
     ---------------------- Public Methods -----------------------
      */
     
-    public void doExtraAction() {
+    public void doExtraAction(Player currentPlayer) {
 
-        if (checkIfPlayerIsValidForBuyHouses()) {
+        if (checkIfPlayerIsValidForBuyHouses(currentPlayer)) {
             if (guiController.getLeftButtonPressed(messageMap.get("WantToBuyHouse?"),
                     messageMap.get("Yes"), messageMap.get("No"))) {
-                buyHouses();
+                buyHouses(currentPlayer);
             }
         }
 
     }
 
-    public boolean checkIfPlayerIsValidForBuyHouses () {
+    public boolean checkIfPlayerIsValidForBuyHouses (Player currentPlayer) {
 
         //Adds Properties on board to ArrayList of Fields
         for (Field f : board.getBoard()){
@@ -125,7 +125,7 @@ public class BuyHousesAction extends ExtraAction {
     /**
      *
      */
-    private void buyHouses ()
+    private void buyHouses (Player currentPlayer)
     {
 
         // Asks where the player wants to buy a house. DropDownMenu.

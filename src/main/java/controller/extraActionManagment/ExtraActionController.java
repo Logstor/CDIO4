@@ -19,8 +19,7 @@ public class ExtraActionController {
     /*
     -------------------------- Fields --------------------------
      */
-    
-    private Player currentPlayer;
+
     private Player[] players;
     private Board board;
     private GuiController guiController;
@@ -36,18 +35,16 @@ public class ExtraActionController {
     ----------------------- Constructor -------------------------
      */
     
-    public ExtraActionController (Player currentPlayer, Player[] players, Board board, GuiController guiController,
+    public ExtraActionController (Player[] players, Board board, GuiController guiController,
                                   HashMap<String,String> messageMap, GeneralActionController generalActionController) {
-        this.currentPlayer = currentPlayer;
         this.players = players;
         this.board = board;
         this.guiController = guiController;
         this.messageMap = messageMap;
         this.generalActionController = generalActionController;
 
-        sellFieldAction = new SellFieldAction(currentPlayer,players,board,guiController,messageMap,
-                generalActionController);
-        buyHousesAction = new BuyHousesAction(currentPlayer,board,guiController,messageMap,generalActionController);
+        sellFieldAction = new SellFieldAction(players,guiController,messageMap,generalActionController);
+        buyHousesAction = new BuyHousesAction(board,guiController,messageMap,generalActionController);
 
     }
     
@@ -80,18 +77,18 @@ public class ExtraActionController {
     ---------------------- Public Methods -----------------------
      */
 
-    public void doExtraAction () {
+    public void doExtraAction (Player currentPlayer) {
 
         if (guiController.getLeftButtonPressed(messageMap.get("DoExtraAction?"),
                 messageMap.get("Yes"), messageMap.get("No"))) {
 
             //Checks if the Player owns anything and if true it adds extra options to Arraylist.
             ArrayList<String> extraActionOptions = new ArrayList<>();
-            if (sellFieldAction.checkIfValidForSellField()) {
+            if (sellFieldAction.checkIfValidForSellField(currentPlayer)) {
                 // Adds the option: SellField.
                 extraActionOptions.add(messageMap.get("SellField"));
             }
-            if (buyHousesAction.checkIfPlayerIsValidForBuyHouses()) {
+            if (buyHousesAction.checkIfPlayerIsValidForBuyHouses(currentPlayer)) {
                 // Adds the option: BuyHouses.
                 extraActionOptions.add(messageMap.get("BuyHouse"));
             }
@@ -100,15 +97,15 @@ public class ExtraActionController {
             String chosenOption = guiController.getUserChoice(messageMap.get("ExtraOptionsChoices"),extraActionOptions);
 
             // Finds the right extraAction og runs it.
-            extraActionSelectorSwitch(chosenOption);
+            extraActionSelectorSwitch(currentPlayer,chosenOption);
         }
     }
     
-    public boolean isExtraActionsValid () {
+    public boolean isExtraActionsValid (Player currentPlayer) {
 
-        if (sellFieldAction.checkIfValidForSellField()) {
+        if (sellFieldAction.checkIfValidForSellField(currentPlayer)) {
             return true;
-        } else if (buyHousesAction.checkIfPlayerIsValidForBuyHouses()) {
+        } else if (buyHousesAction.checkIfPlayerIsValidForBuyHouses(currentPlayer)) {
             return true;
         } else {
             return false;
@@ -119,7 +116,7 @@ public class ExtraActionController {
     ---------------------- Support Methods ----------------------
      */
 
-    private void extraActionSelectorSwitch (String nameOnSelectedAction) {
+    private void extraActionSelectorSwitch (Player currentPlayer, String nameOnSelectedAction) {
 
         String keyForValue = null;
         for ( String s : messageMap.keySet() ){
@@ -132,15 +129,15 @@ public class ExtraActionController {
         switch (extraActionTypeOfSelected)
         {
             case BuyHouse:
-                buyHousesAction = new BuyHousesAction(currentPlayer,board,guiController,messageMap,
+                buyHousesAction = new BuyHousesAction(board,guiController,messageMap,
                         generalActionController);
-                buyHousesAction.doExtraAction();
+                buyHousesAction.doExtraAction(currentPlayer);
                 break;
                 
             case SellField:
-                sellFieldAction = new SellFieldAction(currentPlayer, players, board,guiController,messageMap,
+                sellFieldAction = new SellFieldAction(players, guiController,messageMap,
                         generalActionController);
-                sellFieldAction.doExtraAction();
+                sellFieldAction.doExtraAction(currentPlayer);
                 break;
                 
             default:

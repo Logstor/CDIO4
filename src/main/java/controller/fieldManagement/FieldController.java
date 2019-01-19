@@ -19,9 +19,7 @@ public class FieldController {
 	/*
     ---------------------------------- Fields ----------------------------------
      */
-	private Field currentField;
 	private GuiController guiController;
-	private Player player;
 	private HashMap<String, String> messageMap;
 	private Cup cup;
 	private GeneralActionController generalActionController;
@@ -31,11 +29,9 @@ public class FieldController {
     ------------------------------ Constructors --------------------------------
      */
 	
-	public FieldController(Field currentField, GuiController guiController, Player player, Board board, Deck deck,
-						   HashMap<String, String> messageMap, Cup cup, GeneralActionController generalActionController) {
-		this.currentField = currentField;
+	public FieldController ( Board board, Deck deck,GuiController guiController,HashMap<String, String> messageMap,
+							 Cup cup, GeneralActionController generalActionController) {
 		this.guiController = guiController;
-		this.player = player;
 		this.messageMap = messageMap;
 		this.cup = cup;
 		this.generalActionController = generalActionController;
@@ -47,7 +43,7 @@ public class FieldController {
     ------------------------------ Properties ----------------------------------
      */
 
-    public void doFieldActionByFieldType() {
+    public void doFieldActionByFieldType(Player player, Field currentField) {
 
         //region Find Field Type
 
