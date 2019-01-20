@@ -46,6 +46,8 @@ public class BuyHousesAction extends ExtraAction {
         RGB_ColorMatchingColorCroup = new int[8];
         propertiesPrFieldColorBoard = new int[8];
         propertiesPrFieldColorPlayerFields = new int[8];
+
+        addsAndCountsPropertiesToArray();
     }
     
     /*
