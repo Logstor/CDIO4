@@ -9,6 +9,8 @@ import model.board.fields.PropertyField;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -19,23 +21,22 @@ public class FieldController {
 	/*
     ---------------------------------- Fields ----------------------------------
      */
-	private Field currentField;
 	private GuiController guiController;
-	private Player player;
 	private HashMap<String, String> messageMap;
 	private Cup cup;
 	private GeneralActionController generalActionController;
 	private Board board;
 	private Deck deck;
+	private Player[] players;
+
     /*
     ------------------------------ Constructors --------------------------------
      */
 	
-	public FieldController(Field currentField, GuiController guiController, Player player, Board board, Deck deck,
-						   HashMap<String, String> messageMap, Cup cup, GeneralActionController generalActionController) {
-		this.currentField = currentField;
+	public FieldController ( Board board, Player[] players, Deck deck,GuiController guiController,HashMap<String, String> messageMap,
+							 Cup cup, GeneralActionController generalActionController) {
+		this.players = players;
 		this.guiController = guiController;
-		this.player = player;
 		this.messageMap = messageMap;
 		this.cup = cup;
 		this.generalActionController = generalActionController;
@@ -47,14 +48,14 @@ public class FieldController {
     ------------------------------ Properties ----------------------------------
      */
 
-    public void doFieldActionByFieldType() {
+    public void doFieldActionByFieldType(Player player, Field currentField) {
 
         //region Find Field Type
 
         switch (currentField.getFieldType())
 		{
             case Property:
-				PropertyAction propertyAction = new PropertyAction(player, messageMap, (PropertyField)currentField,
+				PropertyAction propertyAction = new PropertyAction(player, players, messageMap, (PropertyField)currentField,
 						guiController, generalActionController);
 				propertyAction.action();
                 break;

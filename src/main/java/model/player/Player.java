@@ -138,8 +138,12 @@ public class Player {
     
     public void updateBalance (int amountToUpdateBalanceWith) {
         account.updateBalance(amountToUpdateBalanceWith);
-        if (account.getBalance()<=0) {
+        if (account.getBalance()<0) {
             hasLost=true;
+        }
+        else
+        {
+            hasLost = false;
         }
     }
 

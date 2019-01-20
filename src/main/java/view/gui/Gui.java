@@ -355,6 +355,17 @@ public class Gui {
         ((GUI_Street) fields[theField.getFieldNo()-1]).setHotel(true);
 
     }
+
+
+    /**
+     * Removes a players GUI_car from GUI_field.
+     * @param player
+     */
+    public void removeGUICar (Player player) {
+
+        fields[player.getPosition()].setCar(findPlayer(player),false);
+
+    }
     
     /**
      * This methods makes all fields blink between
@@ -585,7 +596,7 @@ public class Gui {
 
                 // Change the title of the field
                 boat.setTitle(fields[i].getFieldName());
-                boat.setSubText("Færge");
+                boat.setSubText("Beløb: " + fields[i].getFieldCost());
                 boat.setDescription(fields[i].getFieldDescription());
                 boat.setRent(Integer.toString(fields[i].getFieldCost()));
 
@@ -605,7 +616,7 @@ public class Gui {
 
                 // Change the title of the field
                 brewery.setTitle(fields[i].getFieldName());
-                brewery.setSubText("Bryggeri");
+                brewery.setSubText("Beløb: " + fields[i].getFieldCost());
                 brewery.setDescription(fields[i].getFieldDescription());
                 brewery.setRent(Integer.toString(fields[i].getFieldCost()));
 
@@ -623,7 +634,7 @@ public class Gui {
 
                 // Change the title of the field
                 tax.setTitle(fields[i].getFieldName());
-                tax.setSubText("Ekstra SKAT");
+                tax.setSubText("Betal: " + fields[i].getFieldCost());
                 tax.setDescription(fields[i].getFieldDescription());
                 tax.setBackGroundColor(fields[i].getFieldColor());
 
@@ -670,9 +681,11 @@ public class Gui {
 
     public void clearFieldForInfo (Field theField) {
 
+        // Reset Field Border.
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setBorder(null);
+        // Reset Field Owner.
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(null);
+        // Reset Field OwnableLabel
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnableLabel(null);
-
     }
 }

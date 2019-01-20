@@ -95,6 +95,26 @@ public class GeneralActionController {
     }
 
     /**
+     * This method awards the player with 4000 if they pass start.
+     * @param player Player
+     * @param guiController GuiController
+     * @param messageMap Messages.csv
+     *
+     */
+
+    public void passingStart(Player player, int preTotalPosition, int postTotalPosition,
+                              GuiController guiController, HashMap<String,String>messageMap) {
+        int preTotalRounds = preTotalPosition/40;
+        int postTotalRounds = postTotalPosition/40;
+
+        if (preTotalRounds<postTotalRounds) {
+            guiController.showMessage(messageMap.get("PassingStart"));
+            updatePlayerBalanceInclGui(guiController,player, +4000);
+        }
+    }
+
+
+    /**
      * This method
      * @param player The player who landed on the Field.
      * @param manualRent The rent which shall be paid.
@@ -103,15 +123,14 @@ public class GeneralActionController {
      * @param messageMap The Map of messages.
      */
     public void payManuelRent(Player player, int manualRent, Field currentField, GuiController guiController,
-                              HashMap<String, String> messageMap)
-    {
+                              HashMap<String, String> messageMap) {
+        // Show message to player
+        guiController.showMessage(messageMap.get("PayRentTo").replace("%rent", String.valueOf(manualRent))
+                .replace("%fieldOwner", currentField.getFieldOwner().getName()));
+
         // Update both players balance
         updatePlayerBalanceInclGui(guiController, player, -manualRent);
         updatePlayerBalanceInclGui(guiController, currentField.getFieldOwner(), manualRent);
-
-        // Show message to player
-        guiController.showMessage( messageMap.get("PayRentTo").replace("%rent", String.valueOf(manualRent))
-                .replace("%fieldOwner", currentField.getFieldOwner().getName()) );
     }
 
     public void movingPlayerForwardGUI(Player player, Board board, GuiController guiController,

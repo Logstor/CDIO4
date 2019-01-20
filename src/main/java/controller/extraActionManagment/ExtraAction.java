@@ -18,7 +18,6 @@ public abstract class ExtraAction {
      */
 
     protected ExtraActionType_Enum extraActionType;
-    protected Player currentPlayer;
     protected GuiController guiController;
     protected HashMap<String,String> messageMap;
     protected GeneralActionController generalActionController;
@@ -27,9 +26,8 @@ public abstract class ExtraAction {
     ----------------------- Constructor -------------------------
      */
     
-    public ExtraAction (Player player, GuiController guiController, HashMap<String,String> messageMap,
+    public ExtraAction ( GuiController guiController, HashMap<String,String> messageMap,
                         GeneralActionController generalActionController) {
-        this.currentPlayer = player;
         this.guiController = guiController;
         this.messageMap = messageMap;
         this.generalActionController = generalActionController;
@@ -48,7 +46,7 @@ public abstract class ExtraAction {
     ---------------------- Public Methods -----------------------
      */
     
-    protected abstract void doExtraAction ();
+    protected abstract void doExtraAction (Player player);
 
     
     /*

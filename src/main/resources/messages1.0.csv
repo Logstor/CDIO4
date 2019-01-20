@@ -22,20 +22,20 @@ LandedOnTax39;Du er landet på %fieldName og skal betale %rent i ekstra SKAT.
 LandedOnTax5;Du er landet på %fieldName og skal betale %rent i indkomst SKAT.
 LandedOnTaxOver;Du er landet på %fieldName, og besidder aktiver for mere end kr. 40.000.
 LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end kr. 40.000.
-TaxToPay;Og skal derfor betale %tax i SKAT.
+TaxToPay;Og skal derfor betale kr. %tax i SKAT.
 PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
 PrisonSentTo;Du har brudt loven og bliver derfor sendt direkte i fængslet. Du modtager ikke kr. 4.000 selvom du passér 'START'.
 PropertyFirst;Du er landet på %name's ejendom, og skal derfor betale kr. %rent i husleje.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
 PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
-BoatMessage; Du er landet på færgen: %boat.
+BoatMessage;Du er landet på færgen: %boat.
 BoatsOwned1;%ownerName ejer denne færge og derfor skal du betale 500
 BoatsOwned2;%ownerName ejer denne færge og én anden. Derfor skal du betale 1000
 BoatsOwned3;%ownerName ejer denne færge og to andre. Derfor skal du betale 2000
 BoatsOwned4;%ownerName ejer denne færge og tre andre. Derfor skal du betale 4000
 BoatsOwnedError;FEJL!!! Noobs
 WantToBuy?;Denne færge er stadig til salg og koster: %cost. Vil du købe det?
-ExtraTurn;Du har slået 2 ens og derfor får du et ekstra kast
+ExtraTurn;Du har slået 2 ens og får derfor et ekstra kast.
 PayRentTo;Du skal betale %rent i husleje til %fieldOwner.
 MatadorLegatGranted;Din totaleværdi er kr. %playerValue og du anses derfor som værende berettiget til 'Matador-Legatet for værdigt trængende' og tildeles kr. 40.000.
 MatadorLegatNOTGranted;Din totaleværdi er kr. %playerValue og du anses derfor IKKE som værende berettiget til 'Matador-Legatet for værdigt trængende'.
@@ -46,6 +46,7 @@ ToPrisonAction;Du bliver sent direkte i fængslet og modtager ikke
 PayExtraExpense;Vi har talt samme og regnet på det. Du skal betale %extraExpense i ekstra udgifter til dine huse og hoteller.
 NoExtraExpense;Da du ikke ejer hverken huse eller hoteller, skal du intet betale.
 WantToBuyHouse?;Kunne du tænke dig at købe nogle huse?
+NotEnoughMoneyForAHouse;Du har desværre ikke råd til at hus på %fieldName.
 WhereToBuyHouse?;På hvilken grund kunne du godt tænkte dig at købe et hus?
 HouseOnPropertyCosts;Huse på denne grund koster kr. %housePrice. Vil du stadig gerne købe et hus?
 BoughtHouses;Du købte 1 hus på %fieldName og huslejen på grunden er hævet til kr. %newRent.
@@ -54,15 +55,15 @@ WhichFieldToSellField?;Hvilken grund kunne du tænke dig at sælge?
 WhoToSellTo?;Hvem ønsker du at sælge %fieldName til?
 WhatIsSellPrice?;Hvad skal %buyer betale for %fieldName?
 FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
+PassingStart;Du har passeret 'START' og modtager derfor kr. 4000 i belønning.
 InvalidValuta;Den mindste form for valuta er 50, så venligst indtast et beløb 50 går op i.
-PassingStart;Du er passeret start og modtager derfor 4000 i belønning.
 Lost;Du har ikke flere penge tilbage og derfor har du tabt spillet.
-Winner;%name har vundet dette spil Matador
+Winner;TILLYKKE %name ! Du er vinderen af dette spil Matador.
 DoExtraAction?;Vil du benytte dig af nogle af special handlingerne?
 SellField;Sælg felter
 BuyHouse;Køb huse
 ExtraOptionsChoices;Hvilken af nedenstående handlinger vil du udføre?
-InPrison;Så er det din tur %name. Men du sidder desværre i fængsel. Vælg en metode for at komme ud derfra.
+InPrison;Så er det din tur %name. Men du sidder desværre i fængsel. Vælg metode for komme ud af fængslet.
 LandedOnOwnField;Du er landet på din egen ejendom.
 Roll;Rul
 UsePrisonCard;Fængselskort
@@ -70,4 +71,14 @@ Pay;Betal
 PrisonRoll;Dette er dit %noPrisonRoll. slag, i forsøget på at komme ud af fængslet.
 PrisonNewRoll;Du slog desværre ikke 2 ens, prøv ingen.
 PrisonBreakout;HURRA! Du slog 2 ens og kan forlade fængslet.
-PrisonNoBreak;ØV! Du slog desværre ikke 2 ens på nogle af dine slog. Du må derfor tage en runde mere i fængslet.
+PrisonNoBreak;ØV! Du slog desværre ikke 2 ens på nogle af dine slog. Du må derfor tage runde mere i fængslet.
+PlayerFallitAnyBuyersOfFields;%name er gået fallit, men ejer %ownedFields grunde. Er der nogle der vil købe %name's felter? Ellers sættes %name's grunde til salg igem og spilleren har tabt.
+3EqualsRolls;Du har slået 2 ens, 3 gang i streg. Så heldig har man altså ikke lov til at være! Du sendes direkte i fængslet!
+PlayerHasLostAndOutOfGame;Du er ikke længere en del af spillet og evt. grunde du ejede vil blive sat til salgt igen.
+PlayerFallit;%name erklæres FALLIT!
+NoBuyersForYourFields;Der er desværre ikke nogle der vil købe dine ejendomme.
+NoMoneyToBuyField;Du har mindre penge på kontoen end feltet koster, så du kan desværre ikke købe %fieldName.
+AnyBuysAuction;%name har ikke købt %fieldName. Er der andre spillere der gerne vil købe %fieldName?
+WhoIsAuctionBuyer;Hvilken spiller er kommet med det højeste bud på %fieldName?
+WhatIsAuctionPrice;Hvad køber %buyer %fieldName for? (Skal minimum være feltets normalpris).
+FinalAuctionDesc;Auktionen af %fieldName er afsluttet. %buyerName har købt %fieldName for kr. %auctionPrice.

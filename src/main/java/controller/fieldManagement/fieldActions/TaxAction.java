@@ -16,7 +16,7 @@ public class TaxAction extends FieldAction {
     ---------------------------------- Fields ----------------------------------
      */
 
-
+	private Field currentField;
 
     /*
     ------------------------------ Constructors --------------------------------
