@@ -79,7 +79,7 @@ public class BuyHousesAction extends ExtraAction {
         // Sets the FieldPrColorCounterArray, with data from ArrayList of Fields that Player Owns.
         propertiesPrFieldColorCounter(propertiesPrFieldColorPlayerFields,currentPlayer.getOwnedFields());
 
-        // Checks if player haves the total amout of fields for each FieldColor.
+        // Checks if player haves the total amount of fields for each FieldColor.
         // If yes, that FieldColor is added to an ArrayList of Color.
         // Fields with this Color is allowed to buy Houses on.
         ArrayList<Color> fieldColorAllowsToPutHouseOn = new ArrayList<>();
