@@ -154,7 +154,6 @@ public class MainControl {
 		} else {
 			return false;
 		}
-
 	}
 
 	/**

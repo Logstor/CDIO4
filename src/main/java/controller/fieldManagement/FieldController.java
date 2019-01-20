@@ -35,6 +35,7 @@ public class FieldController {
 	
 	public FieldController (Board board, Player[] players, Deck deck,GuiController guiController,HashMap<String, String> messageMap,
 							 Cup cup, GeneralActionController generalActionController) {
+
 		this.players = players;
 		this.guiController = guiController;
 		this.messageMap = messageMap;

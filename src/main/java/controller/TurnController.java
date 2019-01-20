@@ -161,7 +161,6 @@ public class TurnController {
 	 */
 	public void playPrisonTurn (Player player)
 	{
-
 		// ArrayList to hold the players opportunities
 		ArrayList<String> options = new ArrayList<>(3);
 
