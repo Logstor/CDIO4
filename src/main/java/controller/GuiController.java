@@ -254,5 +254,13 @@ public class GuiController {
 
     }
 
+    /**
+     * Removes a players GUI_car from GUI_field.
+     * @param player Players who's car is removed.
+     */
+    public void removeGUICarFromField (Player player) {
+        gui.removeGUICar(player);
+    }
+
 
 }

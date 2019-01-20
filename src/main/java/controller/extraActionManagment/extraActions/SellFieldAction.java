@@ -21,23 +21,19 @@ public class SellFieldAction extends ExtraAction {
     /*
     -------------------------- Fields --------------------------
      */
-    
-    private ArrayList<Field> fieldsToSell;
-    private Player[] players;
+
+    private ArrayList<Player> playerArrayList;
     
     /*
     ----------------------- Constructor -------------------------
      */
     
-    public SellFieldAction(Player seller, Player[] players, Board board,
+    public SellFieldAction(ArrayList<Player> playerArrayList,
                            GuiController guiController, HashMap<String,String> messageMap,
                            GeneralActionController generalActionController) {
-        super(seller, guiController, messageMap, generalActionController);
+        super(guiController, messageMap, generalActionController);
         extraActionType = ExtraActionType_Enum.SellField;
-        this.players = players;
-
-        fieldsToSell = new ArrayList<>();
-
+        this.playerArrayList = playerArrayList;
     }
     
     /*
@@ -52,22 +48,17 @@ public class SellFieldAction extends ExtraAction {
     ---------------------- Public Methods -----------------------
      */
     
-    public void doExtraAction () {
+    public void doExtraAction (Player player) {
 
 
         if (guiController.getLeftButtonPressed(messageMap.get("WantToSellFields?"),
-                messageMap.get("Yes"),messageMap.get("No")))
-        {
+                messageMap.get("Yes"),messageMap.get("No"))) {
 
-            // Adds players owned fields to List af fieldsToSell.
-            for (Field f : currentPlayer.getOwnedFields()){
-                fieldsToSell.add(f);
-            }
-
-            // Asks which field the player wises to sell. DropDownMenu.
-            String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
-                    fieldsToSell);
-
+            // Runs Sell Logic
+            sellField(player);
+        }
+    }
+            /*
             // Find the field the Player wises to sell.
             Field[] fieldForSellArray = new Field[1];
             for (Field f :fieldsToSell) {
@@ -117,24 +108,98 @@ public class SellFieldAction extends ExtraAction {
                 }else {
                     guiController.showMessage(messageMap.get("InvalidValuta"));
                 }
+                */
 
 
+    public void forceSellField (Player player) {
 
-            }
-        }
+         // This there is anyone who wishes to buy any of Players Fields. Start SellField and do it.
+         sellField(player);
+
     }
 
     /**
      * Is true if currentPlayer owns 1 or more fields.
      * @return false if Player OwnedFields == 0 else true.
      */
-    public boolean checkIfValidForSellField () {
+    public boolean checkIfValidForSellField (Player currentPlayer) {
         return currentPlayer.getOwnedFields().size()!=0;
     }
 
     /*
     ---------------------- Support Methods ----------------------
      */
+
+    public void sellField (Player currentPlayer) {
+
+        // Adds players owned fields to List af fieldsToSell.
+        ArrayList<Field>  fieldsToSell = currentPlayer.getOwnedFields();
+
+        // Asks which field the player wises to sell. DropDownMenu.
+        String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
+                fieldsToSell);
+
+        //region Find the field the Player wises to sell.
+        Field[] fieldForSellArray = new Field[1];
+        for (Field f :fieldsToSell) {
+            if (f.getFieldName().equals(nameOnChosenField)){
+                fieldForSellArray[0] =f;
+            }
+        }
+        Field fieldForSell = fieldForSellArray[0];
+        //endregion
+
+        //region Finds names on possible buyers
+        ArrayList<String> possibleBuyers = new ArrayList<>();
+        for (Player p : playerArrayList) {
+            if (!p.isHasLost()){
+                if (!currentPlayer.getName().equals(p.getName())){
+                    possibleBuyers.add(p.getName());
+                }
+            }
+        }
+        //endregion
+
+        //region Asks who to sell the Property for?
+        String nameOnBuyer = guiController.getUserChoice(messageMap.get("WhoToSellTo?")
+                .replace("%fieldName",fieldForSell.getFieldName()),possibleBuyers);
+
+        //endregion
+
+        //region Finds the Player who is the buyer.
+        ArrayList<Player> THEBUYER = new ArrayList<>();
+        for (Player p : playerArrayList) {
+            if (p.getName().equals(nameOnBuyer)) {
+                THEBUYER.add(p);
+            }
+        }
+        Player buyingPlayer = THEBUYER.get(0);
+        //endregion
+
+        //region Finds the sales price, shows a message of the fully described Sale and sets the Buyer as new owner of Field and GUI_field.
+        boolean ValidMoney = false;
+        while(!ValidMoney) {
+        int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
+                        replace("%buyer", nameOnBuyer).
+                        replace("%fieldName", fieldForSell.getFieldName()),
+                0,buyingPlayer.getAccount().getBalance()+1);
+
+            if((sellPrice % 50) == 0) {
+                guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
+                        .replace("%fieldName", fieldForSell.getFieldName())
+                        .replace("%sellPrice", String.valueOf(sellPrice))
+                        .replace("%buyer", buyingPlayer.getName()));
+
+                ValidMoney = true;
+                setNewFieldOwner(currentPlayer,buyingPlayer,fieldForSell,sellPrice,guiController,generalActionController);
+            }
+            else{
+                guiController.showMessage(messageMap.get("InvalidValuta"));
+            }
+        }
+        //endregion
+
+    }
 
     /**
      * Runs all the changes in Players & GUI_Players involved in the sale and the Field & GUI_Field.
@@ -150,15 +215,17 @@ public class SellFieldAction extends ExtraAction {
     {
 
         // General change in values.
-        // GuiPlayers Updates.
-        generalActionController.updatePlayerBalanceInclGui(guiController,seller,1*sellPrice);
-        generalActionController.updatePlayerBalanceInclGui(guiController,buyer,-1*sellPrice);
+        //region GuiPlayers Updates.
+        generalActionController.updatePlayerBalanceInclGui(guiController,seller,sellPrice);
+        generalActionController.updatePlayerBalanceInclGui(guiController,buyer,-sellPrice);
+        //endregion
 
-        // Adds and remove FieldForSell from Player.OwnedFields incl. noOfBoats and noOfBreweries.
+        //region Adds and remove FieldForSell from Player.OwnedFields incl. noOfBoats and noOfBreweries.
         seller.removeFieldFromOwnedFields(fieldForSale);
         buyer.addFieldToOwnedFields(fieldForSale);
-        
-        //region Handle Counters in Player object
+        //endregion
+
+        //region Handle noOfBoats and noOfBreweries in Player object
         if (fieldForSale.getFieldType() == FieldTypeEnum.Boat)
         {
             seller.updateNoOfBoatsOwned(-1);
@@ -170,11 +237,11 @@ public class SellFieldAction extends ExtraAction {
         }
         //endregion
 
-        // Field and GUI_Field Updates.
+        //region Field and GUI_Field Updates.
         fieldForSale.setFieldOwner(buyer);
         guiController.setOwner(buyer,fieldForSale);
         guiController.setDottedBorderWithPlayerCarColor(buyer,fieldForSale);
-
+        //endregion
     }
 
 }
