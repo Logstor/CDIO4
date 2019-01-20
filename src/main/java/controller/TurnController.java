@@ -146,7 +146,11 @@ public class TurnController {
 
 			//endregion
 
-
+			//region Breaks of Player gets sent to prison.
+			if (player.getPrisonStat() > 0) {
+				break;
+			}
+			//endregion
 
 		} while (die1Value == die2Value);
 
