@@ -141,6 +141,10 @@ public class Player {
         if (account.getBalance()<0) {
             hasLost=true;
         }
+        else
+        {
+            hasLost = false;
+        }
     }
 
     /**
