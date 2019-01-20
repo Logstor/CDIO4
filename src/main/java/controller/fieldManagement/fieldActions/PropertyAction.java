@@ -88,7 +88,7 @@ public class PropertyAction extends FieldAction {
 	private void buyingSequence()
 	{
 		// Make
-		if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
+		if ( (player.getAccount().getBalance() >= field.getFieldCost()))
 		{
 
 			// Ask the player if he wants to buy, and handle the event

@@ -77,12 +77,15 @@ public class BreweryAction extends FieldAction {
      */
 
     private void buyingSequence () {
-    	StringBuilder actionBuilder = new StringBuilder();
-		actionBuilder.append(messageMap.get("LandedOnBrewery").replace("%brewery", currentField.getFieldName()));
-		actionBuilder.append(messageMap.get("BuyBrewery").replace("%cost", String.valueOf(currentField.getFieldCost())));
 
-		if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
-			generalActionController.buyField(player, currentField, guiController);
+    	if (player.getAccount().getBalance() >= currentField.getFieldCost()) {
+			StringBuilder actionBuilder = new StringBuilder();
+			actionBuilder.append(messageMap.get("LandedOnBrewery").replace("%brewery", currentField.getFieldName()));
+			actionBuilder.append(messageMap.get("BuyBrewery").replace("%cost", String.valueOf(currentField.getFieldCost())));
+
+			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
+				generalActionController.buyField(player, currentField, guiController);
+			}
 		}
 	}
 
