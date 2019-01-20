@@ -111,6 +111,7 @@ public abstract class FieldAction {
 			guiController.showMessage(messageMap.get("FinalAuctionDesc")
 					.replace("%fieldName", currentField.getFieldName())
 					.replace("%buyerName", buyingPlayer.getName())
+					.replace("%fieldName", currentField.getFieldName())
 					.replace("%auctionPrice", String.valueOf(auctionPrice)));
 			//endregion
 		}
