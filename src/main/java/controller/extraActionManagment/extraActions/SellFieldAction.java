@@ -97,20 +97,30 @@ public class SellFieldAction extends ExtraAction {
                 }
             }
 
-            // Finds the sell Price
-            int sellPrice = (guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
-                    replace("%buyer", nameOnBuyer).
-                    replace("%fieldName", fieldForSell.getFieldName()),
-                    0,buyer.getAccount().getBalance()));
+            boolean ValidMoney = false;
 
-            guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
-                    .replace("%fieldName",fieldForSell.getFieldName())
-                    .replace("%sellPrice", String.valueOf(sellPrice))
-                    .replace("%buyer", buyer.getName()));
+            while(ValidMoney==false) {
+                // Finds the sell Price
+                int sellPrice = (guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
+                                replace("%buyer", nameOnBuyer).
+                                replace("%fieldName", fieldForSell.getFieldName()),
+                        0, buyer.getAccount().getBalance()));
+
+                if((sellPrice % 50) == 0) {
+                guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
+                        .replace("%fieldName", fieldForSell.getFieldName())
+                        .replace("%sellPrice", String.valueOf(sellPrice))
+                        .replace("%buyer", buyer.getName()));
+
+                    ValidMoney = true;
+                    setNewFieldOwner(currentPlayer, buyer, fieldForSell, sellPrice, guiController, generalActionController);
+                }else {
+                    guiController.showMessage(messageMap.get("InvalidValuta"));
+                }
 
 
-            setNewFieldOwner(currentPlayer,buyer,fieldForSell,sellPrice,guiController,generalActionController);
 
+            }
         }
     }
 
