@@ -198,6 +198,8 @@ public class TurnController {
 			// Subtract kr. 1000 from the player, and set prisonStat to 0
 			case "Betal":
 				generalActionController.updatePlayerBalanceInclGui(guiController, player, -1000);
+				// After Paying to get out of prison, you raffleCup.
+				raffleCup(player);
 				player.setPrisonStat(0);
 				break;
 
