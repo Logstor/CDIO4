@@ -126,7 +126,7 @@ public class SellFieldAction extends ExtraAction {
         int sellPrice = (guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
                         replace("%buyer", nameOnBuyer).
                         replace("%fieldName", fieldForSell.getFieldName()),
-                0,buyer.getAccount().getBalance()));
+                0,currentPlayer.getAccount().getBalance()));
 
         guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
                 .replace("%fieldName",fieldForSell.getFieldName())

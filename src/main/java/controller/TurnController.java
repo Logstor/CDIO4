@@ -125,8 +125,14 @@ public class TurnController {
 
 				//endregion
 
-				//region Check winner/loser
+				//region Check if player has lost if true and Player owns Fields the is offered to sell them.
 				checkIfPlayerHasLost(player, extraActionController.getSellFieldAction());
+
+				// If Player Has Lost the break out of turn.
+				// TODO: Kan jeg ikke godt tjekke om vi har en vinner eller om vi har en vinder, og begge Breaker.
+				if (player.isHasLost() || checkIfWeHaveAWinner()) {
+					break;
+				}
 				//endregion
 
 			}
@@ -134,11 +140,12 @@ public class TurnController {
 
 			//region Prints ExtraTurn Message if Valid
 
-			if (player.getPrisonStat()==0) {
+			if (player.getPrisonStat()==0 ) {
 				printExtraTurnMessageIfValid();
 			}
 
 			//endregion
+
 
 
 		} while (die1Value == die2Value);
@@ -311,43 +318,51 @@ public class TurnController {
 	 * if the player doesn't the ownedFields will be remove as well as all the houses and hotels
 	 * @param player The Player
 	 */
-    private boolean checkIfPlayerHasLost (Player player, SellFieldAction sellFieldAction) {
+    private void checkIfPlayerHasLost (Player player, SellFieldAction sellFieldAction) {
     	if(player.getAccount().getBalance()<0){
 
     		if (player.getOwnedFields().size()>0) {
 
-    			while (guiController.getLeftButtonPressed(messageMap.get("PlayerFallitAnyBuyersOfFields").
-								replace("&name", player.getName()).
-								replace("%ownedFields", String.valueOf(player.getOwnedFields().size())),
-						messageMap.get("Yes"), messageMap.get("No"))) {
+    			do {
+    				// Asks if there is any players who wishes to buy Players Fields.
+					 if(guiController.getLeftButtonPressed(messageMap.get("PlayerFallitAnyBuyersOfFields").
+									replace("%name", player.getName()).
+									replace("%ownedFields", String.valueOf(player.getOwnedFields().size())),
+							messageMap.get("Yes"), messageMap.get("No"))) {
 
-    				sellFieldAction.forceSellField(player);
-				}
+					 	// If Yes, runs sellFieldAction.
+						 sellFieldAction.forceSellField(player);
+					 }
+					 // If There is no Buyers for your Fields, Show Message, and break.
+					 else {
+					 	guiController.showMessage(messageMap.get("NoBuyersForYourFields"));
+					 	break;
+					 }
+
+					 //Asks as long as player has a negative Account Balance or no one wants to buy Players fields.
+				} while (player.getAccount().getBalance()<0);
 			}
+		}
+	}
 
-    		if (player.getAccount().getBalance() <0) {
+	/**
+	 * Checks if there is only ONE player who hasn't lost yes. If yes, true. Else False.
+	 * @return
+	 */
+	private boolean checkIfWeHaveAWinner() {
+    	int lostPlayers = 0;
 
-				player.setHasLost(true);
-				guiController.showMessage(messageMap.get("Lost"));
-
+    	for (Player player : players) {
+    		if (player.isHasLost()) {
+    			lostPlayers = lostPlayers +1;
 			}
-    		return player.isHasLost();
+		}
+
+    	if((players.length-lostPlayers)==1) {
+    		return true;
 		} else {
     		return false;
 		}
-
-	}
-
-	private void checkWinner (Player player, GuiController guiController,
-							  HashMap<String,String>messageMap) throws InterruptedException {
-
-    	if(players.length==1){
-			guiController.showMessage(messageMap.get("Winner").replace("%name",player.getName()));
-    		guiController.WinnerMode();
-
-
-		}
-
 	}
 
 	private void sentPlayerToPrison (Player player){

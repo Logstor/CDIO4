@@ -71,26 +71,18 @@ public class MainControl {
 
                     turn(currentPlayer);
 
-                    extraActions(currentPlayer);
-
-                    /*
-                	// Check if currentPlayer is in prison
-                	if ( currentPlayer.getPrisonStat() > 0 )
-						prisonTurn(currentPlayer);
-                	
-                	// Otherwise run a normal turn
-                	else
-                		turn(currentPlayer);
-                		*/
+                    // TODO: PT kan du godt lave extrahandlinger, selvom du sidder i fængsel. Er det Okay?
+                    if (!currentPlayer.isHasLost()) {
+						extraActions(currentPlayer);
+					}
                 }
-
 
                 // Clean and removes a player if hasLost=True.
 				findingHasLostPlayersAndRemovesThem();
 
             }
 			// Continue while there's more than 1 player left
-			while (playerArrayList.size()>=1);
+			while (playerArrayList.size()>1);
 
 			// ANNOUNCES THE WINNER.
 			announceWinner();
@@ -186,6 +178,8 @@ public class MainControl {
 		// Finds players that has lost and sell there Fields and reset them. Remove Player GUI_Car from board.
 		for (Player player : playerArrayList) {
 			if (player.isHasLost()){
+				// Declare player FALLIT in GUI Message
+				fallitMessage(player);
 				cleanAPlayersFields(player);
 			}
 		}
@@ -193,6 +187,22 @@ public class MainControl {
 		// Removes player from the Arraylist of Players that runs the Turn()
 		removesHasLostPlayersFromPlayerArrayList();
 
+	}
+
+	/**
+	 * Show Message on GUI that declares player Fallit
+	 * @param player Fallit Player.
+	 */
+	private void fallitMessage (Player player) {
+
+		StringBuilder fallitBuilder = new StringBuilder();
+		// Player declared "Fallit"
+		fallitBuilder.append(messageMap.get("PlayerFallit").replace("%name", player.getName()) + "\n");
+		// Fallit description.
+		fallitBuilder.append(messageMap.get("PlayerHasLostAndOutOfGame"));
+
+		// Show message to GUI.
+		guiController.showMessage(fallitBuilder.toString());
 	}
 
 	/**
@@ -209,10 +219,12 @@ public class MainControl {
         	// Set GUI_field to default.
             guiController.clearFieldForInfo(field);
 
-            // Removes houses on Field and GUI_Field.
+            // Removes houses on Field and GUI_Field, resets rent to basic rent.
             if (field.getFieldType() == FieldTypeEnum.Property) {
 				((PropertyField)field).setNoOfHousesOnProperty(0);
+				guiController.setOwnableRent(field,((PropertyField) field).getFieldRent());
                 guiController.setHousesAndHotels(((PropertyField) field).getNoOfHousesOnProperty(), field);
+
             }
 			field.setFieldOwner(null);
             // Adds Field to List of FieldsToRemoveFromPlayer
@@ -223,8 +235,9 @@ public class MainControl {
             player.removeFieldFromOwnedFields(fieldToRemove);
         }
 
-        // Removes Players GUI_Car From Board.
+        // Removes Players GUI_Car From Board and Sets GUI_Player Balance to 0.
         guiController.removeGUICarFromField(player);
+        generalActionController.updatePlayerBalanceInclGui(guiController,player,-player.getAccount().getBalance());
     }
 
 	/**

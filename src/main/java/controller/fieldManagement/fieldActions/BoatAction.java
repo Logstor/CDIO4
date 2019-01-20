@@ -85,15 +85,22 @@ public class BoatAction extends FieldAction {
 	 */
 	private void buyingSequence() {
 
-		StringBuilder actionBuilder = new StringBuilder();
-		actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
-		actionBuilder.append(messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
+		if (player.getAccount().getBalance()>=currentField.getFieldCost()) {
+			StringBuilder actionBuilder = new StringBuilder();
+			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
+			actionBuilder.append(" "+ messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
 
-		// Askes if the player wants to purchase a boatField
-		if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
+			// Askes if the player wants to purchase a boatField
+			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
 
-			// Player Buys the Field.
-			generalActionController.buyField(player, currentField, guiController);
+				// Player Buys the Field.
+				generalActionController.buyField(player, currentField, guiController);
+			}
+		}
+		// Player don't have enough money to buy the field.
+		else {
+			guiController.showMessage(messageMap.get("NoMoneyToBuyField").
+					replace("%fieldName", currentField.getFieldName()));
 		}
 	}
 

@@ -22,13 +22,13 @@ LandedOnTax39;Du er landet på %fieldName og skal betale %rent i ekstra SKAT.
 LandedOnTax5;Du er landet på %fieldName og skal betale %rent i indkomst SKAT.
 LandedOnTaxOver;Du er landet på %fieldName, og besidder aktiver for mere end kr. 40.000.
 LandedOnTaxUnder;Du er landet på %fieldName, og besidder aktiver for mindre end kr. 40.000.
-TaxToPay;Og skal derfor betale %tax i SKAT.
+TaxToPay;Og skal derfor betale kr. %tax i SKAT.
 PrisonVisiting;Du er på besøg i fængslet. Dit ophold er gratis.
 PrisonSentTo;Du er landet på fængslet og du bliver sendt direkte i fængselt. Du modtager ikke kr. 4.000 selv hvis du passér 'START'.
 PropertyFirst;Du er landet på %name's ejendom, og du skal betale kr. %rent i husleje.
 PropertyWantToBuy;Du er landet på %fieldName. Vil du købe denne ejendom?
 PropertyNoMoney;Ejendommen ryger desværre på aktion, da du ikke har råd til at købe den.
-BoatMessage; Du er landet på færgen: %boat.
+BoatMessage;Du er landet på færgen: %boat.
 BoatsOwned1;%ownerName ejer denne færge og derfor skal du betale 500
 BoatsOwned2;%ownerName ejer denne færge og én anden. Derfor skal du betale 1000
 BoatsOwned3;%ownerName ejer denne færge og to andre. Derfor skal du betale 2000
@@ -54,7 +54,7 @@ WhichFieldToSellField?;Hvilken grund kunne du tænke dig at sælge?
 WhoToSellTo?;Hvem ønsker du at sælge %fieldName til?
 WhatIsSellPrice?;Hvad skal %buyer betale for %fieldName?
 FullSellDesc;%seller sælger %fieldName til %buyer for kr. %sellPrice.
-PassingStart;Du er passeret start og modtager derfor 4000 i belønning.
+PassingStart;Du er passeret 'START' og modtager derfor kr. 4000 i belønning.
 Lost;Du har ikke flere penge tilbage og derfor har du tabt spillet.
 Winner;TILLYKKE %name ! Du er vinderen af dette spil Matador.
 DoExtraAction?;Vil du benytte dig af nogle af special handlingerne?
@@ -70,5 +70,9 @@ PrisonRoll;Dette er dit %noPrisonRoll. slag, i forsøget på at komme ud af fæn
 PrisonNewRoll;Du slog desværre ikke 2 ens, prøv ingen.
 PrisonBreakout;HURRA! Du slog 2 ens og kan forlade fængslet.
 PrisonNoBreak;ØV! Du slog desværre ikke 2 ens på nogle af dine slog. Du må derfor tage runde mere i fængslet.
-PlayerFallitAnyBuyersOfFields;%name er gået fallit, men ejer %ownedFields. Er der nogle der vil købe %name's felter? Ellers har spilleren tabt og alle grunde sættes til salg igen.
+PlayerFallitAnyBuyersOfFields;%name er gået fallit, men ejer %ownedFields. Er der nogle der vil købe %name's felter? Ellers sættes %name's grunde til salg igem og spilleren har tabt.
 3EqualsRolls;Du har slået 2 ens, 3 gang i streg. Så heldig har man altså ikke lov til at være! Du sendes direkte i fængslet!
+PlayerHasLostAndOutOfGame;Du er ikke længere en del af spillet og evt. grunde du ejede vil blive sat til salgt igen.
+PlayerFallit;%name erklæres FALLIT!
+NoBuyersForYourFields;Der er desværre ikke nogle der vil købe dine ejendomme.
+NoMoneyToBuyField;Du har mindre penge på kontoen end feltet koster, så du kan desværre ikke købe %fieldName.
