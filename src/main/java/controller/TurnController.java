@@ -415,7 +415,7 @@ public class TurnController {
 
 			}
 
-		} while (preFieldActionTotalPosition<postFieldActionTotalPosition);
+		} while (preFieldActionTotalPosition != postFieldActionTotalPosition);
 
 	}
 
