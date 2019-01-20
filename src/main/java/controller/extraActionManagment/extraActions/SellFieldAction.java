@@ -115,6 +115,7 @@ public class SellFieldAction extends ExtraAction {
 
          // This there is anyone who wishes to buy any of Players Fields. Start SellField and do it.
          sellField(player);
+
     }
 
     /**
@@ -151,7 +152,7 @@ public class SellFieldAction extends ExtraAction {
         //region Finds names on possible buyers
         ArrayList<String> possibleBuyers = new ArrayList<>();
         for (Player p : playerArrayList) {
-            if (p.isHasLost()){
+            if (!p.isHasLost()){
                 if (!currentPlayer.getName().equals(p.getName())){
                     possibleBuyers.add(p.getName());
                 }
