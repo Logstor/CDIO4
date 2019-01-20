@@ -82,3 +82,4 @@ AnyBuysAuction;%name har ikke købt %fieldName. Er der andre spillere der gerne 
 WhoIsAuctionBuyer;Hvilken spiller er kommet med det højeste bud på %fieldName?
 WhatIsAuctionPrice;Hvad køber %buyer %fieldName for? (Skal minimum være feltets normalpris).
 FinalAuctionDesc;Auktionen af %fieldName er afsluttet. %buyerName har købt %fieldName for kr. %auctionPrice.
+NothingToSell;Du har ikke mere du kan sælge.

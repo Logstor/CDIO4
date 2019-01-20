@@ -351,7 +351,12 @@ public class TurnController {
 					 }
 
 					 //Asks as long as player has a negative Account Balance or no one wants to buy Players fields.
-				} while (player.getAccount().getBalance()<0);
+				} while (player.getAccount().getBalance()<0 && player.getOwnedFields().size()!=0);
+
+    			//Tells that the player has nothing to sell.
+    			if (player.getOwnedFields().size()==0) {
+    				guiController.showMessage("NothingToSell");
+				}
 			}
 		}
 	}
