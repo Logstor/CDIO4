@@ -279,11 +279,11 @@ public class TurnController {
 	private boolean raffleBreakout (Player player)
 	{
 		//region Give player "rolls" amount of chances in loop
-		for (int i = 0; i <= ROLLCHANCES; i++ )
+		for (int i = 1; i <= ROLLCHANCES; i++ )
 		{
 			// Roll the dices
 			guiController.showMessage( messageMap.get("PrisonRoll").
-					replace("%noPrisonRoll", String.valueOf(i+1)));
+					replace("%noPrisonRoll", String.valueOf(i)));
 
 
 			//Rolls and loads variables
@@ -303,7 +303,7 @@ public class TurnController {
 				return true;
 			} else {
 				// "You didnt roll two of the same, try again" message.
-				if (i!=2) {
+				if (i!=3) {
 					guiController.showMessage(messageMap.get("PrisonNewRoll"));
 				}
 			}
