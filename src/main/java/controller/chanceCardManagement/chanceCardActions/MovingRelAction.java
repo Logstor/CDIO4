@@ -64,12 +64,12 @@ public class MovingRelAction extends ChanceCardAction {
         if (((MovingRel) currentChanceCard).getRelMovement() > 0) // ChanceCardMovement is forward
         {
             generalActionController.movingPlayerForwardGUI(player, board, guiController,
-                    prePosition, postPosition, 500);
+                    prePosition, postPosition, 250);
         }
         else // ChanceCardMovement is backwards
         {
             generalActionController.movingPlayerBackwardGUI(player, board,guiController,
-                    prePosition, postPosition, 500);
+                    prePosition, postPosition, 250);
         }
     }
     

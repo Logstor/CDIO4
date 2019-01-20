@@ -51,7 +51,8 @@ public class MovingAbsAction extends ChanceCardAction {
      * @param player The Player that the action is done to.
      * @param currentCard ChanceCard passed into MovingAbs
      */
-    public void chanceCardAction (Player player, ChanceCard currentCard) {
+    public void chanceCardAction (Player player, ChanceCard currentCard)
+    {
         // Set, Display and ShowMessage ChanceCard
         setDisplayMessageChanceCardOnGUi(currentCard);
 
@@ -60,16 +61,20 @@ public class MovingAbsAction extends ChanceCardAction {
 
         prePosition = player.getPosition();
         finalPosition = ((MovingAbs) currentCard).getAbsFieldNo();
-        if (prePosition>finalPosition) {
+        
+        if (prePosition>finalPosition)
+        {
             int diffPassed = 39-prePosition;
             finalPositionUpdate = finalPosition + diffPassed + 1; // +1 for 0 in index
-        } else {
-            finalPositionUpdate= finalPosition-prePosition;
         }
+        
+        else
+            finalPositionUpdate= finalPosition-prePosition;
+        
 
         // Do actions.
         player.updatePosition(finalPositionUpdate);
-        generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,finalPosition   ,250);
+        generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,finalPosition,250);
     }
     
     /*

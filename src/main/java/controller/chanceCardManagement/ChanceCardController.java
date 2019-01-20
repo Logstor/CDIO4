@@ -5,6 +5,7 @@ import controller.GeneralActionController;
 import controller.GuiController;
 import model.board.Board;
 import model.chancecard.ChanceCard;
+import model.chancecard.cards.OutOfPrison;
 import model.player.Player;
 
 import java.util.HashMap;
@@ -80,6 +81,10 @@ public class ChanceCardController {
             case extraExpense:
                 ExtraExpenseAction extraExpenseAction = new ExtraExpenseAction(guiController,messageMap,generalActionController);
                 extraExpenseAction.chanceCardAction(player,currentChanceCard);
+                break;
+            case outOfPrison:
+                OutOfPrisonAction outOfPrisonAction = new OutOfPrisonAction(guiController,messageMap,generalActionController);
+                outOfPrisonAction.chanceCardAction(player,currentChanceCard);
                 break;
             default:
                 break;

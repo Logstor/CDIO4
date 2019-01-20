@@ -54,7 +54,7 @@ public class BreweryAction extends FieldAction {
 				generalActionController.buyField(player, currentField, guiController);
 			}
 		} else {
-			int rentFromCupValue = rentFromCupValue(player, cup);
+			int rentFromCupValue = rentFromCupValue();
 			generalActionController.payManuelRent(player, rentFromCupValue, currentField, guiController, messageMap);
 		}
 
@@ -64,9 +64,9 @@ public class BreweryAction extends FieldAction {
     ----------------------------- Support Methods ------------------------------
      */
 
-	private int rentFromCupValue (Player player, Cup cup) {
+	private int rentFromCupValue () {
 		int rentFromCupValue;
-		switch (player.getNoOfBreweriesOwned()) {
+		switch (currentField.getFieldOwner().getNoOfBreweriesOwned()) {
 			case 1:
 				rentFromCupValue = 100*cup.getCupValue();
 				break;

@@ -68,6 +68,7 @@ public class GeneralActionController {
         else if (fieldToBuy.getFieldType()==FieldTypeEnum.Brewery) {
             player.updateNoOfBreweriesOwned(1);
         }
+
     }
     
     /**
@@ -104,7 +105,6 @@ public class GeneralActionController {
     public void payManuelRent(Player player, int manualRent, Field currentField, GuiController guiController,
                               HashMap<String, String> messageMap)
     {
-
         // Update both players balance
         updatePlayerBalanceInclGui(guiController, player, -manualRent);
         updatePlayerBalanceInclGui(guiController, currentField.getFieldOwner(), manualRent);

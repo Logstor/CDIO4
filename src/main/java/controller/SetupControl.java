@@ -26,7 +26,6 @@ public class SetupControl {
     private final int STARTINGMONEY = 30000;
     private final int STARTINGPOSITION = 0;
 
-
     /*
     ------------------------ Constructors ------------------------
      */
@@ -60,8 +59,6 @@ public class SetupControl {
 	public Player[] playerSetup(GuiController guiController, HashMap<String, String> messageMap)
 	{
 
-		ArrayList PlayerNames = new ArrayList();
-
 		guiController.showMessage(messageMap.get("Welcome"));
 		
 		// Ask how many players who wants to play and Initialize Player[]
@@ -72,12 +69,17 @@ public class SetupControl {
 		tokenColorsString.add(messageMap.get("CarColor3")); tokenColorsString.add(messageMap.get("CarColor4"));
 		tokenColorsString.add(messageMap.get("CarColor5")); tokenColorsString.add(messageMap.get("CarColor6"));
 
+		ArrayList PlayerNames = new ArrayList();
+
 		for (int i = 0; i < players.length; i++) {
-			String name="";
+			String name;
 			String name1 = guiController.getUserString(messageMap.get("NamePlayer") + " " + (i+1));
 
-			//Tjekker for om navnet er optager.
-			if(PlayerNames.contains(name1)) {
+			if(name1.equals("")==true){
+				guiController.showMessage("Ugyldigt navn indtastet, venligst vælg et andet");
+				i--;
+				continue;
+			}else if(PlayerNames.contains(name1)) {
 				guiController.showMessage("Navn er taget, vælg venligst et andet");
 				i--;
 				continue;

@@ -296,10 +296,20 @@ public class Gui {
      * @param player The player which shall own the field
      * @param theField The field in focus
      */
-    public void setOwner(Player player, Field theField)
+    public void setOwner (Player player, Field theField)
     {
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
+    }
+
+    /**
+     * This method updates the showed rent of the field.
+     * @param theField The Field which needs to be updated.
+     * @param rent The new absolute rent.
+     */
+    public void setOwnableRent (Field theField, int rent)
+    {
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setRent(String.valueOf(rent));
     }
 
     /**
@@ -527,8 +537,8 @@ public class Gui {
 
                 // Create new GUI_Street
                 GUI_Street street = new GUI_Street(fields[i].getFieldName(), "Beløb: " + fields[i].getFieldCost(),
-                        fields[i].getFieldDescription(),
-                        Integer.toString(fields[i].getFieldCost()), fields[i].getFieldColor(), textColor);
+                        fields[i].getFieldDescription(),String.valueOf(((PropertyField)fields[i]).getFieldRent()),
+                        fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = street;

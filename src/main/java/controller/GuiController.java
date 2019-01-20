@@ -91,10 +91,24 @@ public class GuiController {
         return gui.getUserChoice(message, optionList);
     }
 
-
+    /**
+     *
+     * @param player
+     * @param field
+     */
     public void setOwner(Player player, Field field) {
 
         gui.setOwner(player, field);
+    }
+
+    /**
+     * This method updates the rent of the Field with the specified rent.
+     * @param theField The Field which needed updating.
+     * @param rent The new absolute rent.
+     */
+    public void setOwnableRent (Field theField, int rent)
+    {
+        gui.setOwnableRent(theField, rent);
     }
 
     public void clearFieldForInfo (Field field ){

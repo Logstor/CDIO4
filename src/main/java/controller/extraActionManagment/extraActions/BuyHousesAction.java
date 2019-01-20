@@ -97,16 +97,19 @@ public class BuyHousesAction extends ExtraAction {
         }
 
         // If fieldColorAllowedToButHousesOn is bigger than 0, it means that the Player holds of fields of the same Color.
-        if (fieldColorAllowsToPutHouseOn.size()>0) {
+        if ( fieldColorAllowsToPutHouseOn.size()>0 )
+        {
             // Properties the player owns is added to propertiesToPutHousesOn: ArrayList<PropertyFields>.
-            for (int k = 0; k < fieldColorAllowsToPutHouseOn.size(); k++) {
-                for (Field field : currentPlayer.getOwnedFields()) {
-                    if (field.getFieldType().equals(FieldTypeEnum.Property)) {
-                        if (field.getFieldColor().equals(fieldColorAllowsToPutHouseOn.get(k))) {
-                            // If Field is a PropertyField and has the allowColor it is added to the Array of PropertiesToPutHousesOn.
+            for (int k = 0; k < fieldColorAllowsToPutHouseOn.size(); k++)
+            {
+                for (Field field : currentPlayer.getOwnedFields())
+                {
+                    // Check if the field is a PropertyField and the fieldColor matches the fieldColorAllowsToPutHouseOn
+                    if (field.getFieldType().equals(FieldTypeEnum.Property) && field.getFieldColor().equals(fieldColorAllowsToPutHouseOn.get(k)))
+                    {
+                        // Make sure that there isn't 5 houses already
+                        if ( ((PropertyField)field).getNoOfHousesOnProperty() < 5 )
                             propertiesToPutHouseOn.add(((PropertyField) field));
-                        }
-
                     }
                 }
             }
@@ -119,28 +122,38 @@ public class BuyHousesAction extends ExtraAction {
     ---------------------- Support Methods ----------------------
      */
 
+    /**
+     *
+     */
     private void buyHouses ()
     {
 
         // Asks where the player wants to buy a house. DropDownMenu.
         String nameOnSelectedField = guiController.getUserChoiceProperty(messageMap.get("WhereToBuyHouse?"), propertiesToPutHouseOn);
 
-        for (PropertyField field : propertiesToPutHouseOn) {
+        for (PropertyField field : propertiesToPutHouseOn)
+        {
             // Finds the PropertyField the players wants to buy.
-            if (field.getFieldName().equals(nameOnSelectedField)) {
+            if (field.getFieldName().equals(nameOnSelectedField))
+            {
                 // Presents the player for the price of the house.
                 if (guiController.getLeftButtonPressed(messageMap.get("HouseOnPropertyCosts")
                                 .replace("%housePrice", String.valueOf(field.getFieldHousePrice())),
-                        messageMap.get("Yes"), messageMap.get("No"))) {
+                        messageMap.get("Yes"), messageMap.get("No")))
+                {
                     // If the Players still wants to buy the house the Field.noOfHousesOnProperty is updated
                     field.updateHousesOnProperty(1);
+
                     // Gui is updated with the correct number of Houses or Hotels.
                     guiController.setHousesAndHotels(field.getNoOfHousesOnProperty(), field);
+                    guiController.setOwnableRent(field, generalActionController.rentFromNoOfHouses(field));
+                    // Updates Player Balance with price of house.
+                    generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -field.getFieldHousePrice());
+
                     // Tells that the house is bought and shows the new rent on the Property.
                     guiController.showMessage(messageMap.get("BoughtHouses").replace("%fieldName", field.getFieldName())
                             .replace("%newRent", String.valueOf(generalActionController.rentFromNoOfHouses(field))));
                 }
-
             }
         }
     }
