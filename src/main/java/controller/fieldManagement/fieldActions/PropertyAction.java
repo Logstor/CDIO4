@@ -72,6 +72,7 @@ public class PropertyAction extends FieldAction {
 				if ( player.getAccount().getBalance() < field.getFieldRent() )
 				{
 					generalActionController.payManuelRent(player, player.getAccount().getBalance(), field, guiController, messageMap);
+					player.setHasLost(true);
 				}
 				
 				// Otherwise, just pay rent normally
