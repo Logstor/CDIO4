@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class BoatAction extends FieldAction {
 
-/*
+	/*
     ---------------------------------- Fields ----------------------------------
      */
 
@@ -21,14 +21,17 @@ public class BoatAction extends FieldAction {
 	private int rentFromNoOfBoats = 0;
 	private String keyForBoatsOwned = null;
 	private GeneralActionController generalActionController;
+	private Player[] players;
+
 
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public BoatAction(Player player, HashMap<String, String> messageMap, GuiController guiController,
+	public BoatAction(Player player, Player[] players,HashMap<String, String> messageMap, GuiController guiController,
 					  GeneralActionController generalActionController, Field currentField) {
 		super(player,messageMap,guiController);
+		this.players = players;
 		this.currentField = currentField;
 		this.generalActionController = generalActionController;
 	}
@@ -85,6 +88,7 @@ public class BoatAction extends FieldAction {
 	 */
 	private void buyingSequence() {
 
+		// Checks if Player have enough money to buy field.
 		if (player.getAccount().getBalance()>=currentField.getFieldCost()) {
 			StringBuilder actionBuilder = new StringBuilder();
 			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
@@ -96,11 +100,23 @@ public class BoatAction extends FieldAction {
 				// Player Buys the Field.
 				generalActionController.buyField(player, currentField, guiController);
 			}
+
+			//region Auction
+			else {
+
+				auctionField(currentField,players,generalActionController);
+
+			}
+			//endregion
 		}
 		// Player don't have enough money to buy the field.
 		else {
 			guiController.showMessage(messageMap.get("NoMoneyToBuyField").
 					replace("%fieldName", currentField.getFieldName()));
+
+			//region auction
+			auctionField(currentField,players, generalActionController);
+			//endregion
 		}
 	}
 
