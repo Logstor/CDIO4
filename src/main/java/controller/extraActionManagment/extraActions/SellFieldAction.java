@@ -93,7 +93,7 @@ public class SellFieldAction extends ExtraAction {
         String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
                 fieldsToSell);
 
-        // Find the field the Player wises to sell.
+        //region Find the field the Player wises to sell.
         Field[] fieldForSellArray = new Field[1];
         for (Field f :fieldsToSell) {
             if (f.getFieldName().equals(nameOnChosenField)){
@@ -101,41 +101,50 @@ public class SellFieldAction extends ExtraAction {
             }
         }
         Field fieldForSell = fieldForSellArray[0];
+        //endregion
 
-        // Finds names on possible buyers
+        //region Finds names on possible buyers
         ArrayList<String> possibleBuyers = new ArrayList<>();
         for (Player p : playerArrayList) {
             if (!currentPlayer.getName().equals(p.getName())){
                 possibleBuyers.add(p.getName());
             }
         }
+        //endregion
 
-        // Asks who to sell the Property for?
+        //region Asks who to sell the Property for?
         String nameOnBuyer = guiController.getUserChoice(messageMap.get("WhoToSellTo?")
                 .replace("%fieldName",fieldForSell.getFieldName()),possibleBuyers);
 
-        // Finds the Player who is the buyer.
-        Player buyer = null;
+        //endregion
+
+        //region Finds the Player who is the buyer.
+        ArrayList<Player> THEBUYER = new ArrayList<>();
         for (Player p : playerArrayList) {
             if (p.getName().equals(nameOnBuyer)) {
-                buyer=p;
+                THEBUYER.add(p);
             }
         }
+        Player buyingPlayer = THEBUYER.get(0);
+        //endregion
 
-        // Finds the sell Price
-        int sellPrice = (guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
+        //region Finds the sell Price
+        int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
                         replace("%buyer", nameOnBuyer).
                         replace("%fieldName", fieldForSell.getFieldName()),
-                0,currentPlayer.getAccount().getBalance()));
+                0,currentPlayer.getAccount().getBalance());
+        //endregion
 
+        //region Show Message of fully described Sale
         guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
                 .replace("%fieldName",fieldForSell.getFieldName())
                 .replace("%sellPrice", String.valueOf(sellPrice))
-                .replace("%buyer", buyer.getName()));
+                .replace("%buyer", buyingPlayer.getName()));
+        //endregion
 
-
-        setNewFieldOwner(currentPlayer,buyer,fieldForSell,sellPrice,guiController,generalActionController);
-
+        //region Sets the Buyer as new owner of Field and GUI_field.
+        setNewFieldOwner(currentPlayer,buyingPlayer,fieldForSell,sellPrice,guiController,generalActionController);
+        //endregion
     }
 
     /**
@@ -152,15 +161,17 @@ public class SellFieldAction extends ExtraAction {
     {
 
         // General change in values.
-        // GuiPlayers Updates.
-        generalActionController.updatePlayerBalanceInclGui(guiController,seller,1*sellPrice);
-        generalActionController.updatePlayerBalanceInclGui(guiController,buyer,-1*sellPrice);
+        //region GuiPlayers Updates.
+        generalActionController.updatePlayerBalanceInclGui(guiController,seller,sellPrice);
+        generalActionController.updatePlayerBalanceInclGui(guiController,buyer,-sellPrice);
+        //endregion
 
-        // Adds and remove FieldForSell from Player.OwnedFields incl. noOfBoats and noOfBreweries.
+        //region Adds and remove FieldForSell from Player.OwnedFields incl. noOfBoats and noOfBreweries.
         seller.removeFieldFromOwnedFields(fieldForSale);
         buyer.addFieldToOwnedFields(fieldForSale);
-        
-        //region Handle Counters in Player object
+        //endregion
+
+        //region Handle noOfBoats and noOfBreweries in Player object
         if (fieldForSale.getFieldType() == FieldTypeEnum.Boat)
         {
             seller.updateNoOfBoatsOwned(-1);
@@ -172,11 +183,11 @@ public class SellFieldAction extends ExtraAction {
         }
         //endregion
 
-        // Field and GUI_Field Updates.
+        //region Field and GUI_Field Updates.
         fieldForSale.setFieldOwner(buyer);
         guiController.setOwner(buyer,fieldForSale);
         guiController.setDottedBorderWithPlayerCarColor(buyer,fieldForSale);
-
+        //endregion
     }
 
 }

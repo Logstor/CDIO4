@@ -323,8 +323,11 @@ public class TurnController {
 	 * @param player The Player
 	 */
     private void checkIfPlayerHasLost (Player player, SellFieldAction sellFieldAction) {
+
+    	// Checks if Player Balance is below 0.
     	if(player.getAccount().getBalance()<0){
 
+    		//Checks if Player owns anything.
     		if (player.getOwnedFields().size()>0) {
 
     			do {
