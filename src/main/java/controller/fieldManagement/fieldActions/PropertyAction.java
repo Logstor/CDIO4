@@ -67,8 +67,18 @@ public class PropertyAction extends FieldAction {
 
 			//region Pay Rent
 			else {
-				// Handle the rent event, and display messages
-				generalActionController.payPropertyRent(player, field, guiController, messageMap);
+				
+				// If the currentPlayer doesn't have the money
+				if ( player.getAccount().getBalance() < field.getFieldRent() )
+				{
+					generalActionController.payManuelRent(player, player.getAccount().getBalance(), field, guiController, messageMap);
+				}
+				
+				// Otherwise, just pay rent normally
+				else {
+					// Handle the rent event, and display messages
+					generalActionController.payPropertyRent(player, field, guiController, messageMap);
+				}
 			}
 			//endregion
 		}
