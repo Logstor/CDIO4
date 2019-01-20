@@ -76,11 +76,11 @@ public class SetupControl {
 			String name1 = guiController.getUserString(messageMap.get("NamePlayer") + " " + (i+1));
 
 			if(name1.equals("")==true){
-				guiController.showMessage("Ugyldigt navn indtastet, venligst vælg et andet");
+				guiController.showMessage("InvalidName");
 				i--;
 				continue;
 			}else if(PlayerNames.contains(name1)) {
-				guiController.showMessage("Navn er taget, vælg venligst et andet");
+				guiController.showMessage("NameAlreadyTaken");
 				i--;
 				continue;
 			}else {
