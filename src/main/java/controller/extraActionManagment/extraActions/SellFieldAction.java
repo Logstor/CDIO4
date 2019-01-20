@@ -21,8 +21,7 @@ public class SellFieldAction extends ExtraAction {
     /*
     -------------------------- Fields --------------------------
      */
-    
-    private ArrayList<Field> fieldsToSell;
+
     private ArrayList<Player> playerArrayList;
     
     /*
@@ -35,9 +34,6 @@ public class SellFieldAction extends ExtraAction {
         super(guiController, messageMap, generalActionController);
         extraActionType = ExtraActionType_Enum.SellField;
         this.playerArrayList = playerArrayList;
-
-        fieldsToSell = new ArrayList<>();
-
     }
     
     /*
@@ -85,9 +81,7 @@ public class SellFieldAction extends ExtraAction {
     public void sellField (Player currentPlayer) {
 
         // Adds players owned fields to List af fieldsToSell.
-        for (Field f : currentPlayer.getOwnedFields()){
-            fieldsToSell.add(f);
-        }
+        ArrayList<Field>  fieldsToSell = currentPlayer.getOwnedFields();
 
         // Asks which field the player wises to sell. DropDownMenu.
         String nameOnChosenField = guiController.getUserChoiceFields(messageMap.get("WhichFieldToSellField?"),
@@ -132,7 +126,7 @@ public class SellFieldAction extends ExtraAction {
         int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
                         replace("%buyer", nameOnBuyer).
                         replace("%fieldName", fieldForSell.getFieldName()),
-                0,currentPlayer.getAccount().getBalance());
+                0,buyingPlayer.getAccount().getBalance()); //
         //endregion
 
         //region Show Message of fully described Sale

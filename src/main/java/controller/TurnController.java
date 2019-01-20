@@ -21,7 +21,6 @@ public class TurnController {
     /*
     -------------------------- Fields --------------------------
      */
-    private int cupValue, die1Value, die2Value;
     private int preTotalPosition, postTotalPosition;
     private int prePosition, postPosition;
     private final int ROLLCHANCES = 3;
@@ -31,6 +30,7 @@ public class TurnController {
 	private Player[] players;
 	private Cup cup;
 	private Deck deck;
+	private int equalsCounter =0;
 
 	private HashMap<String, String> messageMap;
 	private GeneralActionController generalActionController;
@@ -43,7 +43,7 @@ public class TurnController {
     ----------------------- Constructor -------------------------
      */
 
-	public TurnController(GuiController guiController, Board board, Player[] players, Cup cup, Deck deck,
+	public TurnController(GuiController guiController, Board board, Cup cup, Player[] players, Deck deck,
 						  HashMap<String, String> messageMap, ExtraActionController extraActionController)
 	{
 		this.guiController = guiController;
@@ -75,11 +75,9 @@ public class TurnController {
 
     public void playTurn (Player player)
 	{
-		int equalsCounter = 0;
-
 		do {
 
-			//region If Player is in Prison: Do Prison Logic. Else Raffle Logic incl 3 times equal dices.
+			//region If Player is in Prison: Do Prison Logic. Else Raffle.
 
 			if (player.getPrisonStat()>0) {
 				playPrisonTurn(player);
@@ -87,18 +85,22 @@ public class TurnController {
 				// Raffle Cup.
 				raffleCup(player);
 
-				// Checks if Roll is valid for an extraTurn (NO Message). Increments equalsCounter if valid.
-				if (checkIfRollIsValidForExtraTurn()) {
-					equalsCounter++;
-				}
+			}
 
-				// If player Rolls 2 equal dices, 3 times. Players is sent to prison and Player turn ends.
-				if (equalsCounter== 3) {
-					guiController.showMessage(messageMap.get("3EqualsRolls"));
-					sentPlayerToPrison(player);
-					break;
-				}
+			//endregion
 
+			//region Check for ExtraTurn and 3 times 2 equal dices.
+
+			// Checks if Roll is valid for an extraTurn (NO Message). Increments equalsCounter if valid.
+			if (checkIfRollIsValidForExtraTurn()) {
+				equalsCounter++;
+			}
+
+			// If player Rolls 2 equal dices, 3 times. Players is sent to prison and Player turn ends.
+			if (equalsCounter== 3) {
+				guiController.showMessage(messageMap.get("3EqualsRolls"));
+				sentPlayerToPrison(player);
+				break;
 			}
 
 			//endregion
@@ -152,7 +154,7 @@ public class TurnController {
 			}
 			//endregion
 
-		} while (die1Value == die2Value);
+		} while (cup.getDies()[0].getFaceValue() == cup.getDies()[1].getFaceValue());
 
 	}
 	
@@ -162,7 +164,6 @@ public class TurnController {
 	 */
 	public void playPrisonTurn (Player player)
 	{
-
 
 		// ArrayList to hold the players opportunities
 		ArrayList<String> options = new ArrayList<>(3);
@@ -188,8 +189,12 @@ public class TurnController {
 
 		//endregion
 
+		//region Tells that the Player is in Prison.
 		String chosenGetOutOption = guiController.getUserChoice( messageMap.get("InPrison")
 				.replace("%name",player.getName()), options );
+
+		//endregion
+
 		//region Decide which option the player chose
 		switch (chosenGetOutOption)
 		{
@@ -223,17 +228,15 @@ public class TurnController {
 		guiController.showMessage(messageMap.get("YourTurn").replace("%name",player.getName())+ "\n" +
 				messageMap.get("PressToRoll"));
 
-		cupValue = cup.cupRoll();
-		die1Value = cup.getDies()[0].getFaceValue();
-		die2Value = cup.getDies()[1].getFaceValue();
-		guiController.showDice(die1Value,die2Value);
+		cup.cupRoll();
+		guiController.showDice(cup.getDies()[0].getFaceValue(),cup.getDies()[1].getFaceValue());
 
 	}
 
 	private void moveRaffle (Player player)
 	{
 		// Updates Player Position.
-		player.updatePosition(cupValue);
+		player.updatePosition(cup.getCupValue());
 
 		// Updates all local pre and post variables for player.
 		calAllPreAndPostPositionAfterPlayerPositionUpdate(player);
@@ -242,7 +245,7 @@ public class TurnController {
 		generalActionController.movingPlayerForwardGUI(player,board,guiController,prePosition,postPosition,
 				250);
 		
-		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cupValue)));
+		guiController.showMessage(messageMap.get("YouRolled").replace("%cupValue", String.valueOf(cup.getCupValue())));
 
 		currentField = board.getBoard()[postPosition];
 	}
@@ -275,7 +278,7 @@ public class TurnController {
 	private boolean raffleBreakout (Player player)
 	{
 		//region Give player "rolls" amount of chances in loop
-		for (int i = 0; i < ROLLCHANCES; i++ )
+		for (int i = 0; i <= ROLLCHANCES; i++ )
 		{
 			// Roll the dices
 			guiController.showMessage( messageMap.get("PrisonRoll").
@@ -295,7 +298,7 @@ public class TurnController {
 				//TODO: Spilleren skal rykkes hans slag, ved ikke om det sker.
 
 				// Return true, as the player made it.
-
+				player.setPrisonStat(0);
 				return true;
 			} else {
 				// "You didnt roll two of the same, try again" message.

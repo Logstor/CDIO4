@@ -27,9 +27,8 @@ public class MainControl {
     private Board board;
     private Player[] players;
     private ArrayList<Player> playerArrayList;
-    private Cup cup;
     private Deck deck;
-
+    private Cup cup;
     private TurnController turnController;
     private ExtraActionController extraActionController;
     private GeneralActionController generalActionController;
@@ -43,8 +42,8 @@ public class MainControl {
 	{
 		board = new Board();
 		deck = new Deck();
+		cup = new Cup();
     	messageMap = new HashMap<>();
-    	cup = new Cup();
     	playerArrayList = new ArrayList<>();
 
 	}
@@ -123,7 +122,7 @@ public class MainControl {
 		//TODO: Er det her okay? :D // RSL
 		generalActionController = new GeneralActionController();
 		extraActionController = new ExtraActionController(playerArrayList,board,guiController,messageMap,generalActionController);
-		turnController = new TurnController(guiController, board, players, cup, deck, messageMap,extraActionController);
+		turnController = new TurnController(guiController, board,cup, players, deck, messageMap,extraActionController);
 
 
 		// Adds Players for Player[] to ArrayList<Player> playerArraylist.
@@ -137,14 +136,6 @@ public class MainControl {
 	    turnController.playTurn(player);
     }
 
-	/**
-	 *
-	 * @param player
-	 */
-	private void prisonTurn (Player player)
-	{
-		turnController.playPrisonTurn(player);
-	}
 
 	/**
 	 * Does ExtraActions if it is valid.
