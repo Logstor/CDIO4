@@ -43,7 +43,9 @@ public class PrisonAction extends FieldAction {
 
 		if (currentField.getFieldNo()==11)
 		{
-			guiController.showMessage(messageMap.get("PrisonVisiting"));
+			if (player.getPrisonStat()==0) {
+				guiController.showMessage(messageMap.get("PrisonVisiting"));
+			}
 		}
 		
 		else if(currentField.getFieldNo()==31)

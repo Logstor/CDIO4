@@ -128,7 +128,6 @@ public class TurnController {
 				checkIfPlayerHasLost(player, extraActionController.getSellFieldAction());
 
 				// If Player Has Lost the break out of turn.
-				// TODO: Kan jeg ikke godt tjekke om vi har en vinner eller om vi har en vinder, og begge Breaker.
 				if (player.isHasLost() || checkIfWeHaveAWinner()) {
 					break;
 				}
@@ -295,7 +294,6 @@ public class TurnController {
 			if ( die1 == die2 )
 			{
 				guiController.showMessage(messageMap.get("PrisonBreakout"));
-				//TODO: Spilleren skal rykkes hans slag, ved ikke om det sker.
 
 				// Return true, as the player made it.
 				player.setPrisonStat(0);
@@ -350,7 +348,12 @@ public class TurnController {
 					 }
 
 					 //Asks as long as player has a negative Account Balance or no one wants to buy Players fields.
-				} while (player.getAccount().getBalance()<0);
+				} while (player.getAccount().getBalance()<0 && player.getOwnedFields().size()!=0);
+
+    			//Tells that the player has nothing to sell.
+    			if (player.getOwnedFields().size()==0) {
+    				guiController.showMessage("NothingToSell");
+				}
 			}
 		}
 	}
@@ -414,7 +417,7 @@ public class TurnController {
 
 			}
 
-		} while (preFieldActionTotalPosition<postFieldActionTotalPosition);
+		} while (preFieldActionTotalPosition != postFieldActionTotalPosition);
 
 	}
 

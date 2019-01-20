@@ -55,9 +55,8 @@ public class MainControl {
 	 * This method starts the game.
 	 * @return Returns non-zero if an unexpected shutdown happens.
 	 */
-
-	//TODO: Refactor!
-	public int letsFuckingGo()
+	
+	public int letsGo()
 	{
 
 		try
@@ -118,8 +117,7 @@ public class MainControl {
 		players = setupControl.playerSetup(guiController, messageMap);
 		setupControl.createGUIPlayers(guiController,players);
 		guiController.showMessage(messageMap.get("GetReady"));
-
-		//TODO: Er det her okay? :D // RSL
+		
 		generalActionController = new GeneralActionController();
 		extraActionController = new ExtraActionController(playerArrayList,board,guiController,messageMap,generalActionController);
 		turnController = new TurnController(guiController, board,cup, players, deck, messageMap,extraActionController);
@@ -175,7 +173,7 @@ public class MainControl {
 	 */
 	private void findingHasLostPlayersAndRemovesThem () {
 
-		// Finds players that has lost and sell there Fields and reset them. Remove Player GUI_Car from board.
+		// Finds players that has lost and sell their Fields and reset them. Remove Player GUI_Car from board.
 		for (Player player : playerArrayList) {
 			if (player.isHasLost()){
 				// Declare player FALLIT in GUI Message

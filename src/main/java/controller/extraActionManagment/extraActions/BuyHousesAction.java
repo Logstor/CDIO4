@@ -87,7 +87,6 @@ public class BuyHousesAction extends ExtraAction {
         for (int i = 0; i < propertiesPrFieldColorBoard.length; i++){
             if (propertiesPrFieldColorBoard[i]==propertiesPrFieldColorPlayerFields[i]){
                 fieldColorAllowsToPutHouseOn.add(new Color(RGB_ColorMatchingColorCroup[i]));
-                System.out.println(propertiesPrFieldColorBoard[i]);
             }
         }
 

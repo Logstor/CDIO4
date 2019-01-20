@@ -85,6 +85,9 @@ public abstract class FieldAction {
 
 				//endregion
 
+				//region Checks if player buys with monopoly money.
+				boolean ValidMoney = false;
+				while(!ValidMoney) {
 				//region Asks that the buyer is paying for the field.
 				int auctionPrice = guiController.getUserInteger(messageMap.get("WhatIsAuctionPrice")
 								.replace("%buyer", buyersName)
@@ -93,28 +96,38 @@ public abstract class FieldAction {
 				//endregion
 
 				//region Buyer buys the field.
+					if((auctionPrice % 50) == 0) {
+						ValidMoney = true;
 
-				// Saves the original FieldCost and Sets the fieldCost temporarily to auctionPrice.
-				int origianlFieldCost = currentField.getFieldCost();
-				currentField.setFieldCost(auctionPrice);
+						// Saves the original FieldCost and Sets the fieldCost temporarily to auctionPrice.
+						int origianlFieldCost = currentField.getFieldCost();
+						currentField.setFieldCost(auctionPrice);
+
+
+						//region Final auction description
+						guiController.showMessage(messageMap.get("FinalAuctionDesc")
+								.replace("%fieldName", currentField.getFieldName())
+								.replace("%buyerName", buyingPlayer.getName())
+								.replace("%fieldName", currentField.getFieldName())
+								.replace("%auctionPrice", String.valueOf(auctionPrice)));
+						//endregion
 
 				// Buying Player buys the field.
-				generalActionController.buyField(buyingPlayer, currentField, guiController);
+						generalActionController.buyField(buyingPlayer, currentField, guiController);
 
-				// Resets the FieldCost to the original value.
-				currentField.setFieldCost(origianlFieldCost);
+						// Resets the FieldCost to the original value.
+						currentField.setFieldCost(origianlFieldCost);
+				}
+				else {
+					guiController.showMessage(messageMap.get("InvalidValuta"));
+				}
 
 				//endregion
-
-				//region Final auction description
-				guiController.showMessage(messageMap.get("FinalAuctionDesc")
-						.replace("%fieldName", currentField.getFieldName())
-						.replace("%buyerName", buyingPlayer.getName())
-						.replace("%fieldName", currentField.getFieldName())
-						.replace("%auctionPrice", String.valueOf(auctionPrice)));
+				}
 				//endregion
 			}
 			//endregion
+
 		}
 	}
 }

@@ -148,23 +148,29 @@ public class SellFieldAction extends ExtraAction {
         Player buyingPlayer = THEBUYER.get(0);
         //endregion
 
-        //region Finds the sell Price
+        //region Finds the sales price, shows a message of the fully described Sale and sets the Buyer as new owner of Field and GUI_field.
+        boolean ValidMoney = false;
+        while(!ValidMoney) {
         int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
                         replace("%buyer", buyingPlayer.getName()).
                         replace("%fieldName", fieldForSell.getFieldName()),
-                0,buyingPlayer.getAccount().getBalance()); //
+                0,buyingPlayer.getAccount().getBalance()+1);
+
+            if((sellPrice % 50) == 0) {
+                guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
+                        .replace("%fieldName", fieldForSell.getFieldName())
+                        .replace("%sellPrice", String.valueOf(sellPrice))
+                        .replace("%buyer", buyingPlayer.getName()));
+
+                ValidMoney = true;
+                setNewFieldOwner(currentPlayer,buyingPlayer,fieldForSell,sellPrice,guiController,generalActionController);
+            }
+            else{
+                guiController.showMessage(messageMap.get("InvalidValuta"));
+            }
+        }
         //endregion
 
-        //region Show Message of fully described Sale
-        guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
-                .replace("%fieldName",fieldForSell.getFieldName())
-                .replace("%sellPrice", String.valueOf(sellPrice))
-                .replace("%buyer", buyingPlayer.getName()));
-        //endregion
-
-        //region Sets the Buyer as new owner of Field and GUI_field.
-        setNewFieldOwner(currentPlayer,buyingPlayer,fieldForSell,sellPrice,guiController,generalActionController);
-        //endregion
     }
 
     /**
