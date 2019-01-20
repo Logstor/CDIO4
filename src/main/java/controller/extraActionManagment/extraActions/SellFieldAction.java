@@ -178,7 +178,7 @@ public class SellFieldAction extends ExtraAction {
 
         //region Finds the sales price, shows a message of the fully described Sale and sets the Buyer as new owner of Field and GUI_field.
         boolean ValidMoney = false;
-        while(ValidMoney==false) {
+        while(!ValidMoney) {
         int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
                         replace("%buyer", nameOnBuyer).
                         replace("%fieldName", fieldForSell.getFieldName()),
