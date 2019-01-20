@@ -55,6 +55,8 @@ public class MainControl {
 	 * This method starts the game.
 	 * @return Returns non-zero if an unexpected shutdown happens.
 	 */
+
+	//TODO: Refactor!
 	public int letsFuckingGo()
 	{
 
