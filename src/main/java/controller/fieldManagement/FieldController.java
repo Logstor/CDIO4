@@ -9,6 +9,8 @@ import model.board.fields.PropertyField;
 import model.chancecard.Deck;
 import model.cup.Cup;
 import model.player.Player;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -25,12 +27,15 @@ public class FieldController {
 	private GeneralActionController generalActionController;
 	private Board board;
 	private Deck deck;
+	private Player[] players;
+
     /*
     ------------------------------ Constructors --------------------------------
      */
 	
-	public FieldController ( Board board, Deck deck,GuiController guiController,HashMap<String, String> messageMap,
+	public FieldController ( Board board, Player[] players, Deck deck,GuiController guiController,HashMap<String, String> messageMap,
 							 Cup cup, GeneralActionController generalActionController) {
+		this.players = players;
 		this.guiController = guiController;
 		this.messageMap = messageMap;
 		this.cup = cup;
@@ -50,7 +55,7 @@ public class FieldController {
         switch (currentField.getFieldType())
 		{
             case Property:
-				PropertyAction propertyAction = new PropertyAction(player, messageMap, (PropertyField)currentField,
+				PropertyAction propertyAction = new PropertyAction(player, players, messageMap, (PropertyField)currentField,
 						guiController, generalActionController);
 				propertyAction.action();
                 break;

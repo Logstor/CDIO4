@@ -6,6 +6,7 @@ import controller.fieldManagement.FieldAction;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -18,7 +19,8 @@ public class PropertyAction extends FieldAction {
      */
 
 	private PropertyField field;
-	private GeneralActionController generalAction;
+	private GeneralActionController generalActionController;
+	private Player[] players;
     
     /*
     ------------------------------ Constructors --------------------------------
@@ -31,12 +33,13 @@ public class PropertyAction extends FieldAction {
 	 * @param field The PropertyField the player landed on.
 	 * @param guiController The GuiController.
 	 */
-	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController,
+	public PropertyAction(Player player, Player[] players, HashMap<String, String> messageMap, PropertyField field, GuiController guiController,
 						  GeneralActionController generalActionController)
 	{
 		super(player,messageMap,guiController);
+		this.players = players;
 		this.field = field;
-		this.generalAction = generalActionController;
+		this.generalActionController = generalActionController;
 	}
 
 	/*
@@ -65,7 +68,7 @@ public class PropertyAction extends FieldAction {
 			//region Pay Rent
 			else {
 				// Handle the rent event, and display messages
-				generalAction.payPropertyRent(player, field, guiController, messageMap);
+				generalActionController.payPropertyRent(player, field, guiController, messageMap);
 			}
 			//endregion
 		}
@@ -93,14 +96,14 @@ public class PropertyAction extends FieldAction {
 					field.getFieldName()),
 					messageMap.get("Yes"), messageMap.get("No")))
 			{
-				generalAction.buyField(player, field, guiController);
+				generalActionController.buyField(player, field, guiController);
 			}
 
 			// Otherwise, player don't want to
 			else
 			{
 				//region auction
-
+				auctionField(field , players, generalActionController);
 				//endregion
 			}
 		}
@@ -111,7 +114,7 @@ public class PropertyAction extends FieldAction {
 			guiController.showMessage(messageMap.get("PropertyNoMoney"));
 
 			//region auction
-
+			auctionField(field,players, generalActionController);
 			//endregion
 		}
 	}

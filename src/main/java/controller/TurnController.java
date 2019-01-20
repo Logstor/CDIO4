@@ -56,7 +56,7 @@ public class TurnController {
 		this.generalActionController = new GeneralActionController();
 		this.extraActionController = extraActionController;
 
-		fieldController = new FieldController(board, deck, guiController,
+		fieldController = new FieldController(board, players, deck, guiController,
 				messageMap, cup, generalActionController);
 
 	}

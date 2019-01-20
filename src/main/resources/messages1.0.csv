@@ -76,3 +76,7 @@ PlayerHasLostAndOutOfGame;Du er ikke længere en del af spillet og evt. grunde d
 PlayerFallit;%name erklæres FALLIT!
 NoBuyersForYourFields;Der er desværre ikke nogle der vil købe dine ejendomme.
 NoMoneyToBuyField;Du har mindre penge på kontoen end feltet koster, så du kan desværre ikke købe %fieldName.
+AnyBuysAuction;%name har ikke købt %fieldName. Er der andre spillere der gerne vil købe %fieldName?
+WhoIsAuctionBuyer;Hvilken spiller er kommet med det højeste bud på %fieldName?
+WhatIsAuctionPrice;Hvad køber %buyer %fieldName for? (Skal minimum være feltets normalpris).
+FinalAuctionDesc;Auktionen af %fieldName er afsluttet. %buyerName har købt feltet for %auctionPrice.
