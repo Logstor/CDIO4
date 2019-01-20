@@ -245,7 +245,7 @@ public class MainControl {
 	 * Runs through all Players in Player[] players and remove the player from the Arraylist if Player Has Lost.
 	 */
 	private void removesHasLostPlayersFromPlayerArrayList () {
-		for (Player player : pl) {
+		for (Player player : playerArrayList) {
 			if (player.isHasLost()) {
 				playerArrayList.remove(player);
 			}
