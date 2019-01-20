@@ -176,7 +176,7 @@ public class MainControl {
 	 */
 	private void findingHasLostPlayersAndRemovesThem () {
 
-		// Finds players that has lost and sell there Fields and reset them. Remove Player GUI_Car from board.
+		// Finds players that has lost and sell their Fields and reset them. Remove Player GUI_Car from board.
 		for (Player player : playerArrayList) {
 			if (player.isHasLost()){
 				// Declare player FALLIT in GUI Message
@@ -245,7 +245,7 @@ public class MainControl {
 	 * Runs through all Players in Player[] players and remove the player from the Arraylist if Player Has Lost.
 	 */
 	private void removesHasLostPlayersFromPlayerArrayList () {
-		for (Player player : players) {
+		for (Player player : pl) {
 			if (player.isHasLost()) {
 				playerArrayList.remove(player);
 			}

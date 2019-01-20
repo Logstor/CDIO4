@@ -69,7 +69,7 @@ public class PropertyAction extends FieldAction {
 			else {
 				
 				// If the currentPlayer doesn't have the money
-				if ( player.getAccount().getBalance() < generalActionController.rentFromNoOfHouses(field) )
+				if ( player.getAccount().getBalance() < generalActionController.rentFromNoOfHouses(field))
 				{
 					generalActionController.payManuelRent(player, player.getAccount().getBalance(), field, guiController, messageMap);
 					player.setHasLost(true);
