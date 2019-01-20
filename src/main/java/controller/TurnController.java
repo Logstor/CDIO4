@@ -84,7 +84,6 @@ public class TurnController {
 			} else {
 				// Raffle Cup.
 				raffleCup(player);
-
 			}
 
 			//endregion
@@ -92,12 +91,10 @@ public class TurnController {
 			//region Check for ExtraTurn and 3 times 2 equal dices.
 
 			// Checks if Roll is valid for an extraTurn (NO Message). Increments equalsCounter if valid.
-			if (checkIfRollIsValidForExtraTurn()) {
-				equalsCounter++;
-			}
+			checkIfRollIsValidForExtraTurn();
 
 			// If player Rolls 2 equal dices, 3 times. Players is sent to prison and Player turn ends.
-			if (equalsCounter== 3) {
+			if (equalsCounter == 3) {
 				guiController.showMessage(messageMap.get("3EqualsRolls"));
 				sentPlayerToPrison(player);
 				break;
@@ -256,8 +253,10 @@ public class TurnController {
         int die2 = cup.getDies()[1].getFaceValue();
 
         if(die1==die2){
+        	equalsCounter++;
             return true;
         } else {
+        	equalsCounter=0;
         	return false;
 		}
     }
