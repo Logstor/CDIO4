@@ -21,13 +21,15 @@ public class BreweryAction extends FieldAction {
 	private Cup cup;
 	private Field currentField;
 	private GeneralActionController generalActionController;
+	private Player[] players;
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public BreweryAction(Player player, HashMap<String, String> messageMap,GuiController guiController,
+	public BreweryAction(Player player,Player[] players, HashMap<String, String> messageMap,GuiController guiController,
 						 Cup cup, Field currentField, GeneralActionController generalActionController) {
 		super(player,messageMap,guiController);
+		this.players = players;
 		this.cup = cup;
 		this.currentField = currentField;
 		this.generalActionController = generalActionController;
@@ -86,6 +88,22 @@ public class BreweryAction extends FieldAction {
 			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
 				generalActionController.buyField(player, currentField, guiController);
 			}
+			// Player doesnt wishes to buy the field
+			//region Auction field.
+			else {
+				auctionField(currentField,players,generalActionController);
+			}
+			//endregion
+
+		} else {
+
+    		// Player doesn't have enough money to buy field.
+			guiController.showMessage(messageMap.get("NoMoneyToBuyField").
+					replace("%fieldName", currentField.getFieldName()));
+
+			//region Auction field.
+				auctionField(currentField,players,generalActionController);
+			//endregion
 		}
 	}
 

@@ -178,7 +178,7 @@ public class SellFieldAction extends ExtraAction {
 
         //region Finds the sell Price
         int sellPrice = guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
-                        replace("%buyer", nameOnBuyer).
+                        replace("%buyer", buyingPlayer.getName()).
                         replace("%fieldName", fieldForSell.getFieldName()),
                 0,buyingPlayer.getAccount().getBalance()); //
         //endregion
