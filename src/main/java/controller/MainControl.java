@@ -45,7 +45,6 @@ public class MainControl {
 		cup = new Cup();
     	messageMap = new HashMap<>();
     	playerArrayList = new ArrayList<>();
-
 	}
     
     /*
@@ -70,8 +69,7 @@ public class MainControl {
 
                     turn(currentPlayer);
 
-                    // TODO: PT kan du godt lave extrahandlinger, selvom du sidder i fængsel. Er det Okay?
-                    if (!currentPlayer.isHasLost()) {
+                    if (extraActionChecker(currentPlayer)){
 						extraActions(currentPlayer);
 					}
                 }
@@ -145,6 +143,16 @@ public class MainControl {
 		if (extraActionController.isExtraActionsValid(currentPlayer)){
 			extraActionController.doExtraAction(currentPlayer);
 		}
+	}
+
+	private boolean extraActionChecker (Player currentPlayer) {
+
+		if (!currentPlayer.isHasLost()){
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	/**

@@ -100,7 +100,7 @@ public class SellFieldAction extends ExtraAction {
         //region Finds names on possible buyers
         ArrayList<String> possibleBuyers = new ArrayList<>();
         for (Player p : playerArrayList) {
-            if (p.getAccount().getBalance()>0){
+            if (p.getAccount().getBalance()>=0){
                 if (!currentPlayer.getName().equals(p.getName())){
                     possibleBuyers.add(p.getName());
                 }
