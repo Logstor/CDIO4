@@ -46,6 +46,7 @@ ToPrisonAction;Du bliver sent direkte i fængslet og modtager ikke
 PayExtraExpense;Vi har talt samme og regnet på det. Du skal betale %extraExpense i ekstra udgifter til dine huse og hoteller.
 NoExtraExpense;Da du ikke ejer hverken huse eller hoteller, skal du intet betale.
 WantToBuyHouse?;Kunne du tænke dig at købe nogle huse?
+NotEnoughMoneyForAHouse;Du har desværre ikke råd til at hus på %fieldName.
 WhereToBuyHouse?;På hvilken grund kunne du godt tænkte dig at købe et hus?
 HouseOnPropertyCosts;Huse på denne grund koster kr. %housePrice. Vil du stadig gerne købe et hus?
 BoughtHouses;Du købte 1 hus på %fieldName og huslejen på grunden er hævet til kr. %newRent.

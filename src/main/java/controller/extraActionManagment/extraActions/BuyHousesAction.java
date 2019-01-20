@@ -143,23 +143,29 @@ public class BuyHousesAction extends ExtraAction {
             // Finds the PropertyField the players wants to buy.
             if (field.getFieldName().equals(nameOnSelectedField))
             {
-                // Presents the player for the price of the house.
-                if (guiController.getLeftButtonPressed(messageMap.get("HouseOnPropertyCosts")
-                                .replace("%housePrice", String.valueOf(field.getFieldHousePrice())),
-                        messageMap.get("Yes"), messageMap.get("No")))
-                {
-                    // If the Players still wants to buy the house the Field.noOfHousesOnProperty is updated
-                    field.updateHousesOnProperty(1);
+                // Checks if player can afford a house on this field.
+                if (currentPlayer.getAccount().getBalance()>=field.getFieldHousePrice()) {
+                    // Presents the player for the price of the house.
+                    if (guiController.getLeftButtonPressed(messageMap.get("HouseOnPropertyCosts")
+                                    .replace("%housePrice", String.valueOf(field.getFieldHousePrice())),
+                            messageMap.get("Yes"), messageMap.get("No"))) {
+                        // If the Players still wants to buy the house the Field.noOfHousesOnProperty is updated
+                        field.updateHousesOnProperty(1);
 
-                    // Gui is updated with the correct number of Houses or Hotels.
-                    guiController.setHousesAndHotels(field.getNoOfHousesOnProperty(), field);
-                    guiController.setOwnableRent(field, generalActionController.rentFromNoOfHouses(field));
-                    // Updates Player Balance with price of house.
-                    generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -field.getFieldHousePrice());
+                        // Gui is updated with the correct number of Houses or Hotels.
+                        guiController.setHousesAndHotels(field.getNoOfHousesOnProperty(), field);
+                        guiController.setOwnableRent(field, generalActionController.rentFromNoOfHouses(field));
+                        // Updates Player Balance with price of house.
+                        generalActionController.updatePlayerBalanceInclGui(guiController, currentPlayer, -field.getFieldHousePrice());
 
-                    // Tells that the house is bought and shows the new rent on the Property.
-                    guiController.showMessage(messageMap.get("BoughtHouses").replace("%fieldName", field.getFieldName())
-                            .replace("%newRent", String.valueOf(generalActionController.rentFromNoOfHouses(field))));
+                        // Tells that the house is bought and shows the new rent on the Property.
+                        guiController.showMessage(messageMap.get("BoughtHouses").replace("%fieldName", field.getFieldName())
+                                .replace("%newRent", String.valueOf(generalActionController.rentFromNoOfHouses(field))));
+                    }
+                } else {
+                    // Tells that the players doesn't have enough money for the house.
+                    guiController.showMessage(messageMap.get("NotEnoughMoneyForAHouse")
+                            .replace("%fieldName",field.getFieldName()));
                 }
             }
         }
