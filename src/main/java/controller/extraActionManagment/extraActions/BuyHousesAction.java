@@ -27,7 +27,7 @@ public class BuyHousesAction extends ExtraAction {
     private ArrayList<PropertyField> propertiesToPutHouseOn;
     private int[] RGB_ColorMatchingColorCroup;
     private int[] propertiesPrFieldColorBoard;
-    private int[] propertiesPrFieldColorPlayerFields;
+
 
     private Board board;
     
@@ -45,7 +45,7 @@ public class BuyHousesAction extends ExtraAction {
         propertiesToPutHouseOn = new ArrayList<>();
         RGB_ColorMatchingColorCroup = new int[8];
         propertiesPrFieldColorBoard = new int[8];
-        propertiesPrFieldColorPlayerFields = new int[8];
+
 
         addsAndCountsPropertiesToArray();
     }
@@ -75,7 +75,7 @@ public class BuyHousesAction extends ExtraAction {
     }
 
     public boolean checkIfPlayerIsValidForBuyHouses (Player currentPlayer) {
-
+        int[] propertiesPrFieldColorPlayerFields= new int[8];
         // Sets the FieldPrColorCounterArray, with data from ArrayList of Fields that Player Owns.
         propertiesPrFieldColorCounter(propertiesPrFieldColorPlayerFields,currentPlayer.getOwnedFields());
 
@@ -83,9 +83,11 @@ public class BuyHousesAction extends ExtraAction {
         // If yes, that FieldColor is added to an ArrayList of Color.
         // Fields with this Color is allowed to buy Houses on.
         ArrayList<Color> fieldColorAllowsToPutHouseOn = new ArrayList<>();
+
         for (int i = 0; i < propertiesPrFieldColorBoard.length; i++){
             if (propertiesPrFieldColorBoard[i]==propertiesPrFieldColorPlayerFields[i]){
                 fieldColorAllowsToPutHouseOn.add(new Color(RGB_ColorMatchingColorCroup[i]));
+                System.out.println(propertiesPrFieldColorBoard[i]);
             }
         }
 
