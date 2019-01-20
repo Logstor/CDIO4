@@ -74,15 +74,6 @@ public class BuyHousesAction extends ExtraAction {
 
     public boolean checkIfPlayerIsValidForBuyHouses (Player currentPlayer) {
 
-        //Adds Properties on board to ArrayList of Fields
-        for (Field f : board.getBoard()){
-            if (f.getFieldType().equals(FieldTypeEnum.Property)){
-                propertyFieldsInBoard.add(f);
-            }
-        }
-        // Sets the FieldPrColorCounterArray, with data from ArrayList of Properties on board.
-        propertiesPrFieldColorCounter(propertiesPrFieldColorBoard,propertyFieldsInBoard);
-
         // Sets the FieldPrColorCounterArray, with data from ArrayList of Fields that Player Owns.
         propertiesPrFieldColorCounter(propertiesPrFieldColorPlayerFields,currentPlayer.getOwnedFields());
 
@@ -121,6 +112,18 @@ public class BuyHousesAction extends ExtraAction {
     /*
     ---------------------- Support Methods ----------------------
      */
+
+    private void addsAndCountsPropertiesToArray(){
+        //Adds Properties on board to ArrayList of Fields
+        for (Field f : board.getBoard()){
+            if (f.getFieldType().equals(FieldTypeEnum.Property)){
+                propertyFieldsInBoard.add(f);
+            }
+        }
+
+        // Sets the FieldPrColorCounterArray, with data from ArrayList of Properties on board.
+        propertiesPrFieldColorCounter(propertiesPrFieldColorBoard,propertyFieldsInBoard);
+    }
 
     /**
      *
