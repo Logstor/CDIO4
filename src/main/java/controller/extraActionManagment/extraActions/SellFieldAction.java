@@ -58,12 +58,63 @@ public class SellFieldAction extends ExtraAction {
             sellField(player);
         }
     }
+            /*
+            // Find the field the Player wises to sell.
+            Field[] fieldForSellArray = new Field[1];
+            for (Field f :fieldsToSell) {
+                if (f.getFieldName().equals(nameOnChosenField)){
+                    fieldForSellArray[0] =f;
+                }
+            }
+            Field fieldForSell = fieldForSellArray[0];
+
+            // Finds names on possible buyers
+            ArrayList<String> possibleBuyers = new ArrayList<>();
+            for (Player p : players) {
+                if (!currentPlayer.getName().equals(p.getName())){
+                    possibleBuyers.add(p.getName());
+                }
+            }
+
+            // Asks who to sell the Property for?
+            String nameOnBuyer = guiController.getUserChoice(messageMap.get("WhoToSellTo?")
+                    .replace("%fieldName",fieldForSell.getFieldName()),possibleBuyers);
+
+            // Finds the Player who is the buyer.
+            Player buyer = null;
+            for (Player p : players) {
+                if (p.getName().equals(nameOnBuyer)) {
+                    buyer=p;
+                }
+            }
+
+            boolean ValidMoney = false;
+
+            while(ValidMoney==false) {
+                // Finds the sell Price
+                int sellPrice = (guiController.getUserInteger(messageMap.get("WhatIsSellPrice?").
+                                replace("%buyer", nameOnBuyer).
+                                replace("%fieldName", fieldForSell.getFieldName()),
+                        0, buyer.getAccount().getBalance()));
+
+                if((sellPrice % 50) == 0) {
+                guiController.showMessage(messageMap.get("FullSellDesc").replace("%seller", currentPlayer.getName())
+                        .replace("%fieldName", fieldForSell.getFieldName())
+                        .replace("%sellPrice", String.valueOf(sellPrice))
+                        .replace("%buyer", buyer.getName()));
+
+                    ValidMoney = true;
+                    setNewFieldOwner(currentPlayer, buyer, fieldForSell, sellPrice, guiController, generalActionController);
+                }else {
+                    guiController.showMessage(messageMap.get("InvalidValuta"));
+                }
+                */
+
 
     public void forceSellField (Player player) {
 
          // This there is anyone who wishes to buy any of Players Fields. Start SellField and do it.
          sellField(player);
-
     }
 
     /**
