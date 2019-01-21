@@ -11,7 +11,7 @@ Welcome;Velkommen til spillet Matador!
 GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
 NamePlayer;Indtast navnet på spiller
 InvalidName;Ugyldigt navn indtastet, venligst vælg et andet
-NameAlreadyTaken;"Navn er taget, vælg venligst et andet"""
+NameAlreadyTaken;Navn er taget, vælg venligst et andet
 PickColorForToken;Vælg en farve til din spillerbrik:
 TokenSelected;Du valgte
 GetReady;Så er alle vist på plads og spillet kan endelig begynde!
@@ -85,4 +85,3 @@ WhoIsAuctionBuyer;Hvilken spiller er kommet med det højeste bud på %fieldName?
 WhatIsAuctionPrice;Hvad køber %buyer %fieldName for? (Skal minimum være feltets normalpris).
 FinalAuctionDesc;Auktionen af %fieldName er afsluttet. %buyerName har købt %fieldName for kr. %auctionPrice.
 NothingToSell;Du har intet du kan sælge
-
