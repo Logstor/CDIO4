@@ -9,7 +9,7 @@ Yes;Ja
 No;Nej
 Welcome;Velkommen til spillet Matador!
 GetPlayers;Hvor mange skal være med? Min. 3 og Maks. 6.
-NamePlayer;Indtast navnet på spiller
+NamePlayer;Indtast navnet på spilleren
 InvalidName;Ugyldigt navn indtastet, venligst vælg et andet
 NameAlreadyTaken;"Navn er taget, vælg venligst et andet"""
 PickColorForToken;Vælg en farve til din spillerbrik:

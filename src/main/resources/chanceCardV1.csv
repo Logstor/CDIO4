@@ -27,8 +27,8 @@ card25;moneyBank;Betal for vognvask og smøring kr. 300;-300;0;0;0;0
 card26;moneyBank;De modtager Deres aktieudbytte. Modtage kr. 1.000 af banken.;1000;0;0;0;0
 card27;moneyBank;De havde en række med elleve rigtige i tipning. Modtag kr. 1.000.;1000;0;0;0;0
 card28;moneyBank;De har kørt frem for 'Fuldt stop'. Betal kr. 1.000 i bøde.;-1000;0;0;0;0
-card29;movingAbs;Tag ind på Rådhuspladsen.;0;0;0;39;0
-card30;movingAbs;Ryk frem til 'START'.;0;0;0;0;0
+card29;movingAbs;Tag ind på Rådhuspladsen. Hvis de passerer 'START' modtager de 4.000 kr.;0;0;0;39;0
+card30;movingAbs;Ryk frem til 'START' og modtag 4.000 kr.;0;0;0;0;0
 card31;movingAbs;Ryk frem til Vimmelskaftet. Hvis De passerer 'START', indkassér da kr. 4.000;0;0;0;32;0
 card32;movingAbs;Ryk frem til Frederiksberg Allé. Hvis De passerer 'START', indkassér da kr. 4.000;0;0;0;11;0
 card33;movingAbs;Tag med Mols-Linien. Flyt brikken frem, og hvis De passerer 'START', indkassér da kr. 4.000;0;0;0;15;0
