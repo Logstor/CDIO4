@@ -85,3 +85,11 @@ WhoIsAuctionBuyer;Hvilken spiller er kommet med det højeste bud på %fieldName?
 WhatIsAuctionPrice;Hvad køber %buyer %fieldName for? (Skal minimum være feltets normalpris).
 FinalAuctionDesc;Auktionen af %fieldName er afsluttet. %buyerName har købt %fieldName for kr. %auctionPrice.
 NothingToSell;Du har intet du kan sælge
+WantToPledgeFields?;Har du nogle felter du gerne vil pantsætte?
+WhatFieldToPledge?;Vælg det felt du gerne vil pantsætte.
+FullPledgeDesc;%name bekræfter hermed at %fieldName pantsættes og kr. %pledgePrice udbetales to %name.
+DeniedPledge;%name pantsatte IKKE %fieldName alligevel.
+WantToUnPledgeField?;Kunne du tænke dig at tilbagekøbe nogle af dine pantsatte felter?
+WhatFieldToUnPledge?;Vælg det felt du gerne vil tilbagekøbe fra pantsat.
+FullUnPledgeDesc;%name bekræfter hermed at %fieldName tilbagekøbes fra at være pantsat. Denne handling koster kr. %unPledgePrice.
+DeniedUnPledge;%name tilbagekøbte IKKE %fieldName alligevel.

@@ -127,16 +127,4 @@ public class FieldTest {
 
     }
 
-    @Test
-    public void isForSale() {
-        Field field = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",2000, Color.blue, 200,1000,400,700,1000,1300,1700);
-        assertEquals(field.isForSale(),true);
-    }
-
-    @Test
-    public void setForSale() {
-        Field field = new PropertyField(5,FieldTypeEnum.Property,"Test3","tester",2000, Color.blue, 200,1000,400,700,1000,1300,1700);
-        field.setForSale(false);
-        assertEquals(field.isForSale(),false);
-    }
 }

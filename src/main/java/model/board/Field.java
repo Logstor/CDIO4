@@ -1,7 +1,6 @@
 package model.board;
 
 import model.player.Player;
-import model.cup.*;
 
 import java.awt.*;
 
@@ -22,7 +21,7 @@ public abstract class Field {
     protected String actionText;
     protected String fieldDescription;
     protected Player fieldOwner;
-    protected boolean forSale;
+    protected boolean pledged;
     
     /*
     ----------------------- Constructor -------------------------
@@ -38,6 +37,7 @@ public abstract class Field {
         this.fieldCost = fieldCost;
         this.fieldColor = fieldColor;
         fieldOwner = null;
+        pledged = false;
     }
     
     /*
@@ -110,12 +110,12 @@ public abstract class Field {
         this.fieldDescription = fieldDescription;
     }
 
-    public boolean isForSale() {
-        return forSale;
+    public boolean isPledged() {
+        return pledged;
     }
 
-    public void setForSale(boolean forSale) {
-        this.forSale = forSale;
+    public void setPledged(boolean pledged) {
+        this.pledged = pledged;
     }
 
     // </editor-folder>

@@ -2,8 +2,6 @@ package model.board.fields;
 
 import model.board.Field;
 import model.board.FieldTypeEnum;
-import model.cup.*;
-import model.player.Player;
 
 import java.awt.*;
 
@@ -36,7 +34,7 @@ public class PropertyField extends Field {
     {
         super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
-        forSale = true;
+        pledged = true;
 
         this.fieldRent = fieldRent;
         this.fieldHousePrice = fieldHousePrice;

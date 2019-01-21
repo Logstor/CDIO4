@@ -2,8 +2,6 @@ package model.board.fields;
 
 import model.board.Field;
 import model.board.FieldTypeEnum;
-import model.cup.*;
-import model.player.Player;
 
 import java.awt.*;
 
@@ -25,7 +23,7 @@ public class PrisonField extends Field {
 
     public PrisonField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
-        forSale = false;
+        pledged = false;
     }
     
     /*
