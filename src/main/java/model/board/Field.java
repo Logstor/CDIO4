@@ -28,17 +28,16 @@ public abstract class Field {
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,String fieldDescription, int fieldCost, Color fieldColor) {
+    protected Field (int fieldNo, FieldTypeEnum fieldType, String fieldName,
+                     String fieldDescription, int fieldCost, Color fieldColor) {
 
-        this.fieldNo=fieldNo;
-        this.fieldType= fieldType;
+        this.fieldNo = fieldNo;
+        this.fieldType = fieldType;
         this.fieldName = fieldName;
         this.fieldDescription = fieldDescription;
         this.fieldCost = fieldCost;
-        this.fieldColor=fieldColor;
+        this.fieldColor = fieldColor;
         fieldOwner = null;
-
-
     }
     
     /*
@@ -139,10 +138,6 @@ public abstract class Field {
 
         return toStringBuilder.toString();
     }
-    
-    protected abstract void fieldAction (Player player);
-
-    protected abstract void fieldAction (Player player, Cup cup);
 
     /*
     ---------------------- Support Methods ----------------------

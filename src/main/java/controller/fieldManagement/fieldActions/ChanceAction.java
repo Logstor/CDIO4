@@ -1,6 +1,6 @@
 package controller.fieldManagement.fieldActions;
 
-import controller.ChanceCardManageMent.ChanceCardController;
+import controller.chanceCardManagement.ChanceCardController;
 import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.FieldAction;
@@ -52,7 +52,6 @@ public class ChanceAction extends FieldAction {
 	public void action() {
 
 		ChanceCard drawedCard = deck.drawChanceCard();
-		guiController.setCCard(drawedCard.getCardText());
 		chanceCardController.doChanceCardActionFromCardType(player, drawedCard);
 
     }

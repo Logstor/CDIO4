@@ -1,11 +1,11 @@
-package controller.ChanceCardManageMent;
+package controller.chanceCardManagement;
 
-import controller.ChanceCardManageMent.ChanceCardActions.MoneyBankAction;
-import controller.ChanceCardManageMent.ChanceCardActions.MovingRelAction;
+import controller.chanceCardManagement.chanceCardActions.*;
 import controller.GeneralActionController;
 import controller.GuiController;
 import model.board.Board;
 import model.chancecard.ChanceCard;
+import model.chancecard.cards.OutOfPrison;
 import model.player.Player;
 
 import java.util.HashMap;
@@ -19,10 +19,6 @@ public class ChanceCardController {
     /*
     -------------------------- Fields --------------------------
      */
-
-    // ChanceCardActions
-    private MoneyBankAction moneyBankAction;
-    private MovingRelAction movingRelAction;
 
     private GuiController guiController;
     private GeneralActionController generalActionController;
@@ -40,10 +36,6 @@ public class ChanceCardController {
         this.messageMap = messageMap;
         this.board = board;
 
-
-        // ActionClasses
-        moneyBankAction = new MoneyBankAction(guiController,messageMap,generalActionController);
-        movingRelAction = new MovingRelAction(guiController, messageMap,generalActionController,board);
     }
     
     /*
@@ -67,13 +59,32 @@ public class ChanceCardController {
     public void doChanceCardActionFromCardType (Player player, ChanceCard currentChanceCard) {
         switch (currentChanceCard.getCardType()) {
             case moneyBank:
+                MoneyBankAction moneyBankAction = new MoneyBankAction(guiController,messageMap,generalActionController);
                 moneyBankAction.chanceCardAction(player,currentChanceCard);
                 break;
             case movingAbs:
-
+                MovingAbsAction movingAbsAction = new MovingAbsAction(guiController,messageMap,generalActionController,board);
+                movingAbsAction.chanceCardAction(player,currentChanceCard);
                 break;
             case movingRel:
+                MovingRelAction movingRelAction = new MovingRelAction(guiController, messageMap,generalActionController,board);
                 movingRelAction.chanceCardAction(player, currentChanceCard);
+                break;
+            case matadorLegat:
+                MatadorLegatAction matadorLegatAction = new MatadorLegatAction(guiController,messageMap,generalActionController);
+                matadorLegatAction.chanceCardAction(player,currentChanceCard);
+                break;
+            case toPrison:
+                ToPrisonAction toPrisonAction = new ToPrisonAction(guiController,messageMap,generalActionController,board);
+                toPrisonAction.chanceCardAction(player,currentChanceCard);
+                break;
+            case extraExpense:
+                ExtraExpenseAction extraExpenseAction = new ExtraExpenseAction(guiController,messageMap,generalActionController);
+                extraExpenseAction.chanceCardAction(player,currentChanceCard);
+                break;
+            case outOfPrison:
+                OutOfPrisonAction outOfPrisonAction = new OutOfPrisonAction(guiController,messageMap,generalActionController);
+                outOfPrisonAction.chanceCardAction(player,currentChanceCard);
                 break;
             default:
                 break;
@@ -81,10 +92,7 @@ public class ChanceCardController {
         }
     }
 
-
     /*
     ---------------------- Support Methods ----------------------
      */
-
-
 }

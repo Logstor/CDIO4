@@ -1,4 +1,4 @@
-package controller.ChanceCardManageMent;
+package controller.chanceCardManagement;
 
 import controller.GeneralActionController;
 import controller.GuiController;
@@ -56,12 +56,13 @@ public abstract class ChanceCardAction {
      * Show "YourDrawedChanceCard" on Gui and sets "ChanceCardTop" and ChanceCardText at GUI ChanceCardField.
      * @param currentChanceCard This is the ChanceCard that is showed.
      */
-    public void showAndSetChanceCardOnGUi (ChanceCard currentChanceCard) {
+    public void setDisplayMessageChanceCardOnGUi(ChanceCard currentChanceCard) {
         StringBuilder chanceCardToDisplayBuilder = new StringBuilder();
         chanceCardToDisplayBuilder.append(messageMap.get("ChanceCardTop") + "\n");
         chanceCardToDisplayBuilder.append(currentChanceCard.getCardText());
 
         guiController.setCCard(chanceCardToDisplayBuilder.toString());
+        guiController.displayCCard();
         guiController.showMessage(messageMap.get("YouDrawedChanceCard"));
     }
     

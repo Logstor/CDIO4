@@ -53,23 +53,7 @@ public class MovingAbs extends ChanceCard {
         toStringBuilder.append("ChanceCard Moving to FieldNo: " + absFieldNo);
 
         return toStringBuilder.toString();
-
     }
-
-
-    public void cardAction (Player player) {
-
-        int prePosition = player.getPosition();
-        int finalPositionUpdate;
-        if (prePosition>absFieldNo) {
-            finalPositionUpdate = absFieldNo + (39-prePosition) + 1; // +1 for 0 in index
-        } else {
-            finalPositionUpdate= absFieldNo-prePosition;
-        }
-        player.updatePosition(finalPositionUpdate);
-    }
-    
-    
     /*
     ---------------------- Support Methods ----------------------
      */

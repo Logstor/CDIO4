@@ -1,6 +1,6 @@
-package controller.ChanceCardManageMent.ChanceCardActions;
+package controller.chanceCardManagement.chanceCardActions;
 
-import controller.ChanceCardManageMent.ChanceCardAction;
+import controller.chanceCardManagement.ChanceCardAction;
 import controller.GeneralActionController;
 import controller.GuiController;
 import model.chancecard.ChanceCard;
@@ -49,7 +49,7 @@ public class MoneyBankAction extends ChanceCardAction {
      * @param currentChanceCard The ChanceCard which action is done.
      */
     public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
-        showAndSetChanceCardOnGUi(currentChanceCard);
+        setDisplayMessageChanceCardOnGUi(currentChanceCard);
         generalActionController.updatePlayerBalanceInclGui(guiController,player,((MoneyBank) currentChanceCard).getMoneyToTransfer());
 
 }

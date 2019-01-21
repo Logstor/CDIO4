@@ -1,6 +1,8 @@
 package model.player;
 
 import model.board.Field;
+import model.board.FieldTypeEnum;
+import model.board.fields.PropertyField;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -18,9 +20,9 @@ public class Player {
     private Account account;
     private String name;
     private boolean hasLost = false;
-    private int BreweriesOwned = 0;
-    private int BoatsOwned = 0;
-    private int prisonStat = 0;
+    private int noOfBreweriesOwned = 0;
+    private int noOfBoatsOwned = 0;
+    private int prisonStat = 0, prisonCard = 0;
     private int totalPosition;
     private int position;
     private Token token;
@@ -43,8 +45,11 @@ public class Player {
      */
 
     // <editor-folder desc="Properties"
-
-
+    
+    public int getPrisonCard() { return prisonCard; }
+    
+    public void setPrisonCard(int prisonCard) { this.prisonCard = prisonCard; }
+    
     public boolean isHasLost() {
         return hasLost;
     }
@@ -69,20 +74,20 @@ public class Player {
         this.name = name;
     }
 
-    public int getBreweriesOwned() {
-        return BreweriesOwned;
+    public int getNoOfBreweriesOwned() {
+        return noOfBreweriesOwned;
     }
 
-    public void setBreweriesOwned(int breweriesOwned) {
-        BreweriesOwned = breweriesOwned;
+    public void setNoOfBreweriesOwned(int noOfBreweriesOwned) {
+        this.noOfBreweriesOwned = noOfBreweriesOwned;
     }
 
-    public int getBoatsOwned() {
-        return BoatsOwned;
+    public int getNoOfBoatsOwned() {
+        return noOfBoatsOwned;
     }
 
-    public void setBoatsOwned(int boatsOwned) {
-        BoatsOwned = boatsOwned;
+    public void setNoOfBoatsOwned(int noOfBoatsOwned) {
+        this.noOfBoatsOwned = noOfBoatsOwned;
     }
 
     public int getPrisonStat (){
@@ -117,7 +122,15 @@ public class Player {
         this.token = token;
     }
 
-// </editor-folder>
+    public ArrayList<Field> getOwnedFields() {
+        return ownedFields;
+    }
+
+    public void setOwnedFields(ArrayList<Field> ownedFields) {
+        this.ownedFields = ownedFields;
+    }
+
+    // </editor-folder>
     
     /*
     ---------------------- Public Methods -----------------------
@@ -125,7 +138,7 @@ public class Player {
     
     public void updateBalance (int amountToUpdateBalanceWith) {
         account.updateBalance(amountToUpdateBalanceWith);
-        if (account.getBalance()<=0) {
+        if (account.getBalance()<0) {
             hasLost=true;
         }
     }
@@ -136,9 +149,22 @@ public class Player {
      */
     public void updatePosition (int moves) {
         totalPosition += moves;
-        position = totalPosition % 40;
+        if (totalPosition<0) {
+            position = 40 + totalPosition;
+            totalPosition = position;
+        } else {
+            position = totalPosition % 40;
+        }
     }
 
+    public void updateNoOfBoatsOwned (int noOfBoatsToUpdateWith) {
+        noOfBoatsOwned = noOfBoatsOwned + noOfBoatsToUpdateWith;
+    }
+
+    public void updateNoOfBreweriesOwned (int noOfBreweriesToUpdateWith) {
+        noOfBreweriesOwned+= noOfBreweriesToUpdateWith;
+    }
+    
     public void addFieldToOwnedFields (Field ownedField) {
         ownedFields.add(ownedField);
     }
@@ -147,13 +173,19 @@ public class Player {
         ownedFields.remove(removableField);
     }
 
-    // TODO: SKAL DER TILFØJES VÆRDIEN AF SPILLERENS HUSE ?
+    /**
+     * Calculates the totalValue of a player.
+     * Sum of: Account.Balance, Value of Fields player own(half of buyPrice) and Value of Houses on those Fields.
+     * @return TotalValue of player.
+     */
     public int calPlayerTotalValue () {
         int totalPlayerValue = 0;
         // Value of Account
         totalPlayerValue += account.getBalance();
-        // Value of OwnedFields
+        // Adds value of OwnedFields
         totalPlayerValue += valueOfOwnedFields()*0.5;
+        // Adds value of houses on Fields ofOwnedFields
+        totalPlayerValue += valueOfHousesOnOwnedFields()*0.5;
 
         return totalPlayerValue;
     }
@@ -169,4 +201,18 @@ public class Player {
         return valueOfOwnedFields;
     }
 
+    private int valueOfHousesOnOwnedFields () {
+        int valueOfHousesOnOwnedFields = 0;
+
+        for (Field field : ownedFields) {
+            int noOfHouses = 0;
+            int housePrice = 0;
+            if (field.getFieldType().equals(FieldTypeEnum.Property)){
+                noOfHouses = ((PropertyField) field).getNoOfHousesOnProperty();
+                housePrice = ((PropertyField) field).getNoOfHousesOnProperty();
+            }
+            valueOfHousesOnOwnedFields = valueOfHousesOnOwnedFields + noOfHouses*housePrice;
+        }
+        return valueOfHousesOnOwnedFields;
+    }
 }

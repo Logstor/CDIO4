@@ -1,5 +1,6 @@
 package controller.fieldManagement.fieldActions;
 
+import controller.GeneralActionController;
 import controller.GuiController;
 import controller.fieldManagement.FieldAction;
 import model.board.Field;
@@ -12,21 +13,27 @@ import java.util.HashMap;
  */
 public class BoatAction extends FieldAction {
 
-/*
+	/*
     ---------------------------------- Fields ----------------------------------
      */
 
 	private Field currentField;
-	int rentFromNoOfBoats = 0;
-	String keyForBoatsOwned =null;
+	private int rentFromNoOfBoats = 0;
+	private String keyForBoatsOwned = null;
+	private GeneralActionController generalActionController;
+	private Player[] players;
+
 
     /*
     ------------------------------ Constructors --------------------------------
      */
 
-	public BoatAction(Player player, HashMap<String, String> messageMap,GuiController guiController, Field currentField) {
+	public BoatAction(Player player, Player[] players,HashMap<String, String> messageMap, GuiController guiController,
+					  GeneralActionController generalActionController, Field currentField) {
 		super(player,messageMap,guiController);
+		this.players = players;
 		this.currentField = currentField;
+		this.generalActionController = generalActionController;
 	}
 
 	/*
@@ -47,29 +54,28 @@ public class BoatAction extends FieldAction {
 	@Override
 	public void action() {
 
-		StringBuilder actionBuilder = new StringBuilder();
-		//region Check if the boatField has a owner, if false:
-		if (currentField.getFieldOwner() == null) {
-			actionBuilder.append(messageMap.get("BoatMessage") + "\n");
-			actionBuilder.append(messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
+		// Checks that the player doesn't own the field.
+		if (currentField.getFieldOwner() != player) {
 
-			String choice = guiController.getUserButton2(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"));
-
-			// If the player wants to purchase a boatField
-			if (choice.equals(messageMap.get("Yes"))) {
-				player.updateBalance(-currentField.getFieldCost());
-				player.setBoatsOwned(+1);
-				player.addFieldToOwnedFields(currentField);
-				guiController.updateBalance(player, player.getAccount().getBalance());
+			//region Buying Sequence.
+			if (currentField.getFieldOwner() == null) {
+				// Buys the if Player wants.
+				buyingSequence();
 			}
-		}
-		//endregion
 
-		//region if the there is a owner to the boat field:
-		if (currentField.getFieldOwner() != null) {
-			// runs the different cases if the player owns 1,2,3, or 4 boats:
-			rentFromNoOfBoats();
-			payBoatRent();
+			//endregion
+
+			//region If there is a owner to the boat field, runs Ray Rent Sequence.
+			else {
+
+				// Pay Rent and show message depending on owner number of boats.
+				payBoatRent();
+			}
+			//endregion
+		}
+		// Otherwise he owns the property
+		else {
+			guiController.showMessage(messageMap.get("LandedOnOwnField"));
 		}
 	}
 
@@ -78,25 +84,67 @@ public class BoatAction extends FieldAction {
      */
 
 	/**
-	 * Uses rentFromNoOfBoats and keyForBoatsOwned to update Player and GUI_Player for both paying and
+	 * Player is asked if he wants to buy the field. If yes, player buys the field.
+	 */
+	private void buyingSequence() {
+
+		// Checks if Player have enough money to buy field.
+		if (player.getAccount().getBalance()>=currentField.getFieldCost()) {
+			StringBuilder actionBuilder = new StringBuilder();
+			actionBuilder.append(messageMap.get("BoatMessage").replace("%boat", currentField.getFieldName()));
+			actionBuilder.append(" "+ messageMap.get("WantToBuy?").replace("%cost", String.valueOf(currentField.getFieldCost())));
+
+			// Askes if the player wants to purchase a boatField
+			if (guiController.getLeftButtonPressed(actionBuilder.toString(), messageMap.get("Yes"), messageMap.get("No"))) {
+
+				// Player Buys the Field.
+				generalActionController.buyField(player, currentField, guiController);
+			}
+
+			//region Auction
+			else {
+
+				auctionField(currentField,players,generalActionController);
+
+			}
+			//endregion
+		}
+		// Player don't have enough money to buy the field.
+		else {
+			guiController.showMessage(messageMap.get("NoMoneyToBuyField").
+					replace("%fieldName", currentField.getFieldName()));
+
+			//region auction
+			auctionField(currentField,players, generalActionController);
+			//endregion
+		}
+	}
+
+	/**
+	 * Uses calRentFromNoOfBoats and keyForBoatsOwned to update Player and GUI_Player for both paying and
 	 * receiving Player and show the right message on GUI.
 	 */
 	private void payBoatRent() {
+
+		calRentFromNoOfBoats();
+
 		// Updates Players Balance and matching GUI_Player Balance
 		player.updateBalance(-rentFromNoOfBoats);
 		guiController.updateBalance(player, player.getAccount().getBalance());
+
 		// ShowMessage on GUI
 		guiController.showMessage(messageMap.get(keyForBoatsOwned).replace("%ownerName", currentField.getFieldOwner().getName()));
+
 		// Updates FieldOwner's Balance and matching GUI_Players Balance.
 		currentField.getFieldOwner().updateBalance(+rentFromNoOfBoats);
 		guiController.updateBalance(currentField.getFieldOwner(), currentField.getFieldOwner().getAccount().getBalance());
 	}
 
 	/**
-	 * Sets rentFromNoOfBoats:int & keyForBoatsOwned:String with the correct rent matching number of boats.
+	 * Sets calRentFromNoOfBoats:int & keyForBoatsOwned:String with the correct rent matching number of boats.
 	 */
-	private void rentFromNoOfBoats () {
-		switch (player.getBoatsOwned()) {
+	private void calRentFromNoOfBoats() {
+		switch (currentField.getFieldOwner().getNoOfBoatsOwned()) {
 			case 1:
 				rentFromNoOfBoats = 500;
 				keyForBoatsOwned = "BoatsOwned1";

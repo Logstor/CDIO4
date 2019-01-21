@@ -32,7 +32,8 @@ public class PropertyField extends Field {
     
     public PropertyField (int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor,
                           int fieldRent, int fieldHousePrice, int field1HouseRent, int field2HouseRent, int field3HouseRent,
-                          int field4HouseRent, int field5HouseRent) {
+                          int field4HouseRent, int field5HouseRent)
+    {
         super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
         forSale = true;
@@ -138,20 +139,9 @@ public class PropertyField extends Field {
         return toStringBuilder.toString();
     }
 
-    public void fieldAction (Player player) {
-
-        if (fieldOwner ==null) {
-            actionText = "Ejendommen du er landet på er til salg og kan købes for " + getFieldCost() + "?";
-            player.updateBalance(getFieldCost());
-        } else {
-            actionText = "Ejendommen er ejet af " + getFieldOwner() + " og du skal betale " + fieldRent + "for at dit ophold.";
-            player.updateBalance(-fieldRent);
-            fieldOwner.updateBalance(fieldRent);
-        }
-
+    public void updateHousesOnProperty (int noofHousesToAddToProperty) {
+        noOfHousesOnProperty += noofHousesToAddToProperty;
     }
-
-    public void fieldAction (Player player, Cup cup) {}
     
     /*
     ---------------------- Support Methods ----------------------

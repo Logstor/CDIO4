@@ -2,8 +2,12 @@ package controller;
 
 import model.board.Board;
 import model.board.Field;
+import model.board.FieldTypeEnum;
 import model.board.fields.PropertyField;
 import model.player.Player;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Rasmus Sander Larsen
@@ -43,10 +47,28 @@ public class GeneralActionController {
         guiController.updateBalance(player, player.getAccount().getBalance());
     }
 
+    /**
+     * Updates Player and Gui_Players Balance. Adds Field to Player ownedFields.
+     * Sets Field and Gui_Fields owner. Sets the Field Border (DOTTED )to Player CarColor and LightGrey.
+     * If Field is Boat, Player.NoOfBoatsOwned is updated with 1.
+     * If Field is a Brewery, Player.NoOfBreweriesOwned is updated with 1.
+     * @param player The Player that buys the Field.
+     * @param fieldToBuy The Field that is bought.
+     * @param guiController GuiController to manage GUI.
+     */
     public void buyField (Player player, Field fieldToBuy, GuiController guiController) {
         updatePlayerBalanceInclGui(guiController,player,-fieldToBuy.getFieldCost());
         player.addFieldToOwnedFields(fieldToBuy);
+        fieldToBuy.setFieldOwner(player);
         guiController.setOwner(player,fieldToBuy);
+        guiController.setDottedBorderWithPlayerCarColor(player,fieldToBuy);
+        if (fieldToBuy.getFieldType()==FieldTypeEnum.Boat) {
+            player.updateNoOfBoatsOwned(1);
+        }
+        else if (fieldToBuy.getFieldType()==FieldTypeEnum.Brewery) {
+            player.updateNoOfBreweriesOwned(1);
+        }
+
     }
     
     /**
@@ -56,20 +78,59 @@ public class GeneralActionController {
      * @param field The PropertyField the player landed on.
      * @param guiController The GuiController.
      */
-    public void payPropertyRent(Player player, PropertyField field, GuiController guiController)
+    public void payPropertyRent(Player player, PropertyField field, GuiController guiController,
+                                HashMap<String,String> messageMap)
     {
     	int rent = rentFromNoOfHouses(field);
-    	
+
+    	// Display message to player
+        guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", field.getFieldOwner().getName()).
+                                    replace("%rent",String.valueOf(rent)));
+
         // Update the owners balance
         updatePlayerBalanceInclGui(guiController, field.getFieldOwner(), rent);
         
         // Update the payers balance
 		updatePlayerBalanceInclGui(guiController, player, -rent);
     }
-    
-    public void payManuelRent(Player player, Field field, GuiController guiController)
-    {
-    
+
+    /**
+     * This method awards the player with 4000 if they pass start.
+     * @param player Player
+     * @param guiController GuiController
+     * @param messageMap Messages.csv
+     *
+     */
+
+    public void passingStart(Player player, int preTotalPosition, int postTotalPosition,
+                              GuiController guiController, HashMap<String,String>messageMap) {
+        int preTotalRounds = preTotalPosition/40;
+        int postTotalRounds = postTotalPosition/40;
+
+        if (preTotalRounds<postTotalRounds) {
+            guiController.showMessage(messageMap.get("PassingStart"));
+            updatePlayerBalanceInclGui(guiController,player, +4000);
+        }
+    }
+
+
+    /**
+     * This method
+     * @param player The player who landed on the Field.
+     * @param manualRent The rent which shall be paid.
+     * @param currentField The Field the player landed on.
+     * @param guiController The GuiController.
+     * @param messageMap The Map of messages.
+     */
+    public void payManuelRent(Player player, int manualRent, Field currentField, GuiController guiController,
+                              HashMap<String, String> messageMap) {
+        // Show message to player
+        guiController.showMessage(messageMap.get("PayRentTo").replace("%rent", String.valueOf(manualRent))
+                .replace("%fieldOwner", currentField.getFieldOwner().getName()));
+
+        // Update both players balance
+        updatePlayerBalanceInclGui(guiController, player, -manualRent);
+        updatePlayerBalanceInclGui(guiController, currentField.getFieldOwner(), manualRent);
     }
 
     public void movingPlayerForwardGUI(Player player, Board board, GuiController guiController,
@@ -144,6 +205,7 @@ public class GeneralActionController {
             }
         }
     }
+
     /*
     ---------------------- Support Methods ----------------------
      */
@@ -154,7 +216,7 @@ public class GeneralActionController {
      * @param currentField The PropertyField.
      * @return The current rent as an int.
      */
-    private int rentFromNoOfHouses (PropertyField currentField) {
+    public int rentFromNoOfHouses (PropertyField currentField) {
         
         int rentFromNoOfHouses;
         

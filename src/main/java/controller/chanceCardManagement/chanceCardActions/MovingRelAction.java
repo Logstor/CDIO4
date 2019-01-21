@@ -1,6 +1,6 @@
-package controller.ChanceCardManageMent.ChanceCardActions;
+package controller.chanceCardManagement.chanceCardActions;
 
-import controller.ChanceCardManageMent.ChanceCardAction;
+import controller.chanceCardManagement.ChanceCardAction;
 import controller.GeneralActionController;
 import controller.GuiController;
 import model.board.Board;
@@ -56,7 +56,7 @@ public class MovingRelAction extends ChanceCardAction {
      * @param currentChanceCard The ChanceCard which action is done.
      */
     public void chanceCardAction (Player player, ChanceCard currentChanceCard) {
-        showAndSetChanceCardOnGUi(currentChanceCard);
+        setDisplayMessageChanceCardOnGUi(currentChanceCard);
         prePosition = player.getPosition();
         player.updatePosition(((MovingRel) currentChanceCard).getRelMovement());
         postPosition = player.getPosition();
@@ -64,12 +64,12 @@ public class MovingRelAction extends ChanceCardAction {
         if (((MovingRel) currentChanceCard).getRelMovement() > 0) // ChanceCardMovement is forward
         {
             generalActionController.movingPlayerForwardGUI(player, board, guiController,
-                    prePosition, postPosition, 500);
+                    prePosition, postPosition, 250);
         }
         else // ChanceCardMovement is backwards
         {
             generalActionController.movingPlayerBackwardGUI(player, board,guiController,
-                    prePosition, postPosition, 500);
+                    prePosition, postPosition, 250);
         }
     }
     

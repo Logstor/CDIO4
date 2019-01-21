@@ -26,7 +26,6 @@ public class SetupControl {
     private final int STARTINGMONEY = 30000;
     private final int STARTINGPOSITION = 0;
 
-
     /*
     ------------------------ Constructors ------------------------
      */
@@ -59,6 +58,7 @@ public class SetupControl {
 	
 	public Player[] playerSetup(GuiController guiController, HashMap<String, String> messageMap)
 	{
+
 		guiController.showMessage(messageMap.get("Welcome"));
 		
 		// Ask how many players who wants to play and Initialize Player[]
@@ -69,8 +69,24 @@ public class SetupControl {
 		tokenColorsString.add(messageMap.get("CarColor3")); tokenColorsString.add(messageMap.get("CarColor4"));
 		tokenColorsString.add(messageMap.get("CarColor5")); tokenColorsString.add(messageMap.get("CarColor6"));
 
+		ArrayList PlayerNames = new ArrayList();
+
 		for (int i = 0; i < players.length; i++) {
-		String name = guiController.getUserString(messageMap.get("NamePlayer") + " " + Integer.toString(i+1));
+			String name;
+			String name1 = guiController.getUserString(messageMap.get("NamePlayer") + " " + (i+1));
+
+			if(name1.equals("")==true){
+				guiController.showMessage("InvalidName");
+				i--;
+				continue;
+			}else if(PlayerNames.contains(name1)) {
+				guiController.showMessage("NameAlreadyTaken");
+				i--;
+				continue;
+			}else {
+				name=name1;
+				PlayerNames.add(name1);
+			}
 
 			String chosenTokenColor = guiController.getUserChoice(messageMap.get("PickColorForToken") + " ", tokenColorsString);
 			for (int j = 0; j < tokenColorsString.size(); j++) {

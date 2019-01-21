@@ -1,0 +1,11 @@
+﻿Parameter;cardTypes;cardText;moneyToTransfer;taxHousePrice;taxHotelPrice;absFieldNo;relMoving
+card1;movingAbs;Ryk frem til 'START'.;0;0;0;0;0
+noOfCardsInDeck;1;;;;;;
+lineSplitter;,;;;;;;
+CardTypes_Index;0;;;;;;
+CardText_Index;1;;;;;;
+MoneyToTransfer_Index;2;;;;;;
+TaxHousePrice_Index;3;;;;;;
+TaxHotelPrice_Index;4;;;;;;
+AbsFieldNo_Index;5;;;;;;
+RelMoving_Index;6;;;;;;

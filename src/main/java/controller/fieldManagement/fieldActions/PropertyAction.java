@@ -6,6 +6,7 @@ import controller.fieldManagement.FieldAction;
 import model.board.fields.PropertyField;
 import model.player.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -18,7 +19,8 @@ public class PropertyAction extends FieldAction {
      */
 
 	private PropertyField field;
-	private GeneralActionController generalAction;
+	private GeneralActionController generalActionController;
+	private Player[] players;
     
     /*
     ------------------------------ Constructors --------------------------------
@@ -31,10 +33,13 @@ public class PropertyAction extends FieldAction {
 	 * @param field The PropertyField the player landed on.
 	 * @param guiController The GuiController.
 	 */
-	public PropertyAction(Player player, HashMap<String, String> messageMap, PropertyField field, GuiController guiController) {
+	public PropertyAction(Player player, Player[] players, HashMap<String, String> messageMap, PropertyField field, GuiController guiController,
+						  GeneralActionController generalActionController)
+	{
 		super(player,messageMap,guiController);
+		this.players = players;
 		this.field = field;
-		this.generalAction = new GeneralActionController();
+		this.generalActionController = generalActionController;
 	}
 
 	/*
@@ -50,60 +55,78 @@ public class PropertyAction extends FieldAction {
 	 */
 	@Override
 	public void action() {
-		
-		//region Buying Sequence
-		if (field.getFieldOwner() == null)
+
+		// Check if the currentPlayer doesn't own the Property
+		if ( field.getFieldOwner() !=  player)
 		{
-			// Make
-			if ( (player.getAccount().getBalance() - field.getFieldCost()) > 0 )
-			{
-				//region Does Player Want to Buy?
+			//region Buying Sequence
+			if (field.getFieldOwner() == null) {
+				buyingSequence();
+			}
+			//endregion
+
+			//region Pay Rent
+			else {
 				
-				// Ask the user if he wants to buy the Property
-				String choice = guiController.getUserButton2(messageMap.get("PropertyWantToBuy").replace("%fieldName", field.getFieldName()),
-						"Ja", "Nej");
-				
-				//endregion
-				
-				if (choice.equals("Ja"))
+				// If the currentPlayer doesn't have the money
+				if ( player.getAccount().getBalance() < generalActionController.rentFromNoOfHouses(field))
 				{
-					generalAction.buyField(player, field, guiController);
+					generalActionController.payManuelRent(player, player.getAccount().getBalance(), field, guiController, messageMap);
+					player.setHasLost(true);
 				}
 				
-				// Otherwise, player don't want to
-				else
-				{
-					//region auction
-					
-					//endregion
+				// Otherwise, just pay rent normally
+				else {
+					// Handle the rent event, and display messages
+					generalActionController.payPropertyRent(player, field, guiController, messageMap);
 				}
 			}
-			
-			// Otherwise put it on auction
-			else
-			{
-				guiController.showMessage(messageMap.get("PropertyNoMoney"));
-				
-				//region auction
-				
-				//endregion
-			}
+			//endregion
 		}
-		//endregion
-		
-		//region Pay Rent
+
+		// Otherwise he owns the property
 		else
-		{
-			// Display message to player
-			guiController.showMessage(messageMap.get("PropertyFirst").replace("%name", field.getFieldOwner().getName()));
-			
-			// Update both players balance
-			generalAction.payPropertyRent(player, field, guiController);
-		}
-		//endregion
+			guiController.showMessage(messageMap.get("LandedOnOwnField"));
 	}
 
     /*
     ----------------------------- Support Methods ------------------------------
      */
+
+	/**
+	 *
+	 */
+	private void buyingSequence()
+	{
+		// Make
+		if ( (player.getAccount().getBalance() >= field.getFieldCost()))
+		{
+
+			// Ask the player if he wants to buy, and handle the event
+			if (guiController.getLeftButtonPressed(messageMap.get("PropertyWantToBuy").replace("%fieldName",
+					field.getFieldName()),
+					messageMap.get("Yes"), messageMap.get("No")))
+			{
+				generalActionController.buyField(player, field, guiController);
+			}
+
+			// Otherwise, player don't want to
+			else
+			{
+				//region auction
+				auctionField(field , players, generalActionController);
+				//endregion
+			}
+		}
+
+		// Otherwise put it on auction
+		else
+		{
+			guiController.showMessage(messageMap.get("PropertyNoMoney"));
+
+			//region auction
+			auctionField(field,players, generalActionController);
+			//endregion
+		}
+	}
 }

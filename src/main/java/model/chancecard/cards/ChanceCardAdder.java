@@ -53,6 +53,18 @@ public class ChanceCardAdder {
             case movingRel:
                 addMovingRel(cardTypes,cardText,relMoving);
                 break;
+            case matadorLegat:
+                addMatadorLegat(cardTypes,cardText);
+                break;
+            case toPrison:
+                addToPrison(cardTypes,cardText);
+                break;
+            case extraExpense:
+                addExtraExpense (cardTypes,cardText, taxHousePrice, taxHotelPrice);
+                break;
+            case outOfPrison:
+                addOutOfPrison(cardTypes,cardText);
+                break;
             default:
                 break;
         }
@@ -71,6 +83,24 @@ public class ChanceCardAdder {
     }
 
     private void addMovingRel (CardTypeEnum cardType, String cardText, int relMoving) {
-        tempListOfCards.add(new MovingAbs(cardType, cardText, relMoving));
+        tempListOfCards.add(new MovingRel(cardType, cardText, relMoving));
     }
+
+    private void addMatadorLegat (CardTypeEnum cardType, String cardText) {
+        tempListOfCards.add(new MatadorLegat(cardType, cardText));
+    }
+
+    private void addToPrison (CardTypeEnum cardType, String cardText) {
+        tempListOfCards.add(new ToPrison(cardType, cardText));
+    }
+
+    private void addExtraExpense (CardTypeEnum cardType, String cardText, int taxHousePrice, int taxHotelPrice){
+        tempListOfCards.add(new ExtraExpense(cardType,cardText,taxHousePrice,taxHotelPrice));
+    }
+
+    private void addOutOfPrison (CardTypeEnum cardType, String cardText){
+        tempListOfCards.add(new OutOfPrison(cardType,cardText));
+    }
+
+
 }

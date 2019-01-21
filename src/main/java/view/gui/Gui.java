@@ -195,6 +195,11 @@ public class Gui {
         return gui.getUserInteger(message);
     }
 
+    public boolean getLeftButtonPressed (String message, String truebutton, String falsebutton ){
+        return gui.getUserLeftButtonPressed(message, truebutton, falsebutton);
+
+    }
+
     /**
      * This method prompts the user to input a String into
      * a textfield, and returns the inputted String.
@@ -291,10 +296,75 @@ public class Gui {
      * @param player The player which shall own the field
      * @param theField The field in focus
      */
-    public void setOwner(Player player, Field theField)
+    public void setOwner (Player player, Field theField)
     {
         // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
         ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(player.getName());
+    }
+
+    /**
+     * This method updates the showed rent of the field.
+     * @param theField The Field which needs to be updated.
+     * @param rent The new absolute rent.
+     */
+    public void setOwnableRent (Field theField, int rent)
+    {
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setRent(String.valueOf(rent));
+    }
+
+    /**
+     * Sets the Field Border (PLAIN) to the color of the Players Car.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setPlainBorderWithPlayerCarColor(Player player, Field theField) {
+
+        ((GUI_Ownable) fields[theField.getFieldNo()-1]).setBorder(player.getToken().getCarColor());
+
+    }
+
+    /**
+     * Sets the Field Border (DOTTED) to the color of the Players Car and LightGrey.
+     * @param player The Player that the BorderColor is decided on.
+     * @param theField The Field which gets it borders Colored.
+     */
+    public void setDottedBorderWithPlayerCarColor(Player player, Field theField) {
+
+        ((GUI_Ownable) fields[theField.getFieldNo()-1]).setBorder(player.getToken().getCarColor(),
+                Color.LIGHT_GRAY);
+
+    }
+
+    /**
+     * Set the entered number of GuI_houses on the entered Field.
+     * @param noOfHousesOnProperty This is the number of houses that is build on GUI_Field.
+     * @param theField The field that the houses is build on.
+     */
+    public void setHouses (int noOfHousesOnProperty, Field theField) {
+
+        ((GUI_Street) fields[theField.getFieldNo()-1]).setHouses(noOfHousesOnProperty);
+
+    }
+
+    /**
+     * Sets hotel to be "true" on the entered Field.
+     * @param theField The field that the hotel is build on.
+     */
+    public void setHotel (Field theField) {
+
+        ((GUI_Street) fields[theField.getFieldNo()-1]).setHotel(true);
+
+    }
+
+
+    /**
+     * Removes a players GUI_car from GUI_field.
+     * @param player
+     */
+    public void removeGUICar (Player player) {
+
+        fields[player.getPosition()].setCar(findPlayer(player),false);
+
     }
     
     /**
@@ -478,8 +548,8 @@ public class Gui {
 
                 // Create new GUI_Street
                 GUI_Street street = new GUI_Street(fields[i].getFieldName(), "Beløb: " + fields[i].getFieldCost(),
-                        fields[i].getFieldDescription(),
-                        Integer.toString(fields[i].getFieldCost()), fields[i].getFieldColor(), textColor);
+                        fields[i].getFieldDescription(),String.valueOf(((PropertyField)fields[i]).getFieldRent()),
+                        fields[i].getFieldColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
                 newFields[i] = street;
@@ -526,11 +596,10 @@ public class Gui {
 
                 // Change the title of the field
                 boat.setTitle(fields[i].getFieldName());
-                boat.setSubText("Færge");
+                boat.setSubText("Beløb: " + fields[i].getFieldCost());
                 boat.setDescription(fields[i].getFieldDescription());
                 boat.setRent(Integer.toString(fields[i].getFieldCost()));
 
-                //TODO: Er der for meget med forskellige farver til Molslinien og de andre færger?
                 boat.setBackGroundColor(fields[i].getFieldColor());
 
                 // Put the GUI_Field into the newFields array
@@ -547,7 +616,7 @@ public class Gui {
 
                 // Change the title of the field
                 brewery.setTitle(fields[i].getFieldName());
-                brewery.setSubText("Bryggeri");
+                brewery.setSubText("Beløb: " + fields[i].getFieldCost());
                 brewery.setDescription(fields[i].getFieldDescription());
                 brewery.setRent(Integer.toString(fields[i].getFieldCost()));
 
@@ -565,7 +634,7 @@ public class Gui {
 
                 // Change the title of the field
                 tax.setTitle(fields[i].getFieldName());
-                tax.setSubText("Ekstra SKAT");
+                tax.setSubText("Betal: " + fields[i].getFieldCost());
                 tax.setDescription(fields[i].getFieldDescription());
                 tax.setBackGroundColor(fields[i].getFieldColor());
 
@@ -610,4 +679,13 @@ public class Gui {
     }
     //</editor-fold>
 
+    public void clearFieldForInfo (Field theField) {
+
+        // Reset Field Border.
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setBorder(null);
+        // Reset Field Owner.
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnerName(null);
+        // Reset Field OwnableLabel
+        ((GUI_Ownable)fields[theField.getFieldNo()-1]).setOwnableLabel(null);
+    }
 }

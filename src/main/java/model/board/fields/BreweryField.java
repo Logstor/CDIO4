@@ -40,48 +40,10 @@ public class BreweryField extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
-
-    public void fieldAction (Player player) {
-
-    }
-
-    public void fieldAction (Player player, Cup cup) {
-
-        if (fieldOwner == null) {
-        actionText = "Du køber dette felt for " + fieldCost + " pengesedler\n";
-        setFieldOwner(player);
-        player.updateBalance(-fieldCost);
-        } else {
-            actionText = "Du er landet på "+ fieldOwner + "'s felt \n Du betaler "+ rentByOwnersNoOfBreweries(cup.getCupValue())
-                    + " pengesedler i husleje til "+ fieldOwner.getName();
-            player.updateBalance(-rentByOwnersNoOfBreweries(cup.getCupValue()));
-            fieldOwner.updateBalance(rentByOwnersNoOfBreweries(cup.getCupValue()));
-        }
-    }
     
     /*
     ---------------------- Support Methods ----------------------
      */
-
-    private int rentByOwnersNoOfBreweries (int cupRoll) {
-        int variableRent;
-        int OwnersNoOfBreweries = fieldOwner.getBreweriesOwned();
-
-        switch (OwnersNoOfBreweries) {
-            case 1:
-                variableRent = 100* cupRoll;
-                break;
-
-            case 2:
-                variableRent = 200 * cupRoll;
-                break;
-
-            default:
-                variableRent = 666;
-                break;
-        }
-        return variableRent;
-    }
 
 
 }
