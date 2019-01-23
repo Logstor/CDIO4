@@ -3,6 +3,7 @@ package controller.extraActionManagment.extraActions;
 import controller.GeneralActionController;
 import controller.GuiController;
 import controller.extraActionManagment.ExtraAction;
+import controller.extraActionManagment.ExtraActionType_Enum;
 import gui_main.GUI;
 import model.board.Field;
 import model.player.Player;
@@ -19,10 +20,7 @@ public class UnPledgeAction extends ExtraAction {
     /*
     -------------------------- Fields --------------------------
      */
-    
-    private GuiController guiController;
-    private HashMap<String,String> messageMap;
-    private GeneralActionController generalActionController;
+
     
     /*
     ----------------------- Constructor -------------------------
@@ -31,6 +29,7 @@ public class UnPledgeAction extends ExtraAction {
     public UnPledgeAction (GuiController guiController, HashMap<String,String> messageMap,
                            GeneralActionController generalActionController) {
        super(guiController,messageMap,generalActionController);
+       extraActionType = ExtraActionType_Enum.UnPledge;
     }
     
     /*

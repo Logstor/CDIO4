@@ -6,6 +6,6 @@ package controller.extraActionManagment;
  */
 public enum  ExtraActionType_Enum {
 
-    BuyHouse, SellField
+    BuyHouse, SellField, Pledge, UnPledge
 
 }

@@ -3,6 +3,7 @@ package controller.extraActionManagment.extraActions;
 import controller.GeneralActionController;
 import controller.GuiController;
 import controller.extraActionManagment.ExtraAction;
+import controller.extraActionManagment.ExtraActionType_Enum;
 import model.board.Field;
 import model.player.Player;
 
@@ -18,10 +19,8 @@ public class PledgeAction extends ExtraAction {
     /*
     -------------------------- Fields --------------------------
      */
-    
-    private GuiController guiController;
-    private HashMap<String,String> messageMap;
-    private GeneralActionController generalActionController;
+
+
     
     /*
     ----------------------- Constructor -------------------------
@@ -30,7 +29,7 @@ public class PledgeAction extends ExtraAction {
     public PledgeAction (GuiController guiController, HashMap<String,String> messageMap,
                          GeneralActionController generalActionController) {
         super(guiController,messageMap,generalActionController);
-
+        extraActionType = ExtraActionType_Enum.Pledge;
     }
     
     /*
@@ -61,7 +60,7 @@ public class PledgeAction extends ExtraAction {
 
         ArrayList<Field> unPledgedFields = new ArrayList<>();
         for (Field field : player.getOwnedFields()) {
-            if (!field.isPledged()){
+            if (field.isPledged() == null){
                 unPledgedFields.add(field);
             }
         }

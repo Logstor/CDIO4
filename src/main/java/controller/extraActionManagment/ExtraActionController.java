@@ -3,7 +3,9 @@ package controller.extraActionManagment;
 import controller.GeneralActionController;
 import controller.GuiController;
 import controller.extraActionManagment.extraActions.BuyHousesAction;
+import controller.extraActionManagment.extraActions.PledgeAction;
 import controller.extraActionManagment.extraActions.SellFieldAction;
+import controller.extraActionManagment.extraActions.UnPledgeAction;
 import model.board.Board;
 import model.player.Player;
 
@@ -29,7 +31,8 @@ public class ExtraActionController {
     // ExtraActions
     private SellFieldAction sellFieldAction;
     private BuyHousesAction buyHousesAction;
-
+    private PledgeAction pledgeAction;
+    private UnPledgeAction unPledgeAction;
     
     /*
     ----------------------- Constructor -------------------------
@@ -45,6 +48,8 @@ public class ExtraActionController {
 
         sellFieldAction = new SellFieldAction(playerArrayList,guiController,messageMap,generalActionController);
         buyHousesAction = new BuyHousesAction(board,guiController,messageMap,generalActionController);
+        pledgeAction = new PledgeAction(guiController,messageMap,generalActionController);
+        unPledgeAction = new UnPledgeAction(guiController, messageMap,generalActionController);
 
     }
     
@@ -92,6 +97,14 @@ public class ExtraActionController {
                 // Adds the option: BuyHouses.
                 extraActionOptions.add(messageMap.get("BuyHouse"));
             }
+            if (pledgeAction.checkIfPledgeIsValid(currentPlayer)){
+                //Adds the option: Pledge
+                extraActionOptions.add(messageMap.get("Pledge"));
+            }
+            if (unPledgeAction.checkIfUnPledgeIsValid(currentPlayer)) {
+                //Adds the option: UnPledge
+                extraActionOptions.add(messageMap.get("UnPledge"));
+            }
 
             // Gets the chose of Player.
             String chosenOption = guiController.getUserChoice(messageMap.get("ExtraOptionsChoices"),extraActionOptions);
@@ -107,7 +120,11 @@ public class ExtraActionController {
             return true;
         } else if (buyHousesAction.checkIfPlayerIsValidForBuyHouses(currentPlayer)) {
             return true;
-        } else {
+        } else if (pledgeAction.checkIfPledgeIsValid(currentPlayer)) {
+            return true;
+        } else if (unPledgeAction.checkIfUnPledgeIsValid(currentPlayer)) {
+            return true;
+        }else{
             return false;
         }
     }
@@ -135,11 +152,17 @@ public class ExtraActionController {
                 break;
                 
             case SellField:
-                sellFieldAction = new SellFieldAction(playerArrayList, guiController,messageMap,
-                        generalActionController);
                 sellFieldAction.doExtraAction(currentPlayer);
                 break;
-                
+
+            case Pledge:
+                pledgeAction.doExtraAction(currentPlayer);
+                break;
+
+            case UnPledge:
+                unPledgeAction.doExtraAction(currentPlayer);
+                break;
+
             default:
                 break;
         }

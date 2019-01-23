@@ -37,7 +37,7 @@ public abstract class Field {
         this.fieldCost = fieldCost;
         this.fieldColor = fieldColor;
         fieldOwner = null;
-        pledged = false;
+
     }
     
     /*
