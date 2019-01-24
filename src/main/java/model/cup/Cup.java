@@ -12,6 +12,8 @@ public class Cup {
 
 	private int cupValue;
 	private Die[] dies;
+	private int count = 0;
+	private int[] values = {1, 1, 1, 2, 2, 2};
     
     /*
     ----------------------- Constructor -------------------------
@@ -96,7 +98,14 @@ public class Cup {
 		}
 
 		// Update this.cupValue and return it
-		this.cupValue = cupValue;
+		this.cupValue = values[count];
+
+		dies[0].setFaceValue(1);
+		dies[1].setFaceValue(2);
+
+		count += 1;
+		if (count >= values.length)
+			count = 0;
 
 		return this.cupValue;
 	}
