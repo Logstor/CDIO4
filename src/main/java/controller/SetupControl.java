@@ -23,7 +23,7 @@ public class SetupControl {
      */
     private HashMap<String, String> boardInfo;
     private HashMap<String,String> chanceCardInfo;
-    private final int STARTINGMONEY = 30000;
+    private final int STARTINGMONEY = 3000;
     private final int STARTINGPOSITION = 0;
 
     /*
@@ -130,7 +130,7 @@ public class SetupControl {
 	}
 
 	private void loadChanceCardInfo() {
-    	Reader reader = new Reader("chanceCardV1.csv", ";");
+    	Reader reader = new Reader("chanceCardV1 - Et kort Deck til test.csv", ";");
     	reader.readFileIntoHashMap(chanceCardInfo);
 	}
 

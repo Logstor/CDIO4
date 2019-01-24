@@ -1,6 +1,8 @@
 ﻿Parameter;cardTypes;cardText;moneyToTransfer;taxHousePrice;taxHotelPrice;absFieldNo;relMoving
-card1;movingAbs;Ryk frem til 'START'.;0;0;0;0;0
-noOfCardsInDeck;1;;;;;;
+card1;moneyBank;Betal 4000.;-4000;0;0;0;0
+card2;moneyBank;Betal 4000.;-4000;0;0;0;0
+card3;moneyBank;Få 4000.;4000;0;0;0;0
+noOfCardsInDeck;3;;;;;;
 lineSplitter;,;;;;;;
 CardTypes_Index;0;;;;;;
 CardText_Index;1;;;;;;
