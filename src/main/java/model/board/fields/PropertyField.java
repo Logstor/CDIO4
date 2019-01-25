@@ -34,8 +34,6 @@ public class PropertyField extends Field {
     {
         super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
 
-        pledged = true;
-
         this.fieldRent = fieldRent;
         this.fieldHousePrice = fieldHousePrice;
         this.field1HouseRent = field1HouseRent;

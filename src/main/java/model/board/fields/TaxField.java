@@ -23,7 +23,6 @@ public class TaxField extends Field {
 
     public TaxField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo,fieldType,fieldName,fieldDescription, fieldCost,fieldColor);
-        pledged =false;
     }
     
     /*

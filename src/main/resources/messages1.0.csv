@@ -93,5 +93,6 @@ WantToUnPledgeField?;Kunne du tænke dig at tilbagekøbe nogle af dine pantsatte
 WhatFieldToUnPledge?;Vælg det felt du gerne vil tilbagekøbe fra pantsat.
 FullUnPledgeDesc;%name bekræfter hermed at %fieldName tilbagekøbes fra at være pantsat. Denne handling koster kr. %unPledgePrice.
 DeniedUnPledge;%name tilbagekøbte IKKE %fieldName alligevel.
-Pledge;Pantsæt felt.
-UnPledge;Tilbagekøb pantsat felt.
+Pledge;Pantsæt felter
+UnPledge;Tilbagekøb pantsat felter
+PledgedLabel; (PANTSAT)

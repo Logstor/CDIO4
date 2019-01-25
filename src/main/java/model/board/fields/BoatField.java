@@ -23,7 +23,6 @@ public class BoatField extends Field {
 
     public BoatField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
-        pledged =true;
     }
     
     /*

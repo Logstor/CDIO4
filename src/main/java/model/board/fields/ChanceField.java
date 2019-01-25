@@ -23,7 +23,6 @@ public class ChanceField extends Field {
 
     public ChanceField(int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo,fieldType,fieldName,fieldDescription,fieldCost,fieldColor);
-        pledged = false;
     }
     
     /*

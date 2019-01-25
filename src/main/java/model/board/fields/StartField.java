@@ -23,8 +23,6 @@ public class StartField extends Field {
     
     public StartField (int fieldNo, FieldTypeEnum fieldType, String fieldName, String fieldDescription, int fieldCost, Color fieldColor) {
         super(fieldNo, fieldType, fieldName,fieldDescription, fieldCost, fieldColor);
-
-        pledged = false;
     }
     
     /*

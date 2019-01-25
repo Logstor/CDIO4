@@ -4,7 +4,6 @@ import controller.GeneralActionController;
 import controller.GuiController;
 import controller.extraActionManagment.ExtraAction;
 import controller.extraActionManagment.ExtraActionType_Enum;
-import gui_main.GUI;
 import model.board.Field;
 import model.player.Player;
 
@@ -106,6 +105,8 @@ public class UnPledgeAction extends ExtraAction {
             //Sets Field.isPledged to false and updates Player and Gui_Player with minus unPledgePrice.
             selectedField.setPledged(false);
             generalActionController.updatePlayerBalanceInclGui(guiController,player,-unPledgePrice);
+            //Removes PledgedLabel from GUI_Field.
+            guiController.setOwner(player,selectedField);
         }
 
         //region Player denied to UnPledge the Field
@@ -116,20 +117,18 @@ public class UnPledgeAction extends ExtraAction {
                     .replace("%fieldName", selectedField.getFieldName()));
         }
 
-
-
-
+        //endregion
 
     }
 
     /**
      * Returns the price to UnPledge the Field. Which is half of the Field.Cost + 10% in rent.
      * @param field the Field the price is calculated from.
-     * @return return an int. NOT MATADOR SIZES MONEY!
+     * @return return an int. In MATADOR money, rounded with 100, and always rounding down.
      * TODO: SKAL LAVES TIL MATADOR MONEY
      */
     private int calUnPledgePrice (Field field) {
 
-        return (int)(field.getFieldCost()/2*1.1);
+        return (int)((field.getFieldCost()/2*1.1)-((field.getFieldCost()/2*1.1)%100));
     }
 }

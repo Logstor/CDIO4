@@ -60,7 +60,7 @@ public class PledgeAction extends ExtraAction {
 
         ArrayList<Field> unPledgedFields = new ArrayList<>();
         for (Field field : player.getOwnedFields()) {
-            if (field.isPledged() == null){
+            if (!field.isPledged()){
                 unPledgedFields.add(field);
             }
         }
@@ -106,6 +106,8 @@ public class PledgeAction extends ExtraAction {
             generalActionController.updatePlayerBalanceInclGui(guiController,player,(selectedField.getFieldCost()/2));
             //Sets Fields as Pledged
             selectedField.setPledged(true);
+            //Shows on the GUI that the Field is Pledged.
+            addPledgedLabelToOwnerNameOnGUI(player,selectedField);
         }
         //endregion
 
@@ -118,4 +120,11 @@ public class PledgeAction extends ExtraAction {
         //endregion
     }
 
+    private void addPledgedLabelToOwnerNameOnGUI (Player player, Field currentField) {
+        String originalPlayerName = player.getName();
+        String playerNameWithPledgeLabel = player.getName() + messageMap.get("PledgedLabel");
+        player.setName(playerNameWithPledgeLabel);
+        guiController.setOwner(player,currentField);
+        player.setName(originalPlayerName);
+    }
 }
